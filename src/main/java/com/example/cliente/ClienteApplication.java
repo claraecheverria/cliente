@@ -16,6 +16,5 @@ public class ClienteApplication {
         SpringApplication.run(ClienteApplication.class, args);
 //        Application.launch(HelloApplication.class, args);
     }
-    //prueba git
 
 }
