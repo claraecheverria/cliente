@@ -13,8 +13,8 @@ public class ClienteApplication {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(ClienteApplication.class, args);
-//        Application.launch(HelloApplication.class, args);
+        ClienteApplication.context = SpringApplication.run(ClienteApplication.class);
+        Application.launch(HelloApplication.class, args);
     }
 
 }

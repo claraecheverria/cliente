@@ -19,9 +19,9 @@ javafx {
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
-//application{
-//    mainClassName('com.example.tic1primerentrega.Tic1PrimerEntregaApplication')
-//}
+application{
+    mainClassName('com.example.cliente.ClienteApplication')
+}
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'

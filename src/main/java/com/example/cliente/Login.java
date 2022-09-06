@@ -5,12 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
 
-@Controller
 public class Login {
 
     public Login() {
@@ -33,12 +30,10 @@ public class Login {
         checklogin();
     }
 
-
     private void checklogin() {
         String email = Email.getText().toString();
         String nombre = Nombre.getText().toString();
         Long tel = Long.valueOf(Telefono.getText());
-
 //        User nuevoUser = new User(nombre, email, tel);
         Email.clear();
         Nombre.clear();

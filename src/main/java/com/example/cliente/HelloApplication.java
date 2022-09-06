@@ -14,7 +14,6 @@ public class HelloApplication extends Application {
 
     @Override
     public void init() {
-
     }
 
     @Override
@@ -26,8 +25,12 @@ public class HelloApplication extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClienteApplication.getContext()::getBean);
-        root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("com/example/cliente/LoginPage2.fxml"));
+        root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("LoginPage2.fxml"));
         stage.setScene(new Scene(root));
         stage.show();
     }
+
+//    public void post(String nombre){
+//
+//    }
 }
