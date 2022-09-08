@@ -30,7 +30,7 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
-//    public void post(String nombre){
+//    public void requestMapping(String nombre){
 //
 //    }
 }
