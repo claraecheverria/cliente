@@ -5,9 +5,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import kong.unirest.HttpResponse;
+import kong.unirest.Unirest;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+
 @Component
 public class Login {
 
@@ -34,11 +37,18 @@ public class Login {
     private void checklogin() {
         String email = Email.getText().toString();
         String nombre = Nombre.getText().toString();
-        Long tel = Long.valueOf(Telefono.getText());
+//        Long tel = Long.valueOf(Telefono.getText());
+        String tel = Telefono.getText();
 //        User nuevoUser = new User(nombre, email, tel);
         Email.clear();
         Nombre.clear();
         Telefono.clear();
+        HttpResponse<String> response = Unirest.post("http://localhost:8080/user")
+                .header("accept", "application/json")
+                .header("Content-Type", "application/json")
+                .body("{\"nombre\":" + nombre + "\", email\":" + email+ "\", telefono\":" + tel)
+                .asString();
+
     }
 }
 
