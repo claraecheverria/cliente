@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import kong.unirest.HttpResponse;
+import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
 import org.springframework.stereotype.Component;
 
@@ -43,11 +44,11 @@ public class Login {
         Email.clear();
         Nombre.clear();
         Telefono.clear();
-        HttpResponse<String> response = Unirest.post("http://localhost:8080/user")
+        HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/user")
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
-                .body("{\"nombre\":" + nombre + "\", email\":" + email+ "\", telefono\":" + tel)
-                .asString();
+                .body("{\"nombre\": \"" + nombre + "\", \"email\": \"" + email+ "\", \"telefono\": \"" + tel + "}")
+                .asJson();
 
     }
 }
