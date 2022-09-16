@@ -6,13 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.springframework.stereotype.Controller;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
-
+@Controller
 public class ScenceController {
-
     private Stage stage;
     private Scene scence;
     private Parent root;
@@ -26,11 +26,15 @@ public class ScenceController {
         scence = new Scene(root);
         stage.setScene(scence);
         stage.show();
-
-
     }
 
-    public void switchToScence2(ActionEvent event){
+    public void switchToScence2(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("Page1.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scence = new Scene(root);
+        stage.setScene(scence);
+        stage.show();
 
     }
 

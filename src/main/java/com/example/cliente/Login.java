@@ -1,7 +1,5 @@
 package com.example.cliente;
 
-import com.google.gson.JsonObject;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,8 +8,10 @@ import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
 import kong.unirest.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 
 @Component
@@ -32,9 +32,13 @@ public class Login {
     @FXML
     private TextField Telefono;
 
+    @Autowired
+    private ScenceController ScenceController;
+
 
     public void userLogin(ActionEvent event) throws IOException {
         checklogin();
+        ScenceController.switchToScence2(event);
 
     }
 
