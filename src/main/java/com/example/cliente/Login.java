@@ -1,5 +1,6 @@
 package com.example.cliente;
 
+import com.google.gson.JsonObject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,6 +9,7 @@ import javafx.scene.control.TextField;
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
+import kong.unirest.json.JSONObject;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -44,12 +46,22 @@ public class Login {
         Email.clear();
         Nombre.clear();
         Telefono.clear();
+        JSONObject jsonnn = new JSONObject();
+        jsonnn.put("nombre", nombre);
+        jsonnn.put("email", email);
+        jsonnn.put("telefono", tel);
         HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/user")
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
-                .body("{\"nombre\": \"" + nombre + "\", \"email\": \"" + email+ "\", \"telefono\": \"" + tel + "}")
+//                .body("{\"nombre\": \"" + nombre + "\", \"email\": \"" + email+ "\", \"telefono\": \"" + tel + "}")
+                .body(jsonnn)
                 .asJson();
 
+        if (response.getStatus() != 200) {
+            System.out.println("Failed to list Issues: " + response.getStatusText());
+            System.out.println(response.getBody());
+//            System.out.println(response.getBody().getObject());
+        }
     }
 }
 
