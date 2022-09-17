@@ -16,6 +16,8 @@ import java.io.IOException;
 
 @Component
 public class Login {
+    @Autowired
+    private ScenceController ScenceController;
 
     public Login() {
         System.out.println("Constructor!!!!");
@@ -32,40 +34,49 @@ public class Login {
     @FXML
     private TextField Telefono;
 
-    @Autowired
-    private ScenceController ScenceController;
 
 
-    public void userLogin(ActionEvent event) throws IOException {
-        checklogin();
-        ScenceController.switchToScence2(event);
 
-    }
+//    public void userLogin(ActionEvent event) throws IOException {
+//        checklogin();
+//        ScenceController.switchToScence2(event);
+//
+//    }
 
     private void checklogin() {
         String email = Email.getText().toString();
         String nombre = Nombre.getText().toString();
-//        Long tel = Long.valueOf(Telefono.getText());
-        String tel = Telefono.getText();
-//        User nuevoUser = new User(nombre, email, tel);
+        Long tel = Long.valueOf(Telefono.getText());
+//        String tel = Telefono.getText();
         Email.clear();
         Nombre.clear();
         Telefono.clear();
         JSONObject jsonnn = new JSONObject();
-        jsonnn.put("nombre", nombre);
-        jsonnn.put("email", email);
-        jsonnn.put("telefono", tel);
+        User nuevoUser = new User(nombre,email,tel);
+//        jsonnn.put("nombre", nombre);
+//        jsonnn.put("email", email);
+//        jsonnn.put("telefono", tel);
         HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/user")
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
 //                .body("{\"nombre\": \"" + nombre + "\", \"email\": \"" + email+ "\", \"telefono\": \"" + tel + "}")
-                .body(jsonnn)
+//                .body(jsonnn)
+                .body(nuevoUser)
                 .asJson();
 
         if (response.getStatus() != 200) {
             System.out.println("Failed to list Issues: " + response.getStatusText());
             System.out.println(response.getBody());
 //            System.out.println(response.getBody().getObject());
+        }
+    }
+
+    public void userLogin(javafx.event.ActionEvent actionEvent) {
+        checklogin();
+        try {
+            ScenceController.switchToScence2(actionEvent);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

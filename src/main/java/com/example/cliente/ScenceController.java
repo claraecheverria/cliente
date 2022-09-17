@@ -28,7 +28,7 @@ public class ScenceController {
         stage.show();
     }
 
-    public void switchToScence2(ActionEvent event) throws IOException {
+    public void switchToScence2(javafx.event.ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("Page1.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
