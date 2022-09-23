@@ -34,49 +34,48 @@ public class Login {
     @FXML
     private TextField Telefono;
 
-
-
-
-//    public void userLogin(ActionEvent event) throws IOException {
-//        checklogin();
-//        ScenceController.switchToScence2(event);
-//
-//    }
+    private boolean check;
 
     private void checklogin() {
+        check = true;
         String email = Email.getText().toString();
         String nombre = Nombre.getText().toString();
         Long tel = Long.valueOf(Telefono.getText());
-//        String tel = Telefono.getText();
         Email.clear();
         Nombre.clear();
         Telefono.clear();
-        JSONObject jsonnn = new JSONObject();
-        User nuevoUser = new User(nombre,email,tel);
-//        jsonnn.put("nombre", nombre);
-//        jsonnn.put("email", email);
-//        jsonnn.put("telefono", tel);
-        HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/user")
-                .header("accept", "application/json")
-                .header("Content-Type", "application/json")
-//                .body("{\"nombre\": \"" + nombre + "\", \"email\": \"" + email+ "\", \"telefono\": \"" + tel + "}")
-//                .body(jsonnn)
-                .body(nuevoUser)
-                .asJson();
-
-        if (response.getStatus() != 200) {
-            System.out.println("Failed to list Issues: " + response.getStatusText());
+        int length = String.valueOf(tel).length();
+        System.out.println(length);
+//        if (email.equals("") || nombre.equals("") || length < 9){
+//            System.out.println("Errorrr!!");
+//            check = false;
+//        }else {
+            User nuevoUser = new User(nombre, email, tel);
+            HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/user")
+                    .header("accept", "application/json")
+                    .header("Content-Type", "application/json")
+                    .body(nuevoUser)
+                    .asJson();
             System.out.println(response.getBody());
-//            System.out.println(response.getBody().getObject());
-        }
+            System.out.println(response.getStatusText());
+
+//        if (response.getStatus() != 200) {
+//            System.out.println("Failed to list Issues: " + response.getStatusText());
+//            System.out.println(response.getBody());
+//        }
+//        }
     }
 
     public void userLogin(javafx.event.ActionEvent actionEvent) {
         checklogin();
-        try {
-            ScenceController.switchToScence2(actionEvent);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        if (check == true) {
+            try {
+                ScenceController.switchToScence2(actionEvent);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }else {
+            wrongLogin.setText("Login incorrecto");
         }
     }
 }
