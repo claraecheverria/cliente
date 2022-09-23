@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" styleClass="Parent" stylesheets="@../../../../java/com/example/cliente/StilePage1.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" styleClass="Parent" stylesheets="@StilePage1.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="45.0" styleClass="sidebar" BorderPane.alignment="CENTER">
          <children>
@@ -155,11 +155,6 @@
                                              </font>
                                           </FontAwesomeIconView>
                                           <FontAwesomeIconView fill="#222121" glyphName="SHOWER" layoutX="188.0" layoutY="90.0" size="30" wrappingWidth="38.714284896850586">
-                                             <font>
-                                                <Font size="20.0" />
-                                             </font>
-                                          </FontAwesomeIconView>
-                                          <FontAwesomeIconView fill="#222121" glyphName="" layoutX="125.0" layoutY="140.0" selectionFill="#222121" size="35" wrappingWidth="38.714284896850586">
                                              <font>
                                                 <Font size="20.0" />
                                              </font>

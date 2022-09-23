@@ -39,7 +39,9 @@ public class ScenceController {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("Page1.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        String css = this.getClass().getResource("StilePage1.css").toExternalForm();
         scence = new Scene(root);
+        scence.getStylesheets().add(css);
         stage.setScene(scence);
         stage.initStyle(StageStyle.UNDECORATED);
         XYChart.Series<String,Integer> series_01 = new XYChart.Series<>();

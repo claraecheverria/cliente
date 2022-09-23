@@ -27,6 +27,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'com.konghq:unirest-java:3.11.09'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.4'
+    implementation 'de.jensd:fontawesomefx-fontawesome:4.7.0-9.1.2'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 }
