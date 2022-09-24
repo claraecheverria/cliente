@@ -42,14 +42,14 @@ public class ScenceController {
         String css = this.getClass().getResource("StilePage1.css").toExternalForm();
         scence = new Scene(root);
         scence.getStylesheets().add(css);
+//        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scence);
-        stage.initStyle(StageStyle.UNDECORATED);
-        XYChart.Series<String,Integer> series_01 = new XYChart.Series<>();
-        series_01.getData().add(new XYChart.Data<>("Mon", 60));
-        series_01.getData().add(new XYChart.Data<>("Tue", 40));
-        series_01.getData().add(new XYChart.Data<>("Wen", 80));
-        series_01.getData().add(new XYChart.Data<>("Thr", 100));
-        chart.getData().add(series_01);
+//        XYChart.Series<String,Integer> series_01 = new XYChart.Series<>();
+//        series_01.getData().add(new XYChart.Data<>("Mon", 60));
+//        series_01.getData().add(new XYChart.Data<>("Tue", 40));
+//        series_01.getData().add(new XYChart.Data<>("Wen", 80));
+//        series_01.getData().add(new XYChart.Data<>("Thr", 100));
+//        chart.getData().add(series_01);
         stage.show();
 
     }

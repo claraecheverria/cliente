@@ -57,6 +57,9 @@ public class Login {
                     .body(nuevoUser)
                     .asJson();
             System.out.println(response.getBody());
+            if (response.getBody() != null){
+                check = false;
+            }
             System.out.println(response.getStatusText());
 
 //        if (response.getStatus() != 200) {
