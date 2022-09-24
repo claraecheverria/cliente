@@ -17,8 +17,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" styleClass="Parent" stylesheets="@StilePage1.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" styleClass="Parent" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="45.0" styleClass="sidebar" BorderPane.alignment="CENTER">
          <children>
@@ -264,7 +263,7 @@
                         </BarChart>
                      </children>
                   </VBox>
-                  <Button layoutX="745.0" layoutY="90.0" mnemonicParsing="false" text="New Reservation">
+                  <Button layoutX="745.0" layoutY="90.0" mnemonicParsing="false" stylesheets="@StilePage1.css" text="New Reservation">
                      <effect>
                         <DropShadow>
                            <color>

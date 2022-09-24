@@ -53,5 +53,36 @@ public class ScenceController {
         stage.show();
 
     }
+    public void switchToAdmin(javafx.event.ActionEvent event) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("PrimerVistaAdmin.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scence = new Scene(root);
+        stage.show();
+    }
+
+    public void switchToCreatEmpresa(javafx.event.ActionEvent event) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("CrearEmpresa.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scence = new Scene(root);
+        stage.show();
+    }
+
+    public void switchToAdminEmpresa(javafx.event.ActionEvent event) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("PrimerVistaAdminEmpresa.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scence = new Scene(root);
+        stage.show();
+    }
+
+    public void switchToCreatEmopleado(javafx.event.ActionEvent event) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("AAgregarEmpleadoEmpresa.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scence = new Scene(root);
+        stage.show();
+    }
 
 }
