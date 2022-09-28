@@ -1,5 +1,6 @@
 package com.example.cliente;
 
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -7,9 +8,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import org.springframework.stereotype.Controller;
 
 import java.awt.*;
@@ -20,11 +24,20 @@ public class ScenceController {
     private Stage stage;
     private Scene scence;
     private Parent root;
-
     private Text NombreUsuario;
+    @FXML
+    private Button CrearEmpresa;
+    @FXML
+    private Button CrearCentroDeportivo;
+    @FXML
+    private Button BotonMostrarEmpresas;
+    @FXML
+    private Button BotonMostrarCentrosDeportivos;
 
     @FXML
     private BarChart<String, Integer> chart;
+    @FXML
+    private HBox Hbox_CD;
 
     public void switchToScence1(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -85,4 +98,9 @@ public class ScenceController {
         stage.show();
     }
 
+    public void verEmpresasCreadas(javafx.event.ActionEvent event)throws IOException{
+        TranslateTransition translate = new TranslateTransition(Duration.seconds(2), Hbox_CD);
+        translate.setToY(25);
+
+    }
 }

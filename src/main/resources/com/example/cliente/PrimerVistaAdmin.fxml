@@ -9,10 +9,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cliente.ScenceController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="471.0" prefWidth="853.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cliente.ScenceController">
    <top>
-      <AnchorPane prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefWidth="1000.0" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="TOP_LEFT" layoutX="55.0" layoutY="17.0" nodeOrientation="LEFT_TO_RIGHT" text="Hola, bienvenido!" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                <font>
@@ -28,13 +27,13 @@
       </AnchorPane>
    </top>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="320.0" prefWidth="853.0" BorderPane.alignment="CENTER">
          <children>
             <AnchorPane layoutX="25.0" layoutY="15.0">
                <children>
                   <HBox>
                      <children>
-                        <Button fx:id="CrearEmpresa" mnemonicParsing="false" onAction="#switchToCreatEmpresa" prefHeight="30.0" prefWidth="30.0">
+                        <Button fx:id="CrearEmpresa" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" >
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -74,12 +73,12 @@
                   </HBox>
                   <HBox layoutY="70.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0">
+                        <Button fx:id="BotonMostrarEmpresas" mnemonicParsing="false" onAction="#verEmpresasCreadas" prefHeight="30.0" prefWidth="30.0">
                            <font>
                               <Font size="14.0" />
                            </font>
                            <graphic>
-                              <FontAwesomeIconView fx:id="VerEmpresasCreadas" fill="#838181" glyphName="PLUS" size="20" />
+                              <FontAwesomeIconView fill="#838181" glyphName="PLUS" size="20" />
                            </graphic>
                         </Button>
                         <Label text="Ver empresas creadas">
@@ -92,14 +91,14 @@
                         </Label>
                      </children>
                   </HBox>
-                  <HBox layoutY="105.0">
+                  <HBox fx:id="Hbox_CD" layoutY="105.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0">
+                        <Button fx:id="BotonMostrarCentrosDeportivos" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0">
                            <font>
                               <Font size="14.0" />
                            </font>
                            <graphic>
-                              <FontAwesomeIconView fx:id="VerCentrosDeportivos" fill="#838181" glyphName="PLUS" size="20" />
+                              <FontAwesomeIconView fill="#838181" glyphName="PLUS" size="20" />
                            </graphic>
                         </Button>
                         <Label text="Ver centros deportivos creados">
