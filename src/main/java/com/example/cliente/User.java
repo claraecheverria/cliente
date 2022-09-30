@@ -38,13 +38,21 @@ public class User {
         this.email = email;
     }
 
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
-//
-//    public Long getId() {
-//        return id;
-//    }
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Long getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(Long cedula) {
+        this.cedula = cedula;
+    }
 
     public Long getTelefono() {
         return telefono;

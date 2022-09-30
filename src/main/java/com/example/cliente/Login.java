@@ -59,22 +59,21 @@ public class Login {
             }
             System.out.println(response.getStatusText());
     }
-    public List<User> getUserList (){
-        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/listausers")
+    public List<Empresa> getUserList (){
+        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/empresa/listaempresas")
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
                 .asJson();
         com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
         try {
-            List<User> listCar = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<User>>(){});
+            List<Empresa> listCar = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Empresa>>(){});
             System.out.println(listCar.size());
+            return listCar;
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
 
 
-
-        return (List<User>) response;
     }
 
     public void userLogin(javafx.event.ActionEvent actionEvent) {
