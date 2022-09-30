@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.util.List;
 
 @Component
 public class Login {
@@ -44,12 +45,6 @@ public class Login {
         Email.clear();
         Nombre.clear();
         Telefono.clear();
-        int length = String.valueOf(tel).length();
-        System.out.println(length);
-//        if (email.equals("") || nombre.equals("") || length < 9){
-//            System.out.println("Errorrr!!");
-//            check = false;
-//        }else {
             User nuevoUser = new User(nombre, email, tel);
             HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/user")
                     .header("accept", "application/json")
@@ -61,19 +56,13 @@ public class Login {
                 check = false;
             }
             System.out.println(response.getStatusText());
-
-//        if (response.getStatus() != 200) {
-//            System.out.println("Failed to list Issues: " + response.getStatusText());
-//            System.out.println(response.getBody());
-//        }
-//        }
     }
 
     public void userLogin(javafx.event.ActionEvent actionEvent) {
         checklogin();
         if (check == true) {
             try {
-                ScenceController.switchToScence2(actionEvent);
+                ScenceController.switchToAdmin(actionEvent);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
