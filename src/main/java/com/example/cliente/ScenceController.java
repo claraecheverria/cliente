@@ -1,24 +1,25 @@
 package com.example.cliente;
 
-import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.util.Duration;
+import kong.unirest.HttpResponse;
+import kong.unirest.JsonNode;
+import kong.unirest.Unirest;
+import kong.unirest.json.JSONArray;
 import org.springframework.stereotype.Controller;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.util.List;
+
 @Controller
 public class ScenceController {
     private Stage stage;
@@ -38,6 +39,16 @@ public class ScenceController {
     private BarChart<String, Integer> chart;
     @FXML
     private HBox Hbox_CD;
+
+
+    public List<Empresa> getUserList (){
+        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/listausers")
+                .header("accept", "application/json")
+                .header("Content-Type", "application/json")
+                .asJson();
+
+        return (List<Empresa>) response;
+    }
 
     public void switchToScence1(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -99,8 +110,7 @@ public class ScenceController {
     }
 
     public void verEmpresasCreadas(javafx.event.ActionEvent event)throws IOException{
-        TranslateTransition translate = new TranslateTransition(Duration.seconds(2), Hbox_CD);
-        translate.setToY(25);
+        getUserList();
 
     }
 }
