@@ -39,6 +39,7 @@ public class ScenceController {
     @FXML
     private HBox Hbox_CD;
 
+
     public void switchToScence1(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("LoginPage2.fxml"));
@@ -73,15 +74,6 @@ public class ScenceController {
         scence = new Scene(root);
         stage.show();
     }
-
-    public void switchToCreatEmpresa(javafx.event.ActionEvent event) throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("CrearEmpresa.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scence = new Scene(root);
-        stage.show();
-    }
-
     public void switchToAdminEmpresa(javafx.event.ActionEvent event) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("PrimerVistaAdminEmpresa.fxml"));
@@ -90,17 +82,6 @@ public class ScenceController {
         stage.show();
     }
 
-    public void switchToCreatEmopleado(javafx.event.ActionEvent event) throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("AAgregarEmpleadoEmpresa.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scence = new Scene(root);
-        stage.show();
-    }
 
-    public void verEmpresasCreadas(javafx.event.ActionEvent event)throws IOException{
-        TranslateTransition translate = new TranslateTransition(Duration.seconds(2), Hbox_CD);
-        translate.setToY(25);
 
-    }
 }
