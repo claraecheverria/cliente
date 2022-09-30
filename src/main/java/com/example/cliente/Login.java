@@ -1,5 +1,7 @@
 package com.example.cliente;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -57,18 +59,36 @@ public class Login {
             }
             System.out.println(response.getStatusText());
     }
+    public List<User> getUserList (){
+        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/listausers")
+                .header("accept", "application/json")
+                .header("Content-Type", "application/json")
+                .asJson();
+        com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+        try {
+            List<User> listCar = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<User>>(){});
+            System.out.println(listCar.size());
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
+        return (List<User>) response;
+    }
 
     public void userLogin(javafx.event.ActionEvent actionEvent) {
-        checklogin();
-        if (check == true) {
-            try {
-                ScenceController.switchToAdmin(actionEvent);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }else {
-            wrongLogin.setText("Login incorrecto");
-        }
+//        checklogin();
+        getUserList();
+//        if (check == true) {
+//            try {
+//                ScenceController.switchToAdmin(actionEvent);
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }else {
+//            wrongLogin.setText("Login incorrecto");
+//        }
     }
 }
 
