@@ -7,6 +7,9 @@ public class User {
     private String nombre;
     private String email;
     private Long telefono;
+    private String password;
+    private Long cedula;
+
 
 
     public User(String nombre, String email, Long telefono) {
