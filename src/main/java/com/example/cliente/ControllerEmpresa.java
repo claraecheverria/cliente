@@ -16,7 +16,15 @@ public class ControllerEmpresa {
 
     public void switchToCreatEmopleado(javafx.event.ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("AAgregarEmpleadoEmpresa.fxml"));
+        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("AgregarEmpleadoEmpresa.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scence = new Scene(root);
+        stage.show();
+    }
+
+    public void verEmpleadosCreados(javafx.event.ActionEvent event) throws  IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("VerEmpleadosCreados.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scence = new Scene(root);
         stage.show();
