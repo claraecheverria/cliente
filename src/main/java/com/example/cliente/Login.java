@@ -80,11 +80,11 @@ public class Login {
 //        checklogin();
         getUserList();
 //        if (check == true) {
-//            try {
-//                ScenceController.switchToAdmin(actionEvent);
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
+            try {
+                ScenceController.switchToAdmin(actionEvent);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
 //        }else {
 //            wrongLogin.setText("Login incorrecto");
 //        }

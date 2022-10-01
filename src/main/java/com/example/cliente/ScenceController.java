@@ -72,6 +72,7 @@ public class ScenceController {
         Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("PrimerVistaAdmin.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scence = new Scene(root);
+        stage.setScene(scence);
         stage.show();
     }
     public void switchToAdminEmpresa(javafx.event.ActionEvent event) throws IOException{

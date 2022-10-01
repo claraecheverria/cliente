@@ -5,9 +5,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
-
+@Controller
 public class ControllerEmpresa {
 
     private Stage stage;
