@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import java.io.IOException;
 @Controller
 public class ControllerAdmin {
-
     private Stage stage;
     private Scene scence;
     private Parent root;

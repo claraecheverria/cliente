@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -18,23 +17,20 @@ import javafx.stage.Stage;
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
-import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-@Controller
-public class ControllerTableView implements Initializable {
+public class ControllerTableViewEmpleados implements Initializable {
+
     private Stage stage;
     private Scene scence;
     private Parent root;
     public Button btnActualizar;
 
-    // COLUMNAS TABLA EMPLEADOS
     public TableColumn<TableView<User>, String> colCorreo;
     public TableColumn<TableView<User>, String> colNombres;
     public TableColumn<TableView<User>, Integer> colCedula;
@@ -43,23 +39,10 @@ public class ControllerTableView implements Initializable {
     public TableView<User> tableEmpleado;
     private ObservableList<User> empleados;
 
-    // COLUMNAS TABLA EMPRESAS
-    public  TableColumn<TableView<User>, String> colNombreEmpresa;
-    public TableView<Empresa> tablaEmpresasCreadas;
-    private ObservableList<Empresa> empresas;
-    public Button btnActualizarTablaEmpresas;
-    public Button btnVolverAdmin;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        List listaEmpresas = getUserList();
-        empresas = FXCollections.observableArrayList(listaEmpresas);
-        this.colNombreEmpresa.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        this.tablaEmpresasCreadas.setItems(empresas);
-    }
-
-    public void actualizarTablaEmpleados (javafx.event.ActionEvent actionEvent) {
-        empleados = FXCollections.observableArrayList();
+        List listaEmpleados = getUserList();
+        empleados = FXCollections.observableArrayList(listaEmpleados);
         this.colNombres.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         this.colCedula.setCellValueFactory(new PropertyValueFactory<>("cedula"));
         this.colCorreo.setCellValueFactory(new PropertyValueFactory<>("mail"));
@@ -69,22 +52,6 @@ public class ControllerTableView implements Initializable {
         this.tableEmpleado.setItems(empleados);
     }
 
-    public void actualizarTablaEmpresas(javafx.event.ActionEvent actionEvent){
-        List listaEmpleados = getUserList();
-        empresas = FXCollections.observableArrayList(listaEmpleados);
-        this.colNombreEmpresa.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-
-        this.tablaEmpresasCreadas.setItems(empresas);
-    }
-
-    public void Volver(javafx.event.ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("PrimeraVistaAdmin.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scence = new Scene(root);
-        stage.setScene(scence);
-        stage.show();
-    }
     public List<Empresa> getUserList (){
         HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/empresa/listaempresas")
                 .header("accept", "application/json")
@@ -98,5 +65,14 @@ public class ControllerTableView implements Initializable {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void Volver(javafx.event.ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("PrimeraVistaAdmin.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scence = new Scene(root);
+        stage.setScene(scence);
+        stage.show();
     }
 }
