@@ -72,19 +72,22 @@ public class Login {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
+
+
     }
+
     public void userLogin(javafx.event.ActionEvent actionEvent) {
 //        checklogin();
-//        getUserList();
-        if (check == true) {
+        getUserList();
+//        if (check == true) {
             try {
                 ScenceController.switchToAdmin(actionEvent);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        }else {
-            wrongLogin.setText("Login incorrecto");
-        }
+//        }else {
+//            wrongLogin.setText("Login incorrecto");
+//        }
     }
 }
 

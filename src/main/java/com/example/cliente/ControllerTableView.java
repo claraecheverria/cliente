@@ -12,10 +12,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
 import java.time.LocalDate;
-
+@Controller
 public class ControllerTableView {
     private Stage stage;
     private Scene scence;
