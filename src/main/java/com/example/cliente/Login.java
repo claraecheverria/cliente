@@ -1,5 +1,7 @@
 package com.example.cliente;
 
+import com.example.cliente.Model.Empresa;
+import com.example.cliente.Model.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import javafx.fxml.FXML;
@@ -9,11 +11,9 @@ import javafx.scene.control.TextField;
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
-import kong.unirest.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.List;
 
@@ -59,26 +59,9 @@ public class Login {
             }
             System.out.println(response.getStatusText());
     }
-    public List<Empresa> getUserList (){
-        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/empresa/listaempresas")
-                .header("accept", "application/json")
-                .header("Content-Type", "application/json")
-                .asJson();
-        com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
-        try {
-            List<Empresa> listCar = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Empresa>>(){});
-            System.out.println(listCar.size());
-            return listCar;
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
-
-
-    }
 
     public void userLogin(javafx.event.ActionEvent actionEvent) {
 //        checklogin();
-        getUserList();
 //        if (check == true) {
             try {
                 ScenceController.switchToAdmin(actionEvent);

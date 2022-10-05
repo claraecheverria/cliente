@@ -1,5 +1,7 @@
 package com.example.cliente;
 
+import com.example.cliente.Model.Empresa;
+import com.example.cliente.Model.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import javafx.collections.FXCollections;
@@ -21,7 +23,6 @@ import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
