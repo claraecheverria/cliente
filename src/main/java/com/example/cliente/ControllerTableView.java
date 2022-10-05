@@ -31,8 +31,14 @@ public class ControllerTableView {
     public TableView<User> tableEmpleado;
     private ObservableList<User> empleados;
 
+    // COLUMNAS TABLA EMPRESAS
+    public  TableColumn<TableView<User>, String> colNombreEmpresa;
+    public TableView<Empresa> tablaEmpresasCreadas;
+    private ObservableList<Empresa> empresas;
+    public Button btnActualizarTablaEmpresas;
+    public Button btnVolverAdmin;
 
-    public void Actualizar (ActionEvent actionEvent) {
+    public void actualizarTablaEmpleados (ActionEvent actionEvent) {
         empleados = FXCollections.observableArrayList();
         this.colNombres.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         this.colCedula.setCellValueFactory(new PropertyValueFactory<>("cedula"));
@@ -41,7 +47,13 @@ public class ControllerTableView {
         this.colSaldo.setCellValueFactory(new PropertyValueFactory<>("saldo"));
 
         this.tableEmpleado.setItems(empleados);
+    }
 
+    public void actualizarTablaEmpresas(ActionEvent actionEvent){
+        empresas = FXCollections.observableArrayList();
+        this.colNombreEmpresa.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+
+        this.tablaEmpresasCreadas.setItems(empresas);
     }
 
     public void Volver(ActionEvent event) throws IOException {
