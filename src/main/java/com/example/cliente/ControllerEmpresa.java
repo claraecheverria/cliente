@@ -1,5 +1,6 @@
 package com.example.cliente;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -15,6 +16,10 @@ public class ControllerEmpresa {
     private Stage stage;
     private Scene scence;
     private Parent root;
+    @FXML
+    private Button BotonCrearEmpleado;
+    @FXML
+    private Button verEmpleados;
 
 
     public void switchToCreatEmopleado(javafx.event.ActionEvent event) throws IOException {
