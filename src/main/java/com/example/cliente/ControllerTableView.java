@@ -66,11 +66,12 @@ public class ControllerTableView {
         this.tablaEmpresasCreadas.setItems(empresas);
     }
 
-    public void Volver(ActionEvent event) throws IOException {
+    public void Volver(javafx.event.ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("PrimeraVistaAdmin.fxml"));
+        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("PrimerVistaAdmin.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scence = new Scene(root);
+        stage.setScene(scence);
         stage.show();
     }
     public List<Empresa> getUserList (){
