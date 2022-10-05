@@ -1,5 +1,7 @@
 package com.example.cliente;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,10 +14,16 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import kong.unirest.HttpResponse;
+import kong.unirest.JsonNode;
+import kong.unirest.Unirest;
 import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class ControllerTableView {
     private Stage stage;
@@ -51,7 +59,8 @@ public class ControllerTableView {
     }
 
     public void actualizarTablaEmpresas(ActionEvent actionEvent){
-        empresas = FXCollections.observableArrayList();
+        List listaEmpleados = getUserList();
+        empresas = FXCollections.observableArrayList(listaEmpleados);
         this.colNombreEmpresa.setCellValueFactory(new PropertyValueFactory<>("nombre"));
 
         this.tablaEmpresasCreadas.setItems(empresas);
@@ -63,6 +72,22 @@ public class ControllerTableView {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scence = new Scene(root);
         stage.show();
+    }
+    public List<Empresa> getUserList (){
+        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/empresa/listaempresas")
+                .header("accept", "application/json")
+                .header("Content-Type", "application/json")
+                .asJson();
+        com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+        try {
+            List<Empresa> listCar = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Empresa>>(){});
+            System.out.println(listCar.size());
+            return listCar;
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 
 }
