@@ -1,5 +1,7 @@
 package com.example.cliente;
 
+import com.example.cliente.Model.Empresa;
+import com.example.cliente.Model.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import javafx.collections.FXCollections;
@@ -23,7 +25,6 @@ import org.springframework.stereotype.Controller;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -79,7 +80,7 @@ public class ControllerTableView implements Initializable {
 
     public void Volver(javafx.event.ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("PrimeraVistaAdmin.fxml"));
+        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("PrimerVistaAdmin.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scence = new Scene(root);
         stage.setScene(scence);

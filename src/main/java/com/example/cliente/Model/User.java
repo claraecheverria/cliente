@@ -1,4 +1,4 @@
-package com.example.cliente;
+package com.example.cliente.Model;
 
 
 public class User {
