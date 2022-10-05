@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" fx:controller="com.example.cliente.ControllerEmpresa">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cliente.ControllerEmpresa">
    <top>
       <AnchorPane prefHeight="77.0" prefWidth="600.0" BorderPane.alignment="CENTER_LEFT">
          <children>
@@ -35,7 +34,7 @@
                <children>
                   <HBox>
                      <children>
-                        <Button mnemonicParsing="false" onAction="#switchToCreatEmopleado">
+                        <Button fx:id="BotonCrearEmpleado" mnemonicParsing="false" onAction="#switchToCreatEmopleado">
                            <graphic>
                               <FontAwesomeIconView glyphName="PLUS" />
                            </graphic>
@@ -55,7 +54,7 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <Button mnemonicParsing="false">
+                        <Button fx:id="verEmpleados" mnemonicParsing="false" onAction="#verEmpleadosCreados">
                            <graphic>
                               <FontAwesomeIconView glyphName="PLUS" />
                            </graphic>
