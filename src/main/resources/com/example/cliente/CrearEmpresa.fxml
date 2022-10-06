@@ -37,6 +37,7 @@
                               <Insets bottom="10.0" />
                            </padding>
                         </Label>
+                        <Label fx:id="errorDatos" layoutX="210.0" layoutY="6.0" textFill="#e40d0d" />
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="27.0" prefWidth="420.0">
@@ -116,7 +117,7 @@
                   </AnchorPane>
                </children>
             </VBox>
-            <Button fx:id="guardar" layoutX="273.0" layoutY="302.0" mnemonicParsing="false" onAction="#switchToAdmin" text="Guardar" />
+            <Button fx:id="guardar" layoutX="273.0" layoutY="302.0" mnemonicParsing="false" onAction="#Volver" text="Guardar" />
          </children>
       </AnchorPane>
    </center>

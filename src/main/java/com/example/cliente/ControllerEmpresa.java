@@ -21,7 +21,6 @@ public class ControllerEmpresa {
     @FXML
     private Button verEmpleados;
 
-
     public void switchToCreatEmopleado(javafx.event.ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("AgregarEmpleadoEmpresa.fxml"));
@@ -37,9 +36,5 @@ public class ControllerEmpresa {
         scence = new Scene(root);
         stage.show();
     }
-
-
-
-
 
 }

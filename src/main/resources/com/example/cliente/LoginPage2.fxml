@@ -27,8 +27,8 @@
                   <Font name="Arial Black" size="40.0" />
                </font>
             </Label>
-            <TextField fx:id="Nombre" layoutX="176.0" layoutY="114.0" promptText="Email" />
-            <TextField fx:id="Email" layoutX="176.0" layoutY="163.0" promptText="Contaseña" />
+            <TextField fx:id="Email" layoutX="176.0" layoutY="114.0" promptText="Email" />
+            <TextField fx:id="Password" layoutX="176.0" layoutY="163.0" promptText="Password" />
             <Text fill="#4490a8" layoutX="39.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
                <font>
                   <Font name="Arial Bold" size="22.0" />

@@ -31,23 +31,18 @@ public class Login {
     @FXML
     private Label wrongLogin;
     @FXML
-    private TextField Nombre;
-    @FXML
     private TextField Email;
     @FXML
-    private TextField Telefono;
+    private TextField Password;
 
     private boolean check;
 
     private void checklogin() {
         check = true;
         String email = Email.getText().toString();
-        String nombre = Nombre.getText().toString();
-        Long tel = Long.valueOf(Telefono.getText());
+        String password = Password.getText().toString();
         Email.clear();
-        Nombre.clear();
-        Telefono.clear();
-            User nuevoUser = new User(nombre, email, tel);
+            User nuevoUser = new User(email,password);
             HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/user")
                     .header("accept", "application/json")
                     .header("Content-Type", "application/json")

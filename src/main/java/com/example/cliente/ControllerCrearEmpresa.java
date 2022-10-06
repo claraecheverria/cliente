@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import kong.unirest.HttpResponse;
@@ -41,10 +42,26 @@ public class ControllerCrearEmpresa {
     @FXML
     private Button guardar;
 
+    @FXML
+    private Label errorDatos;
 
-    public void switchToAdmin(javafx.event.ActionEvent event) throws IOException {
+
+    public void Volver(javafx.event.ActionEvent event) throws IOException {
         guardarDatos();
 
+        if (check == true){
+            try {
+                switchToAdmin(event);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        else{
+            errorDatos.setText("Algun dato es inconcistente");
+        }
+    }
+
+    public void switchToAdmin(javafx.event.ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("PrimerVistaAdmin.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -55,7 +72,7 @@ public class ControllerCrearEmpresa {
 
     public void guardarDatos() {
         String nombre_empresa = nombreEmpresa.toString();
-        String cedula_usuario = cedula.toString();
+        Long cedula_usuario = Long.valueOf(cedula.getText());
         String nombre_usuario = nombreUsuario.toString();
         Long telefono_usuario = Long.valueOf(telefono.getText());
         String email_usuario = email.toString();
@@ -70,11 +87,11 @@ public class ControllerCrearEmpresa {
         fechaVencimientoCarne.clear();
         importe.clear();
 
-        User nuevoUser = new User(nombre_usuario, email_usuario, telefono_usuario);
+        User nuevoUser = new User(nombre_usuario, email_usuario, telefono_usuario, cedula_usuario, fecha_vencimiento_carne, importe_usuario);
 
         Empresa nuevaEmpresa = new Empresa(nombre_empresa);
 
-        HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/user")
+        HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/empresa/crearUserEmpresa")
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
                 .body(nuevoUser)
@@ -85,5 +102,14 @@ public class ControllerCrearEmpresa {
         }
         System.out.println(response.getStatusText());
 
+        HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/empresa/crearUserEmpresa")
+                .header("accept", "application/json")
+                .header("Content-Type", "application/json")
+                .body(nuevaEmpresa)
+                .asJson();
+        System.out.println(response.getBody());
+        if (response.getBody() != null){
+            check = false;
+        }
     }
 }
