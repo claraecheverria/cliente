@@ -59,7 +59,8 @@ public class Login {
 //        checklogin();
 //        if (check == true) {
             try {
-                ScenceController.switchToAdmin(actionEvent);
+//                ScenceController.switchToAdmin(actionEvent);
+                ScenceController.switchToScence1(actionEvent);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
