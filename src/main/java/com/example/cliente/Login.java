@@ -60,7 +60,7 @@ public class Login {
 //        if (check == true) {
             try {
 //                ScenceController.switchToAdmin(actionEvent);
-                ScenceController.switchToScence1(actionEvent);
+                ScenceController.switchToClienteFinal(actionEvent);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
