@@ -2,6 +2,7 @@ package com.example.cliente;
 
 import com.example.cliente.Model.Empresa;
 import com.example.cliente.Model.User;
+import com.example.cliente.Model.UserEmpresa;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -36,9 +37,9 @@ public class ControllerCrearEmpresa {
     @FXML
     private TextField email;
     @FXML
-    private TextField fechaVencimientoCarne;
+    private TextField fechaVencimientoCarne;//no va
     @FXML
-    private TextField importe;
+    private TextField importe;//no va
     @FXML
     private Button guardar;
 
@@ -48,16 +49,10 @@ public class ControllerCrearEmpresa {
 
     public void Volver(javafx.event.ActionEvent event) throws IOException {
         guardarDatos();
-
-        if (check == true){
-            try {
-                switchToAdmin(event);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        else{
-            errorDatos.setText("Algun dato es inconcistente");
+        try {
+            switchToAdmin(event);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -71,13 +66,11 @@ public class ControllerCrearEmpresa {
     }
 
     public void guardarDatos() {
-        String nombre_empresa = nombreEmpresa.toString();
+        String nombre_empresa = nombreEmpresa.getText();
         Long cedula_usuario = Long.valueOf(cedula.getText());
-        String nombre_usuario = nombreUsuario.toString();
+        String nombre_usuario = nombreUsuario.getText();
         Long telefono_usuario = Long.valueOf(telefono.getText());
-        String email_usuario = email.toString();
-        String fecha_vencimiento_carne = fechaVencimientoCarne.toString();
-        int importe_usuario = Integer.parseInt(String.valueOf(importe));
+        String email_usuario = email.getText();
 
         nombreEmpresa.clear();
         cedula.clear();
@@ -87,29 +80,21 @@ public class ControllerCrearEmpresa {
         fechaVencimientoCarne.clear();
         importe.clear();
 
-        User nuevoUser = new User(nombre_usuario, email_usuario, telefono_usuario, cedula_usuario, fecha_vencimiento_carne, importe_usuario);
-
         Empresa nuevaEmpresa = new Empresa(nombre_empresa);
+        UserEmpresa nuevoUserEmpresa = new UserEmpresa(nombre_usuario, email_usuario, telefono_usuario, cedula_usuario, nuevaEmpresa);
 
-        HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/empresa/crearUserEmpresa")
-                .header("accept", "application/json")
-                .header("Content-Type", "application/json")
-                .body(nuevoUser)
-                .asJson();
-        System.out.println(response.getBody());
-        if (response.getBody() != null){
-            check = false;
-        }
-        System.out.println(response.getStatusText());
-
-        HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/empresa/crearUserEmpresa")
+        HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/empresa/crearEmpresa")
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
                 .body(nuevaEmpresa)
                 .asJson();
-        System.out.println(response.getBody());
-        if (response.getBody() != null){
-            check = false;
-        }
+
+        HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/empresa/crearUserEmpresa")
+                .header("accept", "application/json")
+                .header("Content-Type", "application/json")
+                .body(nuevoUserEmpresa)
+                .asJson();
+
+
     }
 }

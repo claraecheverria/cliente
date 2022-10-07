@@ -6,6 +6,10 @@ public class Empresa {
     public Empresa(String nombre) {
         this.nombre = nombre;
     }
+
+    public Empresa() {
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

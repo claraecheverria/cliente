@@ -10,20 +10,16 @@ public class User {
     private String password;
     private Long cedula;
 
-    private String fechaVencimientoCane;
-    private int importe;
 
 
 
 
-    public User(String nombre, String email, Long telefono, Long cedula, String fechaVencimientoCane, int importe) {
+    public User(String nombre, String email, Long telefono, Long cedula) {
         this.nombre = nombre;
         this.email = email;
         this.telefono = telefono;
         this.password = "12345678";
         this.cedula = cedula;
-        this.fechaVencimientoCane = fechaVencimientoCane;
-        this.importe = importe;
     }
 
     public User (String email, String password){

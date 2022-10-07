@@ -55,7 +55,7 @@ public class ControllerCrearEmpleado {
         FechaVencimiento.clear();
         Importe.clear();
 
-        User nuevoUser = new User(nombre, email, telefono, cedula, fechaVencimiento, importe);
+        User nuevoUser = new User(nombre, email, telefono, cedula);
 
 
     }

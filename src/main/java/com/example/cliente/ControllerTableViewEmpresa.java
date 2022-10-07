@@ -1,4 +1,4 @@
-package com.example.cliente.ControllersTablas;
+package com.example.cliente;
 
 import com.example.cliente.HelloApplication;
 import com.example.cliente.Model.Empresa;
