@@ -25,19 +25,6 @@ public class ScenceController {
     private Scene scence;
     private Parent root;
     private Text NombreUsuario;
-    @FXML
-    private Button CrearEmpresa;
-    @FXML
-    private Button CrearCentroDeportivo;
-    @FXML
-    private Button BotonMostrarEmpresas;
-    @FXML
-    private Button BotonMostrarCentrosDeportivos;
-
-    @FXML
-    private BarChart<String, Integer> chart;
-    @FXML
-    private HBox Hbox_CD;
 
 
     public void switchToScence1(ActionEvent event) throws IOException {
@@ -49,7 +36,7 @@ public class ScenceController {
         stage.show();
     }
 
-    public void switchToScence2(javafx.event.ActionEvent event) throws IOException {
+    public void switchToClienteFinal(javafx.event.ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("Page1.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
