@@ -37,10 +37,6 @@ public class ControllerCrearEmpresa {
     @FXML
     private TextField email;
     @FXML
-    private TextField fechaVencimientoCarne;//no va
-    @FXML
-    private TextField importe;//no va
-    @FXML
     private Button guardar;
 
     @FXML
@@ -77,8 +73,6 @@ public class ControllerCrearEmpresa {
         nombreUsuario.clear();
         telefono.clear();
         email.clear();
-        fechaVencimientoCarne.clear();
-        importe.clear();
 
         Empresa nuevaEmpresa = new Empresa(nombre_empresa);
         UserEmpresa nuevoUserEmpresa = new UserEmpresa(nombre_usuario, email_usuario, telefono_usuario, cedula_usuario, nuevaEmpresa);

@@ -34,11 +34,6 @@ public class ControllerCrearCentroDeportivo {
     private TextField Telefono;
     @FXML
     private TextField Email;
-    @FXML
-    private TextField FechaVencimientoCS;//no va
-    @FXML
-    private TextField Importe;//no va
-
 
     public void switchToAdmin(javafx.event.ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();

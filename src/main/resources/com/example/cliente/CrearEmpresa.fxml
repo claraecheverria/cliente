@@ -24,7 +24,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox layoutX="90.0" layoutY="7.0" prefHeight="200.0">
+            <VBox layoutX="90.0" layoutY="31.0" prefHeight="200.0">
                <children>
                   <AnchorPane>
                      <children>
@@ -93,31 +93,13 @@
                      </VBox.margin>
                   </AnchorPane>
                   <AnchorPane prefWidth="420.0">
-                     <children>
-                        <TextField fx:id="fechaVencimientoCarne" layoutX="210.0" layoutY="1.0" promptText="1/1/2022" AnchorPane.rightAnchor="55.0" />
-                        <Label text="Fecha Vigencia C.S.:">
-                           <font>
-                              <Font name="Arial Black" size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </AnchorPane>
-                  <AnchorPane layoutX="10.0" layoutY="121.0" prefWidth="420.0">
-                     <children>
-                        <TextField fx:id="importe" layoutX="210.0" layoutY="1.0" promptText="4000" AnchorPane.rightAnchor="55.0" />
-                        <Label text="Importe:">
-                           <font>
-                              <Font name="Arial Black" size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </AnchorPane>
                </children>
             </VBox>
-            <Button fx:id="guardar" layoutX="273.0" layoutY="302.0" mnemonicParsing="false" onAction="#Volver" text="Guardar" />
+            <Button fx:id="guardar" layoutX="269.0" layoutY="260.0" mnemonicParsing="false" onAction="#Volver" text="Guardar" />
          </children>
       </AnchorPane>
    </center>
