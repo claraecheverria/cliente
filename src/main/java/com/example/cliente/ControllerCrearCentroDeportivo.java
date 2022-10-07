@@ -68,13 +68,13 @@ public class ControllerCrearCentroDeportivo {
         CentroDeportivo centroDeportivo = new CentroDeportivo(nombre_centrodep);
         UserCentroDeportivo nuevoUserCentroDep = new UserCentroDeportivo(nombre_usuario,email_usuario,telefono_usuario,cedula_usuario,centroDeportivo);
 
-        HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/empresa/crearEmpresa")
+        HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/centroDeportivo/crearCentroDep")
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
                 .body(centroDeportivo)
                 .asJson();
 
-        HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/empresa/crearUserEmpresa")
+        HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/centroDeportivo/crearUserCentroDep")
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
                 .body(nuevoUserCentroDep)
