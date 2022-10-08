@@ -78,8 +78,18 @@ public class Login {
                 } catch (IOException e) {
                 }
             } else if (Objects.equals(tipoDeUser.get(0)[0], "EMPRESA")) {
+                try {
+                    ScenceController.switchToAdminEmpresa(actionEvent);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
 
             }else if (Objects.equals(tipoDeUser.get(0)[0], "CENTRO_DEP")){
+                try{
+                    ScenceController.switchToAdminCentroDeporivo(actionEvent);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
 
             }else if (Objects.equals(tipoDeUser.get(0)[0], "EMPLEADO")){
                 try {

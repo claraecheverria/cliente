@@ -43,14 +43,7 @@ public class ScenceController {
         String css = this.getClass().getResource("StilePage1.css").toExternalForm();
         scence = new Scene(root);
         scence.getStylesheets().add(css);
-//        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scence);
-//        XYChart.Series<String,Integer> series_01 = new XYChart.Series<>();
-//        series_01.getData().add(new XYChart.Data<>("Mon", 60));
-//        series_01.getData().add(new XYChart.Data<>("Tue", 40));
-//        series_01.getData().add(new XYChart.Data<>("Wen", 80));
-//        series_01.getData().add(new XYChart.Data<>("Thr", 100));
-//        chart.getData().add(series_01);
         stage.show();
 
     }
@@ -62,4 +55,27 @@ public class ScenceController {
         stage.setScene(scence);
         stage.show();
     }
+
+    public void switchToAdminEmpresa(javafx.event.ActionEvent event) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("PrimerVistaAdminEmpresa.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scence = new Scene(root);
+        stage.setScene(scence);
+        stage.show();
+    }
+
+    public void switchToAdminCentroDeporivo(javafx.event.ActionEvent event) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("PrimerVistaAdminCentroDeportivo.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scence = new Scene(root);
+        stage.setScene(scence);
+        stage.show();
+    }
+
+
+
+
+
 }
