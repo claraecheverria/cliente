@@ -7,6 +7,23 @@
     -fx-background-color: #FFFFFF;
     -fx-background-radius: 30px 30px 0px 0px;
 }
+.buttonsSettings{
+    -fx-background-radius: 15px 15px 15px 15px;
+    -fx-background-color: #C9C9C9;
+}
+.buttonSelected{
+    -fx-background-color: #c1c1c1;
+}
+.servicePanel{
+    -fx-background-radius: 15px 15px 15px 15px;
+    -fx-background-color: #C9C9C9;
+}
+.servicePanel:hover{
+    -fx-background-color: #2B49B3;
+    -fx-background-radius: 5px;
+    -fx-text-fill: #FFFFFF;
+
+}
 
 .sidebar_opt{
      -fx-fill:#F3F3F3;

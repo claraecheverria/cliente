@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" stylesheets="@StilePage1.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cliente.ControllerVistaUsuarioFinal">
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="45.0" styleClass="sidebar" BorderPane.alignment="CENTER">
+         <children>
+            <FontAwesomeIconView fill="#4c4c4e" glyphName="BARS" layoutX="16.0" layoutY="32.0" size="20" AnchorPane.leftAnchor="14.5" AnchorPane.rightAnchor="14.5" AnchorPane.topAnchor="15.0" />
+            <VBox layoutX="13.0" layoutY="211.0" maxHeight="15.0" maxWidth="15.0" prefHeight="15.0" prefWidth="15.0">
+               <children>
+                  <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0">
+                     <graphic>
+                        <FontAwesomeIconView fill="#4c4c4e" glyphName="HOME" size="20" />
+                     </graphic>
+                  </Button>
+                  <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0">
+                     <graphic>
+                        <FontAwesomeIconView accessibleRole="BUTTON" fill="#2b49b3" glyphName="LIST_UL" size="20" styleClass="plus_btn" />
+                     </graphic>
+                  </Button>
+                  <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0">
+                     <graphic>
+                        <FontAwesomeIconView accessibleRole="BUTTON" fill="#4c4c4e" glyphName="IMAGE" size="20" styleClass="button" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="BotonConfiguracion" maxHeight="20.0" maxWidth="20.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToConfiguracion" prefHeight="25.0" prefWidth="25.0">
+                     <graphic>
+                        <FontAwesomeIconView accessibleRole="BUTTON" fill="#4c4c4e" glyphName="GEAR" size="20" styleClass="button" />
+                     </graphic>
+                  </Button>
+                  <Separator>
+                     <VBox.margin>
+                        <Insets bottom="15.0" top="15.0" />
+                     </VBox.margin>
+                  </Separator>
+                  <FontAwesomeIconView accessibleRole="BUTTON" fill="#4c4c4e" glyphName="PLUS" size="20" styleClass="button">
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
+                  </FontAwesomeIconView>
+               </children>
+            </VBox>
+            <Circle fill="WHITE" layoutX="24.0" layoutY="571.0" radius="15.0" stroke="#c1c1c1" strokeType="INSIDE" />
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox layoutX="40.0" layoutY="159.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="110.0">
+               <children>
+                  <HBox>
+                     <children>
+                        <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="170.0" prefWidth="340.0" styleClass="servicePanel">
+                           <children>
+                              <AnchorPane prefHeight="205.0" prefWidth="381.0" styleClass="servicePanel">
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="19.0" text="Nombre" textFill="#2b49b3" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                       <font>
+                                          <Font name="Arial Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox layoutX="141.0" layoutY="4.0" AnchorPane.rightAnchor="20.0">
+                                       <children>
+                                          <Label text="Pice:" textFill="#2b49b3">
+                                             <font>
+                                                <Font name="Arial Black" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="100">
+                                             <font>
+                                                <Font name="Arial Black" size="18.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <Label layoutX="223.0" layoutY="42.0" text="Direccion:" textFill="#2b49b3">
+                                       <font>
+                                          <Font name="Arial Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox layoutX="-6.0" layoutY="68.0" prefHeight="158.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="40.0">
+                                       <children>
+                                          <ImageView fitHeight="137.0" fitWidth="208.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@cancha.jpeg" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </HBox>
+                                    <Label layoutX="229.0" layoutY="68.0" text="Nariño 2315">
+                                       <font>
+                                          <Font name="Arial Black" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Button layoutX="245.0" layoutY="97.0" mnemonicParsing="false" text="Reservar" AnchorPane.bottomAnchor="45.0" AnchorPane.rightAnchor="30.0" />
+                                    <Button layoutX="283.0" layoutY="134.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                                       <graphic>
+                                          <FontAwesomeIconView fill="#4c4c4e" glyphName="STAR" />
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                           <HBox.margin>
+                              <Insets right="15.0" />
+                           </HBox.margin>
+                        </HBox>
+                        <HBox prefHeight="170.0" prefWidth="340.0" styleClass="servicePanel">
+                           <children>
+                              <AnchorPane prefHeight="205.0" prefWidth="381.0" styleClass="servicePanel">
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="19.0" text="Nombre" textFill="#2b49b3" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                       <font>
+                                          <Font name="Arial Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox layoutX="141.0" layoutY="4.0" AnchorPane.rightAnchor="20.0">
+                                       <children>
+                                          <Label text="Pice:" textFill="#2b49b3">
+                                             <font>
+                                                <Font name="Arial Black" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="100">
+                                             <font>
+                                                <Font name="Arial Black" size="18.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <Label layoutX="223.0" layoutY="42.0" text="Direccion:" textFill="#2b49b3">
+                                       <font>
+                                          <Font name="Arial Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox layoutX="-6.0" layoutY="68.0" prefHeight="158.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="40.0">
+                                       <children>
+                                          <ImageView fitHeight="137.0" fitWidth="208.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@cancha.jpeg" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </HBox>
+                                    <Label layoutX="229.0" layoutY="68.0" text="Nariño 2315">
+                                       <font>
+                                          <Font name="Arial Black" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Button layoutX="245.0" layoutY="101.0" mnemonicParsing="false" text="Reservar" AnchorPane.bottomAnchor="45.0" AnchorPane.rightAnchor="30.0" />
+                                    <Button layoutX="291.0" layoutY="136.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                                       <graphic>
+                                          <FontAwesomeIconView fill="#4c4c4e" glyphName="STAR" />
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </HBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <HBox prefHeight="170.0" prefWidth="340.0" styleClass="servicePanel">
+                           <children>
+                              <AnchorPane prefHeight="205.0" prefWidth="381.0" styleClass="servicePanel">
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="19.0" text="Nombre" textFill="#2b49b3" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                       <font>
+                                          <Font name="Arial Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox layoutX="141.0" layoutY="4.0" AnchorPane.rightAnchor="20.0">
+                                       <children>
+                                          <Label text="Pice:" textFill="#2b49b3">
+                                             <font>
+                                                <Font name="Arial Black" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="100">
+                                             <font>
+                                                <Font name="Arial Black" size="18.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <Label layoutX="223.0" layoutY="42.0" text="Direccion:" textFill="#2b49b3">
+                                       <font>
+                                          <Font name="Arial Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox layoutX="-6.0" layoutY="68.0" prefHeight="158.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="40.0">
+                                       <children>
+                                          <ImageView fitHeight="137.0" fitWidth="208.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@cancha.jpeg" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </HBox>
+                                    <Label layoutX="229.0" layoutY="68.0" text="Nariño 2315">
+                                       <font>
+                                          <Font name="Arial Black" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Button layoutX="255.0" layoutY="103.0" mnemonicParsing="false" text="Reservar" AnchorPane.bottomAnchor="45.0" AnchorPane.rightAnchor="30.0" />
+                                    <Button layoutX="310.0" layoutY="134.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                                       <graphic>
+                                          <FontAwesomeIconView fill="#4c4c4e" glyphName="STAR" />
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                           <HBox.margin>
+                              <Insets right="15.0" />
+                           </HBox.margin>
+                        </HBox>
+                        <HBox prefHeight="170.0" prefWidth="340.0" styleClass="servicePanel">
+                           <children>
+                              <AnchorPane prefHeight="205.0" prefWidth="381.0" styleClass="servicePanel">
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="19.0" text="Nombre" textFill="#2b49b3" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                       <font>
+                                          <Font name="Arial Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox layoutX="141.0" layoutY="4.0" AnchorPane.rightAnchor="20.0">
+                                       <children>
+                                          <Label text="Pice:" textFill="#2b49b3">
+                                             <font>
+                                                <Font name="Arial Black" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="100">
+                                             <font>
+                                                <Font name="Arial Black" size="18.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <Label layoutX="223.0" layoutY="42.0" text="Direccion:" textFill="#2b49b3">
+                                       <font>
+                                          <Font name="Arial Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox layoutX="-6.0" layoutY="68.0" prefHeight="158.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="40.0">
+                                       <children>
+                                          <ImageView fitHeight="137.0" fitWidth="208.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@cancha.jpeg" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </HBox>
+                                    <Label layoutX="229.0" layoutY="68.0" text="Nariño 2315">
+                                       <font>
+                                          <Font name="Arial Black" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Button layoutX="247.0" layoutY="91.0" mnemonicParsing="false" text="Reservar" AnchorPane.bottomAnchor="45.0" AnchorPane.rightAnchor="30.0" />
+                                    <Button layoutX="302.0" layoutY="122.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                                       <graphic>
+                                          <FontAwesomeIconView fill="#4c4c4e" glyphName="STAR" />
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </HBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="195.0">
+                     <children>
+                        <HBox prefHeight="170.0" prefWidth="340.0" styleClass="servicePanel">
+                           <children>
+                              <AnchorPane prefHeight="205.0" prefWidth="381.0" styleClass="servicePanel">
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="19.0" text="Nombre" textFill="#2b49b3" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                       <font>
+                                          <Font name="Arial Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox layoutX="141.0" layoutY="4.0" AnchorPane.rightAnchor="20.0">
+                                       <children>
+                                          <Label text="Pice:" textFill="#2b49b3">
+                                             <font>
+                                                <Font name="Arial Black" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="100">
+                                             <font>
+                                                <Font name="Arial Black" size="18.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <Label layoutX="223.0" layoutY="42.0" text="Direccion:" textFill="#2b49b3">
+                                       <font>
+                                          <Font name="Arial Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox layoutX="-6.0" layoutY="68.0" prefHeight="158.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="40.0">
+                                       <children>
+                                          <ImageView fitHeight="137.0" fitWidth="208.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@cancha.jpeg" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </HBox>
+                                    <Label layoutX="229.0" layoutY="68.0" text="Nariño 2315">
+                                       <font>
+                                          <Font name="Arial Black" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Button layoutX="258.0" layoutY="106.0" mnemonicParsing="false" text="Reservar" AnchorPane.bottomAnchor="45.0" AnchorPane.rightAnchor="30.0" />
+                                    <Button layoutX="313.0" layoutY="137.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                                       <graphic>
+                                          <FontAwesomeIconView fill="#4c4c4e" glyphName="STAR" />
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                           <HBox.margin>
+                              <Insets right="15.0" />
+                           </HBox.margin>
+                        </HBox>
+                        <HBox prefHeight="170.0" prefWidth="340.0" styleClass="servicePanel">
+                           <children>
+                              <AnchorPane prefHeight="205.0" prefWidth="381.0" styleClass="servicePanel">
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="19.0" text="Nombre" textFill="#2b49b3" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                       <font>
+                                          <Font name="Arial Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox layoutX="141.0" layoutY="4.0" AnchorPane.rightAnchor="20.0">
+                                       <children>
+                                          <Label text="Pice:" textFill="#2b49b3">
+                                             <font>
+                                                <Font name="Arial Black" size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label text="100">
+                                             <font>
+                                                <Font name="Arial Black" size="18.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <Label layoutX="223.0" layoutY="42.0" text="Direccion:" textFill="#2b49b3">
+                                       <font>
+                                          <Font name="Arial Black" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox layoutX="-6.0" layoutY="68.0" prefHeight="158.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="40.0">
+                                       <children>
+                                          <ImageView fitHeight="137.0" fitWidth="208.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@cancha.jpeg" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </HBox>
+                                    <Label layoutX="229.0" layoutY="68.0" text="Nariño 2315">
+                                       <font>
+                                          <Font name="Arial Black" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Button layoutX="248.0" layoutY="105.0" mnemonicParsing="false" text="Reservar" AnchorPane.bottomAnchor="45.0" AnchorPane.rightAnchor="30.0" />
+                                    <Button layoutX="303.0" layoutY="136.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                                       <graphic>
+                                          <FontAwesomeIconView fill="#4c4c4e" glyphName="STAR" />
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

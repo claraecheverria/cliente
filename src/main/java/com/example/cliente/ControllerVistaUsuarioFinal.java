@@ -26,6 +26,8 @@ public class ControllerVistaUsuarioFinal implements Initializable {
     private BarChart<String, Integer> chart;
     @FXML
     private Button BotonConfiguracion;
+    @FXML
+    private Button botonMostrarOpciones;
 
 
 
@@ -49,6 +51,15 @@ public class ControllerVistaUsuarioFinal implements Initializable {
         scence = new Scene(root);
         stage.show();
     }
+
+    public void switchToMostrarOpciones(javafx.event.ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("MostrarOpciones.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scence = new Scene(root);
+        stage.show();
+    }
+
 
 
 
