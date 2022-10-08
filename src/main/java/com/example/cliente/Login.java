@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 @Component
 public class Login {
@@ -37,7 +38,7 @@ public class Login {
 
     private boolean check;
 
-    private String checklogin() {
+    private List<String[]> checklogin() {
         check = true;
         String email = Email.getText().toString();
         String password = Password.getText().toString();
@@ -57,8 +58,9 @@ public class Login {
         try {
             List<String[]> listAtributos = objectMapper.readValue(response2.getBody().toString(), new TypeReference<List<String[]>>(){});
             System.out.println(listAtributos.size());
-            System.out.println(listAtributos.get(0));
-            return listAtributos.get(0)[0];
+//            System.out.println(listAtributos.get(0)[0]);
+//            System.out.println(listAtributos.get(0)[1]);
+            return listAtributos;
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
@@ -66,17 +68,28 @@ public class Login {
     }
 
     public void userLogin(javafx.event.ActionEvent actionEvent) {
-//        checklogin();
-//        if (check == true) {
-            try {
-                ScenceController.switchToAdmin(actionEvent);
-//                ScenceController.switchToClienteFinal(actionEvent);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+        List<String[]> tipoDeUser = checklogin();
+        if (tipoDeUser.size() == 0){
+            wrongLogin.setText("Login incorrecto");
+        }else {
+            if (Objects.equals(tipoDeUser.get(0)[0], "ADMIN")) {
+                try {
+                    ScenceController.switchToAdmin(actionEvent);
+                } catch (IOException e) {
+                }
+            } else if (Objects.equals(tipoDeUser.get(0)[0], "EMPRESA")) {
+
+            }else if (Objects.equals(tipoDeUser.get(0)[0], "CENTRO_DEP")){
+
+            }else if (Objects.equals(tipoDeUser.get(0)[0], "EMPLEADO")){
+                try {
+                    ScenceController.switchToClienteFinal(actionEvent);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
-//        }else {
-//            wrongLogin.setText("Login incorrecto");
-//        }
+        }
+
     }
 }
 
