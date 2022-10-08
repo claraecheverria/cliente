@@ -31,7 +31,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox layoutX="48.0" layoutY="31.0">
+            <VBox layoutX="49.0" layoutY="4.0">
                <children>
                   <HBox prefWidth="506.0">
                      <children>
@@ -46,6 +46,57 @@
                         <TextField fx:id="NombreCentroDeportivo" promptText="Nombre">
                            <HBox.margin>
                               <Insets left="40.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="46.0" prefHeight="24.0" prefWidth="507.0">
+                     <children>
+                        <Label text="Razon Social:">
+                           <font>
+                              <Font name="Arial Black" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="RazonSocial" promptText="12345678">
+                           <HBox.margin>
+                              <Insets left="145.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="72.0" prefHeight="24.0" prefWidth="507.0">
+                     <children>
+                        <Label text="RUT:">
+                           <font>
+                              <Font name="Arial Black" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="RUT" promptText="12345678">
+                           <HBox.margin>
+                              <Insets left="220.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox layoutX="10.0" layoutY="98.0" prefHeight="24.0" prefWidth="507.0">
+                     <children>
+                        <Label text="Direccion:">
+                           <font>
+                              <Font name="Arial Black" size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="Direccion" promptText="12345678">
+                           <HBox.margin>
+                              <Insets left="174.0" />
                            </HBox.margin>
                         </TextField>
                      </children>
@@ -121,10 +172,9 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox prefHeight="24.0" prefWidth="511.0" />
                </children>
             </VBox>
-            <Button layoutX="268.0" layoutY="235.0" mnemonicParsing="false" onAction="#Volver" text="Guardar:" />
+            <Button layoutX="268.0" layoutY="290.0" mnemonicParsing="false" onAction="#Volver" text="Guardar:" />
          </children>
       </AnchorPane>
    </center>

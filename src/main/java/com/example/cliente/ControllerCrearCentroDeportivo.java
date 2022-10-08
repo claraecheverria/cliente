@@ -27,6 +27,12 @@ public class ControllerCrearCentroDeportivo {
     @FXML
     private TextField NombreCentroDeportivo;
     @FXML
+    private TextField RazonSocial;
+    @FXML
+    private TextField RUT;
+    @FXML
+    private TextField Direccion;
+    @FXML
     private TextField Cedula;
     @FXML
     private TextField Nombre;
@@ -54,6 +60,9 @@ public class ControllerCrearCentroDeportivo {
 
     public void guardarDatos() {
         String nombre_centrodep = NombreCentroDeportivo.getText();
+        String razonSocial = RazonSocial.getText();
+        String rut = RUT.getText();
+        String direccion = Direccion.getText();
         Long cedula_usuario = Long.valueOf(Cedula.getText());
         String nombre_usuario = Nombre.getText();
         Long telefono_usuario = Long.valueOf(Telefono.getText());
@@ -65,7 +74,7 @@ public class ControllerCrearCentroDeportivo {
         Telefono.clear();
         Email.clear();
 
-        CentroDeportivo centroDeportivo = new CentroDeportivo(nombre_centrodep);
+        CentroDeportivo centroDeportivo = new CentroDeportivo(nombre_centrodep, rut, razonSocial, direccion);
         UserCentroDeportivo nuevoUserCentroDep = new UserCentroDeportivo(nombre_usuario,email_usuario,telefono_usuario,cedula_usuario,centroDeportivo);
 
         HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/centroDeportivo/crearCentroDep")
