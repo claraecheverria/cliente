@@ -12,4 +12,12 @@ public class UserCentroDeportivo extends User{
 
     public UserCentroDeportivo() {
     }
+
+    public CentroDeportivo getCentroDeportivo() {
+        return centroDeportivo;
+    }
+
+    public void setCentroDeportivo(CentroDeportivo centroDeportivo) {
+        this.centroDeportivo = centroDeportivo;
+    }
 }

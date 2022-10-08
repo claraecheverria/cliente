@@ -60,6 +60,9 @@ public class ControllerTableViewEmpresa implements Initializable {
         List listaEmpresas = getUserList();
         empresas = FXCollections.observableArrayList(listaEmpresas);
         this.colNombreEmpresa.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        this.colRUT.setCellValueFactory(new PropertyValueFactory<>("rut"));
+        this.colRazonSocial.setCellValueFactory(new PropertyValueFactory<>("razonSocial"));
+        this.colDireccion.setCellValueFactory(new PropertyValueFactory<>("direccion"));
         this.tablaEmpresasCreadas.setItems(empresas);
     }
 
@@ -67,6 +70,9 @@ public class ControllerTableViewEmpresa implements Initializable {
         List listaEmpleados = getUserList();
         empresas = FXCollections.observableArrayList(listaEmpleados);
         this.colNombreEmpresa.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        this.colRUT.setCellValueFactory(new PropertyValueFactory<>("rut"));
+        this.colRazonSocial.setCellValueFactory(new PropertyValueFactory<>("razonSocial"));
+        this.colDireccion.setCellValueFactory(new PropertyValueFactory<>("direccion"));
 
         this.tablaEmpresasCreadas.setItems(empresas);
     }

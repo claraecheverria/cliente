@@ -70,9 +70,9 @@ public class ControllerTableViewCentrosDeportivos implements Initializable {
         List listaCentrosDep = getCentrosDeportivosList();
         centroDeportivos = FXCollections.observableArrayList(listaCentrosDep);
         this.colNombres.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-//        this.colRut.setCellValueFactory(new PropertyValueFactory<>("RUT"));
-//        this.colRazonSocial.setCellValueFactory(new PropertyValueFactory<>("Razon Social"));
-//        this.colDireccion.setCellValueFactory(new PropertyValueFactory<>("Direccion"));
+        this.colRut.setCellValueFactory(new PropertyValueFactory<>("rut"));
+        this.colRazonSocial.setCellValueFactory(new PropertyValueFactory<>("razonSocial"));
+        this.colDireccion.setCellValueFactory(new PropertyValueFactory<>("direccion"));
 
         this.tableCentroDeportivo.setItems(centroDeportivos);
     }
@@ -81,6 +81,9 @@ public class ControllerTableViewCentrosDeportivos implements Initializable {
         List listaEmpleados = getCentrosDeportivosList();
         centroDeportivos = FXCollections.observableArrayList(listaEmpleados);
         this.colNombres.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        this.colRut.setCellValueFactory(new PropertyValueFactory<>("rut"));
+        this.colRazonSocial.setCellValueFactory(new PropertyValueFactory<>("razonSocial"));
+        this.colDireccion.setCellValueFactory(new PropertyValueFactory<>("direccion"));
 
         this.tableCentroDeportivo.setItems(centroDeportivos);
     }
