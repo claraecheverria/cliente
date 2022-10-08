@@ -15,14 +15,14 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" stylesheets="@StilePage1.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cliente.ControllerVistaUsuarioFinal">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" stylesheets="@StilePage1.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cliente.ControllerMostrarOpciones">
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="45.0" styleClass="sidebar" BorderPane.alignment="CENTER">
          <children>
             <FontAwesomeIconView fill="#4c4c4e" glyphName="BARS" layoutX="16.0" layoutY="32.0" size="20" AnchorPane.leftAnchor="14.5" AnchorPane.rightAnchor="14.5" AnchorPane.topAnchor="15.0" />
             <VBox layoutX="13.0" layoutY="211.0" maxHeight="15.0" maxWidth="15.0" prefHeight="15.0" prefWidth="15.0">
                <children>
-                  <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0">
+                  <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToPaginaInicio" prefHeight="25.0" prefWidth="25.0">
                      <graphic>
                         <FontAwesomeIconView fill="#4c4c4e" glyphName="HOME" size="20" />
                      </graphic>
