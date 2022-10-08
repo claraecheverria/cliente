@@ -2,15 +2,15 @@ package com.example.cliente.Model;
 
 public class Empresa {
     private String nombre;
-    private String RUT;
+    private String rut;
     private String razonSocial;
-    private String Direccion;
+    private String direccion;
 
     public Empresa(String nombre, String rut, String razonSocial, String direccion) {
         this.nombre = nombre;
-        this.RUT = rut;
+        this.rut = rut;
         this.razonSocial = razonSocial;
-        this.Direccion = direccion;
+        this.direccion = direccion;
     }
 
     public Empresa() {
@@ -21,5 +21,29 @@ public class Empresa {
     }
     public String getNombre() {
         return nombre;
+    }
+
+    public String getRut() {
+        return rut;
+    }
+
+    public void setRut(String rut) {
+        this.rut = rut;
+    }
+
+    public String getRazonSocial() {
+        return razonSocial;
+    }
+
+    public void setRazonSocial(String razonSocial) {
+        this.razonSocial = razonSocial;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 }
