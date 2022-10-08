@@ -24,9 +24,9 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox layoutX="90.0" layoutY="31.0" prefHeight="200.0">
+            <VBox layoutX="90.0" layoutY="-12.0" prefHeight="276.0" prefWidth="420.0">
                <children>
-                  <AnchorPane>
+                  <AnchorPane prefHeight="39.0" prefWidth="420.0">
                      <children>
                         <TextField fx:id="nombreEmpresa" layoutX="204.0" layoutY="26.0" promptText="Ejemplo S.A." />
                         <Label layoutY="26.0" text="Nombre Empresa:">
@@ -39,6 +39,45 @@
                         </Label>
                         <Label fx:id="errorDatos" layoutX="210.0" layoutY="6.0" textFill="#e40d0d" />
                      </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="73.0" prefHeight="27.0" prefWidth="420.0">
+                     <children>
+                        <Label text="RUT:">
+                           <font>
+                              <Font name="Arial Black" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="RUT" layoutX="208.0" layoutY="1.0" promptText="12345678" AnchorPane.rightAnchor="55.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="73.0" prefHeight="27.0" prefWidth="420.0">
+                     <children>
+                        <Label text="Razon Social:">
+                           <font>
+                              <Font name="Arial Black" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="RazonSocial" layoutX="208.0" layoutY="1.0" promptText="12345678" AnchorPane.rightAnchor="55.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="110.0" prefHeight="27.0" prefWidth="420.0">
+                     <children>
+                        <Label text="Direccion:">
+                           <font>
+                              <Font name="Arial Black" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="Direccion" layoutX="208.0" layoutY="1.0" promptText="12345678" AnchorPane.rightAnchor="55.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
                   </AnchorPane>
                   <AnchorPane prefHeight="27.0" prefWidth="420.0">
                      <children>
@@ -92,14 +131,9 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </AnchorPane>
-                  <AnchorPane prefWidth="420.0">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </AnchorPane>
                </children>
             </VBox>
-            <Button fx:id="guardar" layoutX="269.0" layoutY="260.0" mnemonicParsing="false" onAction="#Volver" text="Guardar" />
+            <Button fx:id="guardar" layoutX="269.0" layoutY="310.0" mnemonicParsing="false" onAction="#Volver" text="Guardar" />
          </children>
       </AnchorPane>
    </center>

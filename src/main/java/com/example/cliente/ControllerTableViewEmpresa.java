@@ -46,6 +46,10 @@ public class ControllerTableViewEmpresa implements Initializable {
 
     // COLUMNAS TABLA EMPRESAS
     public  TableColumn<TableView<User>, String> colNombreEmpresa;
+    public TableColumn<TableView<User>, String> colRUT;
+    public TableColumn<TableView<User>, String> colRazonSocial;
+    public TableColumn<TableView<User>, String> colDireccion;
+
     public TableView<Empresa> tablaEmpresasCreadas;
     private ObservableList<Empresa> empresas;
     public Button btnActualizarTablaEmpresas;
@@ -89,4 +93,5 @@ public class ControllerTableViewEmpresa implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
 }

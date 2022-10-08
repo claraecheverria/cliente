@@ -29,6 +29,12 @@ public class ControllerCrearEmpresa {
     @FXML
     private TextField nombreEmpresa;
     @FXML
+    private TextField RUT;
+    @FXML
+    private TextField RazonSocial;
+    @FXML
+    private TextField Direccion;
+    @FXML
     private TextField cedula;
     @FXML
     private TextField nombreUsuario;
@@ -63,6 +69,9 @@ public class ControllerCrearEmpresa {
 
     public void guardarDatos() {
         String nombre_empresa = nombreEmpresa.getText();
+        String rut = RUT.getText();
+        String razonSocial = RazonSocial.getText();
+        String direccion = Direccion.getText();
         Long cedula_usuario = Long.valueOf(cedula.getText());
         String nombre_usuario = nombreUsuario.getText();
         Long telefono_usuario = Long.valueOf(telefono.getText());
@@ -74,7 +83,7 @@ public class ControllerCrearEmpresa {
         telefono.clear();
         email.clear();
 
-        Empresa nuevaEmpresa = new Empresa(nombre_empresa);
+        Empresa nuevaEmpresa = new Empresa(nombre_empresa, rut,razonSocial,direccion);
         UserEmpresa nuevoUserEmpresa = new UserEmpresa(nombre_usuario, email_usuario, telefono_usuario, cedula_usuario, nuevaEmpresa);
 
         HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/empresa/crearEmpresa")

@@ -19,9 +19,12 @@
             </Label>
          </children>
       </HBox>
-      <TableView fx:id="tablaEmpresasCreadas" layoutX="51.0" layoutY="89.0" prefHeight="200.0" prefWidth="502.0">
+      <TableView fx:id="tablaEmpresasCreadas" layoutX="29.0" layoutY="89.0" prefHeight="200.0" prefWidth="543.0">
         <columns>
-          <TableColumn fx:id="colNombreEmpresa" prefWidth="229.0" text="Nombres" />
+          <TableColumn fx:id="colNombreEmpresa" prefWidth="182.0" text="Nombres" />
+            <TableColumn fx:id="colRUT" prefWidth="122.0" text="RUT" />
+            <TableColumn fx:id="colRazonSocial" prefWidth="103.0" text="Razon Social" />
+            <TableColumn fx:id="colDireccion" prefWidth="134.0" text="Direccion" />
         </columns>
       </TableView>
       <Button fx:id="btnActualizarTablaEmpresas" layoutX="91.0" layoutY="316.0" mnemonicParsing="false" onAction="#actualizarTablaEmpresas" text="Actualizar" />
