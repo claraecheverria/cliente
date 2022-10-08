@@ -37,30 +37,40 @@ public class Login {
 
     private boolean check;
 
-    private void checklogin() {
+    private String checklogin() {
         check = true;
         String email = Email.getText().toString();
         String password = Password.getText().toString();
         Email.clear();
-            User nuevoUser = new User(email,password);
-            HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/user")
-                    .header("accept", "application/json")
-                    .header("Content-Type", "application/json")
-                    .body(nuevoUser)
-                    .asJson();
-            System.out.println(response.getBody());
-            if (response.getBody() != null){
-                check = false;
-            }
-            System.out.println(response.getStatusText());
+        Password.clear();
+        User nuevoUser = new User(email,password);
+        HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/user/userParaCheck")
+                .header("accept", "application/json")
+                .header("Content-Type", "application/json")
+                .body(nuevoUser)
+                .asJson();
+        HttpResponse<JsonNode> response2 = Unirest.get("http://localhost:8080/user/devuelveUser")
+                .header("accept", "application/json")
+                .header("Content-Type", "application/json")
+                .asJson();
+        com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+        try {
+            List<String[]> listAtributos = objectMapper.readValue(response2.getBody().toString(), new TypeReference<List<String[]>>(){});
+            System.out.println(listAtributos.size());
+            System.out.println(listAtributos.get(0));
+            return listAtributos.get(0)[0];
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     public void userLogin(javafx.event.ActionEvent actionEvent) {
 //        checklogin();
 //        if (check == true) {
             try {
-//                ScenceController.switchToAdmin(actionEvent);
-                ScenceController.switchToClienteFinal(actionEvent);
+                ScenceController.switchToAdmin(actionEvent);
+//                ScenceController.switchToClienteFinal(actionEvent);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

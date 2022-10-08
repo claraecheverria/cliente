@@ -1,6 +1,6 @@
 package com.example.cliente;
 
-import com.example.cliente.Model.Empresa;
+import com.example.cliente.Model.CentroDeportivo;
 import com.example.cliente.Model.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -38,17 +38,17 @@ public class ControllerTableViewCentrosDeportivos implements Initializable {
     public TableColumn<TableView<User>, Integer> colRut;
     public TableColumn<TableView<User>, LocalDate> colRazonSocial;
     public TableColumn<TableView<User>, Double> colDireccion;
-    public TableView<User> tableCentroDeportivo;
-    private ObservableList<User> empleados;
+    public TableView<CentroDeportivo> tableCentroDeportivo;
+    private ObservableList<CentroDeportivo> centroDeportivos;
 
-    public List<Empresa> getCentrosDeportivosList(){
+    public List<CentroDeportivo> getCentrosDeportivosList(){
         HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/centroDeportivo/listaCentrosDep")
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
                 .asJson();
         com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
         try {
-            List<Empresa> listCar = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Empresa>>(){});
+            List<CentroDeportivo> listCar = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<CentroDeportivo>>(){});
             System.out.println(listCar.size());
             return listCar;
         } catch (JsonProcessingException e) {
@@ -58,7 +58,7 @@ public class ControllerTableViewCentrosDeportivos implements Initializable {
 
     public void Volver(javafx.event.ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("PrimeraVistaAdminCentroDeportivo.fxml"));
+        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("PrimerVistaAdmin.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scence = new Scene(root);
         stage.setScene(scence);
@@ -67,13 +67,21 @@ public class ControllerTableViewCentrosDeportivos implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        List listaEmpleados = getCentrosDeportivosList();
-        empleados = FXCollections.observableArrayList(listaEmpleados);
+        List listaCentrosDep = getCentrosDeportivosList();
+        centroDeportivos = FXCollections.observableArrayList(listaCentrosDep);
         this.colNombres.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        this.colRut.setCellValueFactory(new PropertyValueFactory<>("RUT"));
-        this.colRazonSocial.setCellValueFactory(new PropertyValueFactory<>("Razon Social"));
-        this.colDireccion.setCellValueFactory(new PropertyValueFactory<>("Direccion"));
+//        this.colRut.setCellValueFactory(new PropertyValueFactory<>("RUT"));
+//        this.colRazonSocial.setCellValueFactory(new PropertyValueFactory<>("Razon Social"));
+//        this.colDireccion.setCellValueFactory(new PropertyValueFactory<>("Direccion"));
 
-        this.tableCentroDeportivo.setItems(empleados);
+        this.tableCentroDeportivo.setItems(centroDeportivos);
+    }
+
+    public void actualizarTablaCentrosDep(javafx.event.ActionEvent actionEvent){
+        List listaEmpleados = getCentrosDeportivosList();
+        centroDeportivos = FXCollections.observableArrayList(listaEmpleados);
+        this.colNombres.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+
+        this.tableCentroDeportivo.setItems(centroDeportivos);
     }
 }
