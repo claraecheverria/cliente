@@ -42,7 +42,7 @@ public class ControllerVistaUsuarioFinal implements Initializable {
         series1.getData().add(new XYChart.Data("Jueves",100));
         series1.getData().add(new XYChart.Data("Viernes",50));
 
-        chart.getData() . addAll(series1);
+        chart.getData().addAll(series1);
     }
 
     public void switchToConfiguracion(javafx.event.ActionEvent event) throws IOException {
