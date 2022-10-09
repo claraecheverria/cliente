@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -55,43 +56,55 @@
       </AnchorPane>
    </left>
    <center>
-      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" BorderPane.alignment="CENTER">
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" styleClass="buttonsSettings" BorderPane.alignment="CENTER">
          <children>
             <VBox layoutX="3.0" layoutY="3.0" maxHeight="1.7976931348623157E308" prefHeight="596.0" prefWidth="205.0" styleClass="sidebar" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="2.0">
                <children>
                   <HBox prefHeight="87.0" prefWidth="187.0">
                      <children>
-                        <AnchorPane accessibleRole="BUTTON" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="205.0" styleClass="buttonsSettings">
+                        <AnchorPane accessibleRole="BUTTON" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="205.0">
                            <children>
-                              <Label layoutX="12.0" layoutY="30.0" text="General Settings" AnchorPane.leftAnchor="12.0">
+                              <Button layoutX="18.0" layoutY="54.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="133.0" text="General Settings" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <font>
                                     <Font name="Arial Black" size="18.0" />
                                  </font>
-                              </Label>
+                                 <styleClass>
+                                    <String fx:value="buttonsSettings" />
+                                    <String fx:value="buttonSelected" />
+                                 </styleClass>
+                              </Button>
                            </children>
+                           <HBox.margin>
+                              <Insets bottom="1.0" />
+                           </HBox.margin>
                         </AnchorPane>
                      </children>
                   </HBox>
                   <AnchorPane accessibleRole="BUTTON" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="190.0">
                      <children>
-                        <Label layoutX="18.0" layoutY="30.0" text="Security &amp; Login">
+                        <Button layoutX="66.0" layoutY="64.0" mnemonicParsing="false" styleClass="buttonsSettings" text="Security &amp; Login" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font name="Arial Black" size="18.0" />
                            </font>
-                        </Label>
+                        </Button>
                      </children>
                   </AnchorPane>
                   <AnchorPane accessibleRole="BUTTON" layoutX="10.0" layoutY="100.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="190.0">
                      <children>
-                        <Label layoutX="6.0" layoutY="32.0" text="Lenguage &amp; region">
+                        <Button layoutX="72.0" layoutY="56.0" mnemonicParsing="false" text="Lenguage &amp; region" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
-                              <Font name="Arial Black" size="18.0" />
+                              <Font name="Arial Black" size="17.0" />
                            </font>
-                        </Label>
+                        </Button>
                      </children>
                   </AnchorPane>
                </children>
             </VBox>
+            <ScrollPane layoutX="482.0" layoutY="232.0" prefHeight="166.0" prefWidth="188.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="207.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="992.0" prefWidth="753.0" />
+              </content>
+            </ScrollPane>
          </children>
       </AnchorPane>
    </center>
