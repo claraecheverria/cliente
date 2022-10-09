@@ -67,7 +67,7 @@ public class ScenceController {
 
     public void switchToAdminCentroDeporivo(javafx.event.ActionEvent event) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader();
-        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("PrimerVistaAdminCentroDeportivo.fxml"));
+        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("PrimeraVistaAdminCentroDeportivo.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scence = new Scene(root);
         stage.setScene(scence);

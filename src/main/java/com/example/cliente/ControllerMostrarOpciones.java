@@ -33,17 +33,19 @@ public class ControllerMostrarOpciones {
 
     public void switchToPaginaInicio(javafx.event.ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("MostrarOpciones.fxml"));
+        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("Page1.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scence = new Scene(root);
+        stage.setScene(scence);
         stage.show();
     }
 
     public void switchToConfiguracion(javafx.event.ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("AgregarEmpleadoEmpresa.fxml"));
+        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("UsuarioFinalConfiguracion.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scence = new Scene(root);
+        stage.setScene(scence);
         stage.show();
     }
 

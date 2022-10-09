@@ -50,6 +50,7 @@ public class ControllerVistaUsuarioFinal implements Initializable {
         Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("UsuarioFinalConfiguracion.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scence = new Scene(root);
+        stage.setScene(scence);
         stage.show();
     }
 
@@ -58,6 +59,7 @@ public class ControllerVistaUsuarioFinal implements Initializable {
         Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("MostrarOpciones.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scence = new Scene(root);
+        stage.setScene(scence);
         stage.show();
     }
 
@@ -66,6 +68,7 @@ public class ControllerVistaUsuarioFinal implements Initializable {
         Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("Page1.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scence = new Scene(root);
+        stage.setScene(scence);
         stage.show();
     }
 
