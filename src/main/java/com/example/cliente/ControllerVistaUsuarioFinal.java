@@ -58,7 +58,9 @@ public class ControllerVistaUsuarioFinal implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("MostrarOpciones.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        String css = this.getClass().getResource("StilePage1.css").toExternalForm();
         scence = new Scene(root);
+        scence.getStylesheets().add(css);
         stage.setScene(scence);
         stage.show();
     }
@@ -67,7 +69,9 @@ public class ControllerVistaUsuarioFinal implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("Page1.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        String css = this.getClass().getResource("StilePage1.css").toExternalForm();
         scence = new Scene(root);
+        scence.getStylesheets().add(css);
         stage.setScene(scence);
         stage.show();
     }
