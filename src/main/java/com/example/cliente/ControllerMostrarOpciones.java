@@ -1,19 +1,27 @@
 package com.example.cliente;
 
+import com.example.cliente.Model.Servicio;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 @Controller
-public class ControllerMostrarOpciones {
+public class ControllerMostrarOpciones implements Initializable {
 
     private Stage stage;
     private Scene scence;
@@ -29,8 +37,31 @@ public class ControllerMostrarOpciones {
     private CheckBox FillterTennis;
     @FXML
     private Button ApplyFillters;
+    @FXML
+    private ScrollPane scrollPane;
+    @FXML
+    private AnchorPane anchorPain;
+    private ArrayList<Servicio> listaservicios;
 
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        //listaservicios = lista de servicios disponibles
+        try {
+            for (int i = 0; i < listaservicios.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("card.fxml"));
+                HBox serviceBox = fxmlLoader.load();
+                ControllerPlantillaServicio servicioController = fxmlLoader.getController();
+                servicioController.setData(listaservicios.get(i));
+                anchorPain.getChildren().add(serviceBox);
+            }
+        }
+        catch(IOException e){
+            throw new RuntimeException(e);
+        }
+
+    }
     public void switchToPaginaInicio(javafx.event.ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("Page1.fxml"));
@@ -57,5 +88,4 @@ public class ControllerMostrarOpciones {
         // APLICAR FILTRO SOBRE LOS SERVICIOS
 
     }
-
 }

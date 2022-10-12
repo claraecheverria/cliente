@@ -21,7 +21,7 @@
       <AnchorPane prefHeight="200.0" prefWidth="45.0" styleClass="sidebar" BorderPane.alignment="CENTER">
          <children>
             <FontAwesomeIconView fill="#4c4c4e" glyphName="BARS" layoutX="16.0" layoutY="32.0" size="20" AnchorPane.leftAnchor="14.5" AnchorPane.rightAnchor="14.5" AnchorPane.topAnchor="15.0" />
-            <VBox layoutX="13.0" layoutY="211.0" maxHeight="15.0" maxWidth="15.0" prefHeight="15.0" prefWidth="15.0">
+            <VBox layoutX="13.0" layoutY="211.0" maxHeight="15.0" maxWidth="15.0" prefHeight="15.0" prefWidth="15.0" styleClass="sidebar_opt">
                <children>
                   <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToPaginaInicio" prefHeight="25.0" prefWidth="25.0">
                      <graphic>
@@ -62,9 +62,9 @@
    <center>
       <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="727.0" BorderPane.alignment="CENTER_LEFT">
          <children>
-            <ScrollPane layoutX="264.0" layoutY="218.0" prefHeight="601.0" prefWidth="730.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <ScrollPane fx:id="scrollPane" layoutX="264.0" layoutY="218.0" prefHeight="601.0" prefWidth="730.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="889.0" prefWidth="710.0">
+                <AnchorPane fx:id="anchorPain" minHeight="0.0" minWidth="0.0" prefHeight="889.0" prefWidth="710.0" stylesheets="@StilePage1.css">
                      <children>
                         <VBox layoutX="5.0" layoutY="14.0" AnchorPane.topAnchor="100.0">
                            <children>
@@ -72,14 +72,14 @@
                                  <children>
                                     <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="170.0" prefWidth="340.0" styleClass="servicePanel">
                                        <children>
-                                          <AnchorPane prefHeight="205.0" prefWidth="381.0" styleClass="servicePanel">
+                                          <AnchorPane prefHeight="205.0" prefWidth="381.0" styleClass="servicePanel" stylesheets="@StilePage1.css">
                                              <children>
                                                 <Label layoutX="14.0" layoutY="19.0" text="Nombre" textFill="#2b49b3" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
                                                    <font>
                                                       <Font name="Arial Black" size="18.0" />
                                                    </font>
                                                 </Label>
-                                                <HBox layoutX="141.0" layoutY="4.0" AnchorPane.rightAnchor="20.0">
+                                                <HBox layoutX="141.0" layoutY="4.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="4.0">
                                                    <children>
                                                       <Label text="Precio:" textFill="#2b49b3">
                                                          <font>
@@ -96,7 +96,7 @@
                                                       </Label>
                                                    </children>
                                                 </HBox>
-                                                <Label layoutX="223.0" layoutY="42.0" text="Direccion:" textFill="#2b49b3">
+                                                <Label layoutX="223.0" layoutY="42.0" text="Direccion:" textFill="#2b49b3" AnchorPane.bottomAnchor="101.0" AnchorPane.rightAnchor="16.5">
                                                    <font>
                                                       <Font name="Arial Black" size="18.0" />
                                                    </font>
@@ -105,12 +105,12 @@
                                                    <children>
                                                       <ImageView fitHeight="137.0" fitWidth="208.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
-                                                            <Image url="@com/example/cliente/cancha.jpeg" />
+                                                            <Image url="@cancha.jpeg" />
                                                          </image>
                                                       </ImageView>
                                                    </children>
                                                 </HBox>
-                                                <Label layoutX="229.0" layoutY="68.0" text="Nariño 2315">
+                                                <Label layoutX="229.0" layoutY="68.0" text="Nariño 2315" AnchorPane.bottomAnchor="82.0" AnchorPane.rightAnchor="16.5">
                                                    <font>
                                                       <Font name="Arial Black" size="13.0" />
                                                    </font>
@@ -163,7 +163,7 @@
                                                    <children>
                                                       <ImageView fitHeight="137.0" fitWidth="208.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
-                                                            <Image url="@com/example/cliente/cancha.jpeg" />
+                                                            <Image url="@cancha.jpeg" />
                                                          </image>
                                                       </ImageView>
                                                    </children>
@@ -225,7 +225,7 @@
                                                    <children>
                                                       <ImageView fitHeight="137.0" fitWidth="208.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
-                                                            <Image url="@com/example/cliente/cancha.jpeg" />
+                                                            <Image url="@cancha.jpeg" />
                                                          </image>
                                                       </ImageView>
                                                    </children>
@@ -283,7 +283,7 @@
                                                    <children>
                                                       <ImageView fitHeight="137.0" fitWidth="208.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
-                                                            <Image url="@com/example/cliente/cancha.jpeg" />
+                                                            <Image url="@cancha.jpeg" />
                                                          </image>
                                                       </ImageView>
                                                    </children>
@@ -345,7 +345,7 @@
                                                    <children>
                                                       <ImageView fitHeight="137.0" fitWidth="208.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
-                                                            <Image url="@com/example/cliente/cancha.jpeg" />
+                                                            <Image url="@cancha.jpeg" />
                                                          </image>
                                                       </ImageView>
                                                    </children>
@@ -403,7 +403,7 @@
                                                    <children>
                                                       <ImageView fitHeight="137.0" fitWidth="208.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
-                                                            <Image url="@com/example/cliente/cancha.jpeg" />
+                                                            <Image url="@cancha.jpeg" />
                                                          </image>
                                                       </ImageView>
                                                    </children>
@@ -465,7 +465,7 @@
                                                    <children>
                                                       <ImageView fitHeight="137.0" fitWidth="208.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
-                                                            <Image url="@com/example/cliente/cancha.jpeg" />
+                                                            <Image url="@cancha.jpeg" />
                                                          </image>
                                                       </ImageView>
                                                    </children>
@@ -523,7 +523,7 @@
                                                    <children>
                                                       <ImageView fitHeight="137.0" fitWidth="208.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
-                                                            <Image url="@com/example/cliente/cancha.jpeg" />
+                                                            <Image url="@cancha.jpeg" />
                                                          </image>
                                                       </ImageView>
                                                    </children>
