@@ -21,8 +21,12 @@ public class ControllerPlantillaServicio {
     private Button Reservar;
     @FXML
     private ImageView Image;
+    @FXML
+    private Label Descripcion;
+    @FXML
+    private Label Horarios;
 
-    private ArrayList listaServicios; // que sen objeto servicio
+
 
     public void setData(Servicio servicio){
 //        Image image = new Image(getClass().getResourceAsStream(servicio.getImageScr()));
@@ -30,5 +34,7 @@ public class ControllerPlantillaServicio {
         Nombre.setText(servicio.getNombre());
         Direccion.setText(servicio.getCentroDeportivoServicio().getDireccion());
         Precio.setText(String.valueOf(servicio.getPrecio()));
+        Descripcion.setText(servicio.getDescripcion());
+        Horarios.setText(servicio.getHorario());
     }
 }
