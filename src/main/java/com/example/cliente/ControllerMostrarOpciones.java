@@ -54,8 +54,10 @@ public class ControllerMostrarOpciones implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         listaservicios = (ArrayList<Servicio>) getListaServicios();
+        System.out.println(listaservicios.size());
         try {
             for (int i = 0; i < listaservicios.size(); i++) {
+                System.out.println(listaservicios.get(i).getNombre());
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("card.fxml"));
                 HBox serviceBox = fxmlLoader.load();
