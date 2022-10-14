@@ -53,7 +53,6 @@ public class ControllerMostrarOpciones implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //listaservicios = lista de servicios disponibles
         listaservicios = (ArrayList<Servicio>) getListaServicios();
         try {
             for (int i = 0; i < listaservicios.size(); i++) {
