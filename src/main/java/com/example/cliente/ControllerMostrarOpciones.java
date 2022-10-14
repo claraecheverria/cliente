@@ -32,6 +32,7 @@ public class ControllerMostrarOpciones implements Initializable {
 
     private Stage stage;
     private Scene scence;
+    //FILTROS
     @FXML
     private CheckBox FillterFutbol;
     @FXML
@@ -44,6 +45,17 @@ public class ControllerMostrarOpciones implements Initializable {
     private CheckBox FillterTennis;
     @FXML
     private Button ApplyFillters;
+    @FXML
+    private CheckBox fillterPrimerRango; // 0 - 150
+    @FXML
+    private CheckBox fillterSegundoRango; // 150 - 300
+    @FXML
+    private CheckBox fillterTercerRango; // 300 - 450
+
+    private ArrayList<CheckBox> filltersList = new ArrayList();
+
+
+    //COLUMNAS
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -78,6 +90,35 @@ public class ControllerMostrarOpciones implements Initializable {
         catch(IOException e){
             throw new RuntimeException(e);
         }
+    }
+
+    public void applyFillters(javafx.event.ActionEvent event) throws IOException{
+        ArrayList<Servicio> listaServiciosSeleccionados = new ArrayList<>();
+
+        if (fillterPrimerRango.isSelected()){
+            for(int i = 0; i<listaservicios.size(); i++){
+                if(listaservicios.get(i).getPrecio()<150){
+                    listaServiciosSeleccionados.add(listaservicios.get(i));
+                }
+            }
+        }
+        if (fillterSegundoRango.isSelected()){
+            for(int i = 0; i<listaservicios.size(); i++){
+                if(listaservicios.get(i).getPrecio()<300){
+                    listaServiciosSeleccionados.add(listaservicios.get(i));
+                }
+            }
+        }
+        if (fillterTercerRango.isSelected()){
+            for(int i = 0; i<listaservicios.size(); i++){
+                if(listaservicios.get(i).getPrecio()<450){
+                    listaServiciosSeleccionados.add(listaservicios.get(i));
+                }
+            }
+        }
+        listaServiciosSeleccionados = removeDuplicates(listaServiciosSeleccionados);
+
+        desplegarPlantillas(listaServiciosSeleccionados);
 
     }
 
@@ -118,8 +159,37 @@ public class ControllerMostrarOpciones implements Initializable {
         stage.show();
     }
 
-    public void applyFillters(javafx.event.ActionEvent event) throws IOException{
-        // APLICAR FILTRO SOBRE LOS SERVICIOS
+    public static <T> ArrayList<T> removeDuplicates(ArrayList<T> list)
+    {
+        ArrayList<T> newList = new ArrayList<T>();
 
+        for (T element : list) {
+            if (!newList.contains(element)) {
+                newList.add(element);
+            }
+        }
+
+        return newList;
+    }
+
+    public void desplegarPlantillas(ArrayList<Servicio> listaParaDesplegar){
+        try {
+            for (int i = 0; i < listaParaDesplegar.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("plantillaServicio.fxml"));
+                HBox serviceBox = fxmlLoader.load();
+                ControllerPlantillaServicio servicioController = fxmlLoader.getController();
+                servicioController.setData(listaParaDesplegar.get(i));
+                if(i%2 == 0){
+                    Vbox1.getChildren().add(serviceBox);
+                }
+                if(i%2 == 1){
+                    Vbox2.getChildren().add(serviceBox);
+                }
+            }
+        }
+        catch(IOException e){
+            throw new RuntimeException(e);
+        }
     }
 }
