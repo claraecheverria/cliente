@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
 
@@ -29,6 +30,9 @@ public class ControllerVistaUsuarioFinal implements Initializable {
     private Button BotonConfiguracion;
     @FXML
     private Button botonMostrarOpciones;
+    @FXML
+    private HBox HboxMeGusta;
+
 
 
 
@@ -42,6 +46,7 @@ public class ControllerVistaUsuarioFinal implements Initializable {
         series1.getData().add(new XYChart.Data("Jueves",100));
         series1.getData().add(new XYChart.Data("Viernes",50));
         //chart.getData().addAll(series1);
+
     }
 
     public void switchToConfiguracion(javafx.event.ActionEvent event) throws IOException {

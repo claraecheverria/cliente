@@ -127,6 +127,14 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </CheckBox>
+                  <CheckBox fx:id="FillterSpinning" layoutX="10.0" layoutY="121.0" mnemonicParsing="false" text="Spinning">
+                     <font>
+                        <Font name="Arial Black" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </CheckBox>
                   <CheckBox fx:id="FillterTennis" mnemonicParsing="false" text="Tennis">
                      <font>
                         <Font name="Arial Black" size="18.0" />

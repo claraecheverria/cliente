@@ -26,7 +26,7 @@ public class ControllerCrearServicio implements Initializable {
 
     private Stage stage;
     private Scene scence;
-    ObservableList<String> tipoList = FXCollections.observableArrayList("Clase", "Gimnacio");
+    ObservableList<String> tipoList = FXCollections.observableArrayList("GYM", "Futbol", "Pisina", "Yoga", "Spinning", "Tennis");
     @FXML
     private TextField Nombre;
     @FXML

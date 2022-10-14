@@ -44,6 +44,8 @@ public class ControllerMostrarOpciones implements Initializable {
     @FXML
     private CheckBox FillterTennis;
     @FXML
+    private CheckBox FillterSpinning;
+    @FXML
     private Button ApplyFillters;
     @FXML
     private CheckBox fillterPrimerRango; // 0 - 150
@@ -75,7 +77,12 @@ public class ControllerMostrarOpciones implements Initializable {
             for (int i = 0; i < listaservicios.size(); i++) {
                 System.out.println(listaservicios.get(i).getNombre());
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("plantillaServicio.fxml"));
+                if(listaservicios.get(i).getTipo() == "clases"){  // HAY QUE DEFINIR BIEN COMO SON LOS TIPOS
+                    fxmlLoader.setLocation(getClass().getResource("plantillaServicio.fxml"));
+                }
+                else{
+                    fxmlLoader.setLocation(getClass().getResource("plantillaServicioSinReserva.fxml"));
+                }
                 HBox serviceBox = fxmlLoader.load();
                 ControllerPlantillaServicio servicioController = fxmlLoader.getController();
                 servicioController.setData(listaservicios.get(i));
