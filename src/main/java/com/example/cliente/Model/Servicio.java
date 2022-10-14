@@ -3,19 +3,28 @@ package com.example.cliente.Model;
 public class Servicio {
 
     private String nombre;
-    private int precio;
-    private String horarios;
-    private String direccion;
-    private String ImageScr;
+    private Long precio;
+    private String horario;
+    private String descripcion;
+    private String tipo; //este va a tener una opcion para seleccionar cuando se cree para hacer luego los filtros por tipo
+    private CentroDeportivo centroDeportivoServicio;
 
-    private String tipo;
+    //CONSTRUCTORES
 
-    public Servicio(String nombre, int precio, String horarios,String tipo) {
+    public Servicio() {
+    }
+
+    public Servicio(String nombre, Long precio, String horario, String descripcion, String tipo, CentroDeportivo centroDeportivoServicio) {
         this.nombre = nombre;
         this.precio = precio;
-        this.horarios = horarios;
+        this.horario = horario;
+        this.descripcion = descripcion;
         this.tipo = tipo;
+        this.centroDeportivoServicio = centroDeportivoServicio;
     }
+
+    //GETTERS Y SETTERS
+
 
     public String getNombre() {
         return nombre;
@@ -25,35 +34,43 @@ public class Servicio {
         this.nombre = nombre;
     }
 
-    public int getPrecio() {
+    public Long getPrecio() {
         return precio;
     }
 
-    public void setPrecio(int precio) {
+    public void setPrecio(Long precio) {
         this.precio = precio;
     }
 
-    public String getHorarios() {
-        return horarios;
+    public String getHorario() {
+        return horario;
     }
 
-    public void setHorarios(String horarios) {
-        this.horarios = horarios;
+    public void setHorario(String horario) {
+        this.horario = horario;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public String getImageScr() {
-        return ImageScr;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setImageScr(String imageScr) {
-        ImageScr = imageScr;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public CentroDeportivo getCentroDeportivoServicio() {
+        return centroDeportivoServicio;
+    }
+
+    public void setCentroDeportivoServicio(CentroDeportivo centroDeportivoServicio) {
+        this.centroDeportivoServicio = centroDeportivoServicio;
     }
 }

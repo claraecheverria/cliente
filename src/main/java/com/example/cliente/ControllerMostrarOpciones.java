@@ -1,6 +1,5 @@
 package com.example.cliente;
 
-import com.example.cliente.Model.Empresa;
 import com.example.cliente.Model.Servicio;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -54,10 +53,12 @@ public class ControllerMostrarOpciones implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         listaservicios = (ArrayList<Servicio>) getListaServicios();
+        System.out.println(listaservicios.size());
         try {
             for (int i = 0; i < listaservicios.size(); i++) {
+                System.out.println(listaservicios.get(i).getNombre());
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("card.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("plantillaServicio.fxml"));
                 HBox serviceBox = fxmlLoader.load();
                 ControllerPlantillaServicio servicioController = fxmlLoader.getController();
                 servicioController.setData(listaservicios.get(i));

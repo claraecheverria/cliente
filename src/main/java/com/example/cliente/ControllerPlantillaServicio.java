@@ -25,10 +25,10 @@ public class ControllerPlantillaServicio {
     private ArrayList listaServicios; // que sen objeto servicio
 
     public void setData(Servicio servicio){
-        Image image = new Image(getClass().getResourceAsStream(servicio.getImageScr()));
-        Image.setImage(image);
+//        Image image = new Image(getClass().getResourceAsStream(servicio.getImageScr()));
+//        Image.setImage(image);
         Nombre.setText(servicio.getNombre());
-        Direccion.setText(servicio.getDireccion());
+        Direccion.setText(servicio.getCentroDeportivoServicio().getDireccion());
         Precio.setText(String.valueOf(servicio.getPrecio()));
     }
 }

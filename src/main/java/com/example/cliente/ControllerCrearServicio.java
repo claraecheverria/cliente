@@ -54,7 +54,7 @@ public class ControllerCrearServicio {
         Horarios.clear();
         Cupos.clear();
 
-        Servicio nuevoServicio = new Servicio(nombre, precio, horarios,tipo);
+        Servicio nuevoServicio = new Servicio();//FIXME
 
         HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/empresa/crearEmpresa")
                 .header("accept", "application/json")
