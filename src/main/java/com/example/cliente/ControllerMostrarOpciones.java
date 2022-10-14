@@ -1,6 +1,9 @@
 package com.example.cliente;
 
+import com.example.cliente.Model.Empresa;
 import com.example.cliente.Model.Servicio;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,11 +16,15 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import kong.unirest.HttpResponse;
+import kong.unirest.JsonNode;
+import kong.unirest.Unirest;
 import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 @Controller
@@ -47,6 +54,7 @@ public class ControllerMostrarOpciones implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //listaservicios = lista de servicios disponibles
+        listaservicios = (ArrayList<Servicio>) getListaServicios();
         try {
             for (int i = 0; i < listaservicios.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -62,6 +70,22 @@ public class ControllerMostrarOpciones implements Initializable {
         }
 
     }
+
+    public List<Servicio> getListaServicios (){
+        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/listaServicios")
+                .header("accept", "application/json")
+                .header("Content-Type", "application/json")
+                .asJson();
+        com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+        try {
+            List<Servicio> listaServicios = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Servicio>>(){});
+            System.out.println(listaServicios.size());
+            return listaServicios;
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void switchToPaginaInicio(javafx.event.ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("Page1.fxml"));
