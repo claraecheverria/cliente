@@ -55,7 +55,7 @@ public class ControllerVistaUsuarioFinal implements Initializable {
 
     public void switchToMostrarOpciones(javafx.event.ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("MostrarOpciones.fxml"));
+        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("MostrarOpciones2.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         String css = this.getClass().getResource("StilePage1.css").toExternalForm();
         scence = new Scene(root);

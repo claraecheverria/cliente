@@ -14,6 +14,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
@@ -46,7 +47,7 @@ public class ControllerMostrarOpciones implements Initializable {
     @FXML
     private ScrollPane scrollPane;
     @FXML
-    private AnchorPane anchorPain;
+    private VBox Vbox;
     private ArrayList<Servicio> listaservicios;
 
 
@@ -62,7 +63,7 @@ public class ControllerMostrarOpciones implements Initializable {
                 HBox serviceBox = fxmlLoader.load();
                 ControllerPlantillaServicio servicioController = fxmlLoader.getController();
                 servicioController.setData(listaservicios.get(i));
-                anchorPain.getChildren().add(serviceBox);
+                Vbox.getChildren().add(serviceBox);
             }
         }
         catch(IOException e){

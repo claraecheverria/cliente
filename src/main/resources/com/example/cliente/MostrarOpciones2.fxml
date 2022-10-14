@@ -76,7 +76,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <AnchorPane fx:id="anchorPain" layoutX="44.0" layoutY="158.0" prefHeight="697.0" prefWidth="723.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="100.0" />
+                        <VBox fx:id="Vbox" layoutX="21.0" layoutY="142.0" prefHeight="701.0" prefWidth="716.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="100.0" />
                      </children>
                   </AnchorPane>
                </content>
