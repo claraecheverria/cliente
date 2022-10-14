@@ -5,15 +5,16 @@ public class Servicio {
     private String nombre;
     private int precio;
     private String horarios;
-    private int cupos;
     private String direccion;
     private String ImageScr;
 
-    public Servicio(String nombre, int precio, String horarios, int cupos) {
+    private String tipo;
+
+    public Servicio(String nombre, int precio, String horarios,String tipo) {
         this.nombre = nombre;
         this.precio = precio;
         this.horarios = horarios;
-        this.cupos = cupos;
+        this.tipo = tipo;
     }
 
     public String getNombre() {
@@ -38,14 +39,6 @@ public class Servicio {
 
     public void setHorarios(String horarios) {
         this.horarios = horarios;
-    }
-
-    public int getCupos() {
-        return cupos;
-    }
-
-    public void setCupos(int cupos) {
-        this.cupos = cupos;
     }
 
     public String getDireccion() {
