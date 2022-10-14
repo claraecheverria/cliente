@@ -64,7 +64,7 @@
                <content>
                   <AnchorPane prefHeight="599.0" prefWidth="722.0">
                      <children>
-                        <HBox layoutX="25.0" layoutY="17.0" prefHeight="100.0" prefWidth="723.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <HBox layoutX="25.0" layoutY="17.0" prefHeight="100.0" prefWidth="715.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label text="Todas nuestras opciones:" textFill="#2b49b3">
                                  <font>
@@ -76,7 +76,16 @@
                               </Label>
                            </children>
                         </HBox>
-                        <VBox fx:id="Vbox" layoutX="21.0" layoutY="142.0" prefHeight="701.0" prefWidth="716.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="100.0" />
+                        <VBox fx:id="Vbox" layoutX="21.0" layoutY="142.0" prefHeight="701.0" prefWidth="716.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="100.0">
+                           <children>
+                              <AnchorPane prefHeight="742.0" prefWidth="716.0">
+                                 <children>
+                                    <VBox fx:id="Hbox1" layoutX="22.0" layoutY="42.0" prefHeight="721.0" prefWidth="358.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <VBox fx:id="Hbox2" layoutX="450.0" prefHeight="723.0" prefWidth="358.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
                      </children>
                   </AnchorPane>
                </content>

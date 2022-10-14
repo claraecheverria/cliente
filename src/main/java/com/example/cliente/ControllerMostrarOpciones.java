@@ -48,6 +48,10 @@ public class ControllerMostrarOpciones implements Initializable {
     private ScrollPane scrollPane;
     @FXML
     private VBox Vbox;
+    @FXML
+    private HBox Hbox1;
+    @FXML
+    private HBox Hbox2;
     private ArrayList<Servicio> listaservicios;
 
 
@@ -63,7 +67,12 @@ public class ControllerMostrarOpciones implements Initializable {
                 HBox serviceBox = fxmlLoader.load();
                 ControllerPlantillaServicio servicioController = fxmlLoader.getController();
                 servicioController.setData(listaservicios.get(i));
-                Vbox.getChildren().add(serviceBox);
+                if(i%2 == 0){
+                    Hbox1.getChildren().add(serviceBox);
+                }
+                if(i%2 == 1){
+                    Hbox2.getChildren().add(serviceBox);
+                }
             }
         }
         catch(IOException e){
