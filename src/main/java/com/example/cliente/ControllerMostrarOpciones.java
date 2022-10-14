@@ -49,9 +49,9 @@ public class ControllerMostrarOpciones implements Initializable {
     @FXML
     private VBox Vbox;
     @FXML
-    private HBox Hbox1;
+    private VBox Vbox1;
     @FXML
-    private HBox Hbox2;
+    private VBox Vbox2;
     private ArrayList<Servicio> listaservicios;
 
 
@@ -68,10 +68,10 @@ public class ControllerMostrarOpciones implements Initializable {
                 ControllerPlantillaServicio servicioController = fxmlLoader.getController();
                 servicioController.setData(listaservicios.get(i));
                 if(i%2 == 0){
-                    Hbox1.getChildren().add(serviceBox);
+                    Vbox1.getChildren().add(serviceBox);
                 }
                 if(i%2 == 1){
-                    Hbox2.getChildren().add(serviceBox);
+                    Vbox2.getChildren().add(serviceBox);
                 }
             }
         }
