@@ -1,5 +1,7 @@
 package com.example.cliente;
 
+import com.example.cliente.Model.Servicio;
+import com.example.cliente.Model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,6 +18,8 @@ import org.springframework.stereotype.Controller;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 @Controller
@@ -32,9 +36,7 @@ public class ControllerVistaUsuarioFinal implements Initializable {
     private Button botonMostrarOpciones;
     @FXML
     private HBox HboxMeGusta;
-
-
-
+    private ArrayList<Servicio> ultimosServiciosUtilizados = new ArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -46,6 +48,28 @@ public class ControllerVistaUsuarioFinal implements Initializable {
         series1.getData().add(new XYChart.Data("Jueves",100));
         series1.getData().add(new XYChart.Data("Viernes",50));
         //chart.getData().addAll(series1);
+
+        // PARA QUE SE MUESTREN LOS DOS ULTIMOS SERVICIOS UTILIZADOS
+
+        // listaUltimosServiciosUtilizados = ultimosServiciosUtilizados(Usuario)
+        try {
+            for (int i = 0; i < ultimosServiciosUtilizados.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                if(ultimosServiciosUtilizados.get(i).getTipo() == "clases"){  // HAY QUE DEFINIR BIEN COMO SON LOS TIPOS
+                    fxmlLoader.setLocation(getClass().getResource("plantillaServicio.fxml"));
+                }
+                else{
+                    fxmlLoader.setLocation(getClass().getResource("plantillaServicioSinReserva.fxml"));
+                }
+                HBox serviceBox = fxmlLoader.load();
+                ControllerPlantillaServicio servicioController = fxmlLoader.getController();
+                servicioController.setData(ultimosServiciosUtilizados.get(i));
+                HboxMeGusta.getChildren().add(serviceBox);
+            }
+        }
+        catch(IOException e){
+            throw new RuntimeException(e);
+        }
 
     }
 
@@ -79,7 +103,9 @@ public class ControllerVistaUsuarioFinal implements Initializable {
         stage.setScene(scence);
         stage.show();
     }
+    public void ulrimosServiciosUtilizados(User usuario){
 
+    }
 
 
 
