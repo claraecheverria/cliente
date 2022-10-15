@@ -81,7 +81,7 @@
                               <Font name="Arial Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="127.0" layoutY="20.0" maxWidth="1.7976931348623157E308" text="5:30 23 Sep 2022" textFill="#4c4c4e" HBox.hgrow="ALWAYS">
+                        <Label fx:id="FechaDeHoy" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="127.0" layoutY="20.0" maxWidth="1.7976931348623157E308" text="5:30 23 Sep 2022" textFill="#4c4c4e" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="Arial Bold" size="15.0" />
                            </font>

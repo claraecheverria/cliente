@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
@@ -36,10 +37,15 @@ public class ControllerVistaUsuarioFinal implements Initializable {
     private Button botonMostrarOpciones;
     @FXML
     private HBox HboxMeGusta;
+    @FXML
+    private Label FechaDeHoy;
     private ArrayList<Servicio> ultimosServiciosUtilizados = new ArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //SETEAR LA FECHA DE HOY
+        //
+
         XYChart.Series series1 = new XYChart.Series();
         series1.setName("2003");
         series1.getData().add(new XYChart.Data("Lunes", 80));
@@ -77,7 +83,9 @@ public class ControllerVistaUsuarioFinal implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("UsuarioFinalConfiguracion.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        String css = this.getClass().getResource("StilePage1.css").toExternalForm();
         scence = new Scene(root);
+        scence.getStylesheets().add(css);
         stage.setScene(scence);
         stage.show();
     }

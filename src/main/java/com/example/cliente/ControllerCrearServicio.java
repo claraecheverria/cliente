@@ -26,7 +26,7 @@ public class ControllerCrearServicio implements Initializable {
 
     private Stage stage;
     private Scene scence;
-    ObservableList<String> tipoList = FXCollections.observableArrayList("GYM", "Futbol", "Pisina", "Yoga", "Spinning", "Tennis");
+    ObservableList<String> tipoList = FXCollections.observableArrayList("GYM", "Futbol", "Pisina", "Yoga", "Spinning", "Tennis", "Spinning");
     @FXML
     private TextField Nombre;
     @FXML
@@ -37,6 +37,11 @@ public class ControllerCrearServicio implements Initializable {
     private TextField Horarios;
     @FXML
     private TextField Cupos;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        choiceBoxTipo.setValue(tipoList);
+    }
 
     public void switchToAdmin(javafx.event.ActionEvent event) throws IOException {
         guradarDatos();
@@ -63,14 +68,10 @@ public class ControllerCrearServicio implements Initializable {
 
         Servicio nuevoServicio = new Servicio();//FIXME
 
-        HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/empresa/crearEmpresa")
+        HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/servicio/crearServicio")
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
                 .body(nuevoServicio)
                 .asJson();
-    }
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        choiceBoxTipo.setValue(tipoList);
     }
 }

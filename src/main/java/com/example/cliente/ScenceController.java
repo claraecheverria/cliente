@@ -45,7 +45,6 @@ public class ScenceController {
         scence.getStylesheets().add(css);
         stage.setScene(scence);
         stage.show();
-
     }
     public void switchToAdmin(javafx.event.ActionEvent event) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader();
