@@ -26,6 +26,11 @@ public class User {
         this.email = email;
         this.password = password;
     }
+
+    public User(String email) {
+        this.email = email;
+    }
+
     public User() {//jpa no te deja tener un constrctor con pasando cosas
 
     }
