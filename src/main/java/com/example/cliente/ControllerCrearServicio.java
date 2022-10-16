@@ -1,5 +1,6 @@
 package com.example.cliente;
 
+import com.example.cliente.Model.Servicio;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
