@@ -38,7 +38,12 @@ public class ControllerPlantillaServicio {
         Direccion.setText(servicio.getCentroDeportivoServicio().getDireccion());
         Precio.setText(String.valueOf(servicio.getPrecio()));
         Descripcion.setText(servicio.getDescripcion());
-        Horarios.setText(servicio.getHoraInicio().toString());
+        int tam = servicio.getDias().size();
+        String horarios = new String();
+        for (int i = 0; i < tam; i++){
+            horarios = horarios + servicio.getDias().toString();
+        }
+        Horarios.setText(horarios);
         centroDeportio = servicio.getCentroDeportivoServicio();
 
     }
