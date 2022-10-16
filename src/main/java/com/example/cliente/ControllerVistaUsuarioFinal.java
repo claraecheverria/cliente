@@ -16,11 +16,9 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 @Controller

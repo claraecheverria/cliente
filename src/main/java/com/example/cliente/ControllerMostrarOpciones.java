@@ -12,7 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -75,7 +74,7 @@ public class ControllerMostrarOpciones implements Initializable {
         System.out.println(listaservicios.size());
         try {
             for (int i = 0; i < listaservicios.size(); i++) {
-                System.out.println(listaservicios.get(i).getNombre());
+                System.out.println(listaservicios.get(i).getKey().getNombre());
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 if(listaservicios.get(i).getTipo() == "clases"){  // HAY QUE DEFINIR BIEN COMO SON LOS TIPOS
                     fxmlLoader.setLocation(getClass().getResource("plantillaServicio.fxml"));
