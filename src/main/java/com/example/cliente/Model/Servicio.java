@@ -1,7 +1,9 @@
 package com.example.cliente.Model;
 
-
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 import java.util.List;
+import java.util.Set;
 
 
 
@@ -11,7 +13,11 @@ public class Servicio {
 
     private CentroDeportivo centroDeportivoServicio;
     private Long precio;
-    private String horario;
+
+    private Set<DayOfWeek> dias;
+
+    private LocalTime horaInicio;
+    private LocalTime horaFin;
     private String descripcion;
     private String tipo; //este va a tener una opcion para seleccionar cuando se cree para hacer luego los filtros por tipo
 
@@ -25,17 +31,18 @@ public class Servicio {
     public Servicio() {
     }
 
-    public Servicio(String name, CentroDeportivo centroDeportivoServicio, Long precio, String horario, String descripcion, String tipo) {
+    public Servicio(String name, CentroDeportivo centroDeportivoServicio, Long precio, Set<DayOfWeek> dias, LocalTime horaInicio, LocalTime horaFin, String descripcion, String tipo) {
         this.key = new ServicioIdNew();
         this.key.setNombre(name);
         this.key.setCentroDeportivo(centroDeportivoServicio.getNombre());
         this.centroDeportivoServicio = centroDeportivoServicio;
         this.precio = precio;
-        this.horario = horario;
+        this.dias = dias;
+        this.horaInicio = horaInicio;
+        this.horaFin = horaFin;
         this.descripcion = descripcion;
         this.tipo = tipo;
     }
-
     //GETTERS Y SETTERS
 
 
@@ -55,12 +62,28 @@ public class Servicio {
         this.precio = precio;
     }
 
-    public String getHorario() {
-        return horario;
+    public Set<DayOfWeek> getDias() {
+        return dias;
     }
 
-    public void setHorario(String horario) {
-        this.horario = horario;
+    public void setDias(Set<DayOfWeek> dias) {
+        this.dias = dias;
+    }
+
+    public LocalTime getHoraInicio() {
+        return horaInicio;
+    }
+
+    public void setHoraInicio(LocalTime horaInicio) {
+        this.horaInicio = horaInicio;
+    }
+
+    public LocalTime getHoraFin() {
+        return horaFin;
+    }
+
+    public void setHoraFin(LocalTime horaFin) {
+        this.horaFin = horaFin;
     }
 
     public String getDescripcion() {
@@ -79,7 +102,14 @@ public class Servicio {
         this.tipo = tipo;
     }
 
-//    public byte[] getImagen() {
+    public List<UserEmpleado> getFavoritos() {
+        return favoritos;
+    }
+
+    public void setFavoritos(List<UserEmpleado> favoritos) {
+        this.favoritos = favoritos;
+    }
+    //    public byte[] getImagen() {
 //        return imagen;
 //    }
 //
