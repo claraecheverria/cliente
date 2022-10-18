@@ -74,6 +74,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
         // En caso de que no exista settear el Lable en "seleccione un mail valido"
         // En caso de que exista, que me llegue desde la base de datos el usuario por que despues le voy a tener que agregar la reserva
 
+
     }
 
     public List getHorariosReservas(){   // HAY QUE PONER QUE DEVUELVA LOS HORARIOS LIBRES
@@ -84,22 +85,30 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
                 .asJson();
         com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
         try {
-            List<Servicio> listaServicios = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Servicio>>(){});
-            System.out.println(listaServicios.size());
-            return listaServicios;
+            List<Servicio> listaHorariosDisponibles = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Servicio>>(){});
+            System.out.println(listaHorariosDisponibles.size());
+            return listaHorariosDisponibles;
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
+
+
     }
 
-//    public void guardarDatos(javafx.event.ActionEvent actionEvent){
-//        ArrayList<Button> listaBotonesSeleccionados = new ArrayList<>();
-//        for(int i = 0; i<horariosLibres.size();i++){
-//            if(VboxHorarios.getChildren().get(i).isPressed() == true){
-//                listaBotonesSeleccionados.add(VboxHorarios.getChildren().get(i).)
-//            }
-//        }
+    public void guardarDatos(javafx.event.ActionEvent actionEvent){
 
-//    }
+        ArrayList<Button> listaBotonesSeleccionados = new ArrayList<>();
+        for(int i = 0; i<horariosLibres.size();i++){
+            if(VboxHorarios.getChildren().get(i).isPressed() == true){
+                listaBotonesSeleccionados.add(VboxHorarios.getChildren().get(i).);
+            }
+        }
+        HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/user/hacerReserva")
+                .header("accept", "application/json")
+                .header("Content-Type", "application/json")
+                .body(nuevoUser)
+                .asJson();
+
+    }
 
 }

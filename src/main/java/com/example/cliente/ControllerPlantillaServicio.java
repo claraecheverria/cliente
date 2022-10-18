@@ -3,12 +3,19 @@ package com.example.cliente;
 import com.example.cliente.Model.CentroDeportivo;
 import com.example.cliente.Model.Servicio;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
+
+import java.io.IOException;
 
 public class ControllerPlantillaServicio {
 
@@ -49,11 +56,23 @@ public class ControllerPlantillaServicio {
     }
 
     public void meGusta(javafx.event.ActionEvent actionEvent){
-        HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/servicio/crearServicio") // HAY QUE DEFINIR LA HTTP BIEN
+        HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/user/agregarServicioFav") // HAY QUE DEFINIR LA HTTP BIEN
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
-                .body(centroDeportio)
+                .body(centroDeportio) // TIENE QUE SER SERVICIO
                 .asJson();
+    }
+
+    public void Reservar(javafx.event.ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        //fxmlLoader.setControllerFactory(HelloApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(ControllerPlantillaServicio.class.getResourceAsStream("SeleccionFechaReservar.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
 
 

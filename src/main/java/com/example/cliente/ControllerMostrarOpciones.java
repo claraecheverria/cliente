@@ -71,20 +71,36 @@ public class ControllerMostrarOpciones implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         listaservicios = (ArrayList<Servicio>) getListaServicios();
+        List<Servicio> listaCanchas = getListaCanchas();
+
         System.out.println(listaservicios.size());
         try {
             for (int i = 0; i < listaservicios.size(); i++) {
                 System.out.println(listaservicios.get(i).getKey().getNombre());
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                if(listaservicios.get(i).getTipo() == "clases"){  // HAY QUE DEFINIR BIEN COMO SON LOS TIPOS
-                    fxmlLoader.setLocation(getClass().getResource("plantillaServicio.fxml"));
-                }
-                else{
-                    fxmlLoader.setLocation(getClass().getResource("plantillaServicioSinReserva.fxml"));
-                }
+                fxmlLoader.setLocation(getClass().getResource("plantillaServicio.fxml"));
                 HBox serviceBox = fxmlLoader.load();
                 ControllerPlantillaServicio servicioController = fxmlLoader.getController();
                 servicioController.setData(listaservicios.get(i));
+                if(i%2 == 0){
+                    Vbox1.getChildren().add(serviceBox);
+                }
+                if(i%2 == 1){
+                    Vbox2.getChildren().add(serviceBox);
+                }
+            }
+        }
+        catch(IOException e){
+            throw new RuntimeException(e);
+        }
+        try {
+            for (int i = 0; i < listaCanchas.size(); i++) {
+                System.out.println(listaCanchas.get(i).getKey().getNombre());
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("plantillaServicioSinReserva.fxml"));
+                HBox serviceBox = fxmlLoader.load();
+                ControllerPlantillaServicio servicioController = fxmlLoader.getController();
+                servicioController.setData(listaCanchas.get(i));
                 if(i%2 == 0){
                     Vbox1.getChildren().add(serviceBox);
                 }
@@ -130,6 +146,21 @@ public class ControllerMostrarOpciones implements Initializable {
 
     public List<Servicio> getListaServicios (){
         HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/listaServicios")
+                .header("accept", "application/json")
+                .header("Content-Type", "application/json")
+                .asJson();
+        com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+        try {
+            List<Servicio> listaServicios = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Servicio>>(){});
+            System.out.println(listaServicios.size());
+            return listaServicios;
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Servicio> getListaCanchas (){
+        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/listaServiciosCancha")
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
                 .asJson();

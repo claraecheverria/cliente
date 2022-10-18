@@ -1,6 +1,5 @@
 package com.example.cliente.Model;
 
-import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.Set;
 
@@ -14,7 +13,7 @@ public class Cancha extends Servicio{
     public Cancha() {
     }
 
-    public Cancha(String name, CentroDeportivo centroDeportivoServicio, Long precio, Set<DayOfWeek> dias, LocalTime horaInicio, LocalTime horaFin, String descripcion, String tipo, int cupos) {
+    public Cancha(String name, CentroDeportivo centroDeportivoServicio, Long precio, Set<DiasDeLaSemana> dias, LocalTime horaInicio, LocalTime horaFin, String descripcion, String tipo, int cupos) {
         super(name, centroDeportivoServicio, precio, dias, horaInicio, horaFin, descripcion, tipo);
         this.cupos = cupos;
     }
