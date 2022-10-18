@@ -19,6 +19,8 @@ import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -78,6 +80,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
     }
 
     public List getHorariosReservas(){   // HAY QUE PONER QUE DEVUELVA LOS HORARIOS LIBRES
+        //Tengo que mandar nombre centro deportivo, nomber servicio y fecha
 
         HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/listaServicios")
                 .header("accept", "application/json")
@@ -97,17 +100,34 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
 
     public void guardarDatos(javafx.event.ActionEvent actionEvent){
 
+        //LocalDate fecha =
+
         ArrayList<Button> listaBotonesSeleccionados = new ArrayList<>();
         for(int i = 0; i<horariosLibres.size();i++){
             if(VboxHorarios.getChildren().get(i).isPressed() == true){
-                listaBotonesSeleccionados.add(VboxHorarios.getChildren().get(i).);
+                listaBotonesSeleccionados.add((Button) VboxHorarios.getChildren().get(i));
             }
         }
-        HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/user/hacerReserva")
-                .header("accept", "application/json")
-                .header("Content-Type", "application/json")
-                .body(nuevoUser)
-                .asJson();
+        LocalTime horaInicioLT = LocalTime.parse("23:00:00");
+        LocalTime horaFinLT = LocalTime.parse("00:00:00");
+
+        for(int i = 0; i<listaBotonesSeleccionados.size();i++){
+            String horaInicio = listaBotonesSeleccionados.get(i).toString();
+            LocalTime horaInicio2 = LocalTime.parse(horaInicio);
+
+            if(horaInicio2.compareTo(horaInicioLT)<0){
+                horaInicioLT = horaInicio2;
+            }
+            if(horaInicio2.compareTo(horaFinLT)>0){
+                horaFinLT = horaInicio2;
+            }
+        }
+
+        //HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/user/hacerReserva")
+        //        .header("accept", "application/json")
+        //        .header("Content-Type", "application/json")
+        //        .body(nuevoUser)
+        //        .asJson();
 
     }
 

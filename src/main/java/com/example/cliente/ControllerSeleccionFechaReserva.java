@@ -11,16 +11,20 @@ import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 @Controller
 public class ControllerSeleccionFechaReserva {
-
     @FXML
     private DatePicker Calendario;
     @FXML
     private Button ConsultarFecha;
 
+    private LocalDate fecha;
+
     public void consultarFecha(javafx.event.ActionEvent actionEvent) throws IOException {
+        fecha = Calendario.getValue();
+
         FXMLLoader fxmlLoader = new FXMLLoader();
         //fxmlLoader.setControllerFactory(Main.get()::getBeam);
 
@@ -29,5 +33,11 @@ public class ControllerSeleccionFechaReserva {
         stage.setScene(new Scene(root));
 
     }
+    public LocalDate getFecha() {
+        return fecha;
+    }
 
+    public DatePicker getCalendario() {
+        return Calendario;
+    }
 }
