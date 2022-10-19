@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -15,9 +16,9 @@
    <top>
       <AnchorPane prefHeight="71.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="113.0" layoutY="32.0" text="Complete los siguentes campos:">
+            <Label layoutX="95.0" layoutY="34.0" text="Complete los siguentes campos:">
                <font>
-                  <Font name="Arial Bold" size="24.0" />
+                  <Font name="Arial Black" size="24.0" />
                </font>
             </Label>
          </children>
@@ -35,7 +36,7 @@
                               <Font name="Arial Black" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="Nombre" prefHeight="26.0" prefWidth="180.0" promptText="GYM">
+                        <TextField fx:id="Nombre" prefHeight="26.0" prefWidth="241.0" promptText="GYM">
                            <HBox.margin>
                               <Insets left="100.0" />
                            </HBox.margin>
@@ -52,7 +53,7 @@
                               <Font name="Arial Black" size="18.0" />
                            </font>
                         </Label>
-                        <ChoiceBox fx:id="choiceBoxTipo" prefHeight="26.0" prefWidth="181.0">
+                        <ChoiceBox fx:id="choiceBoxTipo" prefHeight="26.0" prefWidth="241.0">
                            <HBox.margin>
                               <Insets left="135.0" />
                            </HBox.margin>
@@ -69,7 +70,7 @@
                               <Font name="Arial Black" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="Precio" prefHeight="26.0" prefWidth="180.0" promptText="200/hora">
+                        <TextField fx:id="Precio" prefHeight="26.0" prefWidth="240.0" promptText="200/hora">
                            <HBox.margin>
                               <Insets left="116.0" />
                            </HBox.margin>
@@ -81,16 +82,27 @@
                   </HBox>
                   <HBox prefHeight="27.0" prefWidth="425.0">
                      <children>
-                        <Label text="Horarios:">
-                           <font>
-                              <Font name="Arial Black" size="18.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="Horarios" prefHeight="26.0" prefWidth="180.0" promptText="10-23">
-                           <HBox.margin>
-                              <Insets left="95.0" />
-                           </HBox.margin>
-                        </TextField>
+                        <Pane prefHeight="27.0" prefWidth="425.0">
+                           <children>
+                              <Label text="Horarios:">
+                                 <font>
+                                    <Font name="Arial Black" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="151.0" layoutY="3.0" text="Inicio:">
+                                 <font>
+                                    <Font name="Arial Black" size="14.0" />
+                                 </font>
+                              </Label>
+                              <ChoiceBox fx:id="HorarioInicio" layoutX="209.0" layoutY="1.0" prefHeight="26.0" prefWidth="80.0" />
+                              <Label layoutX="304.0" layoutY="3.0" text="Fin:">
+                                 <font>
+                                    <Font name="Arial Black" size="14.0" />
+                                 </font>
+                              </Label>
+                              <ChoiceBox fx:id="HorarioFin" layoutX="345.0" layoutY="1.0" prefHeight="26.0" prefWidth="80.0" />
+                           </children>
+                        </Pane>
                      </children>
                      <VBox.margin>
                         <Insets bottom="10.0" />
@@ -98,14 +110,14 @@
                   </HBox>
                   <HBox prefHeight="27.0" prefWidth="425.0">
                      <children>
-                        <Label text="Cupos:">
+                        <Label prefHeight="27.0" prefWidth="105.0" text="Cupos:">
                            <font>
                               <Font name="Arial Black" size="18.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="Cupos" prefHeight="26.0" prefWidth="180.0" promptText="20">
+                        <TextField fx:id="Cupos" prefHeight="26.0" prefWidth="243.0" promptText="Solo se rellena en caso de ser reservable">
                            <HBox.margin>
-                              <Insets left="116.0" />
+                              <Insets left="80.0" />
                            </HBox.margin>
                         </TextField>
                      </children>

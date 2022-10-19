@@ -24,7 +24,6 @@ public class UserEmpleado extends User{
         this.empresaEmpl = empresaEmpl;
     }
 
-
     public UserEmpleado() {
     }
 

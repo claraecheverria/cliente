@@ -33,6 +33,10 @@ public class ControllerSeleccionFechaReserva {
         stage.setScene(new Scene(root));
 
     }
+
+    public LocalDate mandarFecha(){
+        return fecha;
+    }
     public LocalDate getFecha() {
         return fecha;
     }

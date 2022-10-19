@@ -10,49 +10,54 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="503.0" stylesheets="@StilePage1.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cliente.ControllerSeleccionarHorariosReserva">
-   <top>
-      <HBox prefHeight="85.0" prefWidth="503.0" BorderPane.alignment="CENTER">
-         <children>
-            <AnchorPane prefHeight="83.0" prefWidth="504.0">
+
+<AnchorPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cliente.ControllerSeleccionarHorariosReserva">
+   <children>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="503.0" stylesheets="@StilePage1.css">
+         <top>
+            <HBox prefHeight="85.0" prefWidth="503.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label layoutX="81.0" layoutY="23.0" text="Elija los horarios:">
+                  <AnchorPane prefHeight="83.0" prefWidth="504.0">
+                     <children>
+                        <Label layoutX="81.0" layoutY="23.0" text="Elija los horarios:">
+                           <font>
+                              <Font name="Arial Black" size="36.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+         </top>
+         <center>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="GuardarDatos" layoutX="205.0" layoutY="258.0" mnemonicParsing="false" styleClass="buttonsSettings" stylesheets="@StilePage1.css" text="Guardar datos">
                      <font>
-                        <Font name="Arial Black" size="36.0" />
+                        <Font name="Arial Black" size="13.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="58.0" text="Invita a tus amigos:">
+                     <font>
+                        <Font name="Arial Black" size="18.0" />
                      </font>
                   </Label>
+                  <TextField fx:id="Mail" layoutX="75.0" layoutY="40.0" prefHeight="18.0" prefWidth="160.0" promptText="ejemplo@gmail.com" />
+                  <Button fx:id="Invitar" layoutX="128.0" layoutY="73.0" mnemonicParsing="false" onAction="#invitarAmigo" styleClass="buttonsSettings" stylesheets="@StilePage1.css" text="Invitar" />
+                  <ScrollPane layoutX="46.0" layoutY="106.0" prefHeight="136.0" prefWidth="213.0" AnchorPane.bottomAnchor="70.0">
+                     <content>
+                        <VBox fx:id="VboxMails" prefHeight="200.0" prefWidth="152.0" />
+                     </content>
+                  </ScrollPane>
+                  <Label fx:id="Lable" layoutX="85.0" layoutY="22.0" text="Seleccione un mail valido" textFill="RED" AnchorPane.rightAnchor="281.5" />
+                  <ScrollPane layoutX="306.0" layoutY="10.0" prefHeight="237.0" prefWidth="183.0" AnchorPane.bottomAnchor="70.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="10.0">
+                     <content>
+                        <VBox fx:id="VboxHorarios" prefHeight="375.0" prefWidth="165.0" />
+                     </content>
+                  </ScrollPane>
                </children>
             </AnchorPane>
-         </children>
-      </HBox>
-   </top>
-   <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="GuardarDatos" layoutX="205.0" layoutY="258.0" mnemonicParsing="false" stylesheets="@StilePage1.css" text="Guardar datos">
-               <font>
-                  <Font name="Arial Black" size="13.0" />
-               </font>
-            </Button>
-            <Label layoutX="58.0" text="Invita a tus amigos:">
-               <font>
-                  <Font name="Arial Black" size="18.0" />
-               </font>
-            </Label>
-            <TextField fx:id="Mail" layoutX="75.0" layoutY="40.0" prefHeight="18.0" prefWidth="160.0" promptText="ejemplo@gmail.com" />
-            <Button fx:id="Invitar" layoutX="128.0" layoutY="73.0" mnemonicParsing="false" onAction="#invitarAmigo" text="Invitar" />
-            <ScrollPane layoutX="46.0" layoutY="106.0" prefHeight="136.0" prefWidth="213.0" AnchorPane.bottomAnchor="70.0">
-               <content>
-                  <VBox fx:id="VboxMails" prefHeight="200.0" prefWidth="152.0" />
-               </content>
-            </ScrollPane>
-            <Label fx:id="Lable" layoutX="85.0" layoutY="22.0" text="Seleccione un mail valido" textFill="RED" AnchorPane.rightAnchor="281.5" />
-            <ScrollPane layoutX="306.0" layoutY="10.0" prefHeight="237.0" prefWidth="183.0" AnchorPane.bottomAnchor="70.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="10.0">
-               <content>
-                  <VBox fx:id="VboxHorarios" prefHeight="375.0" prefWidth="165.0" />
-               </content>
-            </ScrollPane>
-         </children>
-      </AnchorPane>
-   </center>
-</BorderPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

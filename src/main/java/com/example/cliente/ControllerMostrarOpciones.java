@@ -1,5 +1,6 @@
 package com.example.cliente;
 
+import com.example.cliente.Model.Cancha;
 import com.example.cliente.Model.Servicio;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;

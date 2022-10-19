@@ -1,7 +1,6 @@
 package com.example.cliente;
 
-import com.example.cliente.Model.Servicio;
-import com.example.cliente.Model.User;
+import com.example.cliente.Model.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import javafx.fxml.FXML;
@@ -12,9 +11,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
@@ -40,8 +41,16 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
     private VBox VboxMails;
     @FXML
     private Label Lable;
+    //@Autowired
+    //private nombreController nombreAtributo;
+
+    @Autowired
+    private ControllerSeleccionFechaReserva ControllerSeleccionFechaReserva;
+    @Autowired
+    private ControllerPlantillaServicio ControllerPlantillaServicio;
 
     private ArrayList horariosLibres;
+    private List<UserEmpleado> mailsUsuarios;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -64,6 +73,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
     public void invitarAmigo(javafx.event.ActionEvent actionEvent){
         String mail = Mail.toString();
         User nuevoUser = new User(mail);
+        boolean existe = true;
 
         // Consultar a la base de datos si el mail existe
         HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/user/userParaCheck")
@@ -76,11 +86,25 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
         // En caso de que no exista settear el Lable en "seleccione un mail valido"
         // En caso de que exista, que me llegue desde la base de datos el usuario por que despues le voy a tener que agregar la reserva
 
+        if(existe == true){
+            VboxMails.getChildren().add(new Text(mail));
+            User user = new User(mail);
+            mailsUsuarios.add((UserEmpleado) user);
+        }
+        else{
+            Lable.setText("Seleccione un mail valido");
+        }
 
     }
 
     public List getHorariosReservas(){   // HAY QUE PONER QUE DEVUELVA LOS HORARIOS LIBRES
         //Tengo que mandar nombre centro deportivo, nomber servicio y fecha
+        CentroDeportivo centroDeportivo = ControllerPlantillaServicio.devolverCentroDeportivo();
+        Servicio servicio = ControllerPlantillaServicio.devolverServicio();
+        LocalDate fecha = ControllerSeleccionFechaReserva.mandarFecha();
+
+        String centroDeportivoNombre = centroDeportivo.getNombre();
+        String servicioNombre = servicio.getNombre();
 
         HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/listaServicios")
                 .header("accept", "application/json")
@@ -94,13 +118,11 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-
-
     }
-
     public void guardarDatos(javafx.event.ActionEvent actionEvent){
 
-        //LocalDate fecha =
+        LocalDate fecha = ControllerSeleccionFechaReserva.mandarFecha();
+        Cancha cancha = ControllerPlantillaServicio.devolverCancha();
 
         ArrayList<Button> listaBotonesSeleccionados = new ArrayList<>();
         for(int i = 0; i<horariosLibres.size();i++){
@@ -122,13 +144,13 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
                 horaFinLT = horaInicio2;
             }
         }
+        Reserva nuevaReserva = new Reserva(fecha, horaInicioLT,horaFinLT,cancha,mailsUsuarios); // mailUsuarios deberia ser con los usuarioEmpleado
 
-        //HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/user/hacerReserva")
-        //        .header("accept", "application/json")
-        //        .header("Content-Type", "application/json")
-        //        .body(nuevoUser)
-        //        .asJson();
-
+        HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/user/hacerReserva")
+                .header("accept", "application/json")
+                .header("Content-Type", "application/json")
+                .body(nuevaReserva)
+                .asJson();
     }
 
 }

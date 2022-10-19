@@ -1,5 +1,6 @@
 package com.example.cliente;
 
+import com.example.cliente.Model.Cancha;
 import com.example.cliente.Model.CentroDeportivo;
 import com.example.cliente.Model.Servicio;
 import javafx.fxml.FXML;
@@ -14,9 +15,10 @@ import javafx.stage.Stage;
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
+import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
-
+@Controller
 public class ControllerPlantillaServicio {
 
     @FXML
@@ -35,12 +37,13 @@ public class ControllerPlantillaServicio {
     private Label Horarios;
     @FXML
     private Button BottonMeGusta;
-
     private CentroDeportivo centroDeportio;
+    private Servicio servicio;
 
     public void setData(Servicio servicio){
 //        Image image = new Image(getClass().getResourceAsStream(servicio.getImageScr()));
 //        Image.setImage(image);
+        servicio = servicio;  //REPASR SI ESTA BIEN
         Nombre.setText(servicio.getKey().getNombre());
         Direccion.setText(servicio.getCentroDeportivoServicio().getDireccion());
         Precio.setText(String.valueOf(servicio.getPrecio()));
@@ -56,10 +59,22 @@ public class ControllerPlantillaServicio {
     }
 
     public void meGusta(javafx.event.ActionEvent actionEvent){
+        BottonMeGusta.setStyle("-fx-background-color:#2B49B3;");
+
         HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/user/agregarServicioFav") // HAY QUE DEFINIR LA HTTP BIEN
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
-                .body(centroDeportio) // TIENE QUE SER SERVICIO
+                .body(servicio)
+                .asJson();
+    }
+
+    public void sacarMeGusta(javafx.event.ActionEvent actionEvent){
+        BottonMeGusta.setStyle("-fx-background-color: #C9C9C9;");
+
+        HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/user/agregarServicioFav") // HAY QUE DEFINIR LA HTTP BIEN
+                .header("accept", "application/json")
+                .header("Content-Type", "application/json")
+                .body(servicio)
                 .asJson();
     }
 
@@ -73,6 +88,18 @@ public class ControllerPlantillaServicio {
 
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+    }
+
+    public Cancha devolverCancha(){
+        return (Cancha) servicio;
+    }
+
+    public Servicio devolverServicio(){
+        return servicio;
+    }
+
+    public CentroDeportivo devolverCentroDeportivo(){
+        return centroDeportio;
     }
 
 

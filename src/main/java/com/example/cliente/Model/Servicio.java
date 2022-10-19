@@ -18,7 +18,7 @@ public class Servicio {
     private LocalTime horaInicio;
     private LocalTime horaFin;
     private String descripcion;
-    private String tipo; //este va a tener una opcion para seleccionar cuando se cree para hacer luego los filtros por tipo
+    private String tipo;
 
     private List<UserEmpleado> favoritos;
 //    @Lob
@@ -127,6 +127,10 @@ public class Servicio {
 
     public void setCentroDeportivoServicio(CentroDeportivo centroDeportivoServicio) {
         this.centroDeportivoServicio = centroDeportivoServicio;
+    }
+
+    public String getNombre(){
+        return this.getNombre();
     }
 
 }
