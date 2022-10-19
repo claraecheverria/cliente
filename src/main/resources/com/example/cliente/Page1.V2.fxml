@@ -8,12 +8,10 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
@@ -82,7 +80,7 @@
                               <Font name="Arial Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="127.0" layoutY="20.0" maxWidth="1.7976931348623157E308" text="5:30 23 Sep 2022" textFill="#4c4c4e" HBox.hgrow="ALWAYS">
+                        <Label fx:id="FechaDeHoy" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="127.0" layoutY="20.0" maxWidth="1.7976931348623157E308" text="5:30 23 Sep 2022" textFill="#4c4c4e" HBox.hgrow="ALWAYS">
                            <font>
                               <Font name="Arial Bold" size="15.0" />
                            </font>
@@ -176,7 +174,7 @@
                   </HBox>
                </children>
             </VBox>
-            <AnchorPane layoutX="40.0" layoutY="301.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="301.0">
+            <AnchorPane layoutX="40.0" layoutY="301.0" prefHeight="293.0" prefWidth="922.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="301.0">
                <children>
                   <HBox prefHeight="0.0" prefWidth="800.0">
                      <children>
@@ -205,7 +203,7 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox layoutX="259.0" layoutY="47.0" prefHeight="200.0" prefWidth="393.0" AnchorPane.leftAnchor="259.0">
+                  <VBox layoutX="500.0" layoutY="41.0" prefHeight="200.0" prefWidth="393.0" AnchorPane.leftAnchor="500.0">
                      <children>
                         <Label alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" text="General Report" textFill="#2b49b3">
                            <font>
@@ -222,24 +220,6 @@
                         </BarChart>
                      </children>
                   </VBox>
-                  <Button layoutX="745.0" layoutY="90.0" mnemonicParsing="false" stylesheets="@StilePage1.css" text="New Reservation">
-                     <effect>
-                        <DropShadow>
-                           <color>
-                              <Color red="0.5657894611358643" green="0.5369760990142822" blue="0.5369760990142822" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </Button>
-                  <Button layoutX="773.0" layoutY="122.0" mnemonicParsing="false" text="Button">
-                     <effect>
-                        <DropShadow>
-                           <color>
-                              <Color red="0.5657894611358643" green="0.5369760990142822" blue="0.5369760990142822" />
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </Button>
                </children>
             </AnchorPane>
          </children>
