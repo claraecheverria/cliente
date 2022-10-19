@@ -15,8 +15,8 @@ public class Servicio {
 
     private Set<DiasDeLaSemana> dias;
 
-    private LocalTime horaInicio;
-    private LocalTime horaFin;
+    private String horaInicio;
+    private String horaFin;
     private String descripcion;
     private String tipo;
 
@@ -30,7 +30,7 @@ public class Servicio {
     public Servicio() {
     }
 
-    public Servicio(String name, CentroDeportivo centroDeportivoServicio, Long precio, Set<DiasDeLaSemana> dias, LocalTime horaInicio, LocalTime horaFin, String descripcion, String tipo) {
+    public Servicio(String name, CentroDeportivo centroDeportivoServicio, Long precio, Set<DiasDeLaSemana> dias, String horaInicio, String horaFin, String descripcion, String tipo) {
         this.key = new ServicioIdNew();
         this.key.setNombre(name);
         this.key.setCentroDeportivo(centroDeportivoServicio.getNombre());
@@ -69,19 +69,19 @@ public class Servicio {
         this.dias = dias;
     }
 
-    public LocalTime getHoraInicio() {
+    public String getHoraInicio() {
         return horaInicio;
     }
 
-    public void setHoraInicio(LocalTime horaInicio) {
+    public void setHoraInicio(String horaInicio) {
         this.horaInicio = horaInicio;
     }
 
-    public LocalTime getHoraFin() {
+    public String getHoraFin() {
         return horaFin;
     }
 
-    public void setHoraFin(LocalTime horaFin) {
+    public void setHoraFin(String horaFin) {
         this.horaFin = horaFin;
     }
 
