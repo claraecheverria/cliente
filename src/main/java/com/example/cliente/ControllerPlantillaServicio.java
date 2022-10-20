@@ -5,6 +5,7 @@ import com.example.cliente.Model.CentroDeportivo;
 import com.example.cliente.Model.Servicio;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -70,7 +71,7 @@ public class ControllerPlantillaServicio {
                 .asJson();
     }
 
-    public void sacarMeGusta(javafx.event.ActionEvent actionEvent){
+    public void sacarMeGusta(javafx.event.ActionEvent actionEvent) {
         BottonMeGusta.setStyle("-fx-background-color: #C9C9C9;");
 
         HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/user/agregarServicioFav") // HAY QUE DEFINIR LA HTTP BIEN
@@ -78,6 +79,9 @@ public class ControllerPlantillaServicio {
                 .header("Content-Type", "application/json")
                 .body(servicioEste)
                 .asJson();
+    }
+    public void setColorButonMeGusta(){
+        BottonMeGusta.setStyle("-fx-background-color: #C9C9C9;");
     }
 
     public void Reservar(javafx.event.ActionEvent actionEvent) throws IOException {
@@ -90,6 +94,12 @@ public class ControllerPlantillaServicio {
 
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+    }
+
+    public void Volver(javafx.event.ActionEvent actionEvent){
+        Node source = (Node) actionEvent.getSource();
+        Stage stageActual = (Stage) source.getScene().getWindow();
+        stageActual.close();
     }
 
     public Cancha devolverCancha(){
