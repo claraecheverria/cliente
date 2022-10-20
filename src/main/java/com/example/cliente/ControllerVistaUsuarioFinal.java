@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -42,6 +43,8 @@ public class ControllerVistaUsuarioFinal implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //SETEAR LA FECHA DE HOY
+        LocalDate date = LocalDate.now();
+        FechaDeHoy.setText(date.toString());
         //
 
         XYChart.Series series1 = new XYChart.Series();
@@ -111,10 +114,6 @@ public class ControllerVistaUsuarioFinal implements Initializable {
     }
     public void ulrimosServiciosUtilizados(User usuario){
 
+
     }
-
-
-
-
-
 }
