@@ -16,6 +16,7 @@ import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
@@ -45,9 +46,9 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
     //private nombreController nombreAtributo;
 
     @Autowired
-    private ControllerSeleccionFechaReserva ControllerSeleccionFechaReserva;
+    private ControllerSeleccionFechaReserva controllerSeleccionFechaReserva;
     @Autowired
-    private ControllerPlantillaServicio ControllerPlantillaServicio;
+    private ControllerPlantillaServicio controllerPlantillaServicio;
 
     private ArrayList horariosLibres;
     private List<UserEmpleado> mailsUsuarios;
@@ -99,9 +100,9 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
 
     public List getHorariosReservas(){   // HAY QUE PONER QUE DEVUELVA LOS HORARIOS LIBRES
         //Tengo que mandar nombre centro deportivo, nomber servicio y fecha
-        CentroDeportivo centroDeportivo = ControllerPlantillaServicio.devolverCentroDeportivo();
-        Servicio servicio = ControllerPlantillaServicio.devolverServicio();
-        LocalDate fecha = ControllerSeleccionFechaReserva.mandarFecha();
+        CentroDeportivo centroDeportivo = controllerPlantillaServicio.devolverServicio().getCentroDeportivoServicio();
+        Servicio servicio = controllerPlantillaServicio.devolverServicio();
+        LocalDate fecha = controllerSeleccionFechaReserva.mandarFecha();
 
         String centroDeportivoNombre = centroDeportivo.getNombre();
         String servicioNombre = servicio.getNombre();
@@ -121,8 +122,8 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
     }
     public void guardarDatos(javafx.event.ActionEvent actionEvent){
 
-        LocalDate fecha = ControllerSeleccionFechaReserva.mandarFecha();
-        Cancha cancha = ControllerPlantillaServicio.devolverCancha();
+        LocalDate fecha = controllerSeleccionFechaReserva.mandarFecha();
+        Cancha cancha = controllerPlantillaServicio.devolverCancha();
 
         ArrayList<Button> listaBotonesSeleccionados = new ArrayList<>();
         for(int i = 0; i<horariosLibres.size();i++){

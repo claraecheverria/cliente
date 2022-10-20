@@ -38,12 +38,12 @@ public class ControllerPlantillaServicio {
     @FXML
     private Button BottonMeGusta;
     private CentroDeportivo centroDeportio;
-    private Servicio servicio;
+    private Servicio servicioEste;
 
     public void setData(Servicio servicio){
 //        Image image = new Image(getClass().getResourceAsStream(servicio.getImageScr()));
 //        Image.setImage(image);
-        servicio = servicio;  //REPASR SI ESTA BIEN
+        servicioEste = servicio;  //REPASR SI ESTA BIEN
         Nombre.setText(servicio.getKey().getNombre());
         Direccion.setText(servicio.getCentroDeportivoServicio().getDireccion());
         Precio.setText(String.valueOf(servicio.getPrecio()));
@@ -60,11 +60,13 @@ public class ControllerPlantillaServicio {
 
     public void meGusta(javafx.event.ActionEvent actionEvent){
         BottonMeGusta.setStyle("-fx-background-color:#2B49B3;");
+        System.out.println("apreté me gusta");
+        System.out.println(servicioEste.getKey().getNombre());
 
         HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/user/agregarServicioFav") // HAY QUE DEFINIR LA HTTP BIEN
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
-                .body(servicio)
+                .body(servicioEste)
                 .asJson();
     }
 
@@ -74,7 +76,7 @@ public class ControllerPlantillaServicio {
         HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/user/agregarServicioFav") // HAY QUE DEFINIR LA HTTP BIEN
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
-                .body(servicio)
+                .body(servicioEste)
                 .asJson();
     }
 
@@ -82,7 +84,7 @@ public class ControllerPlantillaServicio {
         FXMLLoader fxmlLoader = new FXMLLoader();
         //fxmlLoader.setControllerFactory(HelloApplication.getContext()::getBean);
 
-        Parent root = fxmlLoader.load(ControllerPlantillaServicio.class.getResourceAsStream("SeleccionFechaReservar.fxml"));
+        Parent root = fxmlLoader.load(ControllerPlantillaServicio.class.getResourceAsStream("SeleccionFechaReserva.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
 
@@ -91,11 +93,11 @@ public class ControllerPlantillaServicio {
     }
 
     public Cancha devolverCancha(){
-        return (Cancha) servicio;
+        return (Cancha) servicioEste;
     }
 
     public Servicio devolverServicio(){
-        return servicio;
+        return servicioEste;
     }
 
     public CentroDeportivo devolverCentroDeportivo(){
