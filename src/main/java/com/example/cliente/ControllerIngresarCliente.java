@@ -37,7 +37,7 @@ public class ControllerIngresarCliente implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         ArrayList listaNombreServicios = new ArrayList();
         for (int i = 0; i < listaServiciosO.size();i++){
-            listaNombreServicios.add(listaServiciosO.get(i).getNombre());
+            listaNombreServicios.add(listaServiciosO.get(i).getKey().getNombre());
         }
 
         listaServicios = (ObservableList<String>) listaNombreServicios;

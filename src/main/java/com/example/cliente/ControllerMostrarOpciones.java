@@ -80,7 +80,7 @@ public class ControllerMostrarOpciones implements Initializable {
             for (int i = 0; i < listaservicios.size(); i++) {
 //                System.out.println(listaservicios.get(i).getKey().getNombre());
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("plantillaServicio.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("plantillaServicioSinReserva.fxml"));
                 HBox serviceBox = fxmlLoader.load();
                 ControllerPlantillaServicio servicioController = fxmlLoader.getController();
                 servicioController.setData(listaservicios.get(i));
@@ -99,7 +99,7 @@ public class ControllerMostrarOpciones implements Initializable {
             for (int i = 0; i < listaCanchas.size(); i++) {
 //                System.out.println(listaCanchas.get(i).getKey().getNombre());
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("plantillaServicioSinReserva.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("plantillaServicio.fxml"));
                 HBox serviceBox = fxmlLoader.load();
                 ControllerPlantillaServicio servicioController = fxmlLoader.getController();
                 servicioController.setData(listaCanchas.get(i));
@@ -118,6 +118,8 @@ public class ControllerMostrarOpciones implements Initializable {
 
     public void applyFillters(javafx.event.ActionEvent event) throws IOException{
         ArrayList<Servicio> listaServiciosSeleccionados = new ArrayList<>();
+        Vbox1.getChildren().clear();
+        Vbox2.getChildren().clear();
 
         if (fillterPrimerRango.isSelected()){
             for(int i = 0; i<listaservicios.size(); i++){

@@ -3,7 +3,7 @@ package com.example.cliente;
 import com.example.cliente.Model.Cancha;
 import com.example.cliente.Model.CentroDeportivo;
 import com.example.cliente.Model.Servicio;
-import javafx.embed.swing.SwingFXUtils;
+//import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -77,29 +77,30 @@ public class ControllerPlantillaServicio {
             horarios = horarios + servicio.getDias().toString();
 //        }
         Horarios.setText(horarios);
-        BottonMeGusta.setStyle("-fx-background-color: #C9C9C9;");
+//        BottonMeGusta.setStyle("-fx-background-color: #C9C9C9;");
         centroDeportio = servicio.getCentroDeportivoServicio();
 
     }
 
-    public Image parseByteToImage (byte [] imagen) throws IOException {
-        ByteArrayInputStream inStreambj = new ByteArrayInputStream(imagen);
-        BufferedImage newImage = ImageIO.read(inStreambj);
-        Image img = SwingFXUtils.toFXImage(newImage, null);
-        return img;
-    }
+//    public Image parseByteToImage (byte [] imagen) throws IOException {
+//        ByteArrayInputStream inStreambj = new ByteArrayInputStream(imagen);
+//        BufferedImage newImage = ImageIO.read(inStreambj);
+//        Image img = SwingFXUtils.toFXImage(newImage, null);
+//        return img;
+//    }
 
-    public void meGusta(javafx.event.ActionEvent actionEvent){
-        if(BottonMeGusta.getStyle() == "-fx-background-color:#2B49B3;"){
+    public void meGusta(javafx.event.ActionEvent actionEvent) {
+//        if (BottonMeGusta.getStyle() == "-fx-background-color:#2B49B3;") {
             BottonMeGusta.setStyle("-fx-background-color:#2B49B3;");
             System.out.println("apreté me gusta");
             System.out.println(servicioEste.getKey().getNombre());
 
-        HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/user/agregarServicioFav")
-                .header("accept", "application/json")
-                .header("Content-Type", "application/json")
-                .body(servicioEste)
-                .asJson();
+            HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/user/agregarServicioFav")
+                    .header("accept", "application/json")
+                    .header("Content-Type", "application/json")
+                    .body(servicioEste)
+                    .asJson();
+//        }
     }
 
     public void sacarMeGusta(javafx.event.ActionEvent actionEvent){
