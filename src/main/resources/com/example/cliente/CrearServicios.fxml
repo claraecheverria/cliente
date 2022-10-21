@@ -122,9 +122,26 @@
                         </TextField>
                      </children>
                   </HBox>
+                  <HBox layoutX="10.0" layoutY="158.0" prefHeight="27.0" prefWidth="425.0">
+                     <children>
+                        <Label prefHeight="27.0" prefWidth="105.0" text="Imgen:">
+                           <font>
+                              <Font name="Arial Black" size="18.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="BuscarImagen" mnemonicParsing="false" text="Buscar localmente ">
+                           <HBox.margin>
+                              <Insets left="79.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
                </children>
             </VBox>
-            <Button layoutX="269.0" layoutY="217.0" mnemonicParsing="false" onAction="#switchToAdmin" text="Guardar" />
+            <Button layoutX="269.0" layoutY="266.0" mnemonicParsing="false" onAction="#switchToAdmin" text="Guardar" />
          </children>
       </AnchorPane>
    </center>

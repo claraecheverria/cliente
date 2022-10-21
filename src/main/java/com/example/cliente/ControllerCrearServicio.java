@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -42,6 +43,8 @@ public class ControllerCrearServicio implements Initializable {
     private ChoiceBox HorarioFin;
     @FXML
     private TextField Cupos;
+    @FXML
+    private Button BuscarImagen;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

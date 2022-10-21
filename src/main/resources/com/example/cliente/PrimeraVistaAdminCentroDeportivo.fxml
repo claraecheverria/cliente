@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cliente.ControllerCentroDeportivo">
    <top>
       <AnchorPane prefHeight="80.0" prefWidth="600.0" BorderPane.alignment="CENTER">
@@ -44,7 +43,7 @@
             </HBox>
             <HBox layoutX="201.0" layoutY="64.0" minHeight="-Infinity" minWidth="-Infinity">
                <children>
-                  <Button fx:id="IngresoCliente" mnemonicParsing="false">
+                  <Button fx:id="IngresoCliente" mnemonicParsing="false" onAction="#switchToIngresoCliente">
                      <graphic>
                         <FontAwesomeIconView glyphName="PLUS" />
                      </graphic>

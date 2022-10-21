@@ -73,8 +73,4 @@ public class ScenceController {
         stage.show();
     }
 
-
-
-
-
 }

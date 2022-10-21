@@ -3,6 +3,7 @@ package com.example.cliente;
 import com.example.cliente.Model.Cancha;
 import com.example.cliente.Model.CentroDeportivo;
 import com.example.cliente.Model.Servicio;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -10,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -18,6 +20,9 @@ import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
 import org.springframework.stereotype.Controller;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 @Controller
 public class ControllerPlantillaServicio {
@@ -42,7 +47,7 @@ public class ControllerPlantillaServicio {
     private Servicio servicioEste;
 
     public void setData(Servicio servicio){
-//        Image image = new Image(getClass().getResourceAsStream(servicio.getImageScr()));
+//        javafx.scene.image.Image image = parseByteToImage(servicio.imagen)
 //        Image.setImage(image);
         servicioEste = servicio;  //REPASR SI ESTA BIEN
         Nombre.setText(servicio.getKey().getNombre());
@@ -58,6 +63,13 @@ public class ControllerPlantillaServicio {
         BottonMeGusta.setStyle("-fx-background-color: #C9C9C9;");
         centroDeportio = servicio.getCentroDeportivoServicio();
 
+    }
+
+    public Image parseByteToImage (byte [] imagen) throws IOException {
+        ByteArrayInputStream inStreambj = new ByteArrayInputStream(imagen);
+        BufferedImage newImage = ImageIO.read(inStreambj);
+        Image img = SwingFXUtils.toFXImage(newImage, null);
+        return img;
     }
 
     public void meGusta(javafx.event.ActionEvent actionEvent){
