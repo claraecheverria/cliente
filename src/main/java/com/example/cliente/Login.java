@@ -97,7 +97,7 @@ public class Login {
                 }
 
             }else if (Objects.equals(tipoDeUser.get(0)[0], "EMPLEADO")){
-                ScenceController.pruebaSubirImagen(actionEvent);
+//                ScenceController.pruebaSubirImagen(actionEvent);
                 try {
                     ScenceController.switchToClienteFinal(actionEvent);
 //                    ScenceController.pruebaSubirImagen(actionEvent);

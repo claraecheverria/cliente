@@ -22,7 +22,7 @@ public class Servicio {
 
     private List<UserEmpleado> favoritos;
 
-    private String imagen;
+//    private String imagen;
 
 
     //CONSTRUCTORES
@@ -107,13 +107,13 @@ public class Servicio {
     public void setFavoritos(List<UserEmpleado> favoritos) {
         this.favoritos = favoritos;
     }
-        public String getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
-    }
+//        public String getImagen() {
+//        return imagen;
+//    }
+//
+//    public void setImagen(String imagen) {
+//        this.imagen = imagen;
+//    }
 //    @JsonSetter("imagen")
 //    public void setImagen(String imagen) throws UnsupportedEncodingException {
 //        this.imagen = Base64.decode(imagen.getBytes("UTF-8"));

@@ -118,6 +118,8 @@ public class ControllerMostrarOpciones implements Initializable {
 
     public void applyFillters(javafx.event.ActionEvent event) throws IOException{
         ArrayList<Servicio> listaServiciosSeleccionados = new ArrayList<>();
+        Vbox1.getChildren().clear();
+        Vbox2.getChildren().clear();
 
         if (fillterPrimerRango.isSelected()){
             for(int i = 0; i<listaservicios.size(); i++){
