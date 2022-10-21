@@ -89,33 +89,28 @@ public class ControllerPlantillaServicio {
         return img;
     }
 
-    public void meGusta(javafx.event.ActionEvent actionEvent){
-        if(BottonMeGusta.getStyle() == "-fx-background-color:#2B49B3;"){
+    public void meGusta(javafx.event.ActionEvent actionEvent) throws IOException {
+        if (BottonMeGusta.getStyle() == "-fx-background-color:#2B49B3;") {
             BottonMeGusta.setStyle("-fx-background-color:#2B49B3;");
             System.out.println("apreté me gusta");
             System.out.println(servicioEste.getKey().getNombre());
 
-        HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/user/agregarServicioFav")
-                .header("accept", "application/json")
-                .header("Content-Type", "application/json")
-                .body(servicioEste)
-                .asJson();
+            HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/user/agregarServicioFav")
+                    .header("accept", "application/json")
+                    .header("Content-Type", "application/json")
+                    .body(servicioEste)
+                    .asJson();
+        }
+        else{
+            BottonMeGusta.setStyle("-fx-background-color: #C9C9C9;");
+
+            HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/user/eliminarServicioFav")
+                    .header("accept", "application/json")
+                    .header("Content-Type", "application/json")
+                    .body(servicioEste)
+                    .asJson();
+        }
     }
-
-    public void sacarMeGusta(javafx.event.ActionEvent actionEvent){
-        BottonMeGusta.setStyle("-fx-background-color: #C9C9C9;");
-
-        HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/user/eliminarServicioFav")
-                .header("accept", "application/json")
-                .header("Content-Type", "application/json")
-                .body(servicioEste)
-                .asJson();
-    }
-
-    public void setColorButonMeGusta(){
-        BottonMeGusta.setStyle("-fx-background-color: #C9C9C9;");
-    }
-
     public void Reservar(javafx.event.ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClienteApplication.getContext()::getBean);

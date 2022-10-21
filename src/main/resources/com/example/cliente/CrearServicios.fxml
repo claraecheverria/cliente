@@ -129,7 +129,7 @@
                               <Font name="Arial Black" size="18.0" />
                            </font>
                         </Label>
-                        <Button fx:id="BuscarImagen" mnemonicParsing="false" text="Buscar localmente ">
+                        <Button fx:id="BuscarImagen" mnemonicParsing="false" onAction="#buscarImagen" text="Buscar localmente ">
                            <HBox.margin>
                               <Insets left="79.0" />
                            </HBox.margin>

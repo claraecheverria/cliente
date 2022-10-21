@@ -12,14 +12,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Base64;
 import java.util.ResourceBundle;
 
 @Controller
@@ -61,6 +65,27 @@ public class ControllerCrearServicio implements Initializable {
         scence = new Scene(root);
         stage.setScene(scence);
         stage.show();
+    }
+
+    public void buscarImagen(javafx.event.ActionEvent actionEvent){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+//        fileChooser.showOpenDialog(stage);
+        File file = fileChooser.showOpenDialog(stage);
+        if (file != null) {
+            System.out.println("tengo file!!!");
+        }
+        try {
+            byte[] fileContent = FileUtils.readFileToByteArray(file);
+            String encodedString = Base64.getEncoder().encodeToString(fileContent);
+            HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/centroDeportivo/guardarFoto")
+                    .header("accept", "application/json")
+                    .header("Content-Type", "application/json")
+                    .body(encodedString)
+                    .asJson();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void guradarDatos(){
