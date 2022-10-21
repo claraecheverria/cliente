@@ -5,6 +5,7 @@ import com.example.cliente.Model.CentroDeportivo;
 import com.example.cliente.Model.Servicio;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -71,17 +72,16 @@ public class ControllerPlantillaServicio {
             horarios = horarios + servicio.getDias().toString();
 //        }
         Horarios.setText(horarios);
-//        Image.setImage(servicio.getImagen());
-        setCentroDeportio(servicio.getCentroDeportivoServicio());
+        BottonMeGusta.setStyle("-fx-background-color: #C9C9C9;");
+        centroDeportio = servicio.getCentroDeportivoServicio();
 
     }
 
     public void meGusta(javafx.event.ActionEvent actionEvent){
-        BottonMeGusta.setStyle("-fx-background-color:#2B49B3;");
-        System.out.println("apreté me gusta");
-        System.out.println(servicioEste.getKey().getNombre());
-        System.out.println("aca");
-        System.out.println(devolverServicio().getKey().getNombre());
+        if(BottonMeGusta.getStyle() == "-fx-background-color:#2B49B3;"){
+            BottonMeGusta.setStyle("-fx-background-color:#2B49B3;");
+            System.out.println("apreté me gusta");
+            System.out.println(servicioEste.getKey().getNombre());
 
         HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/user/agregarServicioFav")
                 .header("accept", "application/json")
@@ -100,6 +100,10 @@ public class ControllerPlantillaServicio {
                 .asJson();
     }
 
+    public void setColorButonMeGusta(){
+        BottonMeGusta.setStyle("-fx-background-color: #C9C9C9;");
+    }
+
     public void Reservar(javafx.event.ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClienteApplication.getContext()::getBean);
@@ -110,6 +114,12 @@ public class ControllerPlantillaServicio {
 
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+    }
+
+    public void Volver(javafx.event.ActionEvent actionEvent){
+        Node source = (Node) actionEvent.getSource();
+        Stage stageActual = (Stage) source.getScene().getWindow();
+        stageActual.close();
     }
 
     public Cancha devolverCancha(){
