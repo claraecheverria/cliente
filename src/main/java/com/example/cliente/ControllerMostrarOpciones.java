@@ -163,6 +163,7 @@ public class ControllerMostrarOpciones implements Initializable {
         listaServiciosSeleccionadosReserva = removeDuplicates(listaServiciosSeleccionadosReserva);
 
         desplegarPlantillas(listaServiciosSeleccionados);
+        desplegarPlantillasConReserva(listaServiciosSeleccionadosReserva);
 
 
     }

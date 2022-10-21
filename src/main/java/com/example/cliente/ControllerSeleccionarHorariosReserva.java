@@ -47,7 +47,6 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
 
     @Autowired
     private ControllerSeleccionFechaReserva controllerSeleccionFechaReserva;
-    @Autowired
     private ControllerPlantillaServicio controllerPlantillaServicio;
 
     private ArrayList horariosLibres;

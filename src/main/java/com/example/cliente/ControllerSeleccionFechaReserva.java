@@ -25,14 +25,12 @@ public class ControllerSeleccionFechaReserva {
     private Button ConsultarFecha;
 
     private LocalDate fecha;
-    @Autowired
     private ControllerPlantillaServicio controllerPlantillaServicio;
 
     public void consultarFecha(javafx.event.ActionEvent actionEvent) throws IOException {
         fecha = Calendario.getValue();
 
         FXMLLoader fxmlLoader = new FXMLLoader();
-        //fxmlLoader.setControllerFactory(Main.get()::getBeam);
         fxmlLoader.setControllerFactory(ClienteApplication.getContext()::getBean);
 
         Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("SeleccionarHorariosReserva.fxml"));
