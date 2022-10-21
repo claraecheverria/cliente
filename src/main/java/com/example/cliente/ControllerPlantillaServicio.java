@@ -46,19 +46,36 @@ public class ControllerPlantillaServicio {
     private CentroDeportivo centroDeportio;
     private Servicio servicioEste;
 
+    public CentroDeportivo getCentroDeportio() {
+        return centroDeportio;
+    }
+
+    public void setCentroDeportio(CentroDeportivo centroDeportio) {
+        this.centroDeportio = centroDeportio;
+    }
+
+    public Servicio getServicioEste() {
+        return servicioEste;
+    }
+
+    public void setServicioEste(Servicio servicioEste) {
+        this.servicioEste = servicioEste;
+    }
+
     public void setData(Servicio servicio){
 //        javafx.scene.image.Image image = parseByteToImage(servicio.imagen)
 //        Image.setImage(image);
-        servicioEste = servicio;  //REPASR SI ESTA BIEN
+        setServicioEste(servicio);//REPASR SI ESTA BIEN
+        System.out.println(servicioEste.getKey().getNombre());
         Nombre.setText(servicio.getKey().getNombre());
         Direccion.setText(servicio.getCentroDeportivoServicio().getDireccion());
         Precio.setText(String.valueOf(servicio.getPrecio()));
         Descripcion.setText(servicio.getDescripcion());
         int tam = servicio.getDias().size();
         String horarios = new String();
-        for (int i = 0; i < tam; i++){
+//        for (int i = 0; i < tam; i++){
             horarios = horarios + servicio.getDias().toString();
-        }
+//        }
         Horarios.setText(horarios);
         BottonMeGusta.setStyle("-fx-background-color: #C9C9C9;");
         centroDeportio = servicio.getCentroDeportivoServicio();
@@ -78,21 +95,21 @@ public class ControllerPlantillaServicio {
             System.out.println("apreté me gusta");
             System.out.println(servicioEste.getKey().getNombre());
 
-            HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/user/agregarServicioFav") // HAY QUE DEFINIR LA HTTP BIEN
-                    .header("accept", "application/json")
-                    .header("Content-Type", "application/json")
-                    .body(servicioEste)
-                    .asJson();
-        }
-        else{
-            BottonMeGusta.setStyle("-fx-background-color: #C9C9C9;");
+        HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/user/agregarServicioFav")
+                .header("accept", "application/json")
+                .header("Content-Type", "application/json")
+                .body(servicioEste)
+                .asJson();
+    }
 
-            HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/user/agregarServicioFav") // HAY QUE DEFINIR LA HTTP BIEN
-                    .header("accept", "application/json")
-                    .header("Content-Type", "application/json")
-                    .body(servicioEste)
-                    .asJson();
-        }
+    public void sacarMeGusta(javafx.event.ActionEvent actionEvent){
+        BottonMeGusta.setStyle("-fx-background-color: #C9C9C9;");
+
+        HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/user/eliminarServicioFav")
+                .header("accept", "application/json")
+                .header("Content-Type", "application/json")
+                .body(servicioEste)
+                .asJson();
     }
 
     public void setColorButonMeGusta(){

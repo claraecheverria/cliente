@@ -1,5 +1,6 @@
 package com.example.cliente;
 
+import ch.qos.logback.core.util.FileUtil;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,14 +12,24 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import kong.unirest.HttpResponse;
+import kong.unirest.JsonNode;
+import kong.unirest.Unirest;
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.File;
 import java.io.IOException;
+import java.util.Base64;
+
+import static jdk.jfr.consumer.EventStream.openFile;
+
 @Controller
 public class ScenceController {
     private Stage stage;
@@ -72,5 +83,32 @@ public class ScenceController {
         stage.setScene(scence);
         stage.show();
     }
+
+    public void pruebaSubirImagen(javafx.event.ActionEvent event){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+//        fileChooser.showOpenDialog(stage);
+        File file = fileChooser.showOpenDialog(stage);
+        if (file != null) {
+            System.out.println("tengo file!!!");
+        }
+        try {
+            byte[] fileContent = FileUtils.readFileToByteArray(file);
+            String encodedString = Base64.getEncoder().encodeToString(fileContent);
+            HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/centroDeportivo/guardarFoto")
+                    .header("accept", "application/json")
+                    .header("Content-Type", "application/json")
+                    .body(encodedString)
+                    .asJson();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
+
+
+
 
 }
