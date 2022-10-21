@@ -53,7 +53,7 @@ public class ControllerMostrarOpciones implements Initializable {
     @FXML
     private CheckBox fillterSegundoRango; // 150 - 300
     @FXML
-    private CheckBox fillterTercerRango; // 300 - 450
+    private CheckBox FillterTercerRango; // 300 - 450
 
     private ArrayList<CheckBox> filltersList = new ArrayList();
 
@@ -75,10 +75,10 @@ public class ControllerMostrarOpciones implements Initializable {
         listaservicios = (ArrayList<Servicio>) getListaServicios();
         List<Servicio> listaCanchas = getListaCanchas();
 
-        System.out.println(listaservicios.size());
+//        System.out.println(listaservicios.size());
         try {
             for (int i = 0; i < listaservicios.size(); i++) {
-                System.out.println(listaservicios.get(i).getKey().getNombre());
+//                System.out.println(listaservicios.get(i).getKey().getNombre());
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("plantillaServicio.fxml"));
                 HBox serviceBox = fxmlLoader.load();
@@ -97,7 +97,7 @@ public class ControllerMostrarOpciones implements Initializable {
         }
         try {
             for (int i = 0; i < listaCanchas.size(); i++) {
-                System.out.println(listaCanchas.get(i).getKey().getNombre());
+//                System.out.println(listaCanchas.get(i).getKey().getNombre());
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("plantillaServicioSinReserva.fxml"));
                 HBox serviceBox = fxmlLoader.load();
@@ -133,7 +133,7 @@ public class ControllerMostrarOpciones implements Initializable {
                 }
             }
         }
-        if (fillterTercerRango.isSelected()){
+        if (FillterTercerRango.isSelected()){
             for(int i = 0; i<listaservicios.size(); i++){
                 if(listaservicios.get(i).getPrecio()<450){
                     listaServiciosSeleccionados.add(listaservicios.get(i));

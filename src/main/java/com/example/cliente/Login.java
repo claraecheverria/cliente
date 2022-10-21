@@ -1,6 +1,7 @@
 package com.example.cliente;
 
 import com.example.cliente.Model.Empresa;
+import com.example.cliente.Model.Servicio;
 import com.example.cliente.Model.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -96,8 +97,10 @@ public class Login {
                 }
 
             }else if (Objects.equals(tipoDeUser.get(0)[0], "EMPLEADO")){
+                ScenceController.pruebaSubirImagen(actionEvent);
                 try {
                     ScenceController.switchToClienteFinal(actionEvent);
+//                    ScenceController.pruebaSubirImagen(actionEvent);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

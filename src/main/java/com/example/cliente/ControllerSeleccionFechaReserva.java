@@ -27,6 +27,7 @@ public class ControllerSeleccionFechaReserva {
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         //fxmlLoader.setControllerFactory(Main.get()::getBeam);
+        fxmlLoader.setControllerFactory(ClienteApplication.getContext()::getBean);
 
         Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("SeleccionarHorariosReserva.fxml"));
         Stage stage = new Stage();

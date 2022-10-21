@@ -59,6 +59,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
         try {
             for (int i = 0; i < horariosLibres.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setControllerFactory(ClienteApplication.getContext()::getBean);
                 fxmlLoader.setLocation(getClass().getResource("BotonHorario.fxml"));
                 HBox horarioBox = fxmlLoader.load();
                 ControllerPlantillaHorarioReserva servicioController = fxmlLoader.getController();
@@ -105,7 +106,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
         LocalDate fecha = controllerSeleccionFechaReserva.mandarFecha();
 
         String centroDeportivoNombre = centroDeportivo.getNombre();
-        String servicioNombre = servicio.getNombre();
+        String servicioNombre = servicio.getKey().getNombre();
 
         HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/listaServicios")
                 .header("accept", "application/json")
