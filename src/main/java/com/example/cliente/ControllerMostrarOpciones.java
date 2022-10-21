@@ -68,12 +68,12 @@ public class ControllerMostrarOpciones implements Initializable {
     @FXML
     private VBox Vbox2;
     private ArrayList<Servicio> listaservicios;
+    private List<Servicio> listaCanchas = getListaCanchas();
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         listaservicios = (ArrayList<Servicio>) getListaServicios();
-        List<Servicio> listaCanchas = getListaCanchas();
 
 //        System.out.println(listaservicios.size());
         try {
@@ -118,6 +118,7 @@ public class ControllerMostrarOpciones implements Initializable {
 
     public void applyFillters(javafx.event.ActionEvent event) throws IOException{
         ArrayList<Servicio> listaServiciosSeleccionados = new ArrayList<>();
+        ArrayList<Servicio> listaServiciosSeleccionadosReserva = new ArrayList<>();
         Vbox1.getChildren().clear();
         Vbox2.getChildren().clear();
 
@@ -127,11 +128,21 @@ public class ControllerMostrarOpciones implements Initializable {
                     listaServiciosSeleccionados.add(listaservicios.get(i));
                 }
             }
+            for(int j = 0; j<listaCanchas.size();j++){
+                if(listaCanchas.get(j).getPrecio()<150){
+                    listaServiciosSeleccionadosReserva.add(listaCanchas.get(j));
+                }
+            }
         }
         if (fillterSegundoRango.isSelected()){
             for(int i = 0; i<listaservicios.size(); i++){
                 if(listaservicios.get(i).getPrecio()<300){
                     listaServiciosSeleccionados.add(listaservicios.get(i));
+                }
+            }
+            for(int j = 0; j<listaCanchas.size();j++){
+                if(listaCanchas.get(j).getPrecio()<300){
+                    listaServiciosSeleccionadosReserva.add(listaCanchas.get(j));
                 }
             }
         }
@@ -141,10 +152,18 @@ public class ControllerMostrarOpciones implements Initializable {
                     listaServiciosSeleccionados.add(listaservicios.get(i));
                 }
             }
+            for(int j = 0; j<listaCanchas.size();j++){
+                if(listaCanchas.get(j).getPrecio()<450){
+                    listaServiciosSeleccionadosReserva.add(listaCanchas.get(j));
+                }
+            }
         }
+
         listaServiciosSeleccionados = removeDuplicates(listaServiciosSeleccionados);
+        listaServiciosSeleccionadosReserva = removeDuplicates(listaServiciosSeleccionadosReserva);
 
         desplegarPlantillas(listaServiciosSeleccionados);
+
 
     }
 
@@ -218,6 +237,27 @@ public class ControllerMostrarOpciones implements Initializable {
         try {
             for (int i = 0; i < listaParaDesplegar.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("plantillaServicioSinReserva.fxml"));
+                HBox serviceBox = fxmlLoader.load();
+                ControllerPlantillaServicio servicioController = fxmlLoader.getController();
+                servicioController.setData(listaParaDesplegar.get(i));
+                if(i%2 == 0){
+                    Vbox1.getChildren().add(serviceBox);
+                }
+                if(i%2 == 1){
+                    Vbox2.getChildren().add(serviceBox);
+                }
+            }
+        }
+        catch(IOException e){
+            throw new RuntimeException(e);
+        }
+    }
+    public void desplegarPlantillasConReserva(ArrayList<Servicio> listaParaDesplegar){
+        try {
+            for (int i = 0; i < listaParaDesplegar.size(); i++) {
+//                System.out.println(listaCanchas.get(i).getKey().getNombre());
+                FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("plantillaServicio.fxml"));
                 HBox serviceBox = fxmlLoader.load();
                 ControllerPlantillaServicio servicioController = fxmlLoader.getController();
@@ -233,5 +273,6 @@ public class ControllerMostrarOpciones implements Initializable {
         catch(IOException e){
             throw new RuntimeException(e);
         }
+
     }
 }
