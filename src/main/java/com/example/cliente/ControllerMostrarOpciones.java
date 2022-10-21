@@ -69,6 +69,7 @@ public class ControllerMostrarOpciones implements Initializable {
     private VBox Vbox2;
     private ArrayList<Servicio> listaservicios;
     private ArrayList<Servicio> listaServiciosMeGusta;
+    private ArrayList<Servicio> listaFinal = new ArrayList<>();
 
 
     @Override
@@ -121,7 +122,6 @@ public class ControllerMostrarOpciones implements Initializable {
 
     public void applyFillters(javafx.event.ActionEvent event) throws IOException {
         ArrayList<Servicio> listaServiciosSeleccionados = new ArrayList<>();
-        ArrayList<Servicio> listaFinal = new ArrayList<>();
         Vbox2.getChildren().clear();
         Vbox1.getChildren().clear();
 
