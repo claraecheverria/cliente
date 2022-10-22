@@ -5,6 +5,7 @@ import com.example.cliente.Model.Servicio;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -163,6 +164,7 @@ public class ControllerMostrarOpciones implements Initializable {
         listaServiciosSeleccionadosReserva = removeDuplicates(listaServiciosSeleccionadosReserva);
 
         desplegarPlantillas(listaServiciosSeleccionados);
+        desplegarPlantillasConReserva(listaServiciosSeleccionadosReserva);
 
 
     }
