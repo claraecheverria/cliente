@@ -24,7 +24,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-@Controller
+
 public class ControllerPlantillaServicio {
 
     @FXML

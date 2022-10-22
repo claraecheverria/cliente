@@ -14,6 +14,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import kong.unirest.HttpResponse;
@@ -44,6 +45,8 @@ public class ControllerVistaUsuarioFinal implements Initializable {
     private HBox HboxMeGusta;
     @FXML
     private Label FechaDeHoy;
+    @FXML
+    private AnchorPane misMeGusta;
     private ArrayList<Servicio> ultimosServiciosUtilizados = new ArrayList();
 
     @Override
@@ -52,6 +55,7 @@ public class ControllerVistaUsuarioFinal implements Initializable {
         LocalDate date = LocalDate.now();
         FechaDeHoy.setText(date.toString());
         //
+        List<String[]> listaServiciosFav = getListaServiciosFav();
 
         XYChart.Series series1 = new XYChart.Series();
         series1.setName("2003");
@@ -66,7 +70,7 @@ public class ControllerVistaUsuarioFinal implements Initializable {
 
         // listaUltimosServiciosUtilizados = ultimosServiciosUtilizados(Usuario)
         try {
-            for (int i = 0; i < ultimosServiciosUtilizados.size(); i++) {
+            for (int i = 0; i < 2; i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 if(ultimosServiciosUtilizados.get(i).getTipo() == "clases"){  // HAY QUE DEFINIR BIEN COMO SON LOS TIPOS
                     fxmlLoader.setLocation(getClass().getResource("plantillaServicio.fxml"));
@@ -75,6 +79,7 @@ public class ControllerVistaUsuarioFinal implements Initializable {
                     fxmlLoader.setLocation(getClass().getResource("plantillaServicioSinReserva.fxml"));
                 }
                 HBox serviceBox = fxmlLoader.load();
+                serviceBox.setStyle("-fx-background-color: linear-gradient(to right, #1A3384,#2B49B3);-fx-background-radius: 10px;");
                 ControllerPlantillaServicio servicioController = fxmlLoader.getController();
                 servicioController.setData(ultimosServiciosUtilizados.get(i));
                 HboxMeGusta.getChildren().add(serviceBox);
@@ -83,6 +88,21 @@ public class ControllerVistaUsuarioFinal implements Initializable {
         catch(IOException e){
             throw new RuntimeException(e);
         }
+
+//        try{
+//            for(int i = 0; i<listaServiciosFav.size();i++){
+//                FXMLLoader fxmlLoader = new FXMLLoader();
+//                fxmlLoader.setLocation(getClass().getResource("PlantillaMeGusta.fxml"));
+//                HBox MeGustaBox = fxmlLoader.load();
+//                ControllerPlantillaMisMeGusta misMeGustaController = fxmlLoader.getController();
+//                misMeGustaController.setData(listaServiciosFav.get(i));
+//                misMeGusta.getChildren().add(MeGustaBox);
+
+//            }
+//        }
+//        catch ( IOException e){
+//            throw new RuntimeException(e);
+//        }
 
     }
 
@@ -118,8 +138,7 @@ public class ControllerVistaUsuarioFinal implements Initializable {
         stage.setScene(scence);
         stage.show();
     }
-
-    public List<String[]> getListaServiciosFav (){
+    public List<String[]> getListaServiciosFav (){  // tiene que devolver el objeto servicio
         HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/serviciosFavDeUnUser")
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
