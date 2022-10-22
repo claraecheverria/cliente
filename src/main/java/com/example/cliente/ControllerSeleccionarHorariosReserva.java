@@ -52,23 +52,30 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
     private ArrayList horariosLibres;
     private List<UserEmpleado> mailsUsuarios;
 
+    private Servicio servicio;
+
+    public void setServicio(Servicio servicio) {
+        System.out.println(servicio.getKey().getNombre());
+        this.servicio = servicio;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        horariosLibres = (ArrayList) getHorariosReservas();
-        try {
-            for (int i = 0; i < horariosLibres.size(); i++) {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setControllerFactory(ClienteApplication.getContext()::getBean);
-                fxmlLoader.setLocation(getClass().getResource("BotonHorario.fxml"));
-                HBox horarioBox = fxmlLoader.load();
-                ControllerPlantillaHorarioReserva servicioController = fxmlLoader.getController();
-                servicioController.setData((String) horariosLibres.get(i));
-                VboxHorarios.getChildren().add(horarioBox);
-            }
-        }
-        catch(IOException e){
-            throw new RuntimeException(e);
-        }
+//        horariosLibres = (ArrayList) getHorariosReservas();
+//        try {
+//            for (int i = 0; i < horariosLibres.size(); i++) {
+//                FXMLLoader fxmlLoader = new FXMLLoader();
+////                fxmlLoader.setControllerFactory(ClienteApplication.getContext()::getBean);
+//                fxmlLoader.setLocation(getClass().getResource("BotonHorario.fxml"));
+//                HBox horarioBox = fxmlLoader.load();
+//                ControllerPlantillaHorarioReserva servicioController = fxmlLoader.getController();
+//                servicioController.setData((String) horariosLibres.get(i));
+//                VboxHorarios.getChildren().add(horarioBox);
+//            }
+//        }
+//        catch(IOException e){
+//            throw new RuntimeException(e);
+//        }
     }
 
     public void invitarAmigo(javafx.event.ActionEvent actionEvent){
@@ -100,25 +107,28 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
 
     public List getHorariosReservas(){   // HAY QUE PONER QUE DEVUELVA LOS HORARIOS LIBRES
         //Tengo que mandar nombre centro deportivo, nomber servicio y fecha
-        CentroDeportivo centroDeportivo = controllerPlantillaServicio.devolverServicio().getCentroDeportivoServicio();
-        Servicio servicio = controllerPlantillaServicio.devolverServicio();
-        LocalDate fecha = controllerSeleccionFechaReserva.mandarFecha();
+//        ControllerPlantillaServicio controllerPlantillaServicio1 = (ControllerPlantillaServicio) ClienteApplication.getContext().getBean("controllerPlantillaServicio");
 
-        String centroDeportivoNombre = centroDeportivo.getNombre();
-        String servicioNombre = servicio.getKey().getNombre();
+//        CentroDeportivo centroDeportivo = controllerPlantillaServicio1.devolverServicio().getCentroDeportivoServicio();
+//        Servicio servicio = controllerPlantillaServicio1.devolverServicio();
+//        LocalDate fecha = controllerSeleccionFechaReserva.mandarFecha();
 
-        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/listaServicios")
-                .header("accept", "application/json")
-                .header("Content-Type", "application/json")
-                .asJson();
-        com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
-        try {
-            List<Servicio> listaHorariosDisponibles = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Servicio>>(){});
-            System.out.println(listaHorariosDisponibles.size());
-            return listaHorariosDisponibles;
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
+//        String centroDeportivoNombre = centroDeportivo.getNombre();
+//        String servicioNombre = servicio.getKey().getNombre();
+
+//        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/listaServicios")
+//                .header("accept", "application/json")
+//                .header("Content-Type", "application/json")
+//                .asJson();
+//        com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+//        try {
+//            List<Servicio> listaHorariosDisponibles = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Servicio>>(){});
+//            System.out.println(listaHorariosDisponibles.size());
+//            return listaHorariosDisponibles;
+//        } catch (JsonProcessingException e) {
+//            throw new RuntimeException(e);
+//        }
+        return new ArrayList<>();
     }
     public void guardarDatos(javafx.event.ActionEvent actionEvent){
 

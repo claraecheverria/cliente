@@ -55,7 +55,7 @@ public class ControllerVistaUsuarioFinal implements Initializable {
         LocalDate date = LocalDate.now();
         FechaDeHoy.setText(date.toString());
         //
-        List<String[]> listaServiciosFav = getListaServiciosFav();
+//        List<String[]> listaServiciosFav = getListaServiciosFav();
 
         XYChart.Series series1 = new XYChart.Series();
         series1.setName("2003");
@@ -69,25 +69,25 @@ public class ControllerVistaUsuarioFinal implements Initializable {
         // PARA QUE SE MUESTREN LOS DOS ULTIMOS SERVICIOS UTILIZADOS
 
         // listaUltimosServiciosUtilizados = ultimosServiciosUtilizados(Usuario)
-        try {
-            for (int i = 0; i < 2; i++) {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                if(ultimosServiciosUtilizados.get(i).getTipo() == "clases"){  // HAY QUE DEFINIR BIEN COMO SON LOS TIPOS
-                    fxmlLoader.setLocation(getClass().getResource("plantillaServicio.fxml"));
-                }
-                else{
-                    fxmlLoader.setLocation(getClass().getResource("plantillaServicioSinReserva.fxml"));
-                }
-                HBox serviceBox = fxmlLoader.load();
-                serviceBox.setStyle("-fx-background-color: linear-gradient(to right, #1A3384,#2B49B3);-fx-background-radius: 10px;");
-                ControllerPlantillaServicio servicioController = fxmlLoader.getController();
-                servicioController.setData(ultimosServiciosUtilizados.get(i));
-                HboxMeGusta.getChildren().add(serviceBox);
-            }
-        }
-        catch(IOException e){
-            throw new RuntimeException(e);
-        }
+//        try {
+//            for (int i = 0; i < 2; i++) {
+//                FXMLLoader fxmlLoader = new FXMLLoader();
+//                if(ultimosServiciosUtilizados.get(i).getTipo() == "clases"){  // HAY QUE DEFINIR BIEN COMO SON LOS TIPOS
+//                    fxmlLoader.setLocation(getClass().getResource("plantillaServicio.fxml"));
+//                }
+//                else{
+//                    fxmlLoader.setLocation(getClass().getResource("plantillaServicioSinReserva.fxml"));
+//                }
+//                HBox serviceBox = fxmlLoader.load();
+//                serviceBox.setStyle("-fx-background-color: linear-gradient(to right, #1A3384,#2B49B3);-fx-background-radius: 10px;");
+//                ControllerPlantillaServicio servicioController = fxmlLoader.getController();
+//                servicioController.setData(ultimosServiciosUtilizados.get(i));
+//                HboxMeGusta.getChildren().add(serviceBox);
+//            }
+//        }
+//        catch(IOException e){
+//            throw new RuntimeException(e);
+//        }
 
 //        try{
 //            for(int i = 0; i<listaServiciosFav.size();i++){

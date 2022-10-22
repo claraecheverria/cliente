@@ -49,7 +49,7 @@ public class ScenceController {
 
     public void switchToClienteFinal(javafx.event.ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("Page1.V2.fxml"));
+        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("Page1V2.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         String css = this.getClass().getResource("StilePage1.css").toExternalForm();
         scence = new Scene(root);

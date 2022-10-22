@@ -120,8 +120,8 @@ public class ControllerPlantillaServicio {
     public void Reservar(javafx.event.ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClienteApplication.getContext()::getBean);
-
         Parent root = fxmlLoader.load(ControllerPlantillaServicio.class.getResourceAsStream("SeleccionFechaReserva.fxml"));
+        ((ControllerSeleccionFechaReserva)fxmlLoader.getController()).setServicio(servicioEste);
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
 

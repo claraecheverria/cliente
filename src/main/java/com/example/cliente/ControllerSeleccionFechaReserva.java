@@ -1,5 +1,6 @@
 package com.example.cliente;
 
+import com.example.cliente.Model.Servicio;
 import com.sun.tools.javac.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +25,12 @@ public class ControllerSeleccionFechaReserva {
     @FXML
     private Button ConsultarFecha;
 
+    private Servicio servicio;
+
+    public void setServicio(Servicio servicio) {
+        this.servicio = servicio;
+    }
+
     private LocalDate fecha;
     private ControllerPlantillaServicio controllerPlantillaServicio;
 
@@ -32,8 +39,8 @@ public class ControllerSeleccionFechaReserva {
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClienteApplication.getContext()::getBean);
-
         Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("SeleccionarHorariosReserva.fxml"));
+        ((ControllerSeleccionarHorariosReserva) fxmlLoader.getController()).setServicio(servicio);
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
 
