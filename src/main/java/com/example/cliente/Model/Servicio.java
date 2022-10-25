@@ -40,8 +40,7 @@ public class Servicio {
         this.descripcion = descripcion;
         this.tipo = tipo;
     }
-
-    public Servicio(ServicioIdNew key, Long precio, Set<DiasDeLaSemana> dias, String horaInicio, String horaFin, String descripcion, String tipo, List<UserEmpleado> favoritos) {
+    public Servicio(ServicioIdNew key, Long precio, Set<DiasDeLaSemana> dias, String horaInicio, String horaFin, String descripcion, String tipo) {
         this.key = new ServicioIdNew();
         this.precio = precio;
         this.dias = dias;
@@ -49,7 +48,6 @@ public class Servicio {
         this.horaFin = horaFin;
         this.descripcion = descripcion;
         this.tipo = tipo;
-        this.favoritos = favoritos;
     }
     //GETTERS Y SETTERS
 

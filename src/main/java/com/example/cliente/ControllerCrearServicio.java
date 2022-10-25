@@ -1,5 +1,6 @@
 package com.example.cliente;
 
+import com.example.cliente.Model.DiasDeLaSemana;
 import com.example.cliente.Model.Servicio;
 import com.example.cliente.Model.ServicioIdNew;
 import javafx.collections.FXCollections;
@@ -11,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
@@ -25,7 +27,9 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Base64;
+import java.util.HashSet;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 @Controller
 public class ControllerCrearServicio implements Initializable {
@@ -49,7 +53,29 @@ public class ControllerCrearServicio implements Initializable {
     @FXML
     private TextField Cupos;
     @FXML
+    private TextField Descripcion;
+    @FXML
     private Button BuscarImagen;
+    @FXML
+    private CheckBox DiaDomingo;
+
+    @FXML
+    private CheckBox DiaJueves;
+
+    @FXML
+    private CheckBox DiaLunes;
+
+    @FXML
+    private CheckBox DiaMartes;
+
+    @FXML
+    private CheckBox DiaMiercoles;
+
+    @FXML
+    private CheckBox DiaSabado;
+
+    @FXML
+    private CheckBox DiaViernes;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -92,11 +118,35 @@ public class ControllerCrearServicio implements Initializable {
     public void guradarDatos(){
         String nombre = Nombre.toString();
         String tipo = choiceBoxTipo.toString();
-        int precio = Integer.parseInt(String.valueOf(Precio));
+        Long precio = Long.valueOf(Integer.parseInt(String.valueOf(Precio.toString())));
         String horarios = Horarios.toString();
         String horarioInicio = HorarioInicio.toString();
         String horarioFin = HorarioFin.toString();
+        String descripcion = Descripcion.toString();
         int cupos = Integer.parseInt(String.valueOf(Cupos));
+        Set<DiasDeLaSemana> diasSeleccionados = new HashSet<>();
+
+        if(DiaLunes.isSelected()==true){
+            diasSeleccionados.add(DiasDeLaSemana.Lunes);
+        }
+        if(DiaMartes.isSelected()==true){
+            diasSeleccionados.add(DiasDeLaSemana.Martes);
+        }
+        if(DiaMiercoles.isSelected()==true){
+            diasSeleccionados.add(DiasDeLaSemana.Miercoles);
+        }
+        if(DiaJueves.isSelected()==true){
+            diasSeleccionados.add(DiasDeLaSemana.Jueves);
+        }
+        if(DiaViernes.isSelected()==true){
+            diasSeleccionados.add(DiasDeLaSemana.Viernes);
+        }
+        if(DiaSabado.isSelected()==true){
+            diasSeleccionados.add(DiasDeLaSemana.Sabado);
+        }
+        if(DiaDomingo.isSelected()==true){
+            diasSeleccionados.add(DiasDeLaSemana.Domingo);
+        }
 
         Nombre.clear();
 //        choiceBoxTipo.clear(); no esxiste clear pero hay que ver si cuando cargas otro servicio mantiene el valor anterior
@@ -107,7 +157,7 @@ public class ControllerCrearServicio implements Initializable {
         Cupos.clear();
 
         ServicioIdNew id = new ServicioIdNew(nombre);
-        Servicio nuevoServicio = new Servicio();//FIXME
+        Servicio nuevoServicio = new Servicio(id,precio,diasSeleccionados,horarioInicio,horarioFin,descripcion,tipo);//FIXME
 
         HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/servicio/crearServicio")
                 .header("accept", "application/json")
