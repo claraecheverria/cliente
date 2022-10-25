@@ -12,6 +12,10 @@ public class ServicioIdNew implements Serializable {
     public ServicioIdNew() {
     }
 
+    public ServicioIdNew(String nombre) {
+        this.nombre = nombre;
+    }
+
     public String getNombre() {
         return nombre;
     }

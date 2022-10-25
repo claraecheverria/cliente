@@ -1,6 +1,7 @@
 package com.example.cliente;
 
 import com.example.cliente.Model.Servicio;
+import com.example.cliente.Model.ServicioIdNew;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -105,6 +106,7 @@ public class ControllerCrearServicio implements Initializable {
         Horarios.clear();
         Cupos.clear();
 
+        ServicioIdNew id = new ServicioIdNew(nombre);
         Servicio nuevoServicio = new Servicio();//FIXME
 
         HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/servicio/crearServicio")
