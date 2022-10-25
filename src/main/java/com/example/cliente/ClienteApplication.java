@@ -9,7 +9,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class ClienteApplication {
     private static ConfigurableApplicationContext context;
 
-
     public static void main(String[] args) {
         ClienteApplication.context = SpringApplication.run(ClienteApplication.class);
         Application.launch(HelloApplication.class, args);

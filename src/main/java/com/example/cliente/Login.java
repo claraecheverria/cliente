@@ -58,8 +58,8 @@ public class Login {
         com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
         try {
             List<String[]> listAtributos = objectMapper.readValue(response2.getBody().toString(), new TypeReference<List<String[]>>(){});
-            System.out.println(listAtributos.size());
-            System.out.println(listAtributos.get(0).length);
+//            System.out.println(listAtributos.size());
+//            System.out.println(listAtributos.get(0).length);
             for (int i=0; i<listAtributos.get(0).length; i++){
                 System.out.println(listAtributos.get(0)[i]);
             }

@@ -22,6 +22,8 @@ public class Servicio {
 
     private List<UserEmpleado> favoritos;
 
+    private Set<Imagen> imagenes;
+
 //    private String imagen;
 
 
@@ -39,6 +41,19 @@ public class Servicio {
         this.horaFin = horaFin;
         this.descripcion = descripcion;
         this.tipo = tipo;
+    }
+    public Servicio(String name, CentroDeportivo centroDeportivoServicio, Long precio, Set<DiasDeLaSemana> dias, LocalTime horaInicio, LocalTime horaFin, String descripcion, String tipo, Set<Imagen> imagenes) {
+        this.key = new ServicioIdNew();
+        this.key.setNombre(name);
+        this.key.setCentroDeportivo(centroDeportivoServicio.getNombre());
+        this.centroDeportivoServicio = centroDeportivoServicio;
+        this.precio = precio;
+        this.dias = dias;
+        this.horaInicio = String.valueOf(horaInicio);
+        this.horaFin = String.valueOf(horaFin);
+        this.descripcion = descripcion;
+        this.tipo = tipo;
+        this.imagenes = imagenes;
     }
     public Servicio(ServicioIdNew key, Long precio, Set<DiasDeLaSemana> dias, String horaInicio, String horaFin, String descripcion, String tipo) {
         this.key = new ServicioIdNew();
@@ -135,5 +150,12 @@ public class Servicio {
         this.centroDeportivoServicio = centroDeportivoServicio;
     }
 
+    public Set<Imagen> getImagenes() {
+        return imagenes;
+    }
+
+    public void setImagenes(Set<Imagen> imagenes) {
+        this.imagenes = imagenes;
+    }
 
 }
