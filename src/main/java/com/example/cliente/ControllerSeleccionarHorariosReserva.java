@@ -57,11 +57,6 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
     public void setServicio(Servicio servicio) {
         System.out.println(servicio.getKey().getNombre());
         this.servicio = servicio;
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        Lable.setText(" ");
         horariosLibres = getHorariosReservas();
         try {
             for (int i = 0; i < horariosLibres.size(); i++) {
@@ -77,6 +72,26 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
         catch(IOException e){
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        Lable.setText(" ");
+//        horariosLibres = getHorariosReservas();
+//        try {
+//            for (int i = 0; i < horariosLibres.size(); i++) {
+//                FXMLLoader fxmlLoader = new FXMLLoader();
+//                fxmlLoader.setControllerFactory(ClienteApplication.getContext()::getBean);
+//                fxmlLoader.setLocation(getClass().getResource("BotonHorario.fxml"));
+//                HBox horarioBox = fxmlLoader.load();
+//                ControllerPlantillaHorarioReserva servicioController = fxmlLoader.getController();
+//                servicioController.setData(horariosLibres.get(i).getHoraFin().toString());
+//                VboxHorarios.getChildren().add(horarioBox);
+//            }
+//        }
+//        catch(IOException e){
+//            throw new RuntimeException(e);
+//        }
     }
 
     public void invitarAmigo(javafx.event.ActionEvent actionEvent){
@@ -103,20 +118,20 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
     public List<Reserva> getHorariosReservas(){   // HAY QUE PONER QUE DEVUELVA LOS HORARIOS LIBRES
         //Tengo que mandar nombre centro deportivo, nomber servicio y fecha
 
-        ControllerPlantillaServicio controllerPlantillaServicio1 = (ControllerPlantillaServicio) ClienteApplication.getContext().getBean("controllerPlantillaServicio");
+//        ControllerPlantillaServicio controllerPlantillaServicio1 = (ControllerPlantillaServicio) ClienteApplication.getContext().getBean("controllerPlantillaServicio");
 
-        CentroDeportivo centroDeportivo = controllerPlantillaServicio1.devolverServicio().getCentroDeportivoServicio();
-        Servicio servicio = controllerPlantillaServicio1.devolverServicio();
+//        CentroDeportivo centroDeportivo = controllerPlantillaServicio1.devolverServicio().getCentroDeportivoServicio();
+//        Servicio servicio = controllerPlantillaServicio1.devolverServicio();
         LocalDate fecha = controllerSeleccionFechaReserva.mandarFecha();
 
-        String centroDeportivoNombre = centroDeportivo.getNombre();
+        String centroDeportivoNombre = servicio.getCentroDeportivoServicio().getNombre();
         String servicioNombre = servicio.getKey().getNombre();
 
-        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/reservasEnFecha?fecha={fecha},servicio={servicioNombre},centroDep={centroDeportivoNombre}")
+        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/reservasEnFecha?fecha={fecha}&servicio={servicioNombre}&centroDep={centroDeportivoNombre}")
                 .routeParam("fecha", String.valueOf(fecha))
-                .routeParam("servicio",servicioNombre)
-                .routeParam("centroDep",centroDeportivoNombre)
-                .header("accept", "application/json")
+                .routeParam("servicioNombre",servicioNombre)
+                .routeParam("centroDeportivoNombre",centroDeportivoNombre)
+                .header("Accept", "application/json")
                 .header("Content-Type", "application/json")
                 .asJson();
         com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
