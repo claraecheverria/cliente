@@ -69,7 +69,6 @@ public class ControllerPlantillaServicio {
         byte[] decodedBytes;
         if(servicio.getImagenes().size() == 0){
 
-
         }else{
             Imagen[] imagenes = servicio.getImagenes().toArray(new Imagen[servicio.getImagenes().size()]);
             decodedBytes = Base64.getDecoder().decode(imagenes[0].getImagen());
