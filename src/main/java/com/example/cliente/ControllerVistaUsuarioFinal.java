@@ -66,6 +66,21 @@ public class ControllerVistaUsuarioFinal implements Initializable {
         series1.getData().add(new XYChart.Data("Viernes",50));
         //chart.getData().addAll(series1);
 
+        List<Servicio> listaMeGusta = getListaServiciosFav();
+        try{
+            for(int i = 0; i<listaMeGusta.size() ; i++){
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("PlantillaMeGusta.fxml"));
+                HBox serviceBox = null;
+                serviceBox = fxmlLoader.load();
+                ControllerPlantillaMisMeGusta servicioController = fxmlLoader.getController();
+                servicioController.setData(listaMeGusta.get(i));
+                misMeGusta.getChildren().add(serviceBox);
+            }
+        }catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         // PARA QUE SE MUESTREN LOS DOS ULTIMOS SERVICIOS UTILIZADOS
 
         // listaUltimosServiciosUtilizados = ultimosServiciosUtilizados(Usuario)
@@ -138,14 +153,14 @@ public class ControllerVistaUsuarioFinal implements Initializable {
         stage.setScene(scence);
         stage.show();
     }
-    public List<String[]> getListaServiciosFav (){  // tiene que devolver el objeto servicio
+    public List<Servicio> getListaServiciosFav (){  // tiene que devolver el objeto servicio
         HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/serviciosFavDeUnUser")
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
                 .asJson();
         com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
         try {
-            List<String[]> listaServicios = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<String[]>>(){});
+            List<Servicio> listaServicios = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Servicio>>(){});
             System.out.println(listaServicios.size());
             return listaServicios;
         } catch (JsonProcessingException e) {

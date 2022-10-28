@@ -4,6 +4,7 @@ import ch.qos.logback.core.util.FileUtil;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
@@ -82,6 +84,10 @@ public class ScenceController {
         scence = new Scene(root);
         stage.setScene(scence);
         stage.show();
+        stage.centerOnScreen();
+//        Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+//        stage.setX((primScreenBounds.getWidth() - stage.getWidth()) /2);
+//        stage.setY((primScreenBounds.getHeight() - stage.getHeight()) /2);
     }
 
     public void pruebaSubirImagen(javafx.event.ActionEvent event){
