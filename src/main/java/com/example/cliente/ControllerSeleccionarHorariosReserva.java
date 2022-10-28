@@ -61,6 +61,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Lable.setText(" ");
 //        horariosLibres = (ArrayList) getHorariosReservas();
 //        try {
 //            for (int i = 0; i < horariosLibres.size(); i++) {
@@ -81,20 +82,15 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
     public void invitarAmigo(javafx.event.ActionEvent actionEvent){
         String mail = Mail.toString();
         User nuevoUser = new User(mail);
-        boolean existe = true;
 
         // Consultar a la base de datos si el mail existe
-        HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/user/userParaCheck")
+        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/checkExisteUser?email={mail}")
+                .routeParam("mail",mail)
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
-                .body(nuevoUser)
                 .asJson();
 
-        // Que me llegue un booleano diciendo si existe o no el usuario
-        // En caso de que no exista settear el Lable en "seleccione un mail valido"
-        // En caso de que exista, que me llegue desde la base de datos el usuario por que despues le voy a tener que agregar la reserva
-
-        if(existe == true){
+        if(response.getBody().toString() == "true"){
             VboxMails.getChildren().add(new Text(mail));
             User user = new User(mail);
             mailsUsuarios.add((UserEmpleado) user);
@@ -102,33 +98,32 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
         else{
             Lable.setText("Seleccione un mail valido");
         }
-
     }
 
     public List getHorariosReservas(){   // HAY QUE PONER QUE DEVUELVA LOS HORARIOS LIBRES
         //Tengo que mandar nombre centro deportivo, nomber servicio y fecha
-//        ControllerPlantillaServicio controllerPlantillaServicio1 = (ControllerPlantillaServicio) ClienteApplication.getContext().getBean("controllerPlantillaServicio");
 
-//        CentroDeportivo centroDeportivo = controllerPlantillaServicio1.devolverServicio().getCentroDeportivoServicio();
-//        Servicio servicio = controllerPlantillaServicio1.devolverServicio();
-//        LocalDate fecha = controllerSeleccionFechaReserva.mandarFecha();
+        ControllerPlantillaServicio controllerPlantillaServicio1 = (ControllerPlantillaServicio) ClienteApplication.getContext().getBean("controllerPlantillaServicio");
 
-//        String centroDeportivoNombre = centroDeportivo.getNombre();
-//        String servicioNombre = servicio.getKey().getNombre();
+        CentroDeportivo centroDeportivo = controllerPlantillaServicio1.devolverServicio().getCentroDeportivoServicio();
+        Servicio servicio = controllerPlantillaServicio1.devolverServicio();
+        LocalDate fecha = controllerSeleccionFechaReserva.mandarFecha();
 
-//        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/listaServicios")
-//                .header("accept", "application/json")
-//                .header("Content-Type", "application/json")
-//                .asJson();
-//        com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
-//        try {
-//            List<Servicio> listaHorariosDisponibles = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Servicio>>(){});
-//            System.out.println(listaHorariosDisponibles.size());
-//            return listaHorariosDisponibles;
-//        } catch (JsonProcessingException e) {
-//            throw new RuntimeException(e);
-//        }
-        return new ArrayList<>();
+        String centroDeportivoNombre = centroDeportivo.getNombre();
+        String servicioNombre = servicio.getKey().getNombre();
+
+        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/listaServicios")
+                .header("accept", "application/json")
+                .header("Content-Type", "application/json")
+                .asJson();
+        com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+        try {
+            List<Servicio> listaHorariosDisponibles = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Servicio>>(){});
+            System.out.println(listaHorariosDisponibles.size());
+            return listaHorariosDisponibles;
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
     public void guardarDatos(javafx.event.ActionEvent actionEvent){
 

@@ -35,12 +35,12 @@ public class ControllerIngresarCliente implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ArrayList listaNombreServicios = new ArrayList();
+        ObservableList listaNombreServicios = null;
         for (int i = 0; i < listaServiciosO.size();i++){
             listaNombreServicios.add(listaServiciosO.get(i).getKey().getNombre());
         }
 
-        listaServicios = (ObservableList<String>) listaNombreServicios;
+        listaServicios =  listaNombreServicios;
         Servicios.setValue(listaServicios);
     }
 

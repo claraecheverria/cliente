@@ -65,7 +65,7 @@ public class ControllerPlantillaServicio {
     public void setData(Servicio servicio){
 //        javafx.scene.image.Image image = parseByteToImage(servicio.imagen)
 //        Image.setImage(image);
-        setServicioEste(servicio);//REPASR SI ESTA BIEN
+        setServicioEste(servicio);
         System.out.println(servicioEste.getKey().getNombre());
         Nombre.setText(servicio.getKey().getNombre());
         Direccion.setText(servicio.getCentroDeportivoServicio().getDireccion());
