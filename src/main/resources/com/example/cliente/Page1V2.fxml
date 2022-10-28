@@ -194,7 +194,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <VBox layoutX="14.0" layoutY="47.0" prefHeight="200.0" prefWidth="473.0" styleClass="plus_btn">
+                  <VBox layoutX="14.0" layoutY="47.0" prefHeight="200.0" prefWidth="473.0">
                      <children>
                         <Label text="Mis Me Gusta" textFill="#4c4c4e">
                            <font>
@@ -206,7 +206,7 @@
                         </Label>
                         <ScrollPane prefHeight="163.0" prefWidth="471.0">
                           <content>
-                            <AnchorPane fx:id="misMeGusta" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="249.0" prefWidth="455.0" />
+                            <AnchorPane fx:id="misMeGusta" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="249.0" prefWidth="447.0" />
                           </content>
                         </ScrollPane>
                      </children>
