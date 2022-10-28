@@ -90,6 +90,7 @@ public class Login {
                 }
 
             }else if (Objects.equals(tipoDeUser.get(0)[0], "CENTRO_DEP")){
+//                ScenceController.pruebaSubirImagen(actionEvent);
                 try{
                     ScenceController.switchToAdminCentroDeporivo(actionEvent);
                 } catch (IOException e) {

@@ -2,7 +2,7 @@ package com.example.cliente.Model;
 
 
 public class Imagen {
-    private Long id;
+//    private Long id;
 
     private String imagen;
 
@@ -16,13 +16,13 @@ public class Imagen {
         this.imagen = imagen;
     }
 
-    public Long getId() {
-        return id;
-    }
+//    public Long getId() {
+//        return id;
+//    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
     public String getImagen() {
         return imagen;
