@@ -24,6 +24,7 @@ public class ControllerCentroDeportivo {
     private Button IngresoCliente;
 
     public void switchToCreatServicio(javafx.event.ActionEvent event) throws IOException {
+        System.out.println("entre");
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("CrearServicios.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();

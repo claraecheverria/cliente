@@ -4,6 +4,7 @@ import com.example.cliente.Model.Cancha;
 import com.example.cliente.Model.CentroDeportivo;
 import com.example.cliente.Model.Servicio;
 //import javafx.embed.swing.SwingFXUtils;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -24,6 +25,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.Base64;
 
 public class ControllerPlantillaServicio {
 
@@ -63,8 +65,11 @@ public class ControllerPlantillaServicio {
     }
 
     public void setData(Servicio servicio){
-//        javafx.scene.image.Image image = parseByteToImage(servicio.imagen)
-//        Image.setImage(image);
+        byte[] decodedBytes;
+        decodedBytes = Base64.getDecoder().decode(String.valueOf(servicio.getImagenes()));
+        ByteArrayInputStream i = new ByteArrayInputStream(decodedBytes);
+        Image.setImage(new Image(i));
+
         setServicioEste(servicio);
         System.out.println(servicioEste.getKey().getNombre());
         Nombre.setText(servicio.getKey().getNombre());
@@ -82,12 +87,12 @@ public class ControllerPlantillaServicio {
 
     }
 
-//    public Image parseByteToImage (byte [] imagen) throws IOException {
-//        ByteArrayInputStream inStreambj = new ByteArrayInputStream(imagen);
-//        BufferedImage newImage = ImageIO.read(inStreambj);
-//        Image img = SwingFXUtils.toFXImage(newImage, null);
-//        return img;
-//    }
+    public Image parseByteToImage (byte [] imagen) throws IOException {
+        ByteArrayInputStream inStreambj = new ByteArrayInputStream(imagen);
+        BufferedImage newImage = ImageIO.read(inStreambj);
+        Image img = SwingFXUtils.toFXImage(newImage, null);
+        return img;
+    }
 
     public void meGusta(javafx.event.ActionEvent actionEvent) {
 //        if (BottonMeGusta.getStyle() == "-fx-background-color:#2B49B3;") {
