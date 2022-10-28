@@ -19,7 +19,7 @@
             <Font name="Arial Black" size="18.0" />
          </font>
       </Button>
-      <Button layoutX="419.0" layoutY="278.0" mnemonicParsing="false" text="Volver" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
+      <Button layoutX="419.0" layoutY="278.0" mnemonicParsing="false" onAction="#volver" text="Volver" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
          <font>
             <Font name="Arial Black" size="13.0" />
          </font>

@@ -31,6 +31,7 @@ public class ControllerCentroDeportivo {
         scence = new Scene(root);
         stage.setScene(scence);
         stage.show();
+
     }
 
     public void switchToIngresoCliente(javafx.event.ActionEvent event) throws IOException {
@@ -39,8 +40,6 @@ public class ControllerCentroDeportivo {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scence = new Scene(root);
         stage.show();
+
     }
-
-
-
 }
