@@ -66,7 +66,8 @@ public class ControllerPlantillaServicio {
 
     public void setData(Servicio servicio){
         byte[] decodedBytes;
-        decodedBytes = Base64.getDecoder().decode(String.valueOf(servicio.getImagenes()));
+        String[] imagenes = servicio.getImagenes().toArray(new String[servicio.getImagenes().size()]);
+        decodedBytes = Base64.getDecoder().decode(imagenes[0]);
         ByteArrayInputStream i = new ByteArrayInputStream(decodedBytes);
         Image.setImage(new Image(i));
 
@@ -87,12 +88,6 @@ public class ControllerPlantillaServicio {
 
     }
 
-    public Image parseByteToImage (byte [] imagen) throws IOException {
-        ByteArrayInputStream inStreambj = new ByteArrayInputStream(imagen);
-        BufferedImage newImage = ImageIO.read(inStreambj);
-        Image img = SwingFXUtils.toFXImage(newImage, null);
-        return img;
-    }
 
     public void meGusta(javafx.event.ActionEvent actionEvent) {
 //        if (BottonMeGusta.getStyle() == "-fx-background-color:#2B49B3;") {
