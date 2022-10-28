@@ -49,7 +49,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
     private ControllerSeleccionFechaReserva controllerSeleccionFechaReserva;
     private ControllerPlantillaServicio controllerPlantillaServicio;
 
-    private ArrayList horariosLibres;
+    private List<Reserva> horariosLibres;
     private List<UserEmpleado> mailsUsuarios;
 
     private Servicio servicio;
@@ -62,7 +62,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Lable.setText(" ");
-        horariosLibres = (ArrayList) getHorariosReservas();
+        horariosLibres = getHorariosReservas();
         try {
             for (int i = 0; i < horariosLibres.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -70,7 +70,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
                 fxmlLoader.setLocation(getClass().getResource("BotonHorario.fxml"));
                 HBox horarioBox = fxmlLoader.load();
                 ControllerPlantillaHorarioReserva servicioController = fxmlLoader.getController();
-                servicioController.setData((String) horariosLibres.get(i));
+                servicioController.setData(horariosLibres.get(i).getHoraFin().toString());
                 VboxHorarios.getChildren().add(horarioBox);
             }
         }
@@ -100,7 +100,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
         }
     }
 
-    public List getHorariosReservas(){   // HAY QUE PONER QUE DEVUELVA LOS HORARIOS LIBRES
+    public List<Reserva> getHorariosReservas(){   // HAY QUE PONER QUE DEVUELVA LOS HORARIOS LIBRES
         //Tengo que mandar nombre centro deportivo, nomber servicio y fecha
 
         ControllerPlantillaServicio controllerPlantillaServicio1 = (ControllerPlantillaServicio) ClienteApplication.getContext().getBean("controllerPlantillaServicio");
@@ -121,7 +121,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
                 .asJson();
         com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
         try {
-            List<Servicio> listaHorariosDisponibles = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Servicio>>(){});
+            List<Reserva> listaHorariosDisponibles = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Reserva>>(){});
             System.out.println(listaHorariosDisponibles.size());
             return listaHorariosDisponibles;
         } catch (JsonProcessingException e) {
