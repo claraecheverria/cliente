@@ -66,11 +66,16 @@ public class ControllerPlantillaServicio {
 
     public void setData(Servicio servicio){
         byte[] decodedBytes;
-        String[] imagenes = servicio.getImagenes().toArray(new String[servicio.getImagenes().size()]);
-        decodedBytes = Base64.getDecoder().decode(imagenes[0]);
-        ByteArrayInputStream i = new ByteArrayInputStream(decodedBytes);
-        Image.setImage(new Image(i));
+        if(servicio.getImagenes() == null){
 
+
+        }else{
+            String[] imagenes = servicio.getImagenes().toArray(new String[servicio.getImagenes().size()]);
+            decodedBytes = Base64.getDecoder().decode(imagenes[0]);
+            ByteArrayInputStream i = new ByteArrayInputStream(decodedBytes);
+            Image.setImage(new Image(i));
+
+        }
         setServicioEste(servicio);
         System.out.println(servicioEste.getKey().getNombre());
         Nombre.setText(servicio.getKey().getNombre());
