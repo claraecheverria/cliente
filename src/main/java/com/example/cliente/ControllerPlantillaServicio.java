@@ -2,9 +2,10 @@ package com.example.cliente;
 
 import com.example.cliente.Model.Cancha;
 import com.example.cliente.Model.CentroDeportivo;
+import com.example.cliente.Model.Imagen;
 import com.example.cliente.Model.Servicio;
 //import javafx.embed.swing.SwingFXUtils;
-import javafx.embed.swing.SwingFXUtils;
+//import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -66,12 +67,12 @@ public class ControllerPlantillaServicio {
 
     public void setData(Servicio servicio){
         byte[] decodedBytes;
-        if(servicio.getImagenes() == null){
+        if(servicio.getImagenes().size() == 0){
 
 
         }else{
-            String[] imagenes = servicio.getImagenes().toArray(new String[servicio.getImagenes().size()]);
-            decodedBytes = Base64.getDecoder().decode(imagenes[0]);
+            Imagen[] imagenes = servicio.getImagenes().toArray(new Imagen[servicio.getImagenes().size()]);
+            decodedBytes = Base64.getDecoder().decode(imagenes[0].getImagen());
             ByteArrayInputStream i = new ByteArrayInputStream(decodedBytes);
             Image.setImage(new Image(i));
 
