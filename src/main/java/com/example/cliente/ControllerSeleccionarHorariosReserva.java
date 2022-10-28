@@ -62,21 +62,21 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Lable.setText(" ");
-//        horariosLibres = (ArrayList) getHorariosReservas();
-//        try {
-//            for (int i = 0; i < horariosLibres.size(); i++) {
-//                FXMLLoader fxmlLoader = new FXMLLoader();
-////                fxmlLoader.setControllerFactory(ClienteApplication.getContext()::getBean);
-//                fxmlLoader.setLocation(getClass().getResource("BotonHorario.fxml"));
-//                HBox horarioBox = fxmlLoader.load();
-//                ControllerPlantillaHorarioReserva servicioController = fxmlLoader.getController();
-//                servicioController.setData((String) horariosLibres.get(i));
-//                VboxHorarios.getChildren().add(horarioBox);
-//            }
-//        }
-//        catch(IOException e){
-//            throw new RuntimeException(e);
-//        }
+        horariosLibres = (ArrayList) getHorariosReservas();
+        try {
+            for (int i = 0; i < horariosLibres.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setControllerFactory(ClienteApplication.getContext()::getBean);
+                fxmlLoader.setLocation(getClass().getResource("BotonHorario.fxml"));
+                HBox horarioBox = fxmlLoader.load();
+                ControllerPlantillaHorarioReserva servicioController = fxmlLoader.getController();
+                servicioController.setData((String) horariosLibres.get(i));
+                VboxHorarios.getChildren().add(horarioBox);
+            }
+        }
+        catch(IOException e){
+            throw new RuntimeException(e);
+        }
     }
 
     public void invitarAmigo(javafx.event.ActionEvent actionEvent){
@@ -112,7 +112,10 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
         String centroDeportivoNombre = centroDeportivo.getNombre();
         String servicioNombre = servicio.getKey().getNombre();
 
-        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/listaServicios")
+        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/reservasEnFecha?fecha={fecha},servicio={servicioNombre},centroDep={centroDeportivoNombre}")
+                .routeParam("fecha", String.valueOf(fecha))
+                .routeParam("servicio",servicioNombre)
+                .routeParam("centroDep",centroDeportivoNombre)
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
                 .asJson();
