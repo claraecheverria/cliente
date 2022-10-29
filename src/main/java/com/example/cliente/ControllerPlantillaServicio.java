@@ -95,7 +95,7 @@ public class ControllerPlantillaServicio {
 
 
     public void meGusta(javafx.event.ActionEvent actionEvent) {
-//        if (BottonMeGusta.getStyle() == "-fx-background-color:#2B49B3;") {
+        if (BottonMeGusta.isPressed() == true) {
             BottonMeGusta.setStyle("-fx-background-color:#2B49B3;");
             System.out.println("apreté me gusta");
             System.out.println(servicioEste.getKey().getNombre());
@@ -105,7 +105,7 @@ public class ControllerPlantillaServicio {
                     .header("Content-Type", "application/json")
                     .body(servicioEste)
                     .asJson();
-//        }
+        }
     }
 
     public void sacarMeGusta(javafx.event.ActionEvent actionEvent){
@@ -116,10 +116,6 @@ public class ControllerPlantillaServicio {
                 .header("Content-Type", "application/json")
                 .body(servicioEste)
                 .asJson();
-    }
-
-    public void setColorButonMeGusta(){
-        BottonMeGusta.setStyle("-fx-background-color: #C9C9C9;");
     }
 
     public void Reservar(javafx.event.ActionEvent actionEvent) throws IOException {
