@@ -28,6 +28,5 @@ public class ControllerPlantillaMisMeGusta {
         Descripcion.setText(servicio.getDescripcion());
         HorarioInicio.setText(servicio.getHoraInicio());
         HorarioFin.setText(servicio.getHoraFin());
-
     }
 }
