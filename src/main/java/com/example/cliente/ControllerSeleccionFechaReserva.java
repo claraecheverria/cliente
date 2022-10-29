@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,7 +44,8 @@ public class ControllerSeleccionFechaReserva {
         ((ControllerSeleccionarHorariosReserva) fxmlLoader.getController()).setServicio(servicio);
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
-
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
     public void volver(javafx.event.ActionEvent actionEvent) throws IOException {
         controllerPlantillaServicio.Volver(actionEvent);
