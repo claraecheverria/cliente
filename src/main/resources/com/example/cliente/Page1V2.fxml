@@ -164,7 +164,7 @@
                                           <Font name="Arial Bold" size="24.0" />
                                        </font>
                                     </Label>
-                                    <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutY="91.0" prefHeight="27.0" prefWidth="76.0" text="4500" textFill="#2b49b3">
+                                    <Label fx:id="Importe" alignment="TOP_LEFT" contentDisplay="RIGHT" layoutY="91.0" prefHeight="27.0" prefWidth="76.0" text="4500" textFill="#2b49b3">
                                        <font>
                                           <Font name="Arial Bold" size="24.0" />
                                        </font>

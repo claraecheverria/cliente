@@ -47,6 +47,9 @@ public class ControllerVistaUsuarioFinal implements Initializable {
     private Label FechaDeHoy;
     @FXML
     private AnchorPane misMeGusta;
+    @FXML
+    private Label Importe;
+
     private ArrayList<Servicio> ultimosServiciosUtilizados = new ArrayList();
 
     @Override
@@ -76,6 +79,20 @@ public class ControllerVistaUsuarioFinal implements Initializable {
                 ControllerPlantillaMisMeGusta servicioController = fxmlLoader.getController();
                 servicioController.setData(listaMeGusta.get(i));
                 misMeGusta.getChildren().add(serviceBox);
+            }
+        }catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        try{
+            for(int i =0; i<2;i++){
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("PlantillaServicio.fxml"));
+                HBox serviceBox = null;
+                serviceBox = fxmlLoader.load();
+                ControllerPlantillaServicio servicioController = fxmlLoader.getController();
+                servicioController.setData(listaMeGusta.get(i));
+                HboxMeGusta.getChildren().add(serviceBox);
             }
         }catch (IOException e) {
             throw new RuntimeException(e);
