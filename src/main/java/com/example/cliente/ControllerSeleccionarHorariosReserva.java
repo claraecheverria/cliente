@@ -54,13 +54,29 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
 
     private List<Reserva> horariosLibres;
     private List<UserEmpleado> mailsUsuarios = new ArrayList<>();
+    private List<Reserva> horariosOcupados;
 
     private Servicio servicio;
+
 
     public void setServicio(Servicio servicio) {
         System.out.println(servicio.getKey().getNombre());
         this.servicio = servicio;
-        horariosLibres = getHorariosReservas();
+        horariosOcupados = getHorariosReservas();
+        for(int i = Integer.parseInt(servicio.getHoraInicio()); i < Integer.parseInt(servicio.getHoraFin()); i++){
+            horariosLibres.add(i);
+        }
+        for(int j=0; j<horariosOcupados.size(); j++){
+            int horaInicio = Integer.parseInt(String.valueOf(horariosOcupados.get(j).getHoraInicio().getHour()));
+            int horaFin = Integer.parseInt(String.valueOf(horariosOcupados.get(j).getHoraFin().getHour()));
+            int cantidadHoras = horaFin - horaInicio;
+
+            for(int k = 0; k<cantidadHoras;k++){
+                horariosLibres.remove(horaInicio+k);
+
+            }
+        }
+
         try {
             for (int i = 0; i < horariosLibres.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -68,7 +84,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
                 fxmlLoader.setLocation(getClass().getResource("BotonHorario.fxml"));
                 AnchorPane horarioBox = fxmlLoader.load();
                 ControllerPlantillaHorarioReserva servicioController = fxmlLoader.getController();
-                servicioController.setData(horariosLibres.get(i).getHoraFin().toString());
+                servicioController.setData(horariosLibres.get(i).toString());
                 VboxHorarios.getChildren().add(horarioBox);
             }
         }

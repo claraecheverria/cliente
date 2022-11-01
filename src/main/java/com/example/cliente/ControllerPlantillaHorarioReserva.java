@@ -18,9 +18,15 @@ public class ControllerPlantillaHorarioReserva {
     }
 
     public void seleccionar(javafx.event.ActionEvent actionEvent){
-        isSelected = true;
+        if(isSelected == false){
+            isSelected = true;
+            Boton.setStyle("-fx-background-color: #1b68b3;");
+        }
+        else{
+            isSelected = false;
+            Boton.setStyle("-fx-background-color: #c1c1c1;");
+        }
 
-        Boton.setStyle("-fx-background-color: #c1c1c1;");
     }
 
     public boolean isSelected() {

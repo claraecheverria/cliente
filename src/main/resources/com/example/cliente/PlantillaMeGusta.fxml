@@ -45,9 +45,9 @@
                </children>
             </GridPane>
             <Label fx:id="Descripcion" alignment="TOP_LEFT" layoutX="-20.0" layoutY="39.0" prefHeight="36.0" prefWidth="170.0" text="Descripcion" AnchorPane.leftAnchor="1.0" />
-            <Button fx:id="Reservar" layoutX="396.0" layoutY="54.0" mnemonicParsing="false" styleClass="buttonsSettings" stylesheets="@StilePage1.css" text="Reservar" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="2.0" />
+            <Button fx:id="Reservar" layoutX="396.0" layoutY="54.0" mnemonicParsing="false" onAction="#Reservar" styleClass="buttonSelected" stylesheets="@StilePage1.css" text="Reservar" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="2.0" />
             <Label fx:id="Direccion" layoutX="295.0" layoutY="6.0" prefHeight="17.0" prefWidth="155.0" text="Direccion" />
-            <Button layoutX="414.0" layoutY="4.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="buttonsSettings" stylesheets="@StilePage1.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+            <Button fx:id="BotonMeGusta" layoutX="414.0" layoutY="4.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="buttonSelected" stylesheets="@StilePage1.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
                <graphic>
                   <FontAwesomeIconView glyphName="STAR" />
                </graphic>

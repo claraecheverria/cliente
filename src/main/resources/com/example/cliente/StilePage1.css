@@ -12,7 +12,7 @@
     -fx-background-color: #C9C9C9;
 }
 .buttonSelected{
-    -fx-background-color: #2B49B3;
+    -fx-background-color: #2B69b3;
 }
 .servicePanel{
     -fx-background-radius: 15px 15px 15px 15px;
@@ -86,5 +86,19 @@
     -fx-background-color: #2B49B3;
     -fx-width: 12px;
     -fx-background-radius: 3px 3px 0px 0px;
+}
+
+.scroll-pane {
+    -fx-border-color: #2B69b3;
+    -fx-padding: 0px;
+}
+
+.scroll-pane:vertical .content{
+    -fx-background-color: #4a4a4a;
+
+}
+
+.scroll-bar:vertical .thumb{
+    -fx-background-color: #2B69b3;
 }
 
