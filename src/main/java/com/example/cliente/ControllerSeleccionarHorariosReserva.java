@@ -53,7 +53,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
     private ControllerPlantillaServicio controllerPlantillaServicio;
 
     private List<Reserva> horariosLibres;
-    private List<UserEmpleado> mailsUsuarios;
+    private List<UserEmpleado> mailsUsuarios = new ArrayList<>();
 
     private Servicio servicio;
 
@@ -98,22 +98,18 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
     }
 
     public void invitarAmigo(javafx.event.ActionEvent actionEvent){
-        String mail = Mail.toString();
-        User nuevoUser = new User(mail);
-
+        String mail = Mail.getText();
+        Mail.clear();
+        Lable.setText(" ");
         // Consultar a la base de datos si el mail existe
-        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/checkExisteUser?email={mail}")
+        HttpResponse<String> response = Unirest.get("http://localhost:8080/user/checkExisteUser?email={mail}")
                 .routeParam("mail",mail)
-                .header("accept", "application/json")
-                .header("Content-Type", "application/json")
-                .asJson();
-
-        System.out.println(response.getBody());
-
-        if(response.getBody().toString() == "true"){
+                .asString();
+        Boolean existe = Boolean.parseBoolean(response.getBody().toString());
+        if(existe){
             VboxMails.getChildren().add(new Text(mail));
-            User user = new User(mail);
-            mailsUsuarios.add((UserEmpleado) user);
+            UserEmpleado Usr = new UserEmpleado(mail);
+            mailsUsuarios.add(Usr);
         }
         else{
             Lable.setText("Seleccione un mail valido");
@@ -147,6 +143,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
         objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
         objectMapper.setDateFormat(df);
         try {
+            //hay que ver que pasa cuando te devuelve una lista vacía, pq sino en el objectmapper se rompe
             List<Reserva> listaHorariosDisponibles = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Reserva>>(){});
             System.out.println(listaHorariosDisponibles.size());
             return listaHorariosDisponibles;

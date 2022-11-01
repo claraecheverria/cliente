@@ -24,6 +24,10 @@ public class UserEmpleado extends User{
         this.empresaEmpl = empresaEmpl;
     }
 
+    public UserEmpleado(String email) {
+        super(email);
+    }
+
     public UserEmpleado() {
     }
 
