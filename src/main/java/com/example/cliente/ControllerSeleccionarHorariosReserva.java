@@ -18,7 +18,6 @@ import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
@@ -64,7 +63,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
         this.servicio = servicio;
         horariosOcupados = getHorariosReservas();
         for(int i = Integer.parseInt(servicio.getHoraInicio()); i < Integer.parseInt(servicio.getHoraFin()); i++){
-            horariosLibres.add(i);
+//            horariosLibres.add(i);
         }
         for(int j=0; j<horariosOcupados.size(); j++){
             int horaInicio = Integer.parseInt(String.valueOf(horariosOcupados.get(j).getHoraInicio().getHour()));
