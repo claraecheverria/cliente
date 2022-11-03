@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import kong.unirest.HttpResponse;
@@ -182,7 +183,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
         Cancha cancha = (Cancha) servicio;
         ArrayList<Button> listaBotonesSeleccionados = new ArrayList<>();
         for(int i = 0; i<horariosLibres.size();i++){
-            if(VboxHorarios.getChildren().get(i).isPressed() == true){
+            if(VboxHorarios.getChildren().get(i).getStyle() == "-fx-background-color: transparent"){
                 listaBotonesSeleccionados.add((Button) VboxHorarios.getChildren().get(i));
             }
         }
