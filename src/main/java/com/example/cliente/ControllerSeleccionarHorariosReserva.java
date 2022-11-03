@@ -50,7 +50,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
     private ControllerSeleccionFechaReserva controllerSeleccionFechaReserva;
     private ControllerPlantillaServicio controllerPlantillaServicio;
 
-    private List<Integer> horariosLibres = new ArrayList<Integer>();
+    private ArrayList<Integer> horariosLibres = new ArrayList<Integer>();
     private List<UserEmpleado> mailsUsuarios = new ArrayList<>();
     private List<Reserva> horariosOcupados;
     private Servicio servicio;
@@ -63,18 +63,24 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
 
         LocalTime horaInicioServ = LocalTime.parse(servicio.getHoraInicio());
         LocalTime horaFinServ = LocalTime.parse(servicio.getHoraFin());
-        for(int i = horaInicioServ.getHour(); i < horaFinServ.getHour(); i++){
+        for(int i = horaInicioServ.getHour(); i <= horaFinServ.getHour(); i++){
             horariosLibres.add(i);
+            System.out.println(i);
         }
 
         for(int j=0; j<horariosOcupados.size(); j++){
 
             int horaInicio = Integer.parseInt(String.valueOf(horariosOcupados.get(j).getHoraInicio().getHour()));
+            System.out.println(horaInicio);
             int horaFin = Integer.parseInt(String.valueOf(horariosOcupados.get(j).getHoraFin().getHour()));
+            System.out.println(horaFin);
             int cantidadHoras = horaFin - horaInicio;
+            System.out.println(cantidadHoras);
 
             for(int k = 0; k<cantidadHoras;k++){
-                horariosLibres.remove(horaInicio+k);
+//                horariosLibres.remove(horaInicio+k);
+                Integer elemento = horaInicio+k;
+                horariosLibres.remove(elemento);
 
             }
         }
@@ -172,8 +178,8 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
     public void guardarDatos(javafx.event.ActionEvent actionEvent){
 
         LocalDate fecha = controllerSeleccionFechaReserva.mandarFecha();
-        Cancha cancha = controllerPlantillaServicio.devolverCancha();
-
+//        Cancha cancha = controllerPlantillaServicio.devolverCancha();
+        Cancha cancha = (Cancha) servicio;
         ArrayList<Button> listaBotonesSeleccionados = new ArrayList<>();
         for(int i = 0; i<horariosLibres.size();i++){
             if(VboxHorarios.getChildren().get(i).isPressed() == true){
