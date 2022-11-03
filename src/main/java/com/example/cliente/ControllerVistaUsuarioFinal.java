@@ -91,8 +91,10 @@ public class ControllerVistaUsuarioFinal implements Initializable {
                 HBox serviceBox = null;
                 serviceBox = fxmlLoader.load();
                 ControllerPlantillaServicio servicioController = fxmlLoader.getController();
-                servicioController.setData(listaMeGusta.get(i));
-                HboxMeGusta.getChildren().add(serviceBox);
+                if (listaMeGusta.size()>0) {//FIXME ver que hacer aca pero cuando es nula se rompe sino
+                    servicioController.setData(listaMeGusta.get(i));
+                    HboxMeGusta.getChildren().add(serviceBox);
+                }
             }
         }catch (IOException e) {
             throw new RuntimeException(e);
