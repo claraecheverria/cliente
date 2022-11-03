@@ -97,7 +97,7 @@ public class ControllerVistaUsuarioFinal implements Initializable {
                     HboxMeGusta.getChildren().add(serviceBox);
                 }
                 else{
-                    HboxMeGusta.getChildren().add(new Text("Aun no tenes me gusta"));
+
                 }
             }
         }catch (IOException e) {

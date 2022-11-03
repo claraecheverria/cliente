@@ -68,6 +68,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
         }
 
         for(int j=0; j<horariosOcupados.size(); j++){
+
             int horaInicio = Integer.parseInt(String.valueOf(horariosOcupados.get(j).getHoraInicio().getHour()));
             int horaFin = Integer.parseInt(String.valueOf(horariosOcupados.get(j).getHoraFin().getHour()));
             int cantidadHoras = horaFin - horaInicio;
