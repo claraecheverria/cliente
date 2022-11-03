@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
@@ -94,6 +95,9 @@ public class ControllerVistaUsuarioFinal implements Initializable {
                 if (listaMeGusta.size()>0) {//FIXME ver que hacer aca pero cuando es nula se rompe sino
                     servicioController.setData(listaMeGusta.get(i));
                     HboxMeGusta.getChildren().add(serviceBox);
+                }
+                else{
+                    HboxMeGusta.getChildren().add(new Text("Aun no tenes me gusta"));
                 }
             }
         }catch (IOException e) {

@@ -11,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import kong.unirest.HttpResponse;
@@ -51,10 +50,9 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
     private ControllerSeleccionFechaReserva controllerSeleccionFechaReserva;
     private ControllerPlantillaServicio controllerPlantillaServicio;
 
-    private List<Reserva> horariosLibres;
+    private List<Integer> horariosLibres = new ArrayList<Integer>();
     private List<UserEmpleado> mailsUsuarios = new ArrayList<>();
     private List<Reserva> horariosOcupados;
-
     private Servicio servicio;
 
 
@@ -62,9 +60,13 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
         System.out.println(servicio.getKey().getNombre());
         this.servicio = servicio;
         horariosOcupados = getHorariosReservas();
-        for(int i = Integer.parseInt(servicio.getHoraInicio()); i < Integer.parseInt(servicio.getHoraFin()); i++){
-//            horariosLibres.add(i);
+
+        LocalTime horaInicioServ = LocalTime.parse(servicio.getHoraInicio());
+        LocalTime horaFinServ = LocalTime.parse(servicio.getHoraFin());
+        for(int i = horaInicioServ.getHour(); i < horaFinServ.getHour(); i++){
+            horariosLibres.add(i);
         }
+
         for(int j=0; j<horariosOcupados.size(); j++){
             int horaInicio = Integer.parseInt(String.valueOf(horariosOcupados.get(j).getHoraInicio().getHour()));
             int horaFin = Integer.parseInt(String.valueOf(horariosOcupados.get(j).getHoraFin().getHour()));

@@ -48,6 +48,8 @@ public class ControllerIngresarCliente implements Initializable {
         String email = Email.toString();
         String nombreSercicio = Servicios.toString();
 
+        Email.clear();
+
         ArrayList arrayList = new ArrayList<>();
 
 
