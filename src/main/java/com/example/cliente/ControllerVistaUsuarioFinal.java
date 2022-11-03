@@ -70,6 +70,8 @@ public class ControllerVistaUsuarioFinal implements Initializable {
         series1.getData().add(new XYChart.Data("Viernes",50));
         //chart.getData().addAll(series1);
 
+        ArrayList<Servicio> listaservicios = (ArrayList<Servicio>) getListaServicios();
+
         List<Servicio> listaMeGusta = getListaServiciosFav();
         try{
             for(int i = 0; i<listaMeGusta.size() ; i++){
@@ -97,7 +99,8 @@ public class ControllerVistaUsuarioFinal implements Initializable {
                     HboxMeGusta.getChildren().add(serviceBox);
                 }
                 else{
-
+                    servicioController.setData(listaservicios.get(i));
+                    HboxMeGusta.getChildren().add(serviceBox);
                 }
             }
         }catch (IOException e) {
@@ -142,6 +145,21 @@ public class ControllerVistaUsuarioFinal implements Initializable {
 //            throw new RuntimeException(e);
 //        }
 
+    }
+
+    public List<Servicio> getListaServicios (){
+        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/listaServicios")
+                .header("accept", "application/json")
+                .header("Content-Type", "application/json")
+                .asJson();
+        com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+        try {
+            List<Servicio> listaServicios = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Servicio>>(){});
+            System.out.println(listaServicios.size());
+            return listaServicios;
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void switchToConfiguracion(javafx.event.ActionEvent event) throws IOException {
