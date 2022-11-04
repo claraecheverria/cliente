@@ -3,6 +3,7 @@ package com.example.cliente;
 import com.example.cliente.Model.Ingreso;
 import com.example.cliente.Model.Servicio;
 import com.example.cliente.Model.User;
+import javafx.collections.FXCollections;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import javafx.collections.FXCollections;
