@@ -48,7 +48,7 @@ public class ControllerPlantillaServicio {
     private Button BottonMeGusta;
     private CentroDeportivo centroDeportio;
     private Servicio servicioEste;
-    private boolean estaPrecionado;
+    private boolean estaPrecionado = false;
 
     public CentroDeportivo getCentroDeportio() {
         return centroDeportio;
@@ -126,6 +126,7 @@ public class ControllerPlantillaServicio {
             BottonMeGusta.setStyle("-fx-background-color:#2B49B3;");
             System.out.println("apreté me gusta");
             System.out.println(servicioEste.getKey().getNombre());
+            setEstaPrecionado(true);
 
             HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/user/agregarServicioFav")
                     .header("accept", "application/json")
@@ -160,6 +161,10 @@ public class ControllerPlantillaServicio {
         Node source = (Node) actionEvent.getSource();
         Stage stageActual = (Stage) source.getScene().getWindow();
         stageActual.close();
+    }
+
+    public void setEstaPrecionado(boolean estaPrecionado) {
+        this.estaPrecionado = estaPrecionado;
     }
 
     public Cancha devolverCancha(){

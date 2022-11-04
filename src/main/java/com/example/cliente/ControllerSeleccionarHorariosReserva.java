@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -89,7 +90,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setControllerFactory(ClienteApplication.getContext()::getBean);
                 fxmlLoader.setLocation(getClass().getResource("BotonHorarioV2.fxml"));
-                Button horarioBox = fxmlLoader.load();
+                CheckBox horarioBox = fxmlLoader.load();
                 ControllerPlantillaHorarioReserva servicioController = fxmlLoader.getController();
                 servicioController.setData(horariosLibres.get(i).toString());
                 VboxHorarios.getChildren().add(horarioBox);
@@ -184,7 +185,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
         Cancha cancha = (Cancha) servicio;
         ArrayList<Button> listaBotonesSeleccionados = new ArrayList<>();
         for(int i = 0; i<horariosLibres.size();i++){
-            if(VboxHorarios.getChildren().get(i).getStyleClass().toString() == "-fx-background-color: #1b68b3;"){
+            if(VboxHorarios.getChildren().get(i).isPressed() == true){
                 listaBotonesSeleccionados.add((Button) VboxHorarios.getChildren().get(i));
             }
         }

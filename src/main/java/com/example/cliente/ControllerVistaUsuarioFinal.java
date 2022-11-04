@@ -89,16 +89,21 @@ public class ControllerVistaUsuarioFinal implements Initializable {
 
         try{
             for(int i =0; i<2;i++){
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("PlantillaServicio.fxml"));
-                HBox serviceBox = null;
-                serviceBox = fxmlLoader.load();
-                ControllerPlantillaServicio servicioController = fxmlLoader.getController();
-                if (listaMeGusta.size()>0) {//FIXME ver que hacer aca pero cuando es nula se rompe sino
+                if(listaMeGusta != null & listaMeGusta.size() == 0) {//FIXME ver que hacer aca pero cuando es nula se rompe sino
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("PlantillaServicio.fxml"));
+                    HBox serviceBox = null;
+                    serviceBox = fxmlLoader.load();
+                    ControllerPlantillaServicio servicioController = fxmlLoader.getController();
                     servicioController.setData(listaMeGusta.get(i));
                     HboxMeGusta.getChildren().add(serviceBox);
                 }
                 else{
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("PlantillaServicioSinReserva.fxml"));
+                    HBox serviceBox = null;
+                    serviceBox = fxmlLoader.load();
+                    ControllerPlantillaServicio servicioController = fxmlLoader.getController();
                     servicioController.setData(listaservicios.get(i));
                     HboxMeGusta.getChildren().add(serviceBox);
                 }
@@ -194,7 +199,7 @@ public class ControllerVistaUsuarioFinal implements Initializable {
         stage.setScene(scence);
         stage.show();
     }
-    public List<Servicio> getListaServiciosFav (){  // tiene que devolver el objeto servicio
+    public List<Servicio> getListaServiciosFav (){
         HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/serviciosFavDeUnUser")
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")

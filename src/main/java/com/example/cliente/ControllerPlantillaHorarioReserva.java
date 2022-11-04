@@ -2,10 +2,10 @@ package com.example.cliente;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.layout.AnchorPane;
 import org.springframework.stereotype.Controller;
 
-@Controller
 public class ControllerPlantillaHorarioReserva {
 
     @FXML
@@ -13,7 +13,7 @@ public class ControllerPlantillaHorarioReserva {
     @FXML
     private AnchorPane AnchorPain;
     @FXML
-    private Button Boton2;
+    private CheckBox Boton2;
 
     private boolean isSelected = false;
 
@@ -22,22 +22,6 @@ public class ControllerPlantillaHorarioReserva {
     }
 
     public void seleccionar(javafx.event.ActionEvent actionEvent){
-        if(isSelected == false){
-            isSelected = true;
-//            Boton.getStyleClass().add("-fx-background-color: #1b68b3;");
-            Boton2.getStyleClass().add("-fx-background-color: #1b68b3;");
-//            AnchorPain.getStyleClass().add("-fx-background-color: transparent");
-        }
-        else{
-            isSelected = false;
-//            Boton.getStyleClass().add("-fx-background-color: #c1c1c1;");
-
-            Boton2.getStyleClass().clear();
-            Boton2.getStyleClass().add("-fx-background-color: #c1c1c1;");
-
-//            AnchorPain.getStyleClass().clear();
-        }
-
     }
 
     public boolean isSelected() {
