@@ -1,7 +1,11 @@
 package com.example.cliente;
 
+import com.example.cliente.Model.Ingreso;
 import com.example.cliente.Model.Servicio;
 import com.example.cliente.Model.User;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -40,7 +44,7 @@ public class ControllerIngresarCliente implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList listaNombreServicios = null;
+        ObservableList listaNombreServicios = FXCollections.observableArrayList();
         for (int i = 0; i < listaServiciosO.size();i++){
             listaNombreServicios.add(listaServiciosO.get(i).getKey().getNombre());
         }
@@ -85,22 +89,31 @@ public class ControllerIngresarCliente implements Initializable {
         Email.clear();
 
         ArrayList arrayList = new ArrayList<>();
+        Ingreso nuevoIngreso = new Ingreso();
 
-
-        HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/user/agregarServicioFav?mail={mail}&nombreServico={nombreServicio}") // HAY QUE DEFINIR LA HTTP BIEN
-                .routeParam("mail",email)
-                .routeParam("nombreServicio",nombreSercicio)
+        HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/centroDeportivo/guardarIngreso") // HAY QUE DEFINIR LA HTTP BIEN
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
-                .body(arrayList)
+                .body(nuevoIngreso)
                 .asJson();
 
     }
 
     public List<Servicio> ListaServicios(){    // hay que hacer la consulta a la base de datos
 
-        List lista = new ArrayList();
-        return lista;
+        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/centroDeportivo/listaServiciosEsteCentroDep")
+                .header("accept", "application/json")
+                .header("Content-Type", "application/json")
+                .asJson();
+        com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+        try {
+            List<Servicio> listaServiciosEsteCentroDep = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Servicio>>(){});
+            System.out.println(listaServiciosEsteCentroDep.size());
+            return listaServiciosEsteCentroDep;
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 
