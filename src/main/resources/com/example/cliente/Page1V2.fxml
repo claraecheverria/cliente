@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" stylesheets="@StilePage1.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cliente.ControllerVistaUsuarioFinal">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1165.0" stylesheets="@StilePage1.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cliente.ControllerVistaUsuarioFinal">
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="45.0" styleClass="sidebar" BorderPane.alignment="CENTER">
          <children>
@@ -115,8 +115,11 @@
                                        <graphic>
                                           <FontAwesomeIconView fill="#c1c1c1" glyphName="PLUS" size="30" stroke="#c1c1c1" strokeWidth="0.0" />
                                        </graphic>
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
                                     </Button>
-                                    <HBox fx:id="HboxMeGusta" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="210.0" prefWidth="740.0">
+                                    <HBox fx:id="HboxMeGusta" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="210.0" prefWidth="750.0">
                                        <HBox.margin>
                                           <Insets bottom="10.0" />
                                        </HBox.margin>
@@ -131,7 +134,7 @@
                               <Insets left="10.0" />
                            </padding>
                            <HBox.margin>
-                              <Insets left="10.0" top="10.0" />
+                              <Insets top="10.0" />
                            </HBox.margin>
                         </VBox>
                         <Separator maxHeight="1.7976931348623157E308" minHeight="-Infinity" orientation="VERTICAL">
@@ -211,14 +214,14 @@
                         </ScrollPane>
                      </children>
                   </VBox>
-                  <VBox layoutX="500.0" layoutY="41.0" prefHeight="200.0" prefWidth="393.0" AnchorPane.leftAnchor="500.0">
+                  <VBox layoutX="566.0" layoutY="41.0" prefHeight="230.0" prefWidth="427.0" AnchorPane.leftAnchor="566.0">
                      <children>
                         <Label alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" text="General Report" textFill="#2b49b3">
                            <font>
                               <Font name="Arial Bold" size="15.0" />
                            </font>
                         </Label>
-                        <BarChart fx:id="chart" styleClass="chart-bar" stylesheets="@StilePage1.css">
+                        <BarChart fx:id="chart" prefHeight="242.0" prefWidth="427.0" styleClass="chart-bar" stylesheets="@StilePage1.css">
                            <xAxis>
                               <CategoryAxis side="BOTTOM" />
                            </xAxis>
