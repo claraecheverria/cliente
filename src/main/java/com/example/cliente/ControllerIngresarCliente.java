@@ -79,6 +79,8 @@ public class ControllerIngresarCliente implements Initializable {
     public void Ingresar(javafx.event.ActionEvent actionEvent){
         String email = Email.toString();
         String nombreSercicio = Servicios.toString();
+        String horaInicial = horaInicio.toString();
+        String horaFinal = horaFin.toString();
 
         Email.clear();
 

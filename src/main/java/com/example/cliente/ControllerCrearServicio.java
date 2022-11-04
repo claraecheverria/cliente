@@ -11,10 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import kong.unirest.HttpResponse;
@@ -41,15 +38,15 @@ public class ControllerCrearServicio implements Initializable {
     @FXML
     private TextField Nombre;
     @FXML
-    private ChoiceBox choiceBoxTipo;
+    private ComboBox choiceBoxTipo;
     @FXML
     private TextField Precio;
     @FXML
     private TextField Horarios;
     @FXML
-    private ChoiceBox HorarioInicio;
+    private ComboBox HorarioInicio;
     @FXML
-    private ChoiceBox HorarioFin;
+    private ComboBox HorarioFin;
     @FXML
     private TextField Cupos;
     @FXML

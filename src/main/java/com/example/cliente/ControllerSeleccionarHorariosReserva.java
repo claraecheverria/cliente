@@ -15,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
@@ -125,22 +126,32 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
     }
 
     public void invitarAmigo(javafx.event.ActionEvent actionEvent){
-        String mail = Mail.getText();
-        Mail.clear();
-        Lable.setText(" ");
-        // Consultar a la base de datos si el mail existe
-        HttpResponse<String> response = Unirest.get("http://localhost:8080/user/checkExisteUser?email={mail}")
-                .routeParam("mail",mail)
-                .asString();
-        Boolean existe = Boolean.parseBoolean(response.getBody().toString());
-        if(existe){
-            VboxMails.getChildren().add(new Text(mail));
-            UserEmpleado Usr = new UserEmpleado(mail);
-            mailsUsuarios.add(Usr);
+        ArrayList lisatInvitados = new ArrayList();
+        Cancha cancha = (Cancha) servicio;
+
+        if(lisatInvitados.size() == cancha.getCupos()){
+            Lable.setText("El cupo ya es el maximo permitido");
         }
         else{
-            Lable.setText("Seleccione un mail valido");
+            String mail = Mail.getText();
+            Mail.clear();
+            Lable.setText(" ");
+            // Consultar a la base de datos si el mail existe
+            HttpResponse<String> response = Unirest.get("http://localhost:8080/user/checkExisteUser?email={mail}")
+                    .routeParam("mail",mail)
+                    .asString();
+            Boolean existe = Boolean.parseBoolean(response.getBody().toString());
+            if(existe){
+                VboxMails.getChildren().add(new Text(mail));
+                UserEmpleado Usr = new UserEmpleado(mail);
+                mailsUsuarios.add(Usr);
+            }
+            else{
+                Lable.setText("Seleccione un mail valido");
+            }
+
         }
+
     }
 
     public List<Reserva> getHorariosReservas(){   // HAY QUE PONER QUE DEVUELVA LOS HORARIOS LIBRES

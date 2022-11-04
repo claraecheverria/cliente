@@ -39,6 +39,7 @@ public class ControllerCentroDeportivo {
         Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("IngresarCliente.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scence = new Scene(root);
+        stage.setScene(scence);
         stage.show();
 
     }
