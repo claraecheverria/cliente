@@ -1,5 +1,8 @@
 package com.example.cliente.Model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -7,6 +10,7 @@ import java.util.List;
 
 public class Reserva {
 
+    @JsonIgnore
     private Long id;
 
     private LocalDate fecha;
