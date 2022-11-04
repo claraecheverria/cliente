@@ -90,8 +90,8 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
             for (int i = 0; i < horariosLibres.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setControllerFactory(ClienteApplication.getContext()::getBean);
-                fxmlLoader.setLocation(getClass().getResource("BotonHorario.fxml"));
-                AnchorPane horarioBox = fxmlLoader.load();
+                fxmlLoader.setLocation(getClass().getResource("BotonHorarioV2.fxml"));
+                Button horarioBox = fxmlLoader.load();
                 ControllerPlantillaHorarioReserva servicioController = fxmlLoader.getController();
                 servicioController.setData(horariosLibres.get(i).toString());
                 VboxHorarios.getChildren().add(horarioBox);
@@ -183,7 +183,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
         Cancha cancha = (Cancha) servicio;
         ArrayList<Button> listaBotonesSeleccionados = new ArrayList<>();
         for(int i = 0; i<horariosLibres.size();i++){
-            if(VboxHorarios.getChildren().get(i).getStyle() == "-fx-background-color: transparent"){
+            if(VboxHorarios.getChildren().get(i).getStyleClass().toString() == "-fx-background-color: #1b68b3;"){
                 listaBotonesSeleccionados.add((Button) VboxHorarios.getChildren().get(i));
             }
         }
