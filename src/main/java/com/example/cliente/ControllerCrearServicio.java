@@ -1,8 +1,6 @@
 package com.example.cliente;
 
-import com.example.cliente.Model.DiasDeLaSemana;
-import com.example.cliente.Model.Servicio;
-import com.example.cliente.Model.ServicioIdNew;
+import com.example.cliente.Model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -76,16 +74,16 @@ public class ControllerCrearServicio implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        choiceBoxTipo.getItems().add(tipoList);
-        HorarioInicio.getItems().add(horariosList);
-        HorarioFin.getItems().add(horariosList);
-//        for(int i = 0; i<tipoList.size();i++){
-//            choiceBoxTipo.getItems().add(tipoList.get(i));
-//        }
-//        for(int k = 0; k<horariosList.size(); k++){
-//            HorarioFin.getItems().add(horariosList.get(k));
-//            HorarioInicio.getItems().add(horariosList.get(k));
-//        }
+//        choiceBoxTipo.getItems().add(tipoList);
+//        HorarioInicio.getItems().add(horariosList);
+//        HorarioFin.getItems().add(horariosList);
+        for(int i = 0; i<tipoList.size();i++){
+            choiceBoxTipo.getItems().add(tipoList.get(i));
+        }
+        for(int k = 0; k<horariosList.size(); k++){
+            HorarioFin.getItems().add(horariosList.get(k));
+            HorarioInicio.getItems().add(horariosList.get(k));
+        }
 //        choiceBoxTipo.setValue(tipoList);
 //        HorarioInicio.setValue(horariosList);
 //        HorarioFin.setValue(horariosList);
@@ -167,13 +165,6 @@ public class ControllerCrearServicio implements Initializable {
         Horarios.clear();
         Cupos.clear();
 
-        ServicioIdNew id = new ServicioIdNew(nombre);
-        Servicio nuevoServicio = new Servicio(id,precio,diasSeleccionados,horarioInicio,horarioFin,descripcion,tipo);//FIXME
 
-        HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/servicio/crearServicio")
-                .header("accept", "application/json")
-                .header("Content-Type", "application/json")
-                .body(nuevoServicio)
-                .asJson();
     }
 }

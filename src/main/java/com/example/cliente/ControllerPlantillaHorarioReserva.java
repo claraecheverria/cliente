@@ -23,7 +23,7 @@ public class ControllerPlantillaHorarioReserva {
     }
 
     public void seleccionar(javafx.event.ActionEvent actionEvent){
-        Boton.setStyle("-fx-background-color:#2B49B3;");
+//        Boton.setStyle("-fx-background-color:#2B49B3;");
     }
 
     public boolean isSelected() {
