@@ -91,14 +91,18 @@ public class ControllerCrearServicio implements Initializable {
 //        HorarioFin.setValue(horariosList);
     }
 
-    public void switchToAdmin(javafx.event.ActionEvent event) throws IOException {
+    public void switchToAdminCentroDeporivo(javafx.event.ActionEvent event) throws IOException{
         guradarDatos();
         FXMLLoader fxmlLoader = new FXMLLoader();
-        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("PrimerVistaAdmin.fxml"));
+        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("PrimeraVistaAdminCentroDeportivo.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scence = new Scene(root);
         stage.setScene(scence);
         stage.show();
+        stage.centerOnScreen();
+//        Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+//        stage.setX((primScreenBounds.getWidth() - stage.getWidth()) /2);
+//        stage.setY((primScreenBounds.getHeight() - stage.getHeight()) /2);
     }
 
     public void buscarImagen(javafx.event.ActionEvent actionEvent){

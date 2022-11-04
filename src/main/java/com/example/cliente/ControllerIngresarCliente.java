@@ -20,6 +20,7 @@ import kong.unirest.Unirest;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -93,6 +94,19 @@ public class ControllerIngresarCliente implements Initializable {
         String nombreSercicio = Servicios.toString();
         String horaInicial = horaInicio.toString();
         String horaFinal = horaFin.toString();
+
+        LocalTime horaInicioLT = LocalTime.parse(horaInicial);
+        LocalTime horaFinalLT = LocalTime.parse(horaFinal);
+        LocalTime fechaHoy = LocalTime.now();
+
+        String nombreServicio = Servicios.toString();
+        Servicio servico = null;
+
+        for(int i = 0; i<listaServiciosO.size(); i++){
+            if(listaServiciosO.get(i).getKey().getNombre() == nombreServicio){
+                servico = listaServiciosO.get(i);
+            }
+        }
 
         Email.clear();
 
