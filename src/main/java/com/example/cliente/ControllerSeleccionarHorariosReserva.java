@@ -3,6 +3,7 @@ package com.example.cliente;
 import com.example.cliente.Model.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -215,12 +216,22 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
             }
         }
         Reserva nuevaReserva = new Reserva(fecha, horaInicioLT,horaFinLT,cancha,mailsUsuarios); // mailUsuarios deberia ser con los usuarioEmpleado
+        try {
+            com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            objectMapper.findAndRegisterModules();
+            objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+            objectMapper.setDateFormat(df);
+            String serialized = objectMapper.writeValueAsString(nuevaReserva);
 
         HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/user/hacerReserva")
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
-                .body(nuevaReserva)
+                .body(serialized)
                 .asJson();
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

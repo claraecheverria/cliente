@@ -89,7 +89,7 @@ public class ControllerVistaUsuarioFinal implements Initializable {
 
         try{
             for(int i =0; i<2;i++){
-                if(listaMeGusta != null & listaMeGusta.size() == 0) {//FIXME ver que hacer aca pero cuando es nula se rompe sino
+                if(listaMeGusta != null && listaMeGusta.size() > 0) {//FIXME ver que hacer aca pero cuando es nula se rompe sino
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("PlantillaServicio.fxml"));
                     HBox serviceBox = null;
