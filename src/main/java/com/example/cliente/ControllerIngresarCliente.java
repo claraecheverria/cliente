@@ -32,7 +32,7 @@ public class ControllerIngresarCliente implements Initializable {
     @FXML
     private TextField Email;
     @FXML
-    private ChoiceBox Servicios;
+    private ComboBox Servicios;
     @FXML
     private Button Button;
     @FXML
@@ -51,7 +51,10 @@ public class ControllerIngresarCliente implements Initializable {
         }
 
         listaServicios =  listaNombreServicios;
-        Servicios.setValue(listaServicios);
+        for(int i = 0; i < listaServicios.size(); i++){
+            Servicios.getItems().add(listaServicios.get(i));
+        }
+//        Servicios.setValue(listaServicios);
     }
 
     public void desplegarHorarios(){
@@ -72,10 +75,14 @@ public class ControllerIngresarCliente implements Initializable {
             }
 
             for(int i = Integer.parseInt(servico.getHoraInicio()); i <= Integer.parseInt(servico.getHoraFin()); i++ ){
-                listaHorariosDisponibles.add(String.valueOf(i) + ":00");
+//                listaHorariosDisponibles.add(String.valueOf(i) + ":00");
+                horaInicio.getItems().add(i + ":00");
+                horaFin.getItems().add(i + ":00");
+
             }
-            horaInicio.setValue(listaHorariosDisponibles);
-            horaFin.setValue(listaHorariosDisponibles);
+
+//            horaInicio.setValue(listaHorariosDisponibles);
+//            horaFin.setValue(listaHorariosDisponibles);
 
         }
 
