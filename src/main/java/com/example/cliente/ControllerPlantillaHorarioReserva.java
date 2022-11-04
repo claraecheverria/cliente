@@ -6,6 +6,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.layout.AnchorPane;
 import org.springframework.stereotype.Controller;
 
+@Controller
 public class ControllerPlantillaHorarioReserva {
 
     @FXML
