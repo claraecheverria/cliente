@@ -42,7 +42,7 @@ public class Servicio {
         this.descripcion = descripcion;
         this.tipo = tipo;
     }
-    public Servicio(String name, CentroDeportivo centroDeportivoServicio, Long precio, Set<DiasDeLaSemana> dias, LocalTime horaInicio, LocalTime horaFin, String descripcion, String tipo, Set<Imagen> imagenes) {
+    public Servicio(String name, CentroDeportivo centroDeportivoServicio, Long precio, Set<DiasDeLaSemana> dias, String horaInicio, String horaFin, String descripcion, String tipo, Set<Imagen> imagenes) {
         this.key = new ServicioIdNew();
         this.key.setNombre(name);
         this.key.setCentroDeportivo(centroDeportivoServicio.getNombre());

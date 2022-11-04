@@ -3,7 +3,6 @@ package com.example.cliente;
 import com.example.cliente.Model.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,11 +11,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
@@ -195,17 +191,19 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
         LocalDate fecha = controllerSeleccionFechaReserva.mandarFecha();
 //        Cancha cancha = controllerPlantillaServicio.devolverCancha();
         Cancha cancha = (Cancha) servicio;
-        ArrayList<Button> listaBotonesSeleccionados = new ArrayList<>();
+        ArrayList<CheckBox> listaBotonesSeleccionados = new ArrayList<>();
         for(int i = 0; i<horariosLibres.size();i++){
-            if(VboxHorarios.getChildren().get(i).isPressed() == true){
-                listaBotonesSeleccionados.add((Button) VboxHorarios.getChildren().get(i));
+            System.out.println(VboxHorarios.getChildren().get(i).getClass());
+            if(((CheckBox)VboxHorarios.getChildren().get(i)).isSelected() == true){
+                System.out.println("esta bien el isPressed");
+                listaBotonesSeleccionados.add((CheckBox) VboxHorarios.getChildren().get(i));
             }
         }
         LocalTime horaInicioLT = LocalTime.parse("23:00:00");
         LocalTime horaFinLT = LocalTime.parse("00:00:00");
 
         for(int i = 0; i<listaBotonesSeleccionados.size();i++){
-            String horaInicio = listaBotonesSeleccionados.get(i).toString();
+            String horaInicio = listaBotonesSeleccionados.get(i).getText();
             LocalTime horaInicio2 = LocalTime.parse(horaInicio);
 
             if(horaInicio2.compareTo(horaInicioLT)<0){
