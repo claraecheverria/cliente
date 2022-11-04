@@ -69,7 +69,7 @@ public class ControllerMostrarOpciones implements Initializable {
     @FXML
     private VBox Vbox2;
     private ArrayList<Servicio> listaservicios;
-    private List<Servicio> listaCanchas = getListaCanchas();
+    private List<Cancha> listaCanchas = getListaCanchas();
 
 
     @Override
@@ -119,7 +119,7 @@ public class ControllerMostrarOpciones implements Initializable {
 
     public void applyFillters(javafx.event.ActionEvent event) throws IOException{
         ArrayList<Servicio> listaServiciosSeleccionados = new ArrayList<>();
-        ArrayList<Servicio> listaServiciosSeleccionadosReserva = new ArrayList<>();
+        ArrayList<Cancha> listaServiciosSeleccionadosReserva = new ArrayList<>();
         Vbox1.getChildren().clear();
         Vbox2.getChildren().clear();
 
@@ -184,7 +184,7 @@ public class ControllerMostrarOpciones implements Initializable {
         }
     }
 
-    public List<Servicio> getListaCanchas (){
+    public List<Cancha> getListaCanchas (){
         HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/listaServiciosCancha")
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
@@ -192,7 +192,7 @@ public class ControllerMostrarOpciones implements Initializable {
         com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         try {
-            List<Servicio> listaServicios = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Servicio>>(){});
+            List<Cancha> listaServicios = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Cancha>>(){});
             System.out.println(listaServicios.size());
             return listaServicios;
         } catch (JsonProcessingException e) {
@@ -255,7 +255,7 @@ public class ControllerMostrarOpciones implements Initializable {
             throw new RuntimeException(e);
         }
     }
-    public void desplegarPlantillasConReserva(ArrayList<Servicio> listaParaDesplegar){
+    public void desplegarPlantillasConReserva(ArrayList<Cancha> listaParaDesplegar){
         try {
             for (int i = 0; i < listaParaDesplegar.size(); i++) {
 //                System.out.println(listaCanchas.get(i).getKey().getNombre());
@@ -263,7 +263,7 @@ public class ControllerMostrarOpciones implements Initializable {
                 fxmlLoader.setLocation(getClass().getResource("plantillaServicio.fxml"));
                 HBox serviceBox = fxmlLoader.load();
                 ControllerPlantillaServicio servicioController = fxmlLoader.getController();
-                servicioController.setData(listaParaDesplegar.get(i));
+                servicioController.setDataCancha(listaParaDesplegar.get(i));
                 if(i%2 == 0){
                     Vbox1.getChildren().add(serviceBox);
                 }

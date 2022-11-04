@@ -59,19 +59,13 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
     public void setServicio(Servicio servicio) {
         System.out.println(servicio.getKey().getNombre());
         this.servicio = servicio;
-        horariosOcupados = getHorariosReservas();
-
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        Lable.setText(" ");
         LocalTime horaInicioServ = LocalTime.parse(servicio.getHoraInicio());
         LocalTime horaFinServ = LocalTime.parse(servicio.getHoraFin());
         for(int i = horaInicioServ.getHour(); i <= horaFinServ.getHour(); i++){
             horariosLibres.add(i);
             System.out.println(i);
         }
+        horariosOcupados = getHorariosReservas();
 
         for(int j=0; j<horariosOcupados.size(); j++){
 
@@ -104,6 +98,14 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
         catch(IOException e){
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        Lable.setText(" ");
+
+
+
 //        horariosLibres = getHorariosReservas();
 //        try {
 //            for (int i = 0; i < horariosLibres.size(); i++) {

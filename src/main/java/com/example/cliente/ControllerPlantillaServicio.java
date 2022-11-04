@@ -93,6 +93,33 @@ public class ControllerPlantillaServicio {
         centroDeportio = servicio.getCentroDeportivoServicio();
 
     }
+    public void setDataCancha(Cancha cancha){
+        byte[] decodedBytes;
+        if(cancha.getImagenes().size() == 0){
+
+        }else{
+            Imagen[] imagenes = cancha.getImagenes().toArray(new Imagen[cancha.getImagenes().size()]);
+            decodedBytes = Base64.getDecoder().decode(imagenes[0].getImagen());
+            ByteArrayInputStream i = new ByteArrayInputStream(decodedBytes);
+            Image.setImage(new Image(i));
+
+        }
+        setServicioEste(cancha);
+        System.out.println(servicioEste.getKey().getNombre());
+        Nombre.setText(cancha.getKey().getNombre());
+        Direccion.setText(cancha.getCentroDeportivoServicio().getDireccion());
+        Precio.setText(String.valueOf(cancha.getPrecio()));
+        Descripcion.setText(cancha.getDescripcion());
+        int tam = cancha.getDias().size();
+        String horarios = new String();
+//        for (int i = 0; i < tam; i++){
+        horarios = horarios + cancha.getDias().toString();
+//        }
+        Horarios.setText(horarios);
+//        BottonMeGusta.setStyle("-fx-background-color: #C9C9C9;");
+        centroDeportio = cancha.getCentroDeportivoServicio();
+
+    }
 
     public void meGusta(javafx.event.ActionEvent actionEvent) {
         if (estaPrecionado == false) {

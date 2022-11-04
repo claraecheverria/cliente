@@ -18,24 +18,24 @@ public class ControllerPlantillaHorarioReserva {
     private boolean isSelected = false;
 
     public void setData(String horario){
-        Boton.setText(horario);
+        Boton2.setText(horario);
     }
 
     public void seleccionar(javafx.event.ActionEvent actionEvent){
         if(isSelected == false){
             isSelected = true;
-            Boton.getStyleClass().add("-fx-background-color: #1b68b3;");
+//            Boton.getStyleClass().add("-fx-background-color: #1b68b3;");
             Boton2.getStyleClass().add("-fx-background-color: #1b68b3;");
-            AnchorPain.getStyleClass().add("-fx-background-color: transparent");
+//            AnchorPain.getStyleClass().add("-fx-background-color: transparent");
         }
         else{
             isSelected = false;
-            Boton.getStyleClass().add("-fx-background-color: #c1c1c1;");
+//            Boton.getStyleClass().add("-fx-background-color: #c1c1c1;");
 
             Boton2.getStyleClass().clear();
             Boton2.getStyleClass().add("-fx-background-color: #c1c1c1;");
 
-            AnchorPain.getStyleClass().clear();
+//            AnchorPain.getStyleClass().clear();
         }
 
     }
