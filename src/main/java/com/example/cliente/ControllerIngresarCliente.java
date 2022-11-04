@@ -2,6 +2,7 @@ package com.example.cliente;
 
 import com.example.cliente.Model.Servicio;
 import com.example.cliente.Model.User;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
