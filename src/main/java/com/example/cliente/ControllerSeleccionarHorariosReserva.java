@@ -57,6 +57,9 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
     private Servicio servicio;
 
     public void setServicio(Servicio servicio) {
+        VboxHorarios.getChildren().clear();
+        VboxMails.getChildren().clear();
+
         System.out.println(servicio.getKey().getNombre());
         this.servicio = servicio;
         LocalTime horaInicioServ = LocalTime.parse(servicio.getHoraInicio());
@@ -193,6 +196,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
 //        Cancha cancha = controllerPlantillaServicio.devolverCancha();
         Cancha cancha = (Cancha) servicio;
         ArrayList<CheckBox> listaBotonesSeleccionados = new ArrayList<>();
+
         for(int i = 0; i<horariosLibres.size();i++){
             System.out.println(VboxHorarios.getChildren().get(i).getClass());
             if(((CheckBox)VboxHorarios.getChildren().get(i)).isSelected() == true){
@@ -214,7 +218,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
                 horaInicioLT = horaInicio2;
             }
             if(horaFinal2.compareTo(horaFinLT)>0){
-                horaFinLT = horaInicio2;
+                horaFinLT = horaFinal2;
             }
         }
         Reserva nuevaReserva = new Reserva(fecha, horaInicioLT,horaFinLT,cancha,mailsUsuarios); // mailUsuarios deberia ser con los usuarioEmpleado
@@ -234,6 +238,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
+
     }
 
 }

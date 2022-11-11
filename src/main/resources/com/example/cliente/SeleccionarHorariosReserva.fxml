@@ -48,7 +48,7 @@
                      </font></Button>
                   <ScrollPane layoutX="46.0" layoutY="106.0" prefHeight="136.0" prefWidth="213.0" AnchorPane.bottomAnchor="70.0">
                      <content>
-                        <VBox fx:id="VboxMails" prefHeight="200.0" prefWidth="152.0" />
+                        <VBox fx:id="VboxMails" prefHeight="200.0" prefWidth="194.0" />
                      </content>
                   </ScrollPane>
                   <Label fx:id="Lable" layoutX="85.0" layoutY="22.0" text="Seleccione un mail valido" textFill="RED" AnchorPane.rightAnchor="281.5" />
