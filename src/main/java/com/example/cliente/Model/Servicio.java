@@ -24,7 +24,7 @@ public class Servicio {
 
     private Set<Imagen> imagenes;
 
-//    private String imagen;
+    List<Ingreso> ingresos;
 
 
     //CONSTRUCTORES
@@ -129,17 +129,6 @@ public class Servicio {
     public void setFavoritos(List<UserEmpleado> favoritos) {
         this.favoritos = favoritos;
     }
-//        public String getImagen() {
-//        return imagen;
-//    }
-//
-//    public void setImagen(String imagen) {
-//        this.imagen = imagen;
-//    }
-//    @JsonSetter("imagen")
-//    public void setImagen(String imagen) throws UnsupportedEncodingException {
-//        this.imagen = Base64.decode(imagen.getBytes("UTF-8"));
-//    }
 
 
     public CentroDeportivo getCentroDeportivoServicio() {
@@ -158,4 +147,11 @@ public class Servicio {
         this.imagenes = imagenes;
     }
 
+    public List<Ingreso> getIngresos() {
+        return ingresos;
+    }
+
+    public void setIngresos(List<Ingreso> ingresos) {
+        this.ingresos = ingresos;
+    }
 }
