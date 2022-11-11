@@ -123,6 +123,14 @@
                                        <HBox.margin>
                                           <Insets bottom="10.0" />
                                        </HBox.margin>
+                                       <children>
+                                          <HBox fx:id="HboxMeGusta1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="370.0">
+                                             <HBox.margin>
+                                                <Insets right="10.0" />
+                                             </HBox.margin>
+                                          </HBox>
+                                          <HBox fx:id="HboxMeGusta2" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="370.0" />
+                                       </children>
                                     </HBox>
                                  </children>
                                  <VBox.margin>
@@ -167,7 +175,7 @@
                                           <Font name="Arial Bold" size="24.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="Importe" alignment="TOP_LEFT" contentDisplay="RIGHT" layoutY="91.0" prefHeight="27.0" prefWidth="76.0" text="4500" textFill="#2b49b3">
+                                    <Label fx:id="Importe" alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="21.0" layoutY="63.0" prefHeight="27.0" prefWidth="76.0" text="4500" textFill="#2b49b3">
                                        <font>
                                           <Font name="Arial Bold" size="24.0" />
                                        </font>

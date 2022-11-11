@@ -76,7 +76,7 @@
             </Label>
          </children>
          <HBox.margin>
-            <Insets right="5.0" />
+            <Insets />
          </HBox.margin>
       </AnchorPane>
    </children>
