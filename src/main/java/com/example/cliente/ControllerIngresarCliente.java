@@ -82,6 +82,7 @@ public class ControllerIngresarCliente implements Initializable {
         else{
             String nombreServicio = Servicios.getValue().toString();
             Servicio servico = null;
+            Cancha cancha = null;
 
             for(int i = 0; i<listaServiciosO.size(); i++){
                 if(listaServiciosO.get(i).getKey().getNombre() == nombreServicio){
@@ -90,8 +91,22 @@ public class ControllerIngresarCliente implements Initializable {
                     System.out.println(servico.getDescripcion());
                 }
             }
-            LocalTime horaInicio1 = LocalTime.parse(servico.getHoraInicio());
-            LocalTime horaFin1 = LocalTime.parse(servico.getHoraFin());
+            for(int i = 0; i<listaCanchas.size();i++){
+                if(listaCanchas.get(i).getKey().getNombre() == nombreServicio){
+                    cancha = listaCanchas.get(i);
+                }
+            }
+            LocalTime horaInicio1 = null;
+            LocalTime horaFin1 = null;
+
+            if(servico != null){
+                horaInicio1 = LocalTime.parse(servico.getHoraInicio());
+                horaFin1 = LocalTime.parse(servico.getHoraFin());
+            }
+            else{
+                horaInicio1 = LocalTime.parse(cancha.getHoraInicio());
+                horaFin1 = LocalTime.parse(cancha.getHoraFin());
+            }
 
             for(int i = horaInicio1.getHour(); i <= horaFin1.getHour(); i++ ){
                 System.out.println("Aca2");
