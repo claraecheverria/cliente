@@ -75,7 +75,7 @@ public class ControllerIngresarCliente implements Initializable {
         ObservableList listaHorariosDisponibles = null;
         System.out.println("Entreeee");
         System.out.println(Servicios.getValue().toString());
-        if(Servicios.getValue() == null){  // REVISAR QUE PASA, SI ES ASI O CON NULL
+        if(Servicios.getValue() == null){
             horaInicio.setValue(listaHorariosDisponibles);
             horaFin.setValue(listaHorariosDisponibles);
         }
@@ -148,11 +148,19 @@ public class ControllerIngresarCliente implements Initializable {
         String nombreServicio = Servicios.getValue().toString();
         System.out.println(nombreServicio);
         Servicio servico = null;
+        Cancha cancha = null;
 
         for(int i = 0; i<listaServiciosO.size(); i++){
             System.out.println("Aca1");
             if(listaServiciosO.get(i).getKey().getNombre() == nombreServicio){
                 servico = listaServiciosO.get(i);
+            }
+        }
+
+        for(int i = 0; i<listaCanchas.size(); i++){
+            System.out.println("Aca1");
+            if(listaCanchas.get(i).getKey().getNombre() == nombreServicio){
+                cancha = listaCanchas.get(i);
             }
         }
 
@@ -162,22 +170,41 @@ public class ControllerIngresarCliente implements Initializable {
         int horasTotales = fin - inicio;
         long precio = horasTotales * servico.getPrecio();
 
-
-        try {
-            Ingreso nuevoIngreso = new Ingreso(fechaHoy, horaInicioLT,horaFinalLT, servico, userEmpleado, precio);
-            com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-            objectMapper.findAndRegisterModules();
-            objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
-            objectMapper.setDateFormat(df);
-            String serialized = objectMapper.writeValueAsString(nuevoIngreso);
-            HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/centroDeportivo/guardarIngreso") // HAY QUE DEFINIR LA HTTP BIEN
-                    .header("accept", "application/json")
-                    .header("Content-Type", "application/json")
-                    .body(serialized)
-                    .asJson();
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+        if(servico != null){
+            try {
+                Ingreso nuevoIngreso = new Ingreso(fechaHoy, horaInicioLT,horaFinalLT, servico, userEmpleado, precio);
+                com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                objectMapper.findAndRegisterModules();
+                objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+                objectMapper.setDateFormat(df);
+                String serialized = objectMapper.writeValueAsString(nuevoIngreso);
+                HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/centroDeportivo/guardarIngreso") // HAY QUE DEFINIR LA HTTP BIEN
+                        .header("accept", "application/json")
+                        .header("Content-Type", "application/json")
+                        .body(serialized)
+                        .asJson();
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        else{
+            try {
+                Ingreso nuevoIngreso = new Ingreso(fechaHoy, horaInicioLT,horaFinalLT, cancha, userEmpleado, precio);
+                com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                objectMapper.findAndRegisterModules();
+                objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+                objectMapper.setDateFormat(df);
+                String serialized = objectMapper.writeValueAsString(nuevoIngreso);
+                HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/centroDeportivo/guardarIngreso") // HAY QUE DEFINIR LA HTTP BIEN
+                        .header("accept", "application/json")
+                        .header("Content-Type", "application/json")
+                        .body(serialized)
+                        .asJson();
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
