@@ -3,8 +3,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.text.Font?>
 
-
-<CheckBox fx:id="Boton2" mnemonicParsing="false" onAction="#seleccionar" prefHeight="31.0" prefWidth="165.0" text="CheckBox" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cliente.ControllerPlantillaHorarioReserva">
+<CheckBox fx:id="Boton2" mnemonicParsing="false" onAction="#seleccionar" prefHeight="31.0" prefWidth="165.0" text="9:00" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cliente.ControllerPlantillaHorarioReserva">
    <font>
       <Font size="18.0" />
    </font>

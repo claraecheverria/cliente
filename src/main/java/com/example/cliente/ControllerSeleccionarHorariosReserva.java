@@ -17,6 +17,7 @@ import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.StandardReflectionParameterNameDiscoverer;
 import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
@@ -204,12 +205,15 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
 
         for(int i = 0; i<listaBotonesSeleccionados.size();i++){
             String horaInicio = listaBotonesSeleccionados.get(i).getText();
-            LocalTime horaInicio2 = LocalTime.parse(horaInicio);
+            String horaFinal = listaBotonesSeleccionados.get(i).getText();
+
+            LocalTime horaInicio2 = LocalTime.parse(horaInicio+ ":00:00");
+            LocalTime horaFinal2 = LocalTime.parse(horaFinal+ ":00:00");
 
             if(horaInicio2.compareTo(horaInicioLT)<0){
                 horaInicioLT = horaInicio2;
             }
-            if(horaInicio2.compareTo(horaFinLT)>0){
+            if(horaFinal2.compareTo(horaFinLT)>0){
                 horaFinLT = horaInicio2;
             }
         }

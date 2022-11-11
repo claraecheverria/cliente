@@ -3,6 +3,7 @@ package com.example.cliente;
 import com.example.cliente.Model.Ingreso;
 import com.example.cliente.Model.Servicio;
 import com.example.cliente.Model.User;
+import com.example.cliente.Model.UserEmpleado;
 import javafx.collections.FXCollections;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -90,7 +91,7 @@ public class ControllerIngresarCliente implements Initializable {
     }
 
     public void Ingresar(javafx.event.ActionEvent actionEvent){
-        String email = Email.toString();
+        String email = Email.getText();
         String nombreSercicio = Servicios.toString();
         String horaInicial = horaInicio.toString();
         String horaFinal = horaFin.toString();
@@ -98,6 +99,8 @@ public class ControllerIngresarCliente implements Initializable {
         LocalTime horaInicioLT = LocalTime.parse(horaInicial);
         LocalTime horaFinalLT = LocalTime.parse(horaFinal);
         LocalTime fechaHoy = LocalTime.now();
+
+        UserEmpleado nuevoUser = new UserEmpleado(email);
 
         String nombreServicio = Servicios.toString();
         Servicio servico = null;
