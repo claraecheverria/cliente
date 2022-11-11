@@ -3,6 +3,8 @@ package com.example.cliente;
 import com.example.cliente.Model.Ingreso;
 import com.example.cliente.Model.Servicio;
 import com.example.cliente.Model.User;
+import com.example.cliente.Model.UserEmpleado;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import javafx.collections.FXCollections;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -20,6 +22,8 @@ import kong.unirest.Unirest;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -90,35 +94,57 @@ public class ControllerIngresarCliente implements Initializable {
     }
 
     public void Ingresar(javafx.event.ActionEvent actionEvent){
-        String email = Email.toString();
-        String nombreSercicio = Servicios.toString();
-        String horaInicial = horaInicio.toString();
-        String horaFinal = horaFin.toString();
+        String email = Email.getText();
+        // Consultar a la base de datos si el mail existe
+        HttpResponse<String> response = Unirest.get("http://localhost:8080/user/checkExisteUser?email={mail}")
+                .routeParam("mail",email)
+                .asString();
+        Boolean existe = Boolean.parseBoolean(response.getBody().toString());
+        UserEmpleado userEmpleado = null;
+        if (existe){
+            userEmpleado = new UserEmpleado(email);
+        }else {
+            // poner un label que diga mail incorrecto
+        }
+        Email.clear();
+        String horaInicial = horaInicio.getAccessibleText();
+        String horaFinal = horaFin.getAccessibleText();
+        LocalTime horaInicioLT = null;
+        LocalTime horaFinalLT = null;
+        if (horaInicial != null && horaFinal != null){
+            horaInicioLT = LocalTime.parse(horaInicial);
+            horaFinalLT = LocalTime.parse(horaFinal);
+        }
+        LocalDate fechaHoy = LocalDate.now();
+        System.out.println(fechaHoy);
 
-        LocalTime horaInicioLT = LocalTime.parse(horaInicial);
-        LocalTime horaFinalLT = LocalTime.parse(horaFinal);
-        LocalTime fechaHoy = LocalTime.now();
-
-        String nombreServicio = Servicios.toString();
+        String nombreServicio = Servicios.getValue().toString();
+        System.out.println(nombreServicio);
         Servicio servico = null;
 
         for(int i = 0; i<listaServiciosO.size(); i++){
+            System.out.println("Aca1");
             if(listaServiciosO.get(i).getKey().getNombre() == nombreServicio){
                 servico = listaServiciosO.get(i);
             }
         }
 
-        Email.clear();
-
-        ArrayList arrayList = new ArrayList<>();
-        Ingreso nuevoIngreso = new Ingreso();
-
-        HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/centroDeportivo/guardarIngreso") // HAY QUE DEFINIR LA HTTP BIEN
-                .header("accept", "application/json")
-                .header("Content-Type", "application/json")
-                .body(nuevoIngreso)
-                .asJson();
-
+        try {
+            Ingreso nuevoIngreso = new Ingreso(fechaHoy,horaInicioLT,horaFinalLT,servico,userEmpleado);
+            com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            objectMapper.findAndRegisterModules();
+            objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+            objectMapper.setDateFormat(df);
+            String serialized = objectMapper.writeValueAsString(nuevoIngreso);
+            HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/centroDeportivo/guardarIngreso") // HAY QUE DEFINIR LA HTTP BIEN
+                    .header("accept", "application/json")
+                    .header("Content-Type", "application/json")
+                    .body(serialized)
+                    .asJson();
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public List<Servicio> ListaServicios(){    // hay que hacer la consulta a la base de datos
