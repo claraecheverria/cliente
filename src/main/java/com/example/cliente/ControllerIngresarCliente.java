@@ -64,8 +64,9 @@ public class ControllerIngresarCliente implements Initializable {
 
     public void desplegarHorarios(){
         ObservableList listaHorariosDisponibles = null;
-
-        if(Servicios.toString() == ""){  // REVISAR QUE PASA, SI ES ASI O CON NULL
+        System.out.println("Entreeee");
+        System.out.println(Servicios.getValue().toString());
+        if(Servicios.getValue() == null){  // REVISAR QUE PASA, SI ES ASI O CON NULL
             horaInicio.setValue(listaHorariosDisponibles);
             horaFin.setValue(listaHorariosDisponibles);
         }
@@ -76,10 +77,14 @@ public class ControllerIngresarCliente implements Initializable {
             for(int i = 0; i<listaServiciosO.size(); i++){
                 if(listaServiciosO.get(i).getKey().getNombre() == nombreServicio){
                     servico = listaServiciosO.get(i);
+                    System.out.println("HOLAAA");
+                    System.out.println(servico.getDescripcion());
                 }
             }
+            LocalTime horaInicio1 = LocalTime.parse(servico.getHoraInicio());
+            LocalTime horaFin1 = LocalTime.parse(servico.getHoraFin());
 
-            for(int i = Integer.parseInt(servico.getHoraInicio()); i <= Integer.parseInt(servico.getHoraFin()); i++ ){
+            for(int i = horaInicio1.getHour(); i <= horaFin1.getHour(); i++ ){
                 System.out.println("Aca2");
                 horaInicio.getItems().add(i + ":00");
                 horaFin.getItems().add(i + ":00");
@@ -105,8 +110,8 @@ public class ControllerIngresarCliente implements Initializable {
         }
         Email.clear();
 
-        String horaInicial = horaInicio.getAccessibleText();
-        String horaFinal = horaFin.getAccessibleText();
+        String horaInicial = horaInicio.getValue().toString();
+        String horaFinal = horaFin.getValue().toString();
         LocalTime horaInicioLT = null;
         LocalTime horaFinalLT = null;
         if (horaInicial != null && horaFinal != null){
