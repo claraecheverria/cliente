@@ -80,4 +80,7 @@
          </HBox.margin>
       </AnchorPane>
    </children>
+   <padding>
+      <Insets right="5.0" />
+   </padding>
 </HBox>

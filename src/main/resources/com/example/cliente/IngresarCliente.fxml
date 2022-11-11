@@ -59,7 +59,7 @@
             <Font name="Arial Black" size="18.0" />
          </font>
       </Label>
-      <ComboBox fx:id="horaInicio" layoutX="236.0" layoutY="158.0" onAction="#desplegarHorarios" onMousePressed="#desplegarHorarios" prefHeight="26.0" prefWidth="95.0" />
-      <ComboBox fx:id="horaFin" layoutX="439.0" layoutY="158.0" onAction="#desplegarHorarios" onMousePressed="#desplegarHorarios" prefHeight="26.0" prefWidth="95.0" />
+      <ComboBox fx:id="horaInicio" layoutX="236.0" layoutY="158.0" onMousePressed="#desplegarHorarios" prefHeight="26.0" prefWidth="95.0" />
+      <ComboBox fx:id="horaFin" layoutX="439.0" layoutY="158.0" onMousePressed="#desplegarHorarios" prefHeight="26.0" prefWidth="95.0" />
    </children>
 </AnchorPane>
