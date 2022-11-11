@@ -70,7 +70,7 @@ public class ControllerIngresarCliente implements Initializable {
             horaFin.setValue(listaHorariosDisponibles);
         }
         else{
-            String nombreServicio = Servicios.toString();
+            String nombreServicio = Servicios.getValue().toString();
             Servicio servico = null;
 
             for(int i = 0; i<listaServiciosO.size(); i++){
@@ -80,6 +80,7 @@ public class ControllerIngresarCliente implements Initializable {
             }
 
             for(int i = Integer.parseInt(servico.getHoraInicio()); i <= Integer.parseInt(servico.getHoraFin()); i++ ){
+                System.out.println("Aca2");
                 horaInicio.getItems().add(i + ":00");
                 horaFin.getItems().add(i + ":00");
 

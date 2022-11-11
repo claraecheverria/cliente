@@ -59,9 +59,9 @@ public class ControllerVistaUsuarioFinal implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //SETEAR LA FECHA DE HOY
-        List<String[]> listaAtributosEmpleados = login.getListaAtributosEmpleado();
-        String importe = listaAtributosEmpleados.get(0)[6];
-        Importe.setText(importe);
+//        List<String[]> listaAtributosEmpleados = login.getListaAtributosEmpleado();
+//        String importe = listaAtributosEmpleados.get(0)[6];
+//        Importe.setText(importe);
         LocalDate date = LocalDate.now();
         FechaDeHoy.setText(date.toString());
 
