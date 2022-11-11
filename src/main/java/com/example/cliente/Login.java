@@ -37,6 +37,8 @@ public class Login {
     @FXML
     private TextField Password;
 
+    private List<String[]> listaAtributosEmpleado;
+
     private boolean check;
 
     private List<String[]> checklogin() {
@@ -63,6 +65,7 @@ public class Login {
             for (int i=0; i<listAtributos.get(0).length; i++){
                 System.out.println(listAtributos.get(0)[i]);
             }
+            listaAtributosEmpleado = listAtributos;
 //            System.out.println(listAtributos.get(0)[0]);
 //            System.out.println(listAtributos.get(0)[1]);
             return listAtributos;
@@ -70,6 +73,14 @@ public class Login {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public List<String[]> getListaAtributosEmpleado() {
+        return listaAtributosEmpleado;
+    }
+
+    public void setListaAtributosEmpleado(List<String[]> listaAtributosEmpleado) {
+        this.listaAtributosEmpleado = listaAtributosEmpleado;
     }
 
     public void userLogin(javafx.event.ActionEvent actionEvent) {

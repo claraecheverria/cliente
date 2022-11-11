@@ -15,17 +15,20 @@ public class Ingreso {
 
     private UserEmpleado userEmpleado;
 
+    private long importe;
+
     //CONSTRUCTORES
 
     public Ingreso() {
     }
 
-    public Ingreso(LocalDate fecha, LocalTime horaInicio, LocalTime horaFin, Servicio servicio, UserEmpleado userEmpleado) {
+    public Ingreso(LocalDate fecha, LocalTime horaInicio, LocalTime horaFin, Servicio servicio, UserEmpleado userEmpleado, long importe) {
         this.fecha = fecha;
         this.horaInicio = horaInicio;
         this.horaFin = horaFin;
         this.servicio = servicio;
         this.userEmpleado = userEmpleado;
+        this.importe = importe;
     }
 
     //GETTERS Y SETTERS
@@ -76,5 +79,13 @@ public class Ingreso {
 
     public void setHoraFin(LocalTime horaFin) {
         this.horaFin = horaFin;
+    }
+
+    public long getImporte() {
+        return importe;
+    }
+
+    public void setImporte(long importe) {
+        this.importe = importe;
     }
 }

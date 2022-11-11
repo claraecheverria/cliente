@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
@@ -52,12 +53,19 @@ public class ControllerVistaUsuarioFinal implements Initializable {
     private Label Importe;
 
     private ArrayList<Servicio> ultimosServiciosUtilizados = new ArrayList();
+    @Autowired
+    private Login login;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //SETEAR LA FECHA DE HOY
+        List<String[]> listaAtributosEmpleados = login.getListaAtributosEmpleado();
+        String importe = listaAtributosEmpleados.get(0)[6];
+        Importe.setText(importe);
         LocalDate date = LocalDate.now();
         FechaDeHoy.setText(date.toString());
+
+        //lisatatribustos.get(0)[6]
         //
 //        List<String[]> listaServiciosFav = getListaServiciosFav();
 
@@ -77,8 +85,7 @@ public class ControllerVistaUsuarioFinal implements Initializable {
             for(int i = 0; i<listaMeGusta.size() ; i++){
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("PlantillaMeGusta.fxml"));
-                HBox serviceBox = null;
-                serviceBox = fxmlLoader.load();
+                HBox serviceBox =  fxmlLoader.load();
                 ControllerPlantillaMisMeGusta servicioController = fxmlLoader.getController();
                 servicioController.setData(listaMeGusta.get(i));
                 misMeGusta.getChildren().add(serviceBox);
@@ -89,7 +96,7 @@ public class ControllerVistaUsuarioFinal implements Initializable {
 
         try{
             for(int i =0; i<2;i++){
-                if(listaMeGusta != null && listaMeGusta.size() > 0) {//FIXME ver que hacer aca pero cuando es nula se rompe sino
+                if(listaMeGusta != null && listaMeGusta.size() > 1) {//FIXME ver que hacer aca pero cuando es nula se rompe sino
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("PlantillaServicio.fxml"));
                     HBox serviceBox = null;

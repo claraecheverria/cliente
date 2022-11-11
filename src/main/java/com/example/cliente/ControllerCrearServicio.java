@@ -74,9 +74,7 @@ public class ControllerCrearServicio implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        choiceBoxTipo.getItems().add(tipoList);
-//        HorarioInicio.getItems().add(horariosList);
-//        HorarioFin.getItems().add(horariosList);
+
         for(int i = 0; i<tipoList.size();i++){
             choiceBoxTipo.getItems().add(tipoList.get(i));
         }
@@ -84,9 +82,7 @@ public class ControllerCrearServicio implements Initializable {
             HorarioFin.getItems().add(horariosList.get(k));
             HorarioInicio.getItems().add(horariosList.get(k));
         }
-//        choiceBoxTipo.setValue(tipoList);
-//        HorarioInicio.setValue(horariosList);
-//        HorarioFin.setValue(horariosList);
+
     }
 
     public void switchToAdminCentroDeporivo(javafx.event.ActionEvent event) throws IOException{

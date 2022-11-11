@@ -13,10 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
@@ -45,6 +42,8 @@ public class ControllerIngresarCliente implements Initializable {
     private ComboBox horaInicio;
     @FXML
     private ComboBox horaFin;
+    @FXML
+    private Label Lable;
     private ObservableList<String> listaServicios;
     private List<Servicio> listaServiciosO = ListaServicios();
 
@@ -81,14 +80,10 @@ public class ControllerIngresarCliente implements Initializable {
             }
 
             for(int i = Integer.parseInt(servico.getHoraInicio()); i <= Integer.parseInt(servico.getHoraFin()); i++ ){
-//                listaHorariosDisponibles.add(String.valueOf(i) + ":00");
                 horaInicio.getItems().add(i + ":00");
                 horaFin.getItems().add(i + ":00");
 
             }
-
-//            horaInicio.setValue(listaHorariosDisponibles);
-//            horaFin.setValue(listaHorariosDisponibles);
 
         }
 
@@ -105,9 +100,10 @@ public class ControllerIngresarCliente implements Initializable {
         if (existe){
             userEmpleado = new UserEmpleado(email);
         }else {
-            // poner un label que diga mail incorrecto
+            Lable.setText("Mail incorrecto");
         }
         Email.clear();
+
         String horaInicial = horaInicio.getAccessibleText();
         String horaFinal = horaFin.getAccessibleText();
         LocalTime horaInicioLT = null;
@@ -130,8 +126,15 @@ public class ControllerIngresarCliente implements Initializable {
             }
         }
 
+        int inicio = horaInicioLT.getHour();
+        int fin = horaFinalLT.getHour();
+
+        int horasTotales = fin - inicio;
+        long precio = horasTotales * servico.getPrecio();
+
+
         try {
-            Ingreso nuevoIngreso = new Ingreso(fechaHoy,horaInicioLT,horaFinalLT,servico,userEmpleado);
+            Ingreso nuevoIngreso = new Ingreso(fechaHoy, horaInicioLT,horaFinalLT, servico, userEmpleado, precio);
             com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             objectMapper.findAndRegisterModules();
