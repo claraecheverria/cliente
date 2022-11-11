@@ -204,7 +204,8 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
 
         for(int i = 0; i<listaBotonesSeleccionados.size();i++){
             String horaInicio = listaBotonesSeleccionados.get(i).getText();
-            LocalTime horaInicio2 = LocalTime.parse(horaInicio);
+//            LocalTime horaInicio2 = LocalTime.parse(horaInicio);
+            LocalTime horaInicio2 = LocalTime.of(Integer.parseInt(horaInicio),0);
 
             if(horaInicio2.compareTo(horaInicioLT)<0){
                 horaInicioLT = horaInicio2;

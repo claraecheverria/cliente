@@ -14,6 +14,10 @@ public class UserEmpleado extends User{
 
     private List<Servicio> serviciosFavoritos;
 
+    private List<Reserva> reservasHechas;
+
+    private List<Ingreso> ingresos;
+
     //CONSTRUCTORES
 
 
@@ -62,5 +66,21 @@ public class UserEmpleado extends User{
 
     public void setServiciosFavoritos(List<Servicio> serviciosFavoritos) {
         this.serviciosFavoritos = serviciosFavoritos;
+    }
+
+    public List<Reserva> getReservasHechas() {
+        return reservasHechas;
+    }
+
+    public void setReservasHechas(List<Reserva> reservasHechas) {
+        this.reservasHechas = reservasHechas;
+    }
+
+    public List<Ingreso> getIngresos() {
+        return ingresos;
+    }
+
+    public void setIngresos(List<Ingreso> ingresos) {
+        this.ingresos = ingresos;
     }
 }
