@@ -1,9 +1,6 @@
 package com.example.cliente;
 
-import com.example.cliente.Model.Ingreso;
-import com.example.cliente.Model.Servicio;
-import com.example.cliente.Model.User;
-import com.example.cliente.Model.UserEmpleado;
+import com.example.cliente.Model.*;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.example.cliente.Model.UserEmpleado;
 import javafx.collections.FXCollections;
@@ -47,6 +44,8 @@ public class ControllerIngresarCliente implements Initializable {
     private ObservableList<String> listaServicios;
     private List<Servicio> listaServiciosO = ListaServicios();
 
+    private List<Cancha> listaCanchas = ListaCanchas();
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -55,10 +54,20 @@ public class ControllerIngresarCliente implements Initializable {
             listaNombreServicios.add(listaServiciosO.get(i).getKey().getNombre());
         }
 
+        ObservableList listaNombresCanchas = FXCollections.observableArrayList();
+        for(int i = 0; i < listaCanchas.size(); i++){
+            listaNombresCanchas.add(listaCanchas.get(i).getKey().getNombre());
+        }
+
         listaServicios =  listaNombreServicios;
         for(int i = 0; i < listaServicios.size(); i++){
             Servicios.getItems().add(listaServicios.get(i));
         }
+
+        for(int i = 0; i<listaNombresCanchas.size();i++){
+            Servicios.getItems().add(listaNombresCanchas.get(i));
+        }
+
 //        Servicios.setValue(listaServicios);
     }
 
@@ -159,13 +168,30 @@ public class ControllerIngresarCliente implements Initializable {
 
     public List<Servicio> ListaServicios(){    // hay que hacer la consulta a la base de datos
 
-        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/centroDeportivo/listaServiciosEsteCentroDep")
+        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/centroDeportivo/listaServiciosUnCentroDep")
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
                 .asJson();
         com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
         try {
             List<Servicio> listaServiciosEsteCentroDep = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Servicio>>(){});
+            System.out.println(listaServiciosEsteCentroDep.size());
+            return listaServiciosEsteCentroDep;
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public List<Cancha> ListaCanchas(){    // hay que hacer la consulta a la base de datos
+
+        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/centroDeportivo/listaCanchasUnCentroDep")
+                .header("accept", "application/json")
+                .header("Content-Type", "application/json")
+                .asJson();
+        com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+        try {
+            List<Cancha> listaServiciosEsteCentroDep = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Cancha>>(){});
             System.out.println(listaServiciosEsteCentroDep.size());
             return listaServiciosEsteCentroDep;
         } catch (JsonProcessingException e) {
