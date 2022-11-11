@@ -107,13 +107,15 @@ public class ControllerIngresarCliente implements Initializable {
                 horaInicio1 = LocalTime.parse(cancha.getHoraInicio());
                 horaFin1 = LocalTime.parse(cancha.getHoraFin());
             }
-
+            horaInicio.getItems().clear();
+            horaFin.getItems().clear();
             for(int i = horaInicio1.getHour(); i <= horaFin1.getHour(); i++ ){
                 System.out.println("Aca2");
                 horaInicio.getItems().add(i + ":00");
                 horaFin.getItems().add(i + ":00");
 
             }
+
 
         }
 

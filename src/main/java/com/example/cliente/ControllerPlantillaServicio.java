@@ -6,6 +6,8 @@ import com.example.cliente.Model.Imagen;
 import com.example.cliente.Model.Servicio;
 //import javafx.embed.swing.SwingFXUtils;
 //import javafx.embed.swing.SwingFXUtils;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -26,6 +28,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Base64;
 
 public class ControllerPlantillaServicio {
@@ -127,21 +130,43 @@ public class ControllerPlantillaServicio {
             System.out.println("apreté me gusta");
             System.out.println(servicioEste.getKey().getNombre());
             setEstaPrecionado(true);
+            try {
+                com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                objectMapper.findAndRegisterModules();
+                objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+                objectMapper.setDateFormat(df);
+                String serialized = null;
+                serialized = objectMapper.writeValueAsString(servicioEste);
 
-            HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/user/agregarServicioFav")
-                    .header("accept", "application/json")
-                    .header("Content-Type", "application/json")
-                    .body(servicioEste)
-                    .asJson();
+                HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/user/agregarServicioFav")
+                        .header("accept", "application/json")
+                        .header("Content-Type", "application/json")
+                        .body(serialized)
+                        .asJson();
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
         }
         else {
             BottonMeGusta.setStyle("-fx-background-color: #C9C9C9;");
+            try {
+                com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                objectMapper.findAndRegisterModules();
+                objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+                objectMapper.setDateFormat(df);
+                String serialized = null;
+                serialized = objectMapper.writeValueAsString(servicioEste);
 
-            HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/user/eliminarServicioFav")
-                    .header("accept", "application/json")
-                    .header("Content-Type", "application/json")
-                    .body(servicioEste)
-                    .asJson();
+                HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/user/eliminarServicioFav")
+                        .header("accept", "application/json")
+                        .header("Content-Type", "application/json")
+                        .body(serialized)
+                        .asJson();
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
