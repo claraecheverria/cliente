@@ -1,9 +1,11 @@
 package com.example.cliente;
 
+import com.example.cliente.DTOs.ServicioDTO;
 import com.example.cliente.Model.Servicio;
 import com.example.cliente.Model.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,16 +18,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,8 +58,6 @@ public class ControllerVistaUsuarioFinal implements Initializable {
     private Label Importe;
 
     private ArrayList<Servicio> ultimosServiciosUtilizados = new ArrayList();
-    @Autowired
-    private Login login;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -82,14 +81,14 @@ public class ControllerVistaUsuarioFinal implements Initializable {
         series1.getData().add(new XYChart.Data("Viernes",50));
         //chart.getData().addAll(series1);
 
-        ArrayList<Servicio> listaservicios = (ArrayList<Servicio>) getListaServicios();
+        List<ServicioDTO> listaservicios = getListaServicios();
 
-        List<Servicio> listaMeGusta = getListaServiciosFav();
+        List<ServicioDTO> listaMeGusta = getListaServiciosFav();
         try{
             for(int i = 0; i<listaMeGusta.size() ; i++){
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("PlantillaMeGusta.fxml"));
-                HBox serviceBox =  fxmlLoader.load();
+                AnchorPane serviceBox =  fxmlLoader.load();
                 ControllerPlantillaMisMeGusta servicioController = fxmlLoader.getController();
                 servicioController.setData(listaMeGusta.get(i));
                 misMeGusta.getChildren().add(serviceBox);
@@ -100,7 +99,7 @@ public class ControllerVistaUsuarioFinal implements Initializable {
 
         try{
             for(int i =0; i<2;i++){
-                if(listaMeGusta != null && listaMeGusta.size() > 1) {//FIXME ver que hacer aca pero cuando es nula se rompe sino
+                if(listaMeGusta != null && listaMeGusta.size() > 1) {
                     if(i == 0){
                         FXMLLoader fxmlLoader = new FXMLLoader();
                         fxmlLoader.setLocation(getClass().getResource("PlantillaServicio.fxml"));
@@ -186,14 +185,18 @@ public class ControllerVistaUsuarioFinal implements Initializable {
 
     }
 
-    public List<Servicio> getListaServicios (){
-        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/listaServicios")
+    public List<ServicioDTO> getListaServicios (){
+        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/listaServiciosDTO")
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
                 .asJson();
         com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
         try {
-            List<Servicio> listaServicios = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Servicio>>(){});
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            objectMapper.findAndRegisterModules();
+            objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+            objectMapper.setDateFormat(df);
+            List<ServicioDTO> listaServicios = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<ServicioDTO>>(){});
             System.out.println(listaServicios.size());
             return listaServicios;
         } catch (JsonProcessingException e) {
@@ -233,14 +236,19 @@ public class ControllerVistaUsuarioFinal implements Initializable {
         stage.setScene(scence);
         stage.show();
     }
-    public List<Servicio> getListaServiciosFav (){
-        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/serviciosFavDeUnUser")
+    public List<ServicioDTO> getListaServiciosFav (){
+        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/serviciosFavDeUnUserDTO")
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
                 .asJson();
         com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
         try {
-            List<Servicio> listaServicios = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Servicio>>(){});
+
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            objectMapper.findAndRegisterModules();
+            objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+            objectMapper.setDateFormat(df);
+            List<ServicioDTO> listaServicios = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<ServicioDTO>>(){});
             System.out.println(listaServicios.size());
             return listaServicios;
         } catch (JsonProcessingException e) {

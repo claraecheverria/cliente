@@ -1,5 +1,8 @@
 package com.example.cliente;
 
+import com.example.cliente.DTOs.CanchaDTO;
+import com.example.cliente.DTOs.ReservaDTO;
+import com.example.cliente.DTOs.ServicioDTO;
 import com.example.cliente.Model.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -53,37 +56,30 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
 
     private ArrayList<Integer> horariosLibres = new ArrayList<Integer>();
     private List<UserEmpleado> mailsUsuarios = new ArrayList<>();
-    private List<Reserva> horariosOcupados;
-    private Servicio servicio;
+    private List<ReservaDTO> horariosOcupados;
+    private ServicioDTO servicio;
 
-    public void setServicio(Servicio servicio) {
+    public void setServicio(ServicioDTO servicio) {
         VboxHorarios.getChildren().clear();
         VboxMails.getChildren().clear();
 
-        System.out.println(servicio.getKey().getNombre());
+        System.out.println(servicio.getNombreServicio());
         this.servicio = servicio;
-        LocalTime horaInicioServ = LocalTime.parse(servicio.getHoraInicio());
-        LocalTime horaFinServ = LocalTime.parse(servicio.getHoraFin());
+        LocalTime horaInicioServ = servicio.getHoraInicio();
+        LocalTime horaFinServ = servicio.getHoraFin();
         for(int i = horaInicioServ.getHour(); i <= horaFinServ.getHour(); i++){
             horariosLibres.add(i);
-            System.out.println(i);
         }
         horariosOcupados = getHorariosReservas();
 
         for(int j=0; j<horariosOcupados.size(); j++){
-
-            int horaInicio = Integer.parseInt(String.valueOf(horariosOcupados.get(j).getHoraInicio().getHour()));
-            System.out.println(horaInicio);
-            int horaFin = Integer.parseInt(String.valueOf(horariosOcupados.get(j).getHoraFin().getHour()));
-            System.out.println(horaFin);
+            int horaInicio = horariosOcupados.get(j).getHoraInicio().getHour();
+            int horaFin = horariosOcupados.get(j).getHoraFin().getHour();
             int cantidadHoras = horaFin - horaInicio;
             System.out.println(cantidadHoras);
-
             for(int k = 0; k<cantidadHoras;k++){
-//                horariosLibres.remove(horaInicio+k);
                 Integer elemento = horaInicio+k;
                 horariosLibres.remove(elemento);
-
             }
         }
 
@@ -128,7 +124,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
 
     public void invitarAmigo(javafx.event.ActionEvent actionEvent){
         ArrayList lisatInvitados = new ArrayList();
-        Cancha cancha = (Cancha) servicio;
+        CanchaDTO cancha = (CanchaDTO) servicio;
 
         if(lisatInvitados.size() == cancha.getCupos()){
             Lable.setText("El cupo ya es el maximo permitido");
@@ -155,7 +151,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
 
     }
 
-    public List<Reserva> getHorariosReservas(){   // HAY QUE PONER QUE DEVUELVA LOS HORARIOS LIBRES
+    public List<ReservaDTO> getHorariosReservas(){   // HAY QUE PONER QUE DEVUELVA LOS HORARIOS LIBRES
         //Tengo que mandar nombre centro deportivo, nomber servicio y fecha
 
 //        ControllerPlantillaServicio controllerPlantillaServicio1 = (ControllerPlantillaServicio) ClienteApplication.getContext().getBean("controllerPlantillaServicio");
@@ -164,12 +160,11 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
 //        Servicio servicio = controllerPlantillaServicio1.devolverServicio();
         LocalDate fecha = controllerSeleccionFechaReserva.mandarFecha();
 
-        String centroDeportivoNombre = servicio.getCentroDeportivoServicio().getNombre();
-        String servicioNombre = servicio.getKey().getNombre();
+        String centroDeportivoNombre = servicio.getNombreCentroDep();
+        String servicioNombre = servicio.getNombreServicio();
         System.out.println(fecha);
-        System.out.println(String.valueOf(fecha));
 
-        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/reservasEnFecha?fecha={fecha}&servicio={servicioNombre}&centroDep={centroDeportivoNombre}")
+        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/reservasEnFechaDTO?fecha={fecha}&servicio={servicioNombre}&centroDep={centroDeportivoNombre}")
                 .routeParam("fecha", String.valueOf(fecha))
                 .routeParam("servicioNombre",servicioNombre)
                 .routeParam("centroDeportivoNombre",centroDeportivoNombre)
@@ -183,7 +178,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
         objectMapper.setDateFormat(df);
         try {
             //hay que ver que pasa cuando te devuelve una lista vacía, pq sino en el objectmapper se rompe
-            List<Reserva> listaHorariosDisponibles = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Reserva>>(){});
+            List<ReservaDTO> listaHorariosDisponibles = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<ReservaDTO>>(){});
             System.out.println(listaHorariosDisponibles.size());
             return listaHorariosDisponibles;
         } catch (JsonProcessingException e) {
@@ -193,8 +188,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
     public void guardarDatos(javafx.event.ActionEvent actionEvent){
 
         LocalDate fecha = controllerSeleccionFechaReserva.mandarFecha();
-//        Cancha cancha = controllerPlantillaServicio.devolverCancha();
-        Cancha cancha = (Cancha) servicio;
+        CanchaDTO cancha = (CanchaDTO) servicio;
         ArrayList<CheckBox> listaBotonesSeleccionados = new ArrayList<>();
 
         for(int i = 0; i<horariosLibres.size();i++){
@@ -213,8 +207,8 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
             Integer horaFinalInt = Integer.parseInt(horaFinal) + 1;
             horaFinal = horaFinalInt.toString();
 
-            LocalTime horaInicio2 = LocalTime.parse(horaInicio+ ":00:00");
-            LocalTime horaFinal2 = LocalTime.parse(horaFinal+ ":00:00");
+            LocalTime horaInicio2 = LocalTime.of(Integer.parseInt(horaInicio),0);
+            LocalTime horaFinal2 = LocalTime.of(Integer.parseInt(horaFinal),0);
 
             if(horaInicio2.compareTo(horaInicioLT)<0){
                 horaInicioLT = horaInicio2;
@@ -223,7 +217,8 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
                 horaFinLT = horaFinal2;
             }
         }
-        Reserva nuevaReserva = new Reserva(fecha, horaInicioLT,horaFinLT,cancha,mailsUsuarios); // mailUsuarios deberia ser con los usuarioEmpleado
+        ReservaDTO nuevaReserva = new ReservaDTO(fecha, horaInicioLT, horaFinLT, cancha.getNombreServicio(), cancha.getNombreCentroDep(), mailsUsuarios);
+//        Reserva nuevaReserva = new Reserva(fecha, horaInicioLT,horaFinLT,cancha,mailsUsuarios); // mailUsuarios deberia ser con los usuarioEmpleado
         try {
             com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -232,7 +227,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
             objectMapper.setDateFormat(df);
             String serialized = objectMapper.writeValueAsString(nuevaReserva);
 
-        HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/user/hacerReserva")
+        HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/user/hacerReservaDTO")
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
                 .body(serialized)

@@ -1,5 +1,8 @@
 package com.example.cliente;
 
+import com.example.cliente.DTOs.CanchaDTO;
+import com.example.cliente.DTOs.IngresoDTO;
+import com.example.cliente.DTOs.ServicioDTO;
 import com.example.cliente.Model.*;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.example.cliente.Model.UserEmpleado;
@@ -42,21 +45,21 @@ public class ControllerIngresarCliente implements Initializable {
     @FXML
     private Label Lable;
     private ObservableList<String> listaServicios;
-    private List<Servicio> listaServiciosO = ListaServicios();
+    private List<ServicioDTO> listaServiciosO = ListaServicios();
 
-    private List<Cancha> listaCanchas = ListaCanchas();
+    private List<CanchaDTO> listaCanchas = ListaCanchas();
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList listaNombreServicios = FXCollections.observableArrayList();
         for (int i = 0; i < listaServiciosO.size();i++){
-            listaNombreServicios.add(listaServiciosO.get(i).getKey().getNombre());
+            listaNombreServicios.add(listaServiciosO.get(i).getNombreServicio());
         }
 
         ObservableList listaNombresCanchas = FXCollections.observableArrayList();
         for(int i = 0; i < listaCanchas.size(); i++){
-            listaNombresCanchas.add(listaCanchas.get(i).getKey().getNombre());
+            listaNombresCanchas.add(listaCanchas.get(i).getNombreServicio());
         }
 
         listaServicios =  listaNombreServicios;
@@ -81,31 +84,30 @@ public class ControllerIngresarCliente implements Initializable {
         }
         else{
             String nombreServicio = Servicios.getValue().toString();
-            Servicio servico = null;
-            Cancha cancha = null;
+            ServicioDTO servicio = null;
+            CanchaDTO cancha = null;
 
             for(int i = 0; i<listaServiciosO.size(); i++){
-                if(listaServiciosO.get(i).getKey().getNombre() == nombreServicio){
-                    servico = listaServiciosO.get(i);
+                if(listaServiciosO.get(i).getNombreServicio() == nombreServicio){
+                    servicio = listaServiciosO.get(i);
                     System.out.println("HOLAAA");
-                    System.out.println(servico.getDescripcion());
                 }
             }
             for(int i = 0; i<listaCanchas.size();i++){
-                if(listaCanchas.get(i).getKey().getNombre() == nombreServicio){
+                if(listaCanchas.get(i).getNombreServicio() == nombreServicio){
                     cancha = listaCanchas.get(i);
                 }
             }
             LocalTime horaInicio1 = null;
             LocalTime horaFin1 = null;
 
-            if(servico != null){
-                horaInicio1 = LocalTime.parse(servico.getHoraInicio());
-                horaFin1 = LocalTime.parse(servico.getHoraFin());
+            if(servicio != null){
+                horaInicio1 = servicio.getHoraInicio();
+                horaFin1 = servicio.getHoraFin();
             }
             else{
-                horaInicio1 = LocalTime.parse(cancha.getHoraInicio());
-                horaFin1 = LocalTime.parse(cancha.getHoraFin());
+                horaInicio1 = cancha.getHoraInicio();
+                horaFin1 = cancha.getHoraFin();
             }
             horaInicio.getItems().clear();
             horaFin.getItems().clear();
@@ -129,9 +131,7 @@ public class ControllerIngresarCliente implements Initializable {
                 .asString();
         Boolean existe = Boolean.parseBoolean(response.getBody().toString());
         UserEmpleado userEmpleado = null;
-        if (existe){
-            userEmpleado = new UserEmpleado(email);
-        }else {
+        if (!existe){
             Lable.setText("Mail incorrecto");
         }
         Email.clear();
@@ -149,19 +149,18 @@ public class ControllerIngresarCliente implements Initializable {
 
         String nombreServicio = Servicios.getValue().toString();
         System.out.println(nombreServicio);
-        Servicio servico = null;
-        Cancha cancha = null;
+        ServicioDTO servicio = null;
+        CanchaDTO cancha = null;
 
         for(int i = 0; i<listaServiciosO.size(); i++){
-            System.out.println("Aca1");
-            if(listaServiciosO.get(i).getKey().getNombre() == nombreServicio){
-                servico = listaServiciosO.get(i);
+            if(listaServiciosO.get(i).getNombreServicio() == nombreServicio){
+                servicio = listaServiciosO.get(i);
             }
         }
 
         for(int i = 0; i<listaCanchas.size(); i++){
             System.out.println("Aca1");
-            if(listaCanchas.get(i).getKey().getNombre() == nombreServicio){
+            if(listaCanchas.get(i).getNombreServicio() == nombreServicio){
                 cancha = listaCanchas.get(i);
             }
         }
@@ -170,18 +169,18 @@ public class ControllerIngresarCliente implements Initializable {
         int fin = horaFinalLT.getHour();
 
         int horasTotales = fin - inicio;
-        long precio = horasTotales * servico.getPrecio();
+        long precio = horasTotales * servicio.getPrecio();
 
-        if(servico != null){
+        if(servicio != null){
             try {
-                Ingreso nuevoIngreso = new Ingreso(fechaHoy, horaInicioLT,horaFinalLT, servico, userEmpleado, precio);
+                IngresoDTO nuevoIngresoDTO = new IngresoDTO(fechaHoy, horaInicioLT,horaFinalLT,servicio.getNombreServicio(), servicio.getNombreCentroDep(), email, precio);
                 com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                 objectMapper.findAndRegisterModules();
                 objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
                 objectMapper.setDateFormat(df);
-                String serialized = objectMapper.writeValueAsString(nuevoIngreso);
-                HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/centroDeportivo/guardarIngreso") // HAY QUE DEFINIR LA HTTP BIEN
+                String serialized = objectMapper.writeValueAsString(nuevoIngresoDTO);
+                HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/centroDeportivo/guardarIngresoServicioDTO")
                         .header("accept", "application/json")
                         .header("Content-Type", "application/json")
                         .body(serialized)
@@ -192,13 +191,13 @@ public class ControllerIngresarCliente implements Initializable {
         }
         else{
             try {
-                Ingreso nuevoIngreso = new Ingreso(fechaHoy, horaInicioLT,horaFinalLT, cancha, userEmpleado, precio);
+                IngresoDTO nuevoIngresoDTO = new IngresoDTO(fechaHoy, horaInicioLT,horaFinalLT,cancha.getNombreServicio(), cancha.getNombreCentroDep(), email, precio);
                 com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                 objectMapper.findAndRegisterModules();
                 objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
                 objectMapper.setDateFormat(df);
-                String serialized = objectMapper.writeValueAsString(nuevoIngreso);
+                String serialized = objectMapper.writeValueAsString(nuevoIngresoDTO);
                 HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/centroDeportivo/guardarIngreso") // HAY QUE DEFINIR LA HTTP BIEN
                         .header("accept", "application/json")
                         .header("Content-Type", "application/json")
@@ -210,15 +209,15 @@ public class ControllerIngresarCliente implements Initializable {
         }
     }
 
-    public List<Servicio> ListaServicios(){    // hay que hacer la consulta a la base de datos
+    public List<ServicioDTO> ListaServicios(){    // hay que hacer la consulta a la base de datos
 
-        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/centroDeportivo/listaServiciosUnCentroDep")
+        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/centroDeportivo/listaServiciosUnCentroDepDTO")
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
                 .asJson();
         com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
         try {
-            List<Servicio> listaServiciosEsteCentroDep = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Servicio>>(){});
+            List<ServicioDTO> listaServiciosEsteCentroDep = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<ServicioDTO>>(){});
             System.out.println(listaServiciosEsteCentroDep.size());
             return listaServiciosEsteCentroDep;
         } catch (JsonProcessingException e) {
@@ -227,15 +226,15 @@ public class ControllerIngresarCliente implements Initializable {
 
     }
 
-    public List<Cancha> ListaCanchas(){    // hay que hacer la consulta a la base de datos
+    public List<CanchaDTO> ListaCanchas(){    // hay que hacer la consulta a la base de datos
 
-        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/centroDeportivo/listaCanchasUnCentroDep")
+        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/centroDeportivo/listaCanchasUnCentroDepDTO")
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
                 .asJson();
         com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
         try {
-            List<Cancha> listaServiciosEsteCentroDep = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Cancha>>(){});
+            List<CanchaDTO> listaServiciosEsteCentroDep = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<CanchaDTO>>(){});
             System.out.println(listaServiciosEsteCentroDep.size());
             return listaServiciosEsteCentroDep;
         } catch (JsonProcessingException e) {
