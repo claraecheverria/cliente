@@ -1,5 +1,6 @@
 package com.example.cliente;
 
+import com.example.cliente.DTOs.ServicioDTO;
 import com.example.cliente.Model.Servicio;
 import com.sun.tools.javac.Main;
 import javafx.fxml.FXML;
@@ -26,9 +27,9 @@ public class ControllerSeleccionFechaReserva {
     @FXML
     private Button ConsultarFecha;
 
-    private Servicio servicio;
+    private ServicioDTO servicio;
 
-    public void setServicio(Servicio servicio) {
+    public void setServicio(ServicioDTO servicio) {
         this.servicio = servicio;
     }
 

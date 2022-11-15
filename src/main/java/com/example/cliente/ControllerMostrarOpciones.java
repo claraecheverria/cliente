@@ -1,5 +1,7 @@
 package com.example.cliente;
 
+import com.example.cliente.DTOs.CanchaDTO;
+import com.example.cliente.DTOs.ServicioDTO;
 import com.example.cliente.Model.Cancha;
 import com.example.cliente.Model.Servicio;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -25,6 +27,7 @@ import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -68,13 +71,13 @@ public class ControllerMostrarOpciones implements Initializable {
     private VBox Vbox1;
     @FXML
     private VBox Vbox2;
-    private ArrayList<Servicio> listaservicios;
-    private List<Cancha> listaCanchas = getListaCanchas();
+    private List<ServicioDTO> listaservicios;
+    private List<CanchaDTO> listaCanchas = getListaCanchas();
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        listaservicios = (ArrayList<Servicio>) getListaServicios();
+        listaservicios = getListaServicios();
 
 //        System.out.println(listaservicios.size());
         try {
@@ -118,8 +121,8 @@ public class ControllerMostrarOpciones implements Initializable {
     }
 
     public void applyFillters(javafx.event.ActionEvent event) throws IOException{
-        ArrayList<Servicio> listaServiciosSeleccionados = new ArrayList<>();
-        ArrayList<Cancha> listaServiciosSeleccionadosReserva = new ArrayList<>();
+        ArrayList<ServicioDTO> listaServiciosSeleccionados = new ArrayList<>();
+        ArrayList<CanchaDTO> listaServiciosSeleccionadosReserva = new ArrayList<>();
         Vbox1.getChildren().clear();
         Vbox2.getChildren().clear();
 
@@ -169,14 +172,18 @@ public class ControllerMostrarOpciones implements Initializable {
 
     }
 
-    public List<Servicio> getListaServicios (){
-        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/listaServicios")
+    public List<ServicioDTO> getListaServicios (){
+        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/listaServiciosDTO")
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
                 .asJson();
         com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
         try {
-            List<Servicio> listaServicios = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Servicio>>(){});
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            objectMapper.findAndRegisterModules();
+            objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+            objectMapper.setDateFormat(df);
+            List<ServicioDTO> listaServicios = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<ServicioDTO>>(){});
             System.out.println(listaServicios.size());
             return listaServicios;
         } catch (JsonProcessingException e) {
@@ -184,15 +191,20 @@ public class ControllerMostrarOpciones implements Initializable {
         }
     }
 
-    public List<Cancha> getListaCanchas (){
-        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/listaServiciosCancha")
+    public List<CanchaDTO> getListaCanchas (){
+        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/listaServiciosCanchaDTO")
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
                 .asJson();
-        com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+//        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         try {
-            List<Cancha> listaServicios = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Cancha>>(){});
+            com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            objectMapper.findAndRegisterModules();
+            objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+            objectMapper.setDateFormat(df);
+//            String serialized = objectMapper.writeValueAsString();
+            List<CanchaDTO> listaServicios = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<CanchaDTO>>(){});
             System.out.println(listaServicios.size());
             return listaServicios;
         } catch (JsonProcessingException e) {
@@ -235,7 +247,7 @@ public class ControllerMostrarOpciones implements Initializable {
         return newList;
     }
 
-    public void desplegarPlantillas(ArrayList<Servicio> listaParaDesplegar){
+    public void desplegarPlantillas(ArrayList<ServicioDTO> listaParaDesplegar){
         try {
             for (int i = 0; i < listaParaDesplegar.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -255,7 +267,7 @@ public class ControllerMostrarOpciones implements Initializable {
             throw new RuntimeException(e);
         }
     }
-    public void desplegarPlantillasConReserva(ArrayList<Cancha> listaParaDesplegar){
+    public void desplegarPlantillasConReserva(ArrayList<CanchaDTO> listaParaDesplegar){
         try {
             for (int i = 0; i < listaParaDesplegar.size(); i++) {
 //                System.out.println(listaCanchas.get(i).getKey().getNombre());

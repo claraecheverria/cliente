@@ -1,5 +1,6 @@
 package com.example.cliente;
 
+import com.example.cliente.DTOs.ServicioDTO;
 import com.example.cliente.Model.Servicio;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,22 +32,22 @@ public class ControllerPlantillaMisMeGusta {
     @FXML
     private Button BotonMeGusta;
 
-    private Servicio servicioEste;
+    private ServicioDTO servicioEste;
 
-    public void setServicioEste(Servicio servicioEste) {
+    public void setServicioEste(ServicioDTO servicioEste) {
         this.servicioEste = servicioEste;
     }
 
-    public void setData(Servicio servicio){
+    public void setData(ServicioDTO servicio){
 //        javafx.scene.image.Image image = parseByteToImage(servicio.imagen)
 //        Image.setImage(image);
 //        setServicioEste(servicio);//REPASR SI ESTA BIEN
         setServicioEste(servicio);
-        Nombre.setText(servicio.getKey().getNombre());
-        Direccion.setText(servicio.getCentroDeportivoServicio().getDireccion());
+        Nombre.setText(servicio.getNombreServicio());
+        Direccion.setText(servicio.getDireccion());
         Descripcion.setText(servicio.getDescripcion());
-        HorarioInicio.setText(servicio.getHoraInicio());
-        HorarioFin.setText(servicio.getHoraFin());
+        HorarioInicio.setText(servicio.getHoraInicio().toString());
+        HorarioFin.setText(servicio.getHoraFin().toString());
     }
 
     public void Reservar(javafx.event.ActionEvent actionEvent) throws IOException {

@@ -1,5 +1,7 @@
 package com.example.cliente;
 
+import com.example.cliente.DTOs.CanchaDTO;
+import com.example.cliente.DTOs.ServicioDTO;
 import com.example.cliente.Model.Cancha;
 import com.example.cliente.Model.CentroDeportivo;
 import com.example.cliente.Model.Imagen;
@@ -50,7 +52,7 @@ public class ControllerPlantillaServicio {
     @FXML
     private Button BottonMeGusta;
     private CentroDeportivo centroDeportio;
-    private Servicio servicioEste;
+    private ServicioDTO servicioEste;
     private boolean estaPrecionado = false;
 
     public CentroDeportivo getCentroDeportio() {
@@ -61,15 +63,15 @@ public class ControllerPlantillaServicio {
         this.centroDeportio = centroDeportio;
     }
 
-    public Servicio getServicioEste() {
+    public ServicioDTO getServicioEste() {
         return servicioEste;
     }
 
-    public void setServicioEste(Servicio servicioEste) {
+    public void setServicioEste(ServicioDTO servicioEste) {
         this.servicioEste = servicioEste;
     }
 
-    public void setData(Servicio servicio){
+    public void setData(ServicioDTO servicio){
         byte[] decodedBytes;
         if(servicio.getImagenes().size() == 0){
 
@@ -81,9 +83,9 @@ public class ControllerPlantillaServicio {
 
         }
         setServicioEste(servicio);
-        System.out.println(servicioEste.getKey().getNombre());
-        Nombre.setText(servicio.getKey().getNombre());
-        Direccion.setText(servicio.getCentroDeportivoServicio().getDireccion());
+        System.out.println(servicioEste.getNombreServicio());
+        Nombre.setText(servicio.getNombreServicio());
+        Direccion.setText(servicio.getDireccion());
         Precio.setText(String.valueOf(servicio.getPrecio()));
         Descripcion.setText(servicio.getDescripcion());
         int tam = servicio.getDias().size();
@@ -93,10 +95,9 @@ public class ControllerPlantillaServicio {
 //        }
         Horarios.setText(horarios);
 //        BottonMeGusta.setStyle("-fx-background-color: #C9C9C9;");
-        centroDeportio = servicio.getCentroDeportivoServicio();
 
     }
-    public void setDataCancha(Cancha cancha){
+    public void setDataCancha(CanchaDTO cancha){
         byte[] decodedBytes;
         if(cancha.getImagenes().size() == 0){
 
@@ -108,9 +109,9 @@ public class ControllerPlantillaServicio {
 
         }
         setServicioEste(cancha);
-        System.out.println(servicioEste.getKey().getNombre());
-        Nombre.setText(cancha.getKey().getNombre());
-        Direccion.setText(cancha.getCentroDeportivoServicio().getDireccion());
+        System.out.println(servicioEste.getNombreServicio());
+        Nombre.setText(cancha.getNombreServicio());
+        Direccion.setText(cancha.getDireccion());
         Precio.setText(String.valueOf(cancha.getPrecio()));
         Descripcion.setText(cancha.getDescripcion());
         int tam = cancha.getDias().size();
@@ -120,7 +121,6 @@ public class ControllerPlantillaServicio {
 //        }
         Horarios.setText(horarios);
 //        BottonMeGusta.setStyle("-fx-background-color: #C9C9C9;");
-        centroDeportio = cancha.getCentroDeportivoServicio();
 
     }
 
@@ -128,7 +128,7 @@ public class ControllerPlantillaServicio {
         if (estaPrecionado == false) {
             BottonMeGusta.setStyle("-fx-background-color:#2B49B3;");
             System.out.println("apreté me gusta");
-            System.out.println(servicioEste.getKey().getNombre());
+            System.out.println(servicioEste.getNombreServicio());
             setEstaPrecionado(true);
             try {
                 com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
@@ -139,7 +139,7 @@ public class ControllerPlantillaServicio {
                 String serialized = null;
                 serialized = objectMapper.writeValueAsString(servicioEste);
 
-                HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/user/agregarServicioFav")
+                HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/user/agregarServicioFavDTO")
                         .header("accept", "application/json")
                         .header("Content-Type", "application/json")
                         .body(serialized)
@@ -190,18 +190,6 @@ public class ControllerPlantillaServicio {
 
     public void setEstaPrecionado(boolean estaPrecionado) {
         this.estaPrecionado = estaPrecionado;
-    }
-
-    public Cancha devolverCancha(){
-        return (Cancha) servicioEste;
-    }
-
-    public Servicio devolverServicio(){
-        return servicioEste;
-    }
-
-    public CentroDeportivo devolverCentroDeportivo(){
-        return centroDeportio;
     }
 
 

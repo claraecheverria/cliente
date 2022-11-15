@@ -36,6 +36,18 @@ public class ServicioDTO {
         this.tipo = tipo;
     }
 
+    public ServicioDTO(String nombreServicio, String nombreCentroDep, String direccion, Long precio, Set<DiasDeLaSemana> dias, LocalTime horaInicio, LocalTime horaFin, String descripcion, String tipo, Set<Imagen> imagenes) {
+        this.nombreServicio = nombreServicio;
+        this.nombreCentroDep = nombreCentroDep;
+        this.direccion = direccion;
+        this.precio = precio;
+        this.dias = dias;
+        this.horaInicio = horaInicio;
+        this.horaFin = horaFin;
+        this.descripcion = descripcion;
+        this.tipo = tipo;
+        this.imagenes = imagenes;
+    }
     //GETTERS Y SETTERS
 
     public String getNombreServicio() {
