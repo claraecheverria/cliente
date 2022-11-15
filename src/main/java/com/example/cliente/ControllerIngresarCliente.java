@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-//@Controller
 public class ControllerIngresarCliente implements Initializable {
 
     @FXML
@@ -46,7 +45,6 @@ public class ControllerIngresarCliente implements Initializable {
     private Label Lable;
     private ObservableList<String> listaServicios;
     private List<ServicioDTO> listaServiciosO = ListaServicios();
-
     private List<CanchaDTO> listaCanchas = ListaCanchas();
 
 
@@ -70,8 +68,6 @@ public class ControllerIngresarCliente implements Initializable {
         for(int i = 0; i<listaNombresCanchas.size();i++){
             Servicios.getItems().add(listaNombresCanchas.get(i));
         }
-
-//        Servicios.setValue(listaServicios);
     }
 
     public void desplegarHorarios(){
@@ -113,14 +109,10 @@ public class ControllerIngresarCliente implements Initializable {
             horaFin.getItems().clear();
             for(int i = horaInicio1.getHour(); i <= horaFin1.getHour(); i++ ){
                 System.out.println("Aca2");
-                horaInicio.getItems().add(i + ":00");
-                horaFin.getItems().add(i + ":00");
-
+                horaInicio.getItems().add(i);
+                horaFin.getItems().add(i);
             }
-
-
         }
-
     }
 
     public void Ingresar(javafx.event.ActionEvent actionEvent){
@@ -141,23 +133,18 @@ public class ControllerIngresarCliente implements Initializable {
         LocalTime horaInicioLT = null;
         LocalTime horaFinalLT = null;
         if (horaInicial != null && horaFinal != null){
-            horaInicioLT = LocalTime.parse(horaInicial);
-            horaFinalLT = LocalTime.parse(horaFinal);
+            horaInicioLT = LocalTime.of(Integer.parseInt(horaInicial),0);
+            horaFinalLT = LocalTime.of(Integer.parseInt(horaFinal),0);
         }
         LocalDate fechaHoy = LocalDate.now();
-        System.out.println(fechaHoy);
-
         String nombreServicio = Servicios.getValue().toString();
-        System.out.println(nombreServicio);
         ServicioDTO servicio = null;
         CanchaDTO cancha = null;
-
         for(int i = 0; i<listaServiciosO.size(); i++){
             if(listaServiciosO.get(i).getNombreServicio() == nombreServicio){
                 servicio = listaServiciosO.get(i);
             }
         }
-
         for(int i = 0; i<listaCanchas.size(); i++){
             System.out.println("Aca1");
             if(listaCanchas.get(i).getNombreServicio() == nombreServicio){
@@ -169,7 +156,12 @@ public class ControllerIngresarCliente implements Initializable {
         int fin = horaFinalLT.getHour();
 
         int horasTotales = fin - inicio;
-        long precio = horasTotales * servicio.getPrecio();
+        long precio;
+        if (servicio != null) {
+            precio = horasTotales * servicio.getPrecio();
+        }else{
+            precio = horasTotales * cancha.getPrecio();
+        }
 
         if(servicio != null){
             try {
@@ -198,11 +190,13 @@ public class ControllerIngresarCliente implements Initializable {
                 objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
                 objectMapper.setDateFormat(df);
                 String serialized = objectMapper.writeValueAsString(nuevoIngresoDTO);
-                HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/centroDeportivo/guardarIngreso") // HAY QUE DEFINIR LA HTTP BIEN
+                HttpResponse<String> response2 = Unirest.post("http://localhost:8080/centroDeportivo/guardarIngresoCanchaDTO")
                         .header("accept", "application/json")
                         .header("Content-Type", "application/json")
                         .body(serialized)
-                        .asJson();
+                        .asString();
+                Boolean ingresoAceptado = Boolean.parseBoolean(response2.getBody().toString());
+                System.out.println(ingresoAceptado);
             } catch (JsonProcessingException e) {
                 throw new RuntimeException(e);
             }
@@ -217,6 +211,10 @@ public class ControllerIngresarCliente implements Initializable {
                 .asJson();
         com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
         try {
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            objectMapper.findAndRegisterModules();
+            objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+            objectMapper.setDateFormat(df);
             List<ServicioDTO> listaServiciosEsteCentroDep = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<ServicioDTO>>(){});
             System.out.println(listaServiciosEsteCentroDep.size());
             return listaServiciosEsteCentroDep;
@@ -234,6 +232,10 @@ public class ControllerIngresarCliente implements Initializable {
                 .asJson();
         com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
         try {
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            objectMapper.findAndRegisterModules();
+            objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+            objectMapper.setDateFormat(df);
             List<CanchaDTO> listaServiciosEsteCentroDep = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<CanchaDTO>>(){});
             System.out.println(listaServiciosEsteCentroDep.size());
             return listaServiciosEsteCentroDep;
