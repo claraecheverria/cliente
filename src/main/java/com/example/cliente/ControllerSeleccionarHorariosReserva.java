@@ -62,6 +62,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
     public void setServicio(ServicioDTO servicio) {
         VboxHorarios.getChildren().clear();
         VboxMails.getChildren().clear();
+        horariosLibres.clear();
 
         System.out.println(servicio.getNombreServicio());
         this.servicio = servicio;

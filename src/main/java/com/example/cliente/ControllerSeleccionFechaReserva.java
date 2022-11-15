@@ -49,7 +49,7 @@ public class ControllerSeleccionFechaReserva {
         stage.showAndWait();
     }
     public void volver(javafx.event.ActionEvent actionEvent) throws IOException {
-        controllerPlantillaServicio.Volver(actionEvent);
+        stage.close();
     }
 
     public LocalDate mandarFecha(){
