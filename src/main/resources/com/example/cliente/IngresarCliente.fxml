@@ -40,7 +40,7 @@
                   <Font name="Arial Black" size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="Servicios" prefHeight="26.0" prefWidth="263.0" onAction="#desplegarHorarios" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ComboBox fx:id="Servicios" onAction="#desplegarHorarios" prefHeight="26.0" prefWidth="263.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label fx:id="Lable" textFill="RED" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets left="100.0" />
