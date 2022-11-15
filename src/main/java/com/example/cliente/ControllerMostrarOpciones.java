@@ -16,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -25,6 +26,7 @@ import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
 import org.springframework.stereotype.Controller;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -58,6 +60,8 @@ public class ControllerMostrarOpciones implements Initializable {
     private CheckBox fillterSegundoRango; // 150 - 300
     @FXML
     private CheckBox FillterTercerRango; // 300 - 450
+    @FXML
+    private Label Importe;
 
     private ArrayList<CheckBox> filltersList = new ArrayList();
 
@@ -78,6 +82,9 @@ public class ControllerMostrarOpciones implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         listaservicios = getListaServicios();
+        String importe = "0";
+        // importe = getImporte()
+        Importe.setText(importe);
 
 //        System.out.println(listaservicios.size());
         try {
