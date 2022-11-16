@@ -217,7 +217,7 @@
                         </Label>
                         <ScrollPane hbarPolicy="NEVER" prefHeight="163.0" prefWidth="484.0" vbarPolicy="ALWAYS">
                            <content>
-                              <VBox prefHeight="240.0" prefWidth="455.0" />
+                              <VBox fx:id="misMeGusta" prefHeight="240.0" prefWidth="455.0" />
                            </content>
                         </ScrollPane>
                      </children>

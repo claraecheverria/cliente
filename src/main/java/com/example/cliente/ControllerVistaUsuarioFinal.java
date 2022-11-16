@@ -74,7 +74,7 @@ public class ControllerVistaUsuarioFinal implements Initializable {
         series1.getData().add(new XYChart.Data("Miercoles" ,45));
         series1.getData().add(new XYChart.Data("Jueves",100));
         series1.getData().add(new XYChart.Data("Viernes",50));
-        //chart.getData().addAll(series1);
+        chart.getData().addAll(series1);
 
         List<ServicioDTO> listaservicios = getListaServicios();
 
