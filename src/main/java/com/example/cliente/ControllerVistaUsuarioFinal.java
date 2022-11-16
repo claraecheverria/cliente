@@ -61,16 +61,11 @@ public class ControllerVistaUsuarioFinal implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //SETEAR LA FECHA DE HOY
-//        List<String[]> listaAtributosEmpleados = login.getListaAtributosEmpleado();
-//        String importe = listaAtributosEmpleados.get(0)[6];
-//        Importe.setText(importe);
+        HttpResponse<String> response = Unirest.get("http://localhost:8080/user/saldo")
+                .asString();
+        Importe.setText(response.getBody());
         LocalDate date = LocalDate.now();
         FechaDeHoy.setText(date.toString());
-
-        //lisatatribustos.get(0)[6]
-        //
-//        List<String[]> listaServiciosFav = getListaServiciosFav();
 
         XYChart.Series series1 = new XYChart.Series();
         series1.setName("2003");
@@ -197,7 +192,6 @@ public class ControllerVistaUsuarioFinal implements Initializable {
             objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
             objectMapper.setDateFormat(df);
             List<ServicioDTO> listaServicios = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<ServicioDTO>>(){});
-            System.out.println(listaServicios.size());
             return listaServicios;
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
@@ -249,14 +243,9 @@ public class ControllerVistaUsuarioFinal implements Initializable {
             objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
             objectMapper.setDateFormat(df);
             List<ServicioDTO> listaServicios = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<ServicioDTO>>(){});
-            System.out.println(listaServicios.size());
             return listaServicios;
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-    }
-    public void ulrimosServiciosUtilizados(User usuario){
-
-
     }
 }

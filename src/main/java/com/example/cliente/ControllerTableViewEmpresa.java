@@ -92,9 +92,8 @@ public class ControllerTableViewEmpresa implements Initializable {
                 .asJson();
         com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
         try {
-            List<Empresa> listCar = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Empresa>>(){});
-            System.out.println(listCar.size());
-            return listCar;
+            List<Empresa> empresaList = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Empresa>>(){});
+            return empresaList;
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

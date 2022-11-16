@@ -124,10 +124,9 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
     }
 
     public void invitarAmigo(javafx.event.ActionEvent actionEvent){
-        ArrayList lisatInvitados = new ArrayList();
         CanchaDTO cancha = (CanchaDTO) servicio;
 
-        if(lisatInvitados.size() == cancha.getCupos()){
+        if(mailsUsuarios.size() == cancha.getCupos()-1){//menos uno pq se cuenta el que esta haciendo la reserva
             Lable.setText("El cupo ya es el maximo permitido");
         }
         else{
@@ -143,6 +142,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
                 VboxMails.getChildren().add(new Text(mail));
                 UserEmpleado Usr = new UserEmpleado(mail);
                 mailsUsuarios.add(Usr);
+                System.out.println(mailsUsuarios.size());
             }
             else{
                 Lable.setText("Seleccione un mail valido");
@@ -152,13 +152,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
 
     }
 
-    public List<ReservaDTO> getHorariosReservas(){   // HAY QUE PONER QUE DEVUELVA LOS HORARIOS LIBRES
-        //Tengo que mandar nombre centro deportivo, nomber servicio y fecha
-
-//        ControllerPlantillaServicio controllerPlantillaServicio1 = (ControllerPlantillaServicio) ClienteApplication.getContext().getBean("controllerPlantillaServicio");
-
-//        CentroDeportivo centroDeportivo = controllerPlantillaServicio1.devolverServicio().getCentroDeportivoServicio();
-//        Servicio servicio = controllerPlantillaServicio1.devolverServicio();
+    public List<ReservaDTO> getHorariosReservas(){
         LocalDate fecha = controllerSeleccionFechaReserva.mandarFecha();
 
         String centroDeportivoNombre = servicio.getNombreCentroDep();

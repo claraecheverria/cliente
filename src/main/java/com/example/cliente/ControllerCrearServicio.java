@@ -94,9 +94,6 @@ public class ControllerCrearServicio implements Initializable {
         stage.setScene(scence);
         stage.show();
         stage.centerOnScreen();
-//        Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
-//        stage.setX((primScreenBounds.getWidth() - stage.getWidth()) /2);
-//        stage.setY((primScreenBounds.getHeight() - stage.getHeight()) /2);
     }
 
     public void buscarImagen(javafx.event.ActionEvent actionEvent){

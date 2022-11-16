@@ -69,6 +69,9 @@ public class ControllerCrearCentroDeportivo {
         String email_usuario = Email.getText();
 
         NombreCentroDeportivo.clear();
+        RazonSocial.clear();
+        RUT.clear();
+        Direccion.clear();
         Cedula.clear();
         Nombre.clear();
         Telefono.clear();
@@ -89,7 +92,5 @@ public class ControllerCrearCentroDeportivo {
                 .body(nuevoUserCentroDep)
                 .asJson();
     }
-
-
 
 }

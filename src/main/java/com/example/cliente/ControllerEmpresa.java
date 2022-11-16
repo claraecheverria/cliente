@@ -26,6 +26,7 @@ public class ControllerEmpresa {
         Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("AgregarEmpleadoEmpresa.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scence = new Scene(root);
+        stage.setScene(scence);
         stage.show();
     }
 
@@ -34,6 +35,7 @@ public class ControllerEmpresa {
         Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("VerEmpleadosCreados.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scence = new Scene(root);
+        stage.setScene(scence);
         stage.show();
     }
 

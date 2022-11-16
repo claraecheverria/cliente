@@ -77,7 +77,7 @@ public class ControllerPlantillaServicio {
 
     public void setData(ServicioDTO servicio){
         byte[] decodedBytes;
-        if(servicio.getImagenes().size() == 0){
+        if(servicio.getImagenes() == null){
 
         }else{
             Imagen[] imagenes = servicio.getImagenes().toArray(new Imagen[servicio.getImagenes().size()]);
