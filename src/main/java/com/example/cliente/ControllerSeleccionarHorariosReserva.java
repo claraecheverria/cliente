@@ -152,13 +152,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
 
     }
 
-    public List<ReservaDTO> getHorariosReservas(){   // HAY QUE PONER QUE DEVUELVA LOS HORARIOS LIBRES
-        //Tengo que mandar nombre centro deportivo, nomber servicio y fecha
-
-//        ControllerPlantillaServicio controllerPlantillaServicio1 = (ControllerPlantillaServicio) ClienteApplication.getContext().getBean("controllerPlantillaServicio");
-
-//        CentroDeportivo centroDeportivo = controllerPlantillaServicio1.devolverServicio().getCentroDeportivoServicio();
-//        Servicio servicio = controllerPlantillaServicio1.devolverServicio();
+    public List<ReservaDTO> getHorariosReservas(){
         LocalDate fecha = controllerSeleccionFechaReserva.mandarFecha();
 
         String centroDeportivoNombre = servicio.getNombreCentroDep();

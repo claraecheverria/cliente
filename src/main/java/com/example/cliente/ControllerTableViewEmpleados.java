@@ -1,10 +1,13 @@
 package com.example.cliente;
 
+import com.example.cliente.DTOs.UserEmpleadoDTO;
 import com.example.cliente.HelloApplication;
 import com.example.cliente.Model.Empresa;
 import com.example.cliente.Model.User;
+import com.example.cliente.Model.UserEmpleado;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +27,7 @@ import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -49,23 +53,27 @@ public class ControllerTableViewEmpleados implements Initializable {
         empleados = FXCollections.observableArrayList(listaEmpleados);
         this.colNombres.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         this.colCedula.setCellValueFactory(new PropertyValueFactory<>("cedula"));
-        this.colCorreo.setCellValueFactory(new PropertyValueFactory<>("mail"));
+        this.colCorreo.setCellValueFactory(new PropertyValueFactory<>("email"));
         this.colVenCarne.setCellValueFactory(new PropertyValueFactory<>("vencimientoCarne"));
         this.colSaldo.setCellValueFactory(new PropertyValueFactory<>("saldo"));
 
         this.tableEmpleado.setItems(empleados);
     }
 
-    public List<Empresa> getUserList (){
-        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/empresa/listaempresas")
+    public List<UserEmpleadoDTO> getUserList (){
+        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/empresa/listaEmpleadosDeEmpresa")
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
                 .asJson();
         com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
         try {
-            List<Empresa> listCar = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<Empresa>>(){});
-            System.out.println(listCar.size());
-            return listCar;
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            objectMapper.findAndRegisterModules();
+            objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+            objectMapper.setDateFormat(df);
+            List<UserEmpleadoDTO> userEmpleadoDTOList = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<UserEmpleadoDTO>>(){});
+
+            return userEmpleadoDTOList;
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
@@ -73,7 +81,7 @@ public class ControllerTableViewEmpleados implements Initializable {
 
     public void Volver(javafx.event.ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("PrimeraVistaAdminEmpresa.fxml"));
+        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("PrimerVistaAdminEmpresa.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scence = new Scene(root);
         stage.setScene(scence);
@@ -84,7 +92,7 @@ public class ControllerTableViewEmpleados implements Initializable {
         empleados = FXCollections.observableArrayList();
         this.colNombres.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         this.colCedula.setCellValueFactory(new PropertyValueFactory<>("cedula"));
-        this.colCorreo.setCellValueFactory(new PropertyValueFactory<>("mail"));
+        this.colCorreo.setCellValueFactory(new PropertyValueFactory<>("email"));
         this.colVenCarne.setCellValueFactory(new PropertyValueFactory<>("vencimientoCarne"));
         this.colSaldo.setCellValueFactory(new PropertyValueFactory<>("saldo"));
 

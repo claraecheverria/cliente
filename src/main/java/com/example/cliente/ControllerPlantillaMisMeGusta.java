@@ -39,9 +39,6 @@ public class ControllerPlantillaMisMeGusta {
     }
 
     public void setData(ServicioDTO servicio){
-//        javafx.scene.image.Image image = parseByteToImage(servicio.imagen)
-//        Image.setImage(image);
-//        setServicioEste(servicio);//REPASR SI ESTA BIEN
         setServicioEste(servicio);
         Nombre.setText(servicio.getNombreServicio());
         Direccion.setText(servicio.getDireccion());

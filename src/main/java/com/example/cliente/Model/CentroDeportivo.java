@@ -72,15 +72,4 @@ public class CentroDeportivo {
 //        this.serviciosCentroDep = serviciosCentroDep;
 //    }
 
-    @Override
-    public String toString() {
-        return "CentroDeportivo{" +
-                "nombre='" + nombre + '\'' +
-                ", rut='" + rut + '\'' +
-                ", razonSocial='" + razonSocial + '\'' +
-                ", direccion='" + direccion + '\'' +
-                ", usersCentroDep=" + usersCentroDep +
-                ", serviciosCentroDep=" + serviciosCentroDep +
-                '}';
-    }
 }

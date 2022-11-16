@@ -192,7 +192,6 @@ public class ControllerVistaUsuarioFinal implements Initializable {
             objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
             objectMapper.setDateFormat(df);
             List<ServicioDTO> listaServicios = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<ServicioDTO>>(){});
-            System.out.println(listaServicios.size());
             return listaServicios;
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
@@ -244,14 +243,9 @@ public class ControllerVistaUsuarioFinal implements Initializable {
             objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
             objectMapper.setDateFormat(df);
             List<ServicioDTO> listaServicios = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<ServicioDTO>>(){});
-            System.out.println(listaServicios.size());
             return listaServicios;
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-    }
-    public void ulrimosServiciosUtilizados(User usuario){
-
-
     }
 }

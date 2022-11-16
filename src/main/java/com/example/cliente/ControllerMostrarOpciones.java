@@ -82,14 +82,12 @@ public class ControllerMostrarOpciones implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         listaservicios = getListaServicios();
-        String importe = "0";
-        // importe = getImporte()
-        Importe.setText(importe);
+        HttpResponse<String> response = Unirest.get("http://localhost:8080/user/saldo")
+                .asString();
+        Importe.setText(response.getBody());
 
-//        System.out.println(listaservicios.size());
         try {
             for (int i = 0; i < listaservicios.size(); i++) {
-//                System.out.println(listaservicios.get(i).getKey().getNombre());
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("plantillaServicioSinReserva.fxml"));
                 HBox serviceBox = fxmlLoader.load();
@@ -147,26 +145,34 @@ public class ControllerMostrarOpciones implements Initializable {
         }
         if (fillterSegundoRango.isSelected()){
             for(int i = 0; i<listaservicios.size(); i++){
-                if(listaservicios.get(i).getPrecio()<300){
+                if(listaservicios.get(i).getPrecio()<=300 && listaservicios.get(i).getPrecio()>=150){
                     listaServiciosSeleccionados.add(listaservicios.get(i));
                 }
             }
             for(int j = 0; j<listaCanchas.size();j++){
-                if(listaCanchas.get(j).getPrecio()<300){
+                if(listaCanchas.get(j).getPrecio()<=300 && listaCanchas.get(j).getPrecio()>=150){
                     listaServiciosSeleccionadosReserva.add(listaCanchas.get(j));
                 }
             }
         }
         if (FillterTercerRango.isSelected()){
             for(int i = 0; i<listaservicios.size(); i++){
-                if(listaservicios.get(i).getPrecio()<450){
+                if(listaservicios.get(i).getPrecio()<=450 && listaservicios.get(i).getPrecio()>=300){
                     listaServiciosSeleccionados.add(listaservicios.get(i));
                 }
             }
             for(int j = 0; j<listaCanchas.size();j++){
-                if(listaCanchas.get(j).getPrecio()<450){
+                if(listaCanchas.get(j).getPrecio()<=450 && listaCanchas.get(j).getPrecio()>=300){
                     listaServiciosSeleccionadosReserva.add(listaCanchas.get(j));
                 }
+            }
+        }
+        if (!fillterPrimerRango.isSelected() && !fillterSegundoRango.isSelected() && !FillterTercerRango.isSelected()){
+            for(int i = 0; i<listaservicios.size(); i++){
+               listaServiciosSeleccionados.add(listaservicios.get(i));
+            }
+            for(int j = 0; j<listaCanchas.size();j++){
+                    listaServiciosSeleccionadosReserva.add(listaCanchas.get(j));
             }
         }
 
@@ -191,7 +197,6 @@ public class ControllerMostrarOpciones implements Initializable {
             objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
             objectMapper.setDateFormat(df);
             List<ServicioDTO> listaServicios = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<ServicioDTO>>(){});
-            System.out.println(listaServicios.size());
             return listaServicios;
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
@@ -203,17 +208,14 @@ public class ControllerMostrarOpciones implements Initializable {
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")
                 .asJson();
-//        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         try {
             com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             objectMapper.findAndRegisterModules();
             objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
             objectMapper.setDateFormat(df);
-//            String serialized = objectMapper.writeValueAsString();
-            List<CanchaDTO> listaServicios = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<CanchaDTO>>(){});
-            System.out.println(listaServicios.size());
-            return listaServicios;
+            List<CanchaDTO> canchaDTOList = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<CanchaDTO>>(){});
+            return canchaDTOList;
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
