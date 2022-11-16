@@ -102,7 +102,7 @@ public class ControllerPlantillaServicio {
 //        BottonMeGusta.setStyle("-fx-background-color: #C9C9C9;");
 
         for(int i = 0; i < listaFav.size(); i++){
-            if(servicio.getNombreServicio() == listaFav.get(i).getNombreServicio() && servicio.getNombreServicio() == listaFav.get(i).getNombreCentroDep()){
+            if(servicio.getNombreServicio() == listaFav.get(i).getNombreServicio() && servicio.getNombreCentroDep() == listaFav.get(i).getNombreCentroDep()){
                 System.out.println("Entre, pinto de azul el boton");
                 BottonMeGusta.setStyle("-fx-background-color:#2B49B3;");
             }

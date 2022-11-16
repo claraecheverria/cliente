@@ -21,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class ControllerPlantillaMisMeGusta {
@@ -58,7 +59,7 @@ public class ControllerPlantillaMisMeGusta {
         HorarioFin.setText(servicio.getHoraFin().toString());
 
         for(int i = 0; i < listaFav.size(); i++){
-            if(servicio.getNombreServicio() == listaFav.get(i).getNombreServicio() && servicio.getNombreServicio() == listaFav.get(i).getNombreCentroDep()){
+            if(Objects.equals(servicio.getNombreServicio(), listaFav.get(i).getNombreServicio()) && Objects.equals(servicio.getNombreCentroDep(), listaFav.get(i).getNombreCentroDep())){
                 System.out.println("Entre pinta azul boton");
                 BotonMeGusta.setStyle("-fx-background-color:#2B49B3;");
             }
