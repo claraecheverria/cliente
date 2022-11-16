@@ -216,9 +216,9 @@
                            </VBox.margin>
                         </Label>
                         <ScrollPane prefHeight="163.0" prefWidth="471.0">
-                          <content>
-                            <AnchorPane fx:id="misMeGusta" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="249.0" prefWidth="447.0" />
-                          </content>
+                           <content>
+                              <HBox fx:id="misMeGusta" prefHeight="247.0" prefWidth="454.0" />
+                           </content>
                         </ScrollPane>
                      </children>
                   </VBox>

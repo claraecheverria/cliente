@@ -9,6 +9,7 @@ import com.example.cliente.Model.Servicio;
 //import javafx.embed.swing.SwingFXUtils;
 //import javafx.embed.swing.SwingFXUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,6 +33,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Base64;
+import java.util.List;
 
 public class ControllerPlantillaServicio {
 
@@ -54,6 +56,8 @@ public class ControllerPlantillaServicio {
     private CentroDeportivo centroDeportio;
     private ServicioDTO servicioEste;
     private boolean estaPrecionado = false;
+
+    private List<ServicioDTO> listaFav = getListaServiciosFav();
 
     public CentroDeportivo getCentroDeportio() {
         return centroDeportio;
@@ -95,6 +99,12 @@ public class ControllerPlantillaServicio {
 //        }
         Horarios.setText(horarios);
 //        BottonMeGusta.setStyle("-fx-background-color: #C9C9C9;");
+
+        for(int i = 0; i < listaFav.size(); i++){
+            if(servicio.getNombreServicio() == listaFav.get(i).getNombreServicio() && servicio.getNombreServicio() == listaFav.get(i).getNombreCentroDep()){
+                BottonMeGusta.setStyle("-fx-background-color:#2B49B3;");
+            }
+        }
 
     }
     public void setDataCancha(CanchaDTO cancha){
@@ -181,6 +191,25 @@ public class ControllerPlantillaServicio {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }
+    public List<ServicioDTO> getListaServiciosFav (){
+        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/serviciosFavDeUnUserDTO")
+                .header("accept", "application/json")
+                .header("Content-Type", "application/json")
+                .asJson();
+        com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+        try {
+
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            objectMapper.findAndRegisterModules();
+            objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+            objectMapper.setDateFormat(df);
+            List<ServicioDTO> listaServicios = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<ServicioDTO>>(){});
+            System.out.println(listaServicios.size());
+            return listaServicios;
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public void Volver(javafx.event.ActionEvent actionEvent){
         Node source = (Node) actionEvent.getSource();
@@ -191,6 +220,7 @@ public class ControllerPlantillaServicio {
     public void setEstaPrecionado(boolean estaPrecionado) {
         this.estaPrecionado = estaPrecionado;
     }
+
 
 
 }

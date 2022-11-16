@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cliente.ControllerCrearEmpresa">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cliente.ControllerCrearEmpresa">
    <top>
       <AnchorPane prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -24,20 +24,25 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox layoutX="90.0" layoutY="-12.0" prefHeight="276.0" prefWidth="420.0">
+            <VBox layoutX="90.0" layoutY="5.0" prefHeight="385.0" prefWidth="420.0">
                <children>
-                  <AnchorPane prefHeight="39.0" prefWidth="420.0">
+                  <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="420.0">
                      <children>
-                        <TextField fx:id="nombreEmpresa" layoutX="204.0" layoutY="26.0" promptText="Ejemplo S.A." />
+                        <Label text="Datos de la Empresa:">
+                           <font>
+                              <Font name="Arial Black" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="nombreEmpresa" layoutX="204.0" layoutY="26.0" promptText="Ejemplo S.A." AnchorPane.topAnchor="36.0" />
                         <Label layoutY="26.0" text="Nombre Empresa:">
                            <font>
                               <Font name="Arial Black" size="18.0" />
                            </font>
                            <padding>
-                              <Insets bottom="10.0" />
+                              <Insets bottom="10.0" top="10.0" />
                            </padding>
                         </Label>
-                        <Label fx:id="errorDatos" layoutX="210.0" layoutY="6.0" textFill="#e40d0d" />
+                        <Label fx:id="errorDatos" layoutX="210.0" layoutY="6.0" textFill="#e40d0d" AnchorPane.leftAnchor="250.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane layoutX="10.0" layoutY="73.0" prefHeight="27.0" prefWidth="420.0">
@@ -50,7 +55,7 @@
                         <TextField fx:id="RUT" layoutX="208.0" layoutY="1.0" promptText="12345678" AnchorPane.rightAnchor="55.0" />
                      </children>
                      <VBox.margin>
-                        <Insets bottom="10.0" />
+                        <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </AnchorPane>
                   <AnchorPane layoutX="10.0" layoutY="73.0" prefHeight="27.0" prefWidth="420.0">
@@ -79,6 +84,14 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </AnchorPane>
+                  <Label text="Datos del Usuario:">
+                     <font>
+                        <Font name="Arial Black" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
                   <AnchorPane prefHeight="27.0" prefWidth="420.0">
                      <children>
                         <Label text="Cedula:">
@@ -133,7 +146,7 @@
                   </AnchorPane>
                </children>
             </VBox>
-            <Button fx:id="guardar" layoutX="269.0" layoutY="310.0" mnemonicParsing="false" onAction="#Volver" text="Guardar" />
+            <Button fx:id="guardar" layoutX="269.0" layoutY="377.0" mnemonicParsing="false" onAction="#Volver" text="Guardar" />
          </children>
       </AnchorPane>
    </center>

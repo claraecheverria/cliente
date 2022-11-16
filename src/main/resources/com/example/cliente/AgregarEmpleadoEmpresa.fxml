@@ -104,6 +104,7 @@
                </children>
             </VBox>
             <Button layoutX="269.0" layoutY="239.0" mnemonicParsing="false" onAction="#switchToAdminEmpresa" text="Guardar" />
+            <Button fx:id="Volver" layoutX="490.0" layoutY="265.0" mnemonicParsing="false" onAction="#switchToAdminEmpresa" text="Volver" />
          </children>
       </AnchorPane>
    </center>

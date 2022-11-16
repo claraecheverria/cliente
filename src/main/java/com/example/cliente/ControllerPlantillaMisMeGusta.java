@@ -2,6 +2,9 @@ package com.example.cliente;
 
 import com.example.cliente.DTOs.ServicioDTO;
 import com.example.cliente.Model.Servicio;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,9 +13,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import kong.unirest.HttpResponse;
+import kong.unirest.JsonNode;
+import kong.unirest.Unirest;
 import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.List;
 
 @Controller
 public class ControllerPlantillaMisMeGusta {
@@ -34,6 +42,8 @@ public class ControllerPlantillaMisMeGusta {
 
     private ServicioDTO servicioEste;
 
+    private List<ServicioDTO> listaFav = getListaServiciosFav();
+
     public void setServicioEste(ServicioDTO servicioEste) {
         this.servicioEste = servicioEste;
     }
@@ -48,6 +58,12 @@ public class ControllerPlantillaMisMeGusta {
         Descripcion.setText(servicio.getDescripcion());
         HorarioInicio.setText(servicio.getHoraInicio().toString());
         HorarioFin.setText(servicio.getHoraFin().toString());
+
+        for(int i = 0; i < listaFav.size(); i++){
+            if(servicio.getNombreServicio() == listaFav.get(i).getNombreServicio() && servicio.getNombreServicio() == listaFav.get(i).getNombreCentroDep()){
+                BotonMeGusta.setStyle("-fx-background-color:#2B49B3;");
+            }
+        }
     }
 
     public void Reservar(javafx.event.ActionEvent actionEvent) throws IOException {
@@ -60,5 +76,25 @@ public class ControllerPlantillaMisMeGusta {
 
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+    }
+
+    public List<ServicioDTO> getListaServiciosFav (){
+        HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/serviciosFavDeUnUserDTO")
+                .header("accept", "application/json")
+                .header("Content-Type", "application/json")
+                .asJson();
+        com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+        try {
+
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            objectMapper.findAndRegisterModules();
+            objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+            objectMapper.setDateFormat(df);
+            List<ServicioDTO> listaServicios = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<ServicioDTO>>(){});
+            System.out.println(listaServicios.size());
+            return listaServicios;
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

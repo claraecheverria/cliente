@@ -53,7 +53,7 @@ public class ControllerVistaUsuarioFinal implements Initializable {
     @FXML
     private Label FechaDeHoy;
     @FXML
-    private AnchorPane misMeGusta;
+    private HBox misMeGusta;
     @FXML
     private Label Importe;
 
@@ -88,7 +88,7 @@ public class ControllerVistaUsuarioFinal implements Initializable {
             for(int i = 0; i<listaMeGusta.size() ; i++){
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("PlantillaMeGusta.fxml"));
-                AnchorPane serviceBox =  fxmlLoader.load();
+                HBox serviceBox =  fxmlLoader.load();
                 ControllerPlantillaMisMeGusta servicioController = fxmlLoader.getController();
                 servicioController.setData(listaMeGusta.get(i));
                 misMeGusta.getChildren().add(serviceBox);

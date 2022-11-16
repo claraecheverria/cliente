@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,8 @@ public class ControllerCrearEmpleado {
     private TextField FechaVencimiento;
     @FXML
     private TextField Importe;
+    @FXML
+    private Button Volver;
 
     public void switchToAdminEmpresa(javafx.event.ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -56,7 +59,6 @@ public class ControllerCrearEmpleado {
         Importe.clear();
 
         User nuevoUser = new User(nombre, email, telefono, cedula);
-
 
     }
 }
