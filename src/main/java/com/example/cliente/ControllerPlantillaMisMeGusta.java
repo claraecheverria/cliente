@@ -42,13 +42,14 @@ public class ControllerPlantillaMisMeGusta {
 
     private ServicioDTO servicioEste;
 
-    private List<ServicioDTO> listaFav = getListaServiciosFav();
+    private List<ServicioDTO> listaFav;
 
     public void setServicioEste(ServicioDTO servicioEste) {
         this.servicioEste = servicioEste;
     }
 
     public void setData(ServicioDTO servicio){
+        listaFav = getListaServiciosFav();
         setServicioEste(servicio);
         Nombre.setText(servicio.getNombreServicio());
         Direccion.setText(servicio.getDireccion());
@@ -58,6 +59,7 @@ public class ControllerPlantillaMisMeGusta {
 
         for(int i = 0; i < listaFav.size(); i++){
             if(servicio.getNombreServicio() == listaFav.get(i).getNombreServicio() && servicio.getNombreServicio() == listaFav.get(i).getNombreCentroDep()){
+                System.out.println("Entre pinta azul boton");
                 BotonMeGusta.setStyle("-fx-background-color:#2B49B3;");
             }
         }

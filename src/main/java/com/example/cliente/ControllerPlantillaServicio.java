@@ -57,7 +57,7 @@ public class ControllerPlantillaServicio {
     private ServicioDTO servicioEste;
     private boolean estaPrecionado = false;
 
-    private List<ServicioDTO> listaFav = getListaServiciosFav();
+    private List<ServicioDTO> listaFav;
 
     public CentroDeportivo getCentroDeportio() {
         return centroDeportio;
@@ -77,6 +77,7 @@ public class ControllerPlantillaServicio {
 
     public void setData(ServicioDTO servicio){
         byte[] decodedBytes;
+        listaFav = getListaServiciosFav();
         if(servicio.getImagenes() == null){
 
         }else{
@@ -102,6 +103,7 @@ public class ControllerPlantillaServicio {
 
         for(int i = 0; i < listaFav.size(); i++){
             if(servicio.getNombreServicio() == listaFav.get(i).getNombreServicio() && servicio.getNombreServicio() == listaFav.get(i).getNombreCentroDep()){
+                System.out.println("Entre, pinto de azul el boton");
                 BottonMeGusta.setStyle("-fx-background-color:#2B49B3;");
             }
         }
