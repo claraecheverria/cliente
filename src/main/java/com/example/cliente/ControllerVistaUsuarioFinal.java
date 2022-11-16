@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
@@ -53,7 +54,7 @@ public class ControllerVistaUsuarioFinal implements Initializable {
     @FXML
     private Label FechaDeHoy;
     @FXML
-    private HBox misMeGusta;
+    private VBox misMeGusta;
     @FXML
     private Label Importe;
 
