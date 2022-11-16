@@ -106,6 +106,7 @@ public class ControllerPlantillaServicio {
             if(Objects.equals(servicio.getNombreServicio(), listaFav.get(i).getNombreServicio()) && Objects.equals(servicio.getNombreCentroDep(), listaFav.get(i).getNombreCentroDep())){
                 System.out.println("Entre, pinto de azul el boton");
                 BottonMeGusta.setStyle("-fx-background-color:#2B49B3;");
+                estaPrecionado = true;
             }
         }
 
@@ -162,7 +163,7 @@ public class ControllerPlantillaServicio {
             }
         }
         else {
-            BottonMeGusta.setStyle("-fx-background-color: #C9C9C9;");
+            BottonMeGusta.setStyle("-fx-background-color: #FFFFFF;");
             try {
                 com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
