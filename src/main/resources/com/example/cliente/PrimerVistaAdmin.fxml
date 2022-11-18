@@ -113,6 +113,11 @@
                   </Label>
                </children>
             </HBox>
+            <Button fx:id="CerrarSesion" layoutX="399.0" layoutY="201.0" mnemonicParsing="false" onAction="#cerrarSecion" text="Cerrar Sesión">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </center>
