@@ -121,91 +121,95 @@ public class ControllerIngresarCliente implements Initializable {
         UserEmpleado userEmpleado = null;
         if (!existe){
             Lable.setText("Mail incorrecto");
-        }
-        Email.clear();
-
-        String horaInicial = horaInicio.getValue().toString();
-        String horaFinal = horaFin.getValue().toString();
-        LocalTime horaInicioLT = null;
-        LocalTime horaFinalLT = null;
-        if (horaInicial != null && horaFinal != null){
-            horaInicioLT = LocalTime.of(Integer.parseInt(horaInicial),0);
-            horaFinalLT = LocalTime.of(Integer.parseInt(horaFinal),0);
-        }
-        LocalDate fechaHoy = LocalDate.now();
-        String nombreServicio = Servicios.getValue().toString();
-        ServicioDTO servicio = null;
-        CanchaDTO cancha = null;
-        for(int i = 0; i<listaServiciosO.size(); i++){
-            if(listaServiciosO.get(i).getNombreServicio() == nombreServicio){
-                servicio = listaServiciosO.get(i);
+            Email.clear();
+        }else {
+            Email.clear();
+            String horaInicial = horaInicio.getValue().toString();
+            String horaFinal = horaFin.getValue().toString();
+            LocalTime horaInicioLT = null;
+            LocalTime horaFinalLT = null;
+            if (horaInicial != null && horaFinal != null){
+                horaInicioLT = LocalTime.of(Integer.parseInt(horaInicial),0);
+                horaFinalLT = LocalTime.of(Integer.parseInt(horaFinal),0);
             }
-        }
-        for(int i = 0; i<listaCanchas.size(); i++){
-            if(listaCanchas.get(i).getNombreServicio() == nombreServicio){
-                cancha = listaCanchas.get(i);
-            }
-        }
-
-        int inicio = horaInicioLT.getHour();
-        int fin = horaFinalLT.getHour();
-
-        int horasTotales = fin - inicio;
-        long precio;
-        if (servicio != null) {
-            precio = horasTotales * servicio.getPrecio();
-        }else{
-            precio = horasTotales * cancha.getPrecio();
-        }
-
-        if(servicio != null){
-            try {
-                IngresoDTO nuevoIngresoDTO = new IngresoDTO(fechaHoy, horaInicioLT,horaFinalLT,servicio.getNombreServicio(), servicio.getNombreCentroDep(), email, precio);
-                com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
-                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-                objectMapper.findAndRegisterModules();
-                objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
-                objectMapper.setDateFormat(df);
-                String serialized = objectMapper.writeValueAsString(nuevoIngresoDTO);
-                HttpResponse<String> response2 = Unirest.post("http://localhost:8080/centroDeportivo/guardarIngresoServicioDTO")
-                        .header("accept", "application/json")
-                        .header("Content-Type", "application/json")
-                        .body(serialized)
-                        .asString();
-                boolean ingresoAceptado = Boolean.parseBoolean(response2.getBody().toString());
-                if (ingresoAceptado){
-                    Lable.setText("Ingreso aceptado");
-                }else {
-                    Lable.setText("Ingreso rechazado, usuario tiene carné de salud vencido");
+            LocalDate fechaHoy = LocalDate.now();
+            String nombreServicio = Servicios.getValue().toString();
+            ServicioDTO servicio = null;
+            CanchaDTO cancha = null;
+            for(int i = 0; i<listaServiciosO.size(); i++){
+                if(listaServiciosO.get(i).getNombreServicio() == nombreServicio){
+                    servicio = listaServiciosO.get(i);
                 }
-            } catch (JsonProcessingException e) {
-                throw new RuntimeException(e);
             }
-        }
-        else{
-            try {
-                IngresoDTO nuevoIngresoDTO = new IngresoDTO(fechaHoy, horaInicioLT,horaFinalLT,cancha.getNombreServicio(), cancha.getNombreCentroDep(), email, precio);
-                com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
-                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-                objectMapper.findAndRegisterModules();
-                objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
-                objectMapper.setDateFormat(df);
-                String serialized = objectMapper.writeValueAsString(nuevoIngresoDTO);
-                HttpResponse<String> response2 = Unirest.post("http://localhost:8080/centroDeportivo/guardarIngresoCanchaDTO")
-                        .header("accept", "application/json")
-                        .header("Content-Type", "application/json")
-                        .body(serialized)
-                        .asString();
-                Boolean ingresoAceptado = Boolean.parseBoolean(response2.getBody().toString());
-                if (ingresoAceptado){
-                    Lable.setText("Ingreso aceptado");
-                }else {
-                    Lable.setText("Ingreso rechazado");
+            for(int i = 0; i<listaCanchas.size(); i++){
+                if(listaCanchas.get(i).getNombreServicio() == nombreServicio){
+                    cancha = listaCanchas.get(i);
                 }
-            } catch (JsonProcessingException e) {
-                throw new RuntimeException(e);
+            }
+
+            int inicio = horaInicioLT.getHour();
+            int fin = horaFinalLT.getHour();
+
+            int horasTotales = fin - inicio;
+            long precio;
+            if (servicio != null) {
+                precio = horasTotales * servicio.getPrecio();
+            }else{
+                precio = horasTotales * cancha.getPrecio();
+            }
+
+            if(servicio != null){
+                try {
+                    IngresoDTO nuevoIngresoDTO = new IngresoDTO(fechaHoy, horaInicioLT,horaFinalLT,servicio.getNombreServicio(), servicio.getNombreCentroDep(), email, precio);
+                    com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                    objectMapper.findAndRegisterModules();
+                    objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+                    objectMapper.setDateFormat(df);
+                    String serialized = objectMapper.writeValueAsString(nuevoIngresoDTO);
+                    HttpResponse<String> response2 = Unirest.post("http://localhost:8080/centroDeportivo/guardarIngresoServicioDTO")
+                            .header("accept", "application/json")
+                            .header("Content-Type", "application/json")
+                            .body(serialized)
+                            .asString();
+                    boolean ingresoAceptado = Boolean.parseBoolean(response2.getBody().toString());
+                    if (ingresoAceptado){
+                        Lable.setText("Ingreso aceptado");
+                    }else {
+                        Lable.setText("Ingreso rechazado, usuario tiene carné de salud vencido");
+                    }
+                } catch (JsonProcessingException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            else{
+                try {
+                    IngresoDTO nuevoIngresoDTO = new IngresoDTO(fechaHoy, horaInicioLT,horaFinalLT,cancha.getNombreServicio(), cancha.getNombreCentroDep(), email, precio);
+                    com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                    objectMapper.findAndRegisterModules();
+                    objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+                    objectMapper.setDateFormat(df);
+                    String serialized = objectMapper.writeValueAsString(nuevoIngresoDTO);
+                    HttpResponse<String> response2 = Unirest.post("http://localhost:8080/centroDeportivo/guardarIngresoCanchaDTO")
+                            .header("accept", "application/json")
+                            .header("Content-Type", "application/json")
+                            .body(serialized)
+                            .asString();
+                    Boolean ingresoAceptado = Boolean.parseBoolean(response2.getBody().toString());
+                    if (ingresoAceptado){
+                        Lable.setText("Ingreso aceptado");
+                    }else {
+                        Lable.setText("Ingreso rechazado");
+                    }
+                } catch (JsonProcessingException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
+
+
+
     }
 
     public List<ServicioDTO> ListaServicios(){    // hay que hacer la consulta a la base de datos
