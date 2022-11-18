@@ -58,6 +58,8 @@ public class ControllerPlantillaServicio {
     private ServicioDTO servicioEste;
     private boolean estaPrecionado = false;
 
+    private Stage stage;
+
     private List<ServicioDTO> listaFav;
 
     public CentroDeportivo getCentroDeportio() {
@@ -188,12 +190,16 @@ public class ControllerPlantillaServicio {
         Parent root = fxmlLoader.load(ControllerPlantillaServicio.class.getResourceAsStream("SeleccionFechaReserva.fxml"));
         ((ControllerSeleccionFechaReserva)fxmlLoader.getController()).setServicio(servicioEste);
         ((ControllerSeleccionFechaReserva)fxmlLoader.getController()).setPlantillaServicio(this);
-        Stage stage = new Stage();
+        stage = new Stage();
         stage.setScene(new Scene(root));
 
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }
+    public void close(){
+        stage.close();
+    }
+
 
     public void bajarPagina(javafx.event.ActionEvent event){
 
