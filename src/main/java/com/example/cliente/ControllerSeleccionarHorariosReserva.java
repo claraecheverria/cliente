@@ -10,12 +10,14 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
@@ -228,10 +230,17 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-
+        volver(actionEvent);
+        seleccionFechaReserva.volver(actionEvent);
     }
 
     public void setSeleccionFechaReserva(ControllerSeleccionFechaReserva controllerSeleccionFechaReserva) {
         this.seleccionFechaReserva = controllerSeleccionFechaReserva;
+    }
+
+    public void volver(javafx.event.ActionEvent actionEvent){
+        Node source = (Node) actionEvent.getSource();
+        Stage stageActual = (Stage) source.getScene().getWindow();
+        stageActual.close();
     }
 }

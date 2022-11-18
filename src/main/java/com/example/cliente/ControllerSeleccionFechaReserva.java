@@ -51,7 +51,7 @@ public class ControllerSeleccionFechaReserva {
         stage.showAndWait();
     }
 
-    public void Volver(javafx.event.ActionEvent actionEvent){
+    public void volver(javafx.event.ActionEvent actionEvent){
         Node source = (Node) actionEvent.getSource();
         Stage stageActual = (Stage) source.getScene().getWindow();
         stageActual.close();
