@@ -72,8 +72,6 @@ public class ControllerIngresarCliente implements Initializable {
 
     public void desplegarHorarios(){
         ObservableList listaHorariosDisponibles = null;
-        System.out.println("Entreeee");
-        System.out.println(Servicios.getValue().toString());
         if(Servicios.getValue() == null){
             horaInicio.setValue(listaHorariosDisponibles);
             horaFin.setValue(listaHorariosDisponibles);
@@ -86,7 +84,6 @@ public class ControllerIngresarCliente implements Initializable {
             for(int i = 0; i<listaServiciosO.size(); i++){
                 if(listaServiciosO.get(i).getNombreServicio() == nombreServicio){
                     servicio = listaServiciosO.get(i);
-                    System.out.println("HOLAAA");
                 }
             }
             for(int i = 0; i<listaCanchas.size();i++){
@@ -108,7 +105,6 @@ public class ControllerIngresarCliente implements Initializable {
             horaInicio.getItems().clear();
             horaFin.getItems().clear();
             for(int i = horaInicio1.getHour(); i <= horaFin1.getHour(); i++ ){
-                System.out.println("Aca2");
                 horaInicio.getItems().add(i);
                 horaFin.getItems().add(i);
             }
@@ -146,7 +142,6 @@ public class ControllerIngresarCliente implements Initializable {
             }
         }
         for(int i = 0; i<listaCanchas.size(); i++){
-            System.out.println("Aca1");
             if(listaCanchas.get(i).getNombreServicio() == nombreServicio){
                 cancha = listaCanchas.get(i);
             }
@@ -172,11 +167,17 @@ public class ControllerIngresarCliente implements Initializable {
                 objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
                 objectMapper.setDateFormat(df);
                 String serialized = objectMapper.writeValueAsString(nuevoIngresoDTO);
-                HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/centroDeportivo/guardarIngresoServicioDTO")
+                HttpResponse<String> response2 = Unirest.post("http://localhost:8080/centroDeportivo/guardarIngresoServicioDTO")
                         .header("accept", "application/json")
                         .header("Content-Type", "application/json")
                         .body(serialized)
-                        .asJson();
+                        .asString();
+                boolean ingresoAceptado = Boolean.parseBoolean(response2.getBody().toString());
+                if (ingresoAceptado){
+                    Lable.setText("Ingreso aceptado");
+                }else {
+                    Lable.setText("Ingreso rechazado, usuario tiene carné de salud vencido");
+                }
             } catch (JsonProcessingException e) {
                 throw new RuntimeException(e);
             }
@@ -196,7 +197,11 @@ public class ControllerIngresarCliente implements Initializable {
                         .body(serialized)
                         .asString();
                 Boolean ingresoAceptado = Boolean.parseBoolean(response2.getBody().toString());
-                System.out.println(ingresoAceptado);
+                if (ingresoAceptado){
+                    Lable.setText("Ingreso aceptado");
+                }else {
+                    Lable.setText("Ingreso rechazado");
+                }
             } catch (JsonProcessingException e) {
                 throw new RuntimeException(e);
             }
