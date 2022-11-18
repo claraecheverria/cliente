@@ -108,7 +108,6 @@ public class ControllerMostrarOpciones implements Initializable {
         }
         try {
             for (int i = 0; i < listaCanchas.size(); i++) {
-//                System.out.println(listaCanchas.get(i).getKey().getNombre());
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("plantillaServicio.fxml"));
                 HBox serviceBox = fxmlLoader.load();
@@ -181,7 +180,7 @@ public class ControllerMostrarOpciones implements Initializable {
                 }
             }
         }
-        if (!fillterPrimerRango.isSelected() && !fillterSegundoRango.isSelected() && !FillterTercerRango.isSelected()){
+        if (!fillterPrimerRango.isSelected() && !fillterSegundoRango.isSelected() && !FillterTercerRango.isSelected() && !FillterCuartoRango.isSelected()){
             for(int i = 0; i<listaservicios.size(); i++){
                listaServiciosSeleccionados.add(listaservicios.get(i));
             }
@@ -189,15 +188,11 @@ public class ControllerMostrarOpciones implements Initializable {
                     listaServiciosSeleccionadosReserva.add(listaCanchas.get(j));
             }
         }
-
-
         listaServiciosSeleccionados = removeDuplicates(listaServiciosSeleccionados);
         listaServiciosSeleccionadosReserva = removeDuplicates(listaServiciosSeleccionadosReserva);
 
         desplegarPlantillas(listaServiciosSeleccionados);
         desplegarPlantillasConReserva(listaServiciosSeleccionadosReserva);
-
-
     }
 
     public List<ServicioDTO> getListaServicios (){
@@ -294,7 +289,6 @@ public class ControllerMostrarOpciones implements Initializable {
     public void desplegarPlantillasConReserva(ArrayList<CanchaDTO> listaParaDesplegar){
         try {
             for (int i = 0; i < listaParaDesplegar.size(); i++) {
-//                System.out.println(listaCanchas.get(i).getKey().getNombre());
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("plantillaServicio.fxml"));
                 HBox serviceBox = fxmlLoader.load();

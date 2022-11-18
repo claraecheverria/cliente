@@ -79,7 +79,7 @@ public class ControllerPlantillaServicio {
     public void setData(ServicioDTO servicio){
         byte[] decodedBytes;
         listaFav = getListaServiciosFav();
-        if(servicio.getImagenes() == null){
+        if(servicio.getImagenes() == null || servicio.getImagenes().size() == 0){
 
         }else{
             Imagen[] imagenes = servicio.getImagenes().toArray(new Imagen[servicio.getImagenes().size()]);
@@ -89,7 +89,6 @@ public class ControllerPlantillaServicio {
 
         }
         setServicioEste(servicio);
-        System.out.println(servicioEste.getNombreServicio());
         Nombre.setText(servicio.getNombreServicio());
         Direccion.setText(servicio.getDireccion());
         Precio.setText(String.valueOf(servicio.getPrecio()));
@@ -123,7 +122,6 @@ public class ControllerPlantillaServicio {
 
         }
         setServicioEste(cancha);
-        System.out.println(servicioEste.getNombreServicio());
         Nombre.setText(cancha.getNombreServicio());
         Direccion.setText(cancha.getDireccion());
         Precio.setText(String.valueOf(cancha.getPrecio()));

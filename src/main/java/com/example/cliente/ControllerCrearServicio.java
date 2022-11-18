@@ -1,6 +1,9 @@
 package com.example.cliente;
 
+import com.example.cliente.DTOs.ServicioDTO;
 import com.example.cliente.Model.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -21,10 +24,9 @@ import org.springframework.stereotype.Controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Base64;
-import java.util.HashSet;
-import java.util.ResourceBundle;
-import java.util.Set;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.util.*;
 
 @Controller
 public class ControllerCrearServicio implements Initializable {
@@ -72,6 +74,8 @@ public class ControllerCrearServicio implements Initializable {
     @FXML
     private CheckBox DiaViernes;
 
+    private String imagen = null;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -107,25 +111,29 @@ public class ControllerCrearServicio implements Initializable {
         try {
             byte[] fileContent = FileUtils.readFileToByteArray(file);
             String encodedString = Base64.getEncoder().encodeToString(fileContent);
-            HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/centroDeportivo/guardarFoto")
-                    .header("accept", "application/json")
-                    .header("Content-Type", "application/json")
-                    .body(encodedString)
-                    .asJson();
+            imagen = encodedString;
+//            HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/centroDeportivo/guardarFoto")
+//                    .header("accept", "application/json")
+//                    .header("Content-Type", "application/json")
+//                    .body(encodedString)
+//                    .asJson();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     public void guradarDatos(){
-        String nombre = Nombre.toString();
-        String tipo = choiceBoxTipo.toString();
-        Long precio = Long.valueOf(Integer.parseInt(String.valueOf(Precio.toString())));
-        String horarios = Horarios.toString();
-        String horarioInicio = HorarioInicio.toString();
-        String horarioFin = HorarioFin.toString();
-        String descripcion = Descripcion.toString();
-        int cupos = Integer.parseInt(String.valueOf(Cupos));
+        String nombre = Nombre.getText();
+        String tipo = choiceBoxTipo.getValue().toString();
+        Long precio = Long.valueOf(Integer.parseInt(String.valueOf(Precio.getText())));
+//        String horarios = Horarios.getAccessibleText();
+        String horarioInicio = HorarioInicio.getValue().toString();
+        String horarioFin = HorarioFin.getValue().toString();
+        String descripcion = Descripcion.getText();
+        if (!Objects.equals(Cupos.getText(), "")){
+            int cupos = Integer.parseInt(Cupos.getText());
+        }
+
         Set<DiasDeLaSemana> diasSeleccionados = new HashSet<>();
 
         if(DiaLunes.isSelected()==true){
@@ -155,8 +163,37 @@ public class ControllerCrearServicio implements Initializable {
 //        HorarioFin.clear();
 //        HorarioInicio.clear();
         Precio.clear();
-        Horarios.clear();
+//        Horarios.clear();
         Cupos.clear();
+        Set<Imagen> imagenes = new HashSet<>();
+        imagenes.add(new Imagen(imagen));
+        System.out.println(nombre);
+        System.out.println(precio);
+        System.out.println(diasSeleccionados);
+        System.out.println(horarioInicio);
+        System.out.println(horarioFin);
+        System.out.println(descripcion);
+        System.out.println(tipo);
+        System.out.println(imagenes.size());
+        ServicioDTO servicioDTO = new ServicioDTO(nombre, "", "", precio, diasSeleccionados, LocalTime.of(Integer.parseInt(horarioInicio),0), LocalTime.of(Integer.parseInt(horarioFin),0), descripcion, tipo, imagenes);
+
+        try {
+            com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            objectMapper.findAndRegisterModules();
+            objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+            objectMapper.setDateFormat(df);
+            String serialized = null;
+            serialized = objectMapper.writeValueAsString(servicioDTO);
+
+//            HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/user/crearServicioCentroDepDTO")
+//                    .header("accept", "application/json")
+//                    .header("Content-Type", "application/json")
+//                    .body(serialized)
+//                    .asJson();
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
 
 
     }

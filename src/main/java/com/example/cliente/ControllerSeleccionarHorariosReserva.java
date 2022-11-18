@@ -157,8 +157,6 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
 
         String centroDeportivoNombre = servicio.getNombreCentroDep();
         String servicioNombre = servicio.getNombreServicio();
-        System.out.println(fecha);
-
         HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/reservasEnFechaDTO?fecha={fecha}&servicio={servicioNombre}&centroDep={centroDeportivoNombre}")
                 .routeParam("fecha", String.valueOf(fecha))
                 .routeParam("servicioNombre",servicioNombre)
@@ -172,9 +170,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
         objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
         objectMapper.setDateFormat(df);
         try {
-            //hay que ver que pasa cuando te devuelve una lista vacía, pq sino en el objectmapper se rompe
             List<ReservaDTO> listaHorariosDisponibles = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<ReservaDTO>>(){});
-            System.out.println(listaHorariosDisponibles.size());
             return listaHorariosDisponibles;
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
@@ -213,7 +209,6 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
             }
         }
         ReservaDTO nuevaReserva = new ReservaDTO(fecha, horaInicioLT, horaFinLT, cancha.getNombreServicio(), cancha.getNombreCentroDep(), mailsUsuarios);
-//        Reserva nuevaReserva = new Reserva(fecha, horaInicioLT,horaFinLT,cancha,mailsUsuarios); // mailUsuarios deberia ser con los usuarioEmpleado
         try {
             com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
