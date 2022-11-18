@@ -37,6 +37,14 @@
     -fx-border-color: #C1C1C1;
     -fx-border-style: dashed;
 }
+.buttonCerrar{
+    -fx-background-color: transparent;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-color: #C1C1C1;
+    -fx-border-color: #2B49B3;
+
+}
 
 .colored_club{
     -fx-background-color: linear-gradient(to right, #2B49B3,#2B69b3);

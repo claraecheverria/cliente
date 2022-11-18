@@ -57,6 +57,8 @@ public class ControllerVistaUsuarioFinal implements Initializable {
     private VBox misMeGusta;
     @FXML
     private Label Importe;
+    @FXML
+    private Button CerrarSesion;
 
     private ArrayList<Servicio> ultimosServiciosUtilizados = new ArrayList();
 
@@ -248,5 +250,16 @@ public class ControllerVistaUsuarioFinal implements Initializable {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void cerrarSecion(javafx.event.ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("LoginPage2.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        String css = this.getClass().getResource("StilePage1.css").toExternalForm();
+        scence = new Scene(root);
+        scence.getStylesheets().add(css);
+        stage.setScene(scence);
+        stage.show();
     }
 }
