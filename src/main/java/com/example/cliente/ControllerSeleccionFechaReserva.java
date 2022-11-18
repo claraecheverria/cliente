@@ -36,6 +36,7 @@ public class ControllerSeleccionFechaReserva {
     private LocalDate fecha;
     private ControllerPlantillaServicio controllerPlantillaServicio;
 
+
     public void consultarFecha(javafx.event.ActionEvent actionEvent) throws IOException {
         fecha = Calendario.getValue();
 
@@ -43,13 +44,17 @@ public class ControllerSeleccionFechaReserva {
         fxmlLoader.setControllerFactory(ClienteApplication.getContext()::getBean);
         Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("SeleccionarHorariosReserva.fxml"));
         ((ControllerSeleccionarHorariosReserva) fxmlLoader.getController()).setServicio(servicio);
+        ((ControllerSeleccionarHorariosReserva)fxmlLoader.getController()).setSeleccionFechaReserva(this);
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }
-    public void volver(javafx.event.ActionEvent actionEvent) throws IOException {
-        stage.close();
+
+    public void Volver(javafx.event.ActionEvent actionEvent){
+        Node source = (Node) actionEvent.getSource();
+        Stage stageActual = (Stage) source.getScene().getWindow();
+        stageActual.close();
     }
 
     public LocalDate mandarFecha(){
@@ -61,5 +66,9 @@ public class ControllerSeleccionFechaReserva {
 
     public DatePicker getCalendario() {
         return Calendario;
+    }
+
+    public void setPlantillaServicio(ControllerPlantillaServicio controllerPlantillaServicio) {
+        this.controllerPlantillaServicio = controllerPlantillaServicio;
     }
 }

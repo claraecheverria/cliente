@@ -187,11 +187,16 @@ public class ControllerPlantillaServicio {
         fxmlLoader.setControllerFactory(ClienteApplication.getContext()::getBean);
         Parent root = fxmlLoader.load(ControllerPlantillaServicio.class.getResourceAsStream("SeleccionFechaReserva.fxml"));
         ((ControllerSeleccionFechaReserva)fxmlLoader.getController()).setServicio(servicioEste);
+        ((ControllerSeleccionFechaReserva)fxmlLoader.getController()).setPlantillaServicio(this);
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
 
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+    }
+
+    public void bajarPagina(javafx.event.ActionEvent event){
+
     }
     public List<ServicioDTO> getListaServiciosFav (){
         HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/user/serviciosFavDeUnUserDTO")

@@ -58,6 +58,9 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
     private List<UserEmpleado> mailsUsuarios = new ArrayList<>();
     private List<ReservaDTO> horariosOcupados;
     private ServicioDTO servicio;
+    private ControllerSeleccionFechaReserva seleccionFechaReserva;
+    
+    public void setControllerPlantillaServicio(ControllerPlantillaServicio controller) {this.controllerPlantillaServicio = controller;}
 
     public void setServicio(ServicioDTO servicio) {
         VboxHorarios.getChildren().clear();
@@ -228,4 +231,7 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
 
     }
 
+    public void setSeleccionFechaReserva(ControllerSeleccionFechaReserva controllerSeleccionFechaReserva) {
+        this.seleccionFechaReserva = controllerSeleccionFechaReserva;
+    }
 }

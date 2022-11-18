@@ -39,11 +39,17 @@ public class ControllerPlantillaMisMeGusta {
     @FXML
     private Button Reservar;
     @FXML
-    private Button BotonMeGusta;
+    private Button BottonMeGusta;
 
     private ServicioDTO servicioEste;
 
     private List<ServicioDTO> listaFav;
+
+    private boolean estaPrecionado = false;
+
+    public void setEstaPrecionado(boolean estaPrecionado) {
+        this.estaPrecionado = estaPrecionado;
+    }
 
     public void setServicioEste(ServicioDTO servicioEste) {
         this.servicioEste = servicioEste;
@@ -61,7 +67,7 @@ public class ControllerPlantillaMisMeGusta {
         for(int i = 0; i < listaFav.size(); i++){
             if(Objects.equals(servicio.getNombreServicio(), listaFav.get(i).getNombreServicio()) && Objects.equals(servicio.getNombreCentroDep(), listaFav.get(i).getNombreCentroDep())){
                 System.out.println("Entre pinta azul boton");
-                BotonMeGusta.setStyle("-fx-background-color:#2B49B3;");
+                BottonMeGusta.setStyle("-fx-background-color:#2B49B3;");
             }
         }
     }
@@ -95,6 +101,51 @@ public class ControllerPlantillaMisMeGusta {
             return listaServicios;
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
+        }
+    }
+    public void meGusta(javafx.event.ActionEvent actionEvent) {
+        if (estaPrecionado == false) {
+            BottonMeGusta.setStyle("-fx-background-color:#2B49B3;");
+            System.out.println("apreté me gusta");
+            System.out.println(servicioEste.getNombreServicio());
+            setEstaPrecionado(true);
+            try {
+                com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                objectMapper.findAndRegisterModules();
+                objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+                objectMapper.setDateFormat(df);
+                String serialized = null;
+                serialized = objectMapper.writeValueAsString(servicioEste);
+
+                HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/user/agregarServicioFavDTO")
+                        .header("accept", "application/json")
+                        .header("Content-Type", "application/json")
+                        .body(serialized)
+                        .asJson();
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        else {
+            BottonMeGusta.setStyle("-fx-background-color: #FFFFFF;");
+            try {
+                com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                objectMapper.findAndRegisterModules();
+                objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+                objectMapper.setDateFormat(df);
+                String serialized = null;
+                serialized = objectMapper.writeValueAsString(servicioEste);
+
+                HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/user/eliminarServicioFav")
+                        .header("accept", "application/json")
+                        .header("Content-Type", "application/json")
+                        .body(serialized)
+                        .asJson();
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }
