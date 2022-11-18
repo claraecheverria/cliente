@@ -254,11 +254,11 @@ public class ControllerVistaUsuarioFinal implements Initializable {
 
     public void cerrarSecion(javafx.event.ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(ClienteApplication.getContext()::getBean);
         Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("LoginPage2.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         String css = this.getClass().getResource("StilePage1.css").toExternalForm();
         scence = new Scene(root);
-        scence.getStylesheets().add(css);
         stage.setScene(scence);
         stage.show();
     }
