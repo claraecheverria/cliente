@@ -23,8 +23,8 @@
         <columns>
           <TableColumn fx:id="colNombreEmpresa" prefWidth="182.0" text="Nombres" />
             <TableColumn fx:id="colRUT" prefWidth="122.0" text="RUT" />
-            <TableColumn fx:id="colRazonSocial" prefWidth="103.0" text="Razon Social" />
-            <TableColumn fx:id="colDireccion" prefWidth="134.0" text="Direccion" />
+            <TableColumn fx:id="colRazonSocial" prefWidth="103.0" text="Razón Social" />
+            <TableColumn fx:id="colDireccion" prefWidth="134.0" text="Dirección" />
         </columns>
       </TableView>
       <Button fx:id="btnActualizarTablaEmpresas" layoutX="91.0" layoutY="316.0" mnemonicParsing="false" onAction="#actualizarTablaEmpresas" text="Actualizar" />

@@ -29,7 +29,7 @@
         <columns>
           <TableColumn fx:id="colCorreo" prefWidth="75.0" text="Mail" />
           <TableColumn fx:id="colNombres" prefWidth="75.0" text="Nombre" />
-            <TableColumn fx:id="colCedula" prefWidth="75.0" text="Cedula" />
+            <TableColumn fx:id="colCedula" prefWidth="75.0" text="Cédula" />
             <TableColumn fx:id="colVenCarne" prefWidth="123.0" text="Carne Vencimiento" />
             <TableColumn fx:id="colSaldo" prefWidth="106.0" text="Cantidad Saldo" />
         </columns>

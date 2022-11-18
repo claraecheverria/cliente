@@ -61,6 +61,8 @@ public class ControllerMostrarOpciones implements Initializable {
     @FXML
     private CheckBox FillterTercerRango; // 300 - 450
     @FXML
+    private CheckBox FillterCuartoRango;
+    @FXML
     private Label Importe;
 
     private ArrayList<CheckBox> filltersList = new ArrayList();
@@ -167,6 +169,18 @@ public class ControllerMostrarOpciones implements Initializable {
                 }
             }
         }
+        if(FillterCuartoRango.isSelected()){
+            for(int i = 0; i<listaservicios.size(); i++){
+                if(listaservicios.get(i).getPrecio()>=450){
+                    listaServiciosSeleccionados.add(listaservicios.get(i));
+                }
+            }
+            for(int j = 0; j<listaCanchas.size();j++){
+                if(listaCanchas.get(j).getPrecio()>=450){
+                    listaServiciosSeleccionadosReserva.add(listaCanchas.get(j));
+                }
+            }
+        }
         if (!fillterPrimerRango.isSelected() && !fillterSegundoRango.isSelected() && !FillterTercerRango.isSelected()){
             for(int i = 0; i<listaservicios.size(); i++){
                listaServiciosSeleccionados.add(listaservicios.get(i));
@@ -175,6 +189,7 @@ public class ControllerMostrarOpciones implements Initializable {
                     listaServiciosSeleccionadosReserva.add(listaCanchas.get(j));
             }
         }
+
 
         listaServiciosSeleccionados = removeDuplicates(listaServiciosSeleccionados);
         listaServiciosSeleccionadosReserva = removeDuplicates(listaServiciosSeleccionadosReserva);
