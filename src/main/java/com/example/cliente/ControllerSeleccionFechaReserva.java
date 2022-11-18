@@ -45,16 +45,14 @@ public class ControllerSeleccionFechaReserva {
         Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("SeleccionarHorariosReserva.fxml"));
         ((ControllerSeleccionarHorariosReserva) fxmlLoader.getController()).setServicio(servicio);
         ((ControllerSeleccionarHorariosReserva)fxmlLoader.getController()).setSeleccionFechaReserva(this);
-        Stage stage = new Stage();
+        stage = new Stage();
         stage.setScene(new Scene(root));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }
 
     public void volver(javafx.event.ActionEvent actionEvent){
-        Node source = (Node) actionEvent.getSource();
-        Stage stageActual = (Stage) source.getScene().getWindow();
-        stageActual.close();
+        stage.close();
     }
 
     public LocalDate mandarFecha(){

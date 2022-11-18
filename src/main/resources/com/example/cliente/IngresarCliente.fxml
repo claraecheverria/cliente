@@ -61,5 +61,6 @@
       </Label>
       <ComboBox fx:id="horaInicio" layoutX="236.0" layoutY="158.0" prefHeight="26.0" prefWidth="95.0" />
       <ComboBox fx:id="horaFin" layoutX="439.0" layoutY="158.0" prefHeight="26.0" prefWidth="95.0" />
+      <Button fx:id="Volver" layoutX="487.0" layoutY="244.0" mnemonicParsing="false" onAction="#volver" text="Volver" />
    </children>
 </AnchorPane>

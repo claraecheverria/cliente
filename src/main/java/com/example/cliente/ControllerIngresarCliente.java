@@ -12,13 +12,19 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
 import org.springframework.stereotype.Controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -28,6 +34,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class ControllerIngresarCliente implements Initializable {
+    private Stage stage;
+    private Scene scence;
 
     @FXML
     private TextField Nombre;
@@ -46,6 +54,8 @@ public class ControllerIngresarCliente implements Initializable {
     private ObservableList<String> listaServicios;
     private List<ServicioDTO> listaServiciosO = ListaServicios();
     private List<CanchaDTO> listaCanchas = ListaCanchas();
+    @FXML
+    private Button Volver;
 
 
     @Override
@@ -252,6 +262,15 @@ public class ControllerIngresarCliente implements Initializable {
             throw new RuntimeException(e);
         }
 
+    }
+    public void volver(javafx.event.ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(ClienteApplication.getContext()::getBean);
+        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("PrimerVistaAdminEmpresa.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scence = new Scene(root);
+        stage.setScene(scence);
+        stage.show();
     }
 
 
