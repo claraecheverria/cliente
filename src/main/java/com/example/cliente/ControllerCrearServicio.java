@@ -26,10 +26,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
-import java.util.Base64;
-import java.util.HashSet;
-import java.util.ResourceBundle;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 public class ControllerCrearServicio implements Initializable {
@@ -127,13 +124,13 @@ public class ControllerCrearServicio implements Initializable {
 
     public void guradarDatos(){
         String nombre = Nombre.getText();
-        String tipo = choiceBoxTipo.getAccessibleText();
+        String tipo = choiceBoxTipo.getValue().toString();
         Long precio = Long.valueOf(Integer.parseInt(String.valueOf(Precio.getText())));
 //        String horarios = Horarios.getAccessibleText();
-        String horarioInicio = HorarioInicio.getAccessibleText();
-        String horarioFin = HorarioFin.getAccessibleText();
+        String horarioInicio = HorarioInicio.getValue().toString();
+        String horarioFin = HorarioFin.getValue().toString();
         String descripcion = Descripcion.getText();
-        if (Cupos.getText().equals("")){
+        if (!Objects.equals(Cupos.getText(), "")){
             int cupos = Integer.parseInt(Cupos.getText());
         }
 
@@ -166,11 +163,19 @@ public class ControllerCrearServicio implements Initializable {
 //        HorarioFin.clear();
 //        HorarioInicio.clear();
         Precio.clear();
-        Horarios.clear();
+//        Horarios.clear();
         Cupos.clear();
         Set<Imagen> imagenes = new HashSet<>();
         imagenes.add(new Imagen(imagen));
-        ServicioDTO servicioDTO = new ServicioDTO(nombre, null, null, precio, diasSeleccionados, LocalTime.of(Integer.parseInt(horarioInicio),0), LocalTime.of(Integer.parseInt(horarioFin),0), descripcion, tipo, imagenes);
+        System.out.println(nombre);
+        System.out.println(precio);
+        System.out.println(diasSeleccionados);
+        System.out.println(horarioInicio);
+        System.out.println(horarioFin);
+        System.out.println(descripcion);
+        System.out.println(tipo);
+        System.out.println(imagenes.size());
+        ServicioDTO servicioDTO = new ServicioDTO(nombre, "", "", precio, diasSeleccionados, LocalTime.of(Integer.parseInt(horarioInicio),0), LocalTime.of(Integer.parseInt(horarioFin),0), descripcion, tipo, imagenes);
 
         try {
             com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
