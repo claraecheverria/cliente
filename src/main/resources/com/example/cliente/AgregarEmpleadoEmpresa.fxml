@@ -29,7 +29,7 @@
                   <AnchorPane prefHeight="27.0" prefWidth="420.0">
                      <children>
                         <TextField fx:id="Cedula" layoutX="208.0" layoutY="1.0" promptText="12345678" AnchorPane.rightAnchor="55.0" />
-                        <Label text="Cedula:">
+                        <Label text="Cédula:">
                            <font>
                               <Font name="Arial Black" size="18.0" />
                            </font>
@@ -55,7 +55,7 @@
                   <AnchorPane prefWidth="420.0">
                      <children>
                         <TextField fx:id="Telefono" layoutX="210.0" layoutY="1.0" promptText="099 111 111" AnchorPane.rightAnchor="55.0" />
-                        <Label text="Telefono:">
+                        <Label text="Teléfono:">
                            <font>
                               <Font name="Arial Black" size="18.0" />
                            </font>

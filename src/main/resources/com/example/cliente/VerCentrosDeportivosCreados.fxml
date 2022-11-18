@@ -31,8 +31,8 @@
          <columns>
             <TableColumn fx:id="colNombres" prefWidth="75.0" text="Nombre" />
             <TableColumn fx:id="colRut" prefWidth="75.0" text="RUT" />
-            <TableColumn fx:id="colRazonSocial" prefWidth="123.0" text="Razon Social" />
-            <TableColumn fx:id="colDireccion" prefWidth="106.0" text="Direccion" />
+            <TableColumn fx:id="colRazonSocial" prefWidth="123.0" text="Razón Social" />
+            <TableColumn fx:id="colDireccion" prefWidth="106.0" text="Dirección" />
          </columns>
          <BorderPane.margin>
             <Insets bottom="1.0" />

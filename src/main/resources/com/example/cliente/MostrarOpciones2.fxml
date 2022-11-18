@@ -164,6 +164,14 @@
                         <Font name="Arial Black" size="18.0" />
                      </font>
                   </CheckBox>
+                  <CheckBox fx:id="FillterCuartoRango" layoutX="10.0" layoutY="326.0" mnemonicParsing="false" text="450 o mayor">
+                     <font>
+                        <Font name="Arial Black" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </CheckBox>
                </children>
             </VBox>
             <Button fx:id="ApplyFillters" layoutX="45.0" layoutY="507.0" mnemonicParsing="false" onAction="#applyFillters" text="Apply fillters" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">

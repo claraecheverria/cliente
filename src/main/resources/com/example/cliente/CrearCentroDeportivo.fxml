@@ -55,7 +55,7 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="46.0" prefHeight="24.0" prefWidth="507.0">
                      <children>
-                        <Label text="Razon Social:">
+                        <Label text="Razón Social:">
                            <font>
                               <Font name="Arial Black" size="16.0" />
                            </font>
@@ -89,7 +89,7 @@
                   </HBox>
                   <HBox layoutX="10.0" layoutY="98.0" prefHeight="24.0" prefWidth="507.0">
                      <children>
-                        <Label text="Direccion:">
+                        <Label text="Dirección:">
                            <font>
                               <Font name="Arial Black" size="16.0" />
                            </font>
@@ -106,7 +106,7 @@
                   </HBox>
                   <HBox prefHeight="24.0" prefWidth="507.0">
                      <children>
-                        <Label text="Cedula:">
+                        <Label text="Cédula:">
                            <font>
                               <Font name="Arial Black" size="16.0" />
                            </font>
@@ -140,7 +140,7 @@
                   </HBox>
                   <HBox prefHeight="24.0" prefWidth="514.0">
                      <children>
-                        <Label text="Telefono:">
+                        <Label text="Teléfono:">
                            <font>
                               <Font name="Arial Black" size="16.0" />
                            </font>
