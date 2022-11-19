@@ -5,8 +5,8 @@ public class UserCentroDeportivo extends User{
 
     private CentroDeportivo centroDeportivo;
 
-    public UserCentroDeportivo(String nombre, String email, Long telefono, Long cedula, CentroDeportivo centroDeportivo) {
-        super(nombre, email, telefono, cedula);
+    public UserCentroDeportivo(String nombre, String email, Long telefono, String password, Long cedula, CentroDeportivo centroDeportivo) {
+        super(nombre, email, telefono, password, cedula);
         this.centroDeportivo = centroDeportivo;
     }
 

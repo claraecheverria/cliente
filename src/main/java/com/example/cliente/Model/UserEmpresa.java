@@ -4,8 +4,8 @@ public class UserEmpresa extends User{
 
     private Empresa empresa;
 
-    public UserEmpresa(String nombre, String email, Long telefono, Long cedula, Empresa empresa) {
-        super(nombre, email, telefono, cedula);
+    public UserEmpresa(String nombre, String email, Long telefono, String password, Long cedula, Empresa empresa) {
+        super(nombre, email, telefono, password, cedula);
         this.empresa = empresa;
     }
 

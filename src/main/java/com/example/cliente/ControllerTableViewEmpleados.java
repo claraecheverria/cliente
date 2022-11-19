@@ -56,7 +56,6 @@ public class ControllerTableViewEmpleados implements Initializable {
         this.colCorreo.setCellValueFactory(new PropertyValueFactory<>("email"));
         this.colVenCarne.setCellValueFactory(new PropertyValueFactory<>("vencimientoCarne"));
         this.colSaldo.setCellValueFactory(new PropertyValueFactory<>("saldo"));
-
         this.tableEmpleado.setItems(empleados);
     }
 
@@ -89,13 +88,13 @@ public class ControllerTableViewEmpleados implements Initializable {
     }
 
     public void actualizarTablaEmpleados (javafx.event.ActionEvent actionEvent) {
-        empleados = FXCollections.observableArrayList();
+        List users = getUserList();
+        empleados = FXCollections.observableArrayList(users);
         this.colNombres.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         this.colCedula.setCellValueFactory(new PropertyValueFactory<>("cedula"));
         this.colCorreo.setCellValueFactory(new PropertyValueFactory<>("email"));
         this.colVenCarne.setCellValueFactory(new PropertyValueFactory<>("vencimientoCarne"));
         this.colSaldo.setCellValueFactory(new PropertyValueFactory<>("saldo"));
-
         this.tableEmpleado.setItems(empleados);
     }
 }

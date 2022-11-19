@@ -107,9 +107,6 @@ public class ControllerCrearServicio implements Initializable {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         File file = fileChooser.showOpenDialog(stage);
-        if (file != null) {
-            System.out.println("tengo file!!!");
-        }
         try {
             byte[] fileContent = FileUtils.readFileToByteArray(file);
             String encodedString = Base64.getEncoder().encodeToString(fileContent);
@@ -203,9 +200,5 @@ public class ControllerCrearServicio implements Initializable {
                 throw new RuntimeException(e);
             }
         }
-
-
-
-
     }
 }
