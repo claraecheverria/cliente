@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="210.0" prefWidth="370.0" stylesheets="@StilePage1.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cliente.ControllerPlantillaServicio">
    <children>
@@ -56,7 +57,7 @@
                   <Font name="Arial" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="284.0" layoutY="30.0" text="Días:" textFill="#2b49b3" AnchorPane.bottomAnchor="145.0">
+            <Label layoutX="270.0" layoutY="31.0" text="Días:" textFill="#2b49b3" AnchorPane.bottomAnchor="147.0" AnchorPane.rightAnchor="64.5">
                <font>
                   <Font name="Arial Black" size="13.0" />
                </font>
@@ -77,16 +78,12 @@
             </HBox>
             <VBox layoutX="214.0" layoutY="44.0" prefHeight="31.0" prefWidth="149.0" AnchorPane.bottomAnchor="118.0">
                <children>
-                  <Label fx:id="Horarios" alignment="TOP_CENTER" contentDisplay="TEXT_ONLY" nodeOrientation="LEFT_TO_RIGHT" prefHeight="33.0" prefWidth="156.0" text="Lun 9hs, Mier 10hs" textAlignment="CENTER" />
+                  <Text fx:id="Horarios" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="150.34083557128906" />
                </children>
             </VBox>
             <VBox layoutX="228.0" layoutY="143.0" prefHeight="20.0" prefWidth="149.0" AnchorPane.bottomAnchor="42.0" AnchorPane.rightAnchor="3.0">
                <children>
-                  <Label fx:id="Direccion" alignment="TOP_CENTER" contentDisplay="TOP" prefHeight="24.0" prefWidth="156.0" text="Nariño 2315">
-                     <font>
-                        <Font name="Arial" size="13.0" />
-                     </font>
-                  </Label>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="149.2393035888672" />
                </children>
             </VBox>
          </children>
