@@ -47,7 +47,7 @@
             </Label>
             <VBox layoutX="218.0" layoutY="133.0" prefHeight="20.0" prefWidth="149.0" AnchorPane.bottomAnchor="42.0" AnchorPane.rightAnchor="3.0">
                <children>
-                  <Label fx:id="Direccion" alignment="TOP_CENTER" contentDisplay="TOP" text="Nariño 2315">
+                  <Label fx:id="Direccion" alignment="TOP_CENTER" contentDisplay="TOP" prefHeight="26.0" prefWidth="150.0" text="Nariño 2315">
                      <font>
                         <Font name="Arial" size="13.0" />
                      </font>
@@ -74,7 +74,7 @@
             </Label>
             <VBox layoutX="216.0" layoutY="51.0" prefHeight="31.0" prefWidth="151.0" AnchorPane.bottomAnchor="118.0">
                <children>
-                  <Label fx:id="Horarios" alignment="TOP_CENTER" contentDisplay="TEXT_ONLY" nodeOrientation="LEFT_TO_RIGHT" text="Lun 9hs, Mier 10hs" textAlignment="CENTER" />
+                  <Label fx:id="Horarios" alignment="TOP_CENTER" contentDisplay="TEXT_ONLY" nodeOrientation="LEFT_TO_RIGHT" prefHeight="36.0" prefWidth="156.0" text="Lun 9hs, Mier 10hs" textAlignment="CENTER" />
                </children>
             </VBox>
             <Label layoutX="270.0" layoutY="74.0" text="Horario:" textFill="#2b49b3" AnchorPane.bottomAnchor="101.0">

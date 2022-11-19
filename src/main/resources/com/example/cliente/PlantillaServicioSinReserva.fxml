@@ -77,12 +77,12 @@
             </HBox>
             <VBox layoutX="214.0" layoutY="44.0" prefHeight="31.0" prefWidth="149.0" AnchorPane.bottomAnchor="118.0">
                <children>
-                  <Label fx:id="Horarios" alignment="TOP_CENTER" contentDisplay="TEXT_ONLY" nodeOrientation="LEFT_TO_RIGHT" text="Lun 9hs, Mier 10hs" textAlignment="CENTER" />
+                  <Label fx:id="Horarios" alignment="TOP_CENTER" contentDisplay="TEXT_ONLY" nodeOrientation="LEFT_TO_RIGHT" prefHeight="33.0" prefWidth="156.0" text="Lun 9hs, Mier 10hs" textAlignment="CENTER" />
                </children>
             </VBox>
             <VBox layoutX="228.0" layoutY="143.0" prefHeight="20.0" prefWidth="149.0" AnchorPane.bottomAnchor="42.0" AnchorPane.rightAnchor="3.0">
                <children>
-                  <Label fx:id="Direccion" alignment="TOP_CENTER" contentDisplay="TOP" text="Nariño 2315">
+                  <Label fx:id="Direccion" alignment="TOP_CENTER" contentDisplay="TOP" prefHeight="24.0" prefWidth="156.0" text="Nariño 2315">
                      <font>
                         <Font name="Arial" size="13.0" />
                      </font>
