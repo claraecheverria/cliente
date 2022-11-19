@@ -101,7 +101,7 @@
                      <children>
                         <VBox HBox.hgrow="ALWAYS">
                            <children>
-                              <Label text="My Clubs" textFill="#4c4c4e">
+                              <Label text="Recomendados " textFill="#4c4c4e">
                                  <font>
                                     <Font name="Arial Bold" size="15.0" />
                                  </font>
@@ -192,7 +192,7 @@
                <children>
                   <HBox prefHeight="0.0" prefWidth="800.0">
                      <children>
-                        <Label text="Monthly Summery" textFill="#4c4c4e">
+                        <Label text="Reporte general" textFill="#4c4c4e">
                            <font>
                               <Font name="Arial Bold" size="15.0" />
                            </font>
@@ -224,7 +224,7 @@
                   </VBox>
                   <VBox layoutX="566.0" layoutY="41.0" prefHeight="230.0" prefWidth="427.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="566.0">
                      <children>
-                        <Label alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" text="General Report" textFill="#2b49b3">
+                        <Label alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" text="Resumen semanal" textFill="#2b49b3">
                            <font>
                               <Font name="Arial Bold" size="15.0" />
                            </font>

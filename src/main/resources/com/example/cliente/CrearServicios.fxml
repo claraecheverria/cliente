@@ -204,10 +204,10 @@
                         </Button>
                         <Label fx:id="Lable">
                            <font>
-                              <Font size="16.0" />
+                              <Font size="14.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="20.0" top="4.0" />
+                              <Insets left="10.0" top="4.0" />
                            </HBox.margin>
                         </Label>
                      </children>

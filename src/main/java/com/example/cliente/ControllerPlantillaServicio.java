@@ -2,10 +2,7 @@ package com.example.cliente;
 
 import com.example.cliente.DTOs.CanchaDTO;
 import com.example.cliente.DTOs.ServicioDTO;
-import com.example.cliente.Model.Cancha;
-import com.example.cliente.Model.CentroDeportivo;
-import com.example.cliente.Model.Imagen;
-import com.example.cliente.Model.Servicio;
+import com.example.cliente.Model.*;
 //import javafx.embed.swing.SwingFXUtils;
 //import javafx.embed.swing.SwingFXUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -25,16 +22,11 @@ import javafx.stage.Stage;
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
-import org.springframework.stereotype.Controller;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Base64;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class ControllerPlantillaServicio {
 
@@ -54,6 +46,8 @@ public class ControllerPlantillaServicio {
     private Label Horarios;
     @FXML
     private Button BottonMeGusta;
+    @FXML
+    private Label Horario;
     private CentroDeportivo centroDeportio;
     private ServicioDTO servicioEste;
     private boolean estaPrecionado = false;
@@ -96,12 +90,14 @@ public class ControllerPlantillaServicio {
         Precio.setText(String.valueOf(servicio.getPrecio()));
         Descripcion.setText(servicio.getDescripcion());
         int tam = servicio.getDias().size();
-        String horarios = new String();
-//        for (int i = 0; i < tam; i++){
-            horarios = horarios + servicio.getDias().toString();
-//        }
-        Horarios.setText(horarios);
+        Object[] array = servicio.getDias().toArray();
+        String dias = new String();
+        for (int i = 0; i < tam; i++){
+            dias = dias + array[i];
+        }
+        Horarios.setText(dias);
 //        BottonMeGusta.setStyle("-fx-background-color: #C9C9C9;");
+        Horario.setText(servicio.getHoraInicio().toString() + " - " + servicio.getHoraFin().toString());
 
         for(int i = 0; i < listaFav.size(); i++){
             if(Objects.equals(servicio.getNombreServicio(), listaFav.get(i).getNombreServicio()) && Objects.equals(servicio.getNombreCentroDep(), listaFav.get(i).getNombreCentroDep())){
@@ -134,7 +130,15 @@ public class ControllerPlantillaServicio {
         horarios = horarios + cancha.getDias().toString();
 //        }
         Horarios.setText(horarios);
-//        BottonMeGusta.setStyle("-fx-background-color: #C9C9C9;");
+        Horario.setText(cancha.getHoraInicio().toString() + " - " + cancha.getHoraFin().toString());
+
+        for(int i = 0; i < listaFav.size(); i++){
+            if(Objects.equals(cancha.getNombreServicio(), listaFav.get(i).getNombreServicio()) && Objects.equals(cancha.getNombreCentroDep(), listaFav.get(i).getNombreCentroDep())){
+                System.out.println("Entre, pinto de azul el boton");
+                BottonMeGusta.setStyle("-fx-background-color:#2B49B3;");
+                estaPrecionado = true;
+            }
+        }
 
     }
 
