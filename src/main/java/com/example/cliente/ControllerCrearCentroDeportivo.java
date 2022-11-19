@@ -83,7 +83,7 @@ public class ControllerCrearCentroDeportivo {
         Contraseña.clear();
 
         CentroDeportivo centroDeportivo = new CentroDeportivo(nombre_centrodep, rut, razonSocial, direccion);
-        UserCentroDeportivo nuevoUserCentroDep = new UserCentroDeportivo(nombre_usuario,email_usuario,telefono_usuario,cedula_usuario,centroDeportivo);
+        UserCentroDeportivo nuevoUserCentroDep = new UserCentroDeportivo(nombre_usuario,email_usuario,telefono_usuario,contraseña,cedula_usuario,centroDeportivo);
 
         HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/centroDeportivo/crearCentroDep")
                 .header("accept", "application/json")

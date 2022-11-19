@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import kong.unirest.HttpResponse;
@@ -44,6 +45,8 @@ public class ControllerCrearEmpresa {
     private TextField email;
     @FXML
     private Button guardar;
+    @FXML
+    private PasswordField Contraseña;
 
     @FXML
     private Label errorDatos;
@@ -76,6 +79,7 @@ public class ControllerCrearEmpresa {
         String nombre_usuario = nombreUsuario.getText();
         Long telefono_usuario = Long.valueOf(telefono.getText());
         String email_usuario = email.getText();
+        String contraseña = Contraseña.getText();
 
         nombreEmpresa.clear();
         cedula.clear();
@@ -84,7 +88,7 @@ public class ControllerCrearEmpresa {
         email.clear();
 
         Empresa nuevaEmpresa = new Empresa(nombre_empresa, rut,razonSocial,direccion);
-        UserEmpresa nuevoUserEmpresa = new UserEmpresa(nombre_usuario, email_usuario, telefono_usuario, cedula_usuario, nuevaEmpresa);
+        UserEmpresa nuevoUserEmpresa = new UserEmpresa(nombre_usuario, email_usuario, telefono_usuario,contraseña, cedula_usuario, nuevaEmpresa);
 
         HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/empresa/crearEmpresa")
                 .header("accept", "application/json")
