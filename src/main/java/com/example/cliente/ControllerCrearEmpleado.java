@@ -58,8 +58,6 @@ public class ControllerCrearEmpleado {
         FechaVencimiento.clear();
         Importe.clear();
 
-        User nuevoUser = new User(nombre, email, telefono, cedula);
-
         // No fue implementado
     }
 }

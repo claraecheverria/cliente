@@ -21,8 +21,8 @@ public class UserEmpleado extends User{
     //CONSTRUCTORES
 
 
-    public UserEmpleado(String nombre, String email, Long telefono, Long cedula, LocalDate vencimientoCarne, Long saldo, Empresa empresaEmpl) {
-        super(nombre, email, telefono, cedula);
+    public UserEmpleado(String nombre, String email, Long telefono, String password, Long cedula, LocalDate vencimientoCarne, Long saldo, Empresa empresaEmpl) {
+        super(nombre, email, telefono, password, cedula);
         this.vencimientoCarne = vencimientoCarne;
         this.saldo = saldo;
         this.empresaEmpl = empresaEmpl;
