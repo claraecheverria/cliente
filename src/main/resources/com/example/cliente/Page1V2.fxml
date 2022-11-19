@@ -60,7 +60,7 @@
       </AnchorPane>
    </left>
    <center>
-      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" styleClass="plus_btn" BorderPane.alignment="CENTER">
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" BorderPane.alignment="CENTER">
          <children>
             <VBox layoutX="44.0" prefHeight="250.0" prefWidth="850.0" style="-fx-background-color: #ffffff;" styleClass="pane" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -182,14 +182,6 @@
                                     </Label>
                                  </children>
                               </AnchorPane>
-                              <Button fx:id="CerrarSesion" mnemonicParsing="false" onAction="#cerrarSecion" styleClass="buttonCerrar" stylesheets="@StilePage1.css" text="Cerrar Sesión">
-                                 <VBox.margin>
-                                    <Insets left="40.0" />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Button>
                            </children>
                         </VBox>
                      </children>
@@ -213,7 +205,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <VBox layoutX="14.0" layoutY="47.0" prefHeight="200.0" prefWidth="480.0">
+                  <VBox layoutX="14.0" layoutY="47.0" prefHeight="200.0" prefWidth="480.0" AnchorPane.bottomAnchor="60.0">
                      <children>
                         <Label text="Mis Me Gusta" textFill="#4c4c4e">
                            <font>
@@ -230,7 +222,7 @@
                         </ScrollPane>
                      </children>
                   </VBox>
-                  <VBox layoutX="566.0" layoutY="41.0" prefHeight="230.0" prefWidth="427.0" AnchorPane.leftAnchor="566.0">
+                  <VBox layoutX="566.0" layoutY="41.0" prefHeight="230.0" prefWidth="427.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="566.0">
                      <children>
                         <Label alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" text="General Report" textFill="#2b49b3">
                            <font>
@@ -247,6 +239,11 @@
                         </BarChart>
                      </children>
                   </VBox>
+                  <Button fx:id="CerrarSesion" layoutX="979.0" layoutY="264.0" mnemonicParsing="false" onAction="#cerrarSecion" styleClass="buttonCerrar" stylesheets="@StilePage1.css" text="Cerrar Sesión">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
          </children>
