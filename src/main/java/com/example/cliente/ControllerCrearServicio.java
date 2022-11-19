@@ -1,5 +1,6 @@
 package com.example.cliente;
 
+import com.example.cliente.DTOs.CanchaDTO;
 import com.example.cliente.DTOs.ServicioDTO;
 import com.example.cliente.Model.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -74,7 +75,7 @@ public class ControllerCrearServicio implements Initializable {
     @FXML
     private CheckBox DiaViernes;
     @FXML
-    private Label lable;
+    private Label Lable;
 
     private String imagen = null;
 
@@ -92,7 +93,7 @@ public class ControllerCrearServicio implements Initializable {
     }
 
     public void switchToAdminCentroDeporivo(javafx.event.ActionEvent event) throws IOException{
-        guradarDatos();
+        guardarDatos();
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("PrimeraVistaAdminCentroDeportivo.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -105,7 +106,6 @@ public class ControllerCrearServicio implements Initializable {
     public void buscarImagen(javafx.event.ActionEvent actionEvent){
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
-//        fileChooser.showOpenDialog(stage);
         File file = fileChooser.showOpenDialog(stage);
         if (file != null) {
             System.out.println("tengo file!!!");
@@ -114,28 +114,25 @@ public class ControllerCrearServicio implements Initializable {
             byte[] fileContent = FileUtils.readFileToByteArray(file);
             String encodedString = Base64.getEncoder().encodeToString(fileContent);
             imagen = encodedString;
-//            HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/centroDeportivo/guardarFoto")
-//                    .header("accept", "application/json")
-//                    .header("Content-Type", "application/json")
-//                    .body(encodedString)
-//                    .asJson();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        lable.setText("Imagen ingresada correctamente");
+        Lable.setText("Imagen ingresada");
 
     }
 
-    public void guradarDatos(){
+    public void guardarDatos(){
         String nombre = Nombre.getText();
         String tipo = choiceBoxTipo.getValue().toString();
         Long precio = Long.valueOf(Integer.parseInt(String.valueOf(Precio.getText())));
-//        String horarios = Horarios.getAccessibleText();
         String horarioInicio = HorarioInicio.getValue().toString();
         String horarioFin = HorarioFin.getValue().toString();
         String descripcion = Descripcion.getText();
+        boolean esCancha = false;
+        int cupos = 0;
         if (!Objects.equals(Cupos.getText(), "")){
-            int cupos = Integer.parseInt(Cupos.getText());
+            cupos = Integer.parseInt(Cupos.getText());
+            esCancha = true;
         }
 
         Set<DiasDeLaSemana> diasSeleccionados = new HashSet<>();
@@ -163,41 +160,51 @@ public class ControllerCrearServicio implements Initializable {
         }
 
         Nombre.clear();
-//        choiceBoxTipo.clear(); no esxiste clear pero hay que ver si cuando cargas otro servicio mantiene el valor anterior
-//        HorarioFin.clear();
-//        HorarioInicio.clear();
         Precio.clear();
-//        Horarios.clear();
         Cupos.clear();
         Set<Imagen> imagenes = new HashSet<>();
         imagenes.add(new Imagen(imagen));
-        System.out.println(nombre);
-        System.out.println(precio);
-        System.out.println(diasSeleccionados);
-        System.out.println(horarioInicio);
-        System.out.println(horarioFin);
-        System.out.println(descripcion);
-        System.out.println(tipo);
-        System.out.println(imagenes.size());
-        ServicioDTO servicioDTO = new ServicioDTO(nombre, "", "", precio, diasSeleccionados, LocalTime.of(Integer.parseInt(horarioInicio),0), LocalTime.of(Integer.parseInt(horarioFin),0), descripcion, tipo, imagenes);
+        if(!esCancha){
+            ServicioDTO servicioDTO = new ServicioDTO(nombre, "", "", precio, diasSeleccionados, LocalTime.of(Integer.parseInt(horarioInicio),0), LocalTime.of(Integer.parseInt(horarioFin),0), descripcion, tipo, imagenes);
+            try {
+                com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                objectMapper.findAndRegisterModules();
+                objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+                objectMapper.setDateFormat(df);
+                String serialized = null;
+                serialized = objectMapper.writeValueAsString(servicioDTO);
 
-        try {
-            com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-            objectMapper.findAndRegisterModules();
-            objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
-            objectMapper.setDateFormat(df);
-            String serialized = null;
-            serialized = objectMapper.writeValueAsString(servicioDTO);
+                HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/centroDeportivo/crearServicioCentroDepDTO")
+                        .header("accept", "application/json")
+                        .header("Content-Type", "application/json")
+                        .body(serialized)
+                        .asJson();
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
+        }else{
+            CanchaDTO canchaDTO = new CanchaDTO(nombre,"", "", precio,diasSeleccionados,LocalTime.of(Integer.parseInt(horarioInicio),0),LocalTime.of(Integer.parseInt(horarioFin),0),descripcion,tipo,imagenes,cupos);
+            try {
+                com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                objectMapper.findAndRegisterModules();
+                objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+                objectMapper.setDateFormat(df);
+                String serialized = null;
+                serialized = objectMapper.writeValueAsString(canchaDTO);
 
-//            HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/user/crearServicioCentroDepDTO")
-//                    .header("accept", "application/json")
-//                    .header("Content-Type", "application/json")
-//                    .body(serialized)
-//                    .asJson();
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+                HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/centroDeportivo/crearServicioCentroDepDTO")
+                        .header("accept", "application/json")
+                        .header("Content-Type", "application/json")
+                        .body(serialized)
+                        .asJson();
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
         }
+
+
 
 
     }

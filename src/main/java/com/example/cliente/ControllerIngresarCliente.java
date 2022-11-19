@@ -256,7 +256,6 @@ public class ControllerIngresarCliente implements Initializable {
             objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
             objectMapper.setDateFormat(df);
             List<CanchaDTO> listaServiciosEsteCentroDep = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<CanchaDTO>>(){});
-            System.out.println(listaServiciosEsteCentroDep.size());
             return listaServiciosEsteCentroDep;
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
@@ -266,7 +265,7 @@ public class ControllerIngresarCliente implements Initializable {
     public void volver(javafx.event.ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClienteApplication.getContext()::getBean);
-        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("PrimerVistaAdminEmpresa.fxml"));
+        Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("PrimeraVistaAdminCentroDeportivo.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scence = new Scene(root);
         stage.setScene(scence);
