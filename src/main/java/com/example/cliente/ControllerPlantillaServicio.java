@@ -42,7 +42,7 @@ public class ControllerPlantillaServicio {
     @FXML
     private ImageView Image;
     @FXML
-    private Label Descripcion;
+    private Text Descripcion;
     @FXML
     private Text Horarios;
     @FXML

@@ -97,89 +97,28 @@ public class ControllerVistaUsuarioFinal implements Initializable {
 
         try{
             for(int i =0; i<2;i++){
-                if(listaMeGusta != null && listaMeGusta.size() > 1) {
-                    if(i == 0){
-                        FXMLLoader fxmlLoader = new FXMLLoader();
-                        fxmlLoader.setLocation(getClass().getResource("PlantillaServicio.fxml"));
-                        HBox serviceBox = null;
-                        serviceBox = fxmlLoader.load();
-                        ControllerPlantillaServicio servicioController = fxmlLoader.getController();
-                        servicioController.setData(listaMeGusta.get(i));
-                        HboxMeGusta1.getChildren().add(serviceBox);
-                    }
-                    else{
-                        FXMLLoader fxmlLoader = new FXMLLoader();
-                        fxmlLoader.setLocation(getClass().getResource("PlantillaServicio.fxml"));
-                        HBox serviceBox = null;
-                        serviceBox = fxmlLoader.load();
-                        ControllerPlantillaServicio servicioController = fxmlLoader.getController();
-                        servicioController.setData(listaMeGusta.get(i));
-                        HboxMeGusta2.getChildren().add(serviceBox);
-                    }
-
+                if(i == 0){
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("PlantillaServicioSinReserva.fxml"));
+                    HBox serviceBox = null;
+                    serviceBox = fxmlLoader.load();
+                    ControllerPlantillaServicio servicioController = fxmlLoader.getController();
+                    servicioController.setData(listaservicios.get(i));
+                    HboxMeGusta1.getChildren().add(serviceBox);
                 }
                 else{
-                    if(i == 0){
-                        FXMLLoader fxmlLoader = new FXMLLoader();
-                        fxmlLoader.setLocation(getClass().getResource("PlantillaServicioSinReserva.fxml"));
-                        HBox serviceBox = null;
-                        serviceBox = fxmlLoader.load();
-                        ControllerPlantillaServicio servicioController = fxmlLoader.getController();
-                        servicioController.setData(listaservicios.get(i));
-                        HboxMeGusta1.getChildren().add(serviceBox);
-                    }
-                    else{
-                        FXMLLoader fxmlLoader = new FXMLLoader();
-                        fxmlLoader.setLocation(getClass().getResource("PlantillaServicioSinReserva.fxml"));
-                        HBox serviceBox = null;
-                        serviceBox = fxmlLoader.load();
-                        ControllerPlantillaServicio servicioController = fxmlLoader.getController();
-                        servicioController.setData(listaservicios.get(i));
-                        HboxMeGusta2.getChildren().add(serviceBox);
-                    }
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("PlantillaServicioSinReserva.fxml"));
+                    HBox serviceBox = null;
+                    serviceBox = fxmlLoader.load();
+                    ControllerPlantillaServicio servicioController = fxmlLoader.getController();
+                    servicioController.setData(listaservicios.get(i));
+                    HboxMeGusta2.getChildren().add(serviceBox);
                 }
             }
         }catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        // PARA QUE SE MUESTREN LOS DOS ULTIMOS SERVICIOS UTILIZADOS
-
-        // listaUltimosServiciosUtilizados = ultimosServiciosUtilizados(Usuario)
-//        try {
-//            for (int i = 0; i < 2; i++) {
-//                FXMLLoader fxmlLoader = new FXMLLoader();
-//                if(ultimosServiciosUtilizados.get(i).getTipo() == "clases"){  // HAY QUE DEFINIR BIEN COMO SON LOS TIPOS
-//                    fxmlLoader.setLocation(getClass().getResource("plantillaServicio.fxml"));
-//                }
-//                else{
-//                    fxmlLoader.setLocation(getClass().getResource("plantillaServicioSinReserva.fxml"));
-//                }
-//                HBox serviceBox = fxmlLoader.load();
-//                serviceBox.setStyle("-fx-background-color: linear-gradient(to right, #1A3384,#2B49B3);-fx-background-radius: 10px;");
-//                ControllerPlantillaServicio servicioController = fxmlLoader.getController();
-//                servicioController.setData(ultimosServiciosUtilizados.get(i));
-//                HboxMeGusta.getChildren().add(serviceBox);
-//            }
-//        }
-//        catch(IOException e){
-//            throw new RuntimeException(e);
-//        }
-
-//        try{
-//            for(int i = 0; i<listaServiciosFav.size();i++){
-//                FXMLLoader fxmlLoader = new FXMLLoader();
-//                fxmlLoader.setLocation(getClass().getResource("PlantillaMeGusta.fxml"));
-//                HBox MeGustaBox = fxmlLoader.load();
-//                ControllerPlantillaMisMeGusta misMeGustaController = fxmlLoader.getController();
-//                misMeGustaController.setData(listaServiciosFav.get(i));
-//                misMeGusta.getChildren().add(MeGustaBox);
-
-//            }
-//        }
-//        catch ( IOException e){
-//            throw new RuntimeException(e);
-//        }
 
     }
 

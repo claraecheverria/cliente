@@ -58,11 +58,6 @@
                </graphic>
             </Button>
             <FontAwesomeIconView fill="#4c4c4e" glyphName="STAR" />
-            <Label fx:id="Descripcion" layoutX="9.0" layoutY="32.0" prefWidth="193.0" text="Clase de yoga para principiantes ">
-               <font>
-                  <Font name="Arial" size="13.0" />
-               </font>
-            </Label>
             <HBox layoutX="216.0" layoutY="32.0" AnchorPane.bottomAnchor="110.0" AnchorPane.rightAnchor="8.0" />
             <Label layoutX="280.0" layoutY="29.0" text="Dias:" textFill="#2b49b3" AnchorPane.bottomAnchor="146.0">
                <font>
@@ -80,6 +75,7 @@
                </font>
             </Label>
             <Label fx:id="Horario" layoutX="265.0" layoutY="93.0" text="9:00 - 18:00" AnchorPane.bottomAnchor="85.0" />
+            <Text fx:id="Descripcion" layoutX="24.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="196.81311617257984" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="30.0" />
          </children>
          <HBox.margin>
             <Insets />
