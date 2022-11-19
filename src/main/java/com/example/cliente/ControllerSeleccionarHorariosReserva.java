@@ -108,24 +108,6 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Lable.setText(" ");
-
-
-
-//        horariosLibres = getHorariosReservas();
-//        try {
-//            for (int i = 0; i < horariosLibres.size(); i++) {
-//                FXMLLoader fxmlLoader = new FXMLLoader();
-//                fxmlLoader.setControllerFactory(ClienteApplication.getContext()::getBean);
-//                fxmlLoader.setLocation(getClass().getResource("BotonHorario.fxml"));
-//                HBox horarioBox = fxmlLoader.load();
-//                ControllerPlantillaHorarioReserva servicioController = fxmlLoader.getController();
-//                servicioController.setData(horariosLibres.get(i).getHoraFin().toString());
-//                VboxHorarios.getChildren().add(horarioBox);
-//            }
-//        }
-//        catch(IOException e){
-//            throw new RuntimeException(e);
-//        }
     }
 
     public void invitarAmigo(javafx.event.ActionEvent actionEvent){
@@ -190,7 +172,6 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
         for(int i = 0; i<horariosLibres.size();i++){
             System.out.println(VboxHorarios.getChildren().get(i).getClass());
             if(((CheckBox)VboxHorarios.getChildren().get(i)).isSelected() == true){
-                System.out.println("esta bien el isPressed");
                 listaBotonesSeleccionados.add((CheckBox) VboxHorarios.getChildren().get(i));
             }
         }

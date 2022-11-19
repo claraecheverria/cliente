@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import kong.unirest.HttpResponse;
@@ -31,7 +32,7 @@ import java.util.*;
 public class ControllerPlantillaServicio {
 
     @FXML
-    private Label Direccion;
+    private Text Direccion;
     @FXML
     private Label Nombre;
     @FXML
@@ -41,9 +42,9 @@ public class ControllerPlantillaServicio {
     @FXML
     private ImageView Image;
     @FXML
-    private Label Descripcion;
+    private Text Descripcion;
     @FXML
-    private Label Horarios;
+    private Text Horarios;
     @FXML
     private Button BottonMeGusta;
     @FXML
