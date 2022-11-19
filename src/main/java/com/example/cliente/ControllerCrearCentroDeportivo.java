@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import kong.unirest.HttpResponse;
@@ -40,6 +41,8 @@ public class ControllerCrearCentroDeportivo {
     private TextField Telefono;
     @FXML
     private TextField Email;
+    @FXML
+    private PasswordField Contraseña;
 
     public void switchToAdmin(javafx.event.ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -67,6 +70,7 @@ public class ControllerCrearCentroDeportivo {
         String nombre_usuario = Nombre.getText();
         Long telefono_usuario = Long.valueOf(Telefono.getText());
         String email_usuario = Email.getText();
+        String contraseña = Contraseña.getText();
 
         NombreCentroDeportivo.clear();
         RazonSocial.clear();
@@ -76,6 +80,7 @@ public class ControllerCrearCentroDeportivo {
         Nombre.clear();
         Telefono.clear();
         Email.clear();
+        Contraseña.clear();
 
         CentroDeportivo centroDeportivo = new CentroDeportivo(nombre_centrodep, rut, razonSocial, direccion);
         UserCentroDeportivo nuevoUserCentroDep = new UserCentroDeportivo(nombre_usuario,email_usuario,telefono_usuario,cedula_usuario,centroDeportivo);
