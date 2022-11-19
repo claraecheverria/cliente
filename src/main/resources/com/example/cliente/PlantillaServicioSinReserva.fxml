@@ -83,7 +83,7 @@
             </VBox>
             <VBox layoutX="228.0" layoutY="143.0" prefHeight="20.0" prefWidth="149.0" AnchorPane.bottomAnchor="42.0" AnchorPane.rightAnchor="3.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="149.2393035888672" />
+                  <Text fx:id="Direccion" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="149.2393035888672" />
                </children>
             </VBox>
          </children>
