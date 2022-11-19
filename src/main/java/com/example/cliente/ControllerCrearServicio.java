@@ -74,7 +74,7 @@ public class ControllerCrearServicio implements Initializable {
     @FXML
     private CheckBox DiaViernes;
     @FXML
-    private Label lable;
+    private Label Lable;
 
     private String imagen = null;
 
@@ -92,7 +92,7 @@ public class ControllerCrearServicio implements Initializable {
     }
 
     public void switchToAdminCentroDeporivo(javafx.event.ActionEvent event) throws IOException{
-        guradarDatos();
+        guardarDatos();
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = fxmlLoader.load(HelloApplication.class.getResourceAsStream("PrimeraVistaAdminCentroDeportivo.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -105,7 +105,6 @@ public class ControllerCrearServicio implements Initializable {
     public void buscarImagen(javafx.event.ActionEvent actionEvent){
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
-//        fileChooser.showOpenDialog(stage);
         File file = fileChooser.showOpenDialog(stage);
         if (file != null) {
             System.out.println("tengo file!!!");
@@ -114,19 +113,14 @@ public class ControllerCrearServicio implements Initializable {
             byte[] fileContent = FileUtils.readFileToByteArray(file);
             String encodedString = Base64.getEncoder().encodeToString(fileContent);
             imagen = encodedString;
-//            HttpResponse<JsonNode> response = Unirest.post("http://localhost:8080/centroDeportivo/guardarFoto")
-//                    .header("accept", "application/json")
-//                    .header("Content-Type", "application/json")
-//                    .body(encodedString)
-//                    .asJson();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        lable.setText("Imagen ingresada correctamente");
+        Lable.setText("Imagen ingresada");
 
     }
 
-    public void guradarDatos(){
+    public void guardarDatos(){
         String nombre = Nombre.getText();
         String tipo = choiceBoxTipo.getValue().toString();
         Long precio = Long.valueOf(Integer.parseInt(String.valueOf(Precio.getText())));
@@ -171,14 +165,6 @@ public class ControllerCrearServicio implements Initializable {
         Cupos.clear();
         Set<Imagen> imagenes = new HashSet<>();
         imagenes.add(new Imagen(imagen));
-        System.out.println(nombre);
-        System.out.println(precio);
-        System.out.println(diasSeleccionados);
-        System.out.println(horarioInicio);
-        System.out.println(horarioFin);
-        System.out.println(descripcion);
-        System.out.println(tipo);
-        System.out.println(imagenes.size());
         ServicioDTO servicioDTO = new ServicioDTO(nombre, "", "", precio, diasSeleccionados, LocalTime.of(Integer.parseInt(horarioInicio),0), LocalTime.of(Integer.parseInt(horarioFin),0), descripcion, tipo, imagenes);
 
         try {
@@ -190,11 +176,11 @@ public class ControllerCrearServicio implements Initializable {
             String serialized = null;
             serialized = objectMapper.writeValueAsString(servicioDTO);
 
-//            HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/user/crearServicioCentroDepDTO")
-//                    .header("accept", "application/json")
-//                    .header("Content-Type", "application/json")
-//                    .body(serialized)
-//                    .asJson();
+            HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/centroDeportivo/crearServicioCentroDepDTO")
+                    .header("accept", "application/json")
+                    .header("Content-Type", "application/json")
+                    .body(serialized)
+                    .asJson();
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

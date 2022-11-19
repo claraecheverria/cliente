@@ -1,6 +1,5 @@
 package com.example.cliente;
 
-import com.example.cliente.HelloApplication;
 import com.example.cliente.Model.Empresa;
 import com.example.cliente.Model.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -57,7 +56,7 @@ public class ControllerTableViewEmpresa implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        List listaEmpresas = getUserList();
+        List listaEmpresas = getEmpresaList();
         empresas = FXCollections.observableArrayList(listaEmpresas);
         this.colNombreEmpresa.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         this.colRUT.setCellValueFactory(new PropertyValueFactory<>("rut"));
@@ -67,13 +66,12 @@ public class ControllerTableViewEmpresa implements Initializable {
     }
 
     public void actualizarTablaEmpresas(javafx.event.ActionEvent actionEvent){
-        List listaEmpleados = getUserList();
+        List listaEmpleados = getEmpresaList();
         empresas = FXCollections.observableArrayList(listaEmpleados);
         this.colNombreEmpresa.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         this.colRUT.setCellValueFactory(new PropertyValueFactory<>("rut"));
         this.colRazonSocial.setCellValueFactory(new PropertyValueFactory<>("razonSocial"));
         this.colDireccion.setCellValueFactory(new PropertyValueFactory<>("direccion"));
-
         this.tablaEmpresasCreadas.setItems(empresas);
     }
 
@@ -85,7 +83,7 @@ public class ControllerTableViewEmpresa implements Initializable {
         stage.setScene(scence);
         stage.show();
     }
-    public List<Empresa> getUserList (){
+    public List<Empresa> getEmpresaList(){
         HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/empresa/listaempresas")
                 .header("accept", "application/json")
                 .header("Content-Type", "application/json")

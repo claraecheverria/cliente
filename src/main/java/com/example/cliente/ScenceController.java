@@ -86,15 +86,11 @@ public class ScenceController {
         stage.setScene(scence);
         stage.show();
         stage.centerOnScreen();
-//        Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
-//        stage.setX((primScreenBounds.getWidth() - stage.getWidth()) /2);
-//        stage.setY((primScreenBounds.getHeight() - stage.getHeight()) /2);
     }
 
     public void pruebaSubirImagen(javafx.event.ActionEvent event){
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
-//        fileChooser.showOpenDialog(stage);
         File file = fileChooser.showOpenDialog(stage);
         if (file != null) {
             System.out.println("tengo file!!!");

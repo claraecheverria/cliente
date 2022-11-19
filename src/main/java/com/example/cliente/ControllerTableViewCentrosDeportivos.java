@@ -48,9 +48,8 @@ public class ControllerTableViewCentrosDeportivos implements Initializable {
                 .asJson();
         com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
         try {
-            List<CentroDeportivo> listCar = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<CentroDeportivo>>(){});
-            System.out.println(listCar.size());
-            return listCar;
+            List<CentroDeportivo> listCentrosDep = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<CentroDeportivo>>(){});
+            return listCentrosDep;
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
@@ -73,7 +72,6 @@ public class ControllerTableViewCentrosDeportivos implements Initializable {
         this.colRut.setCellValueFactory(new PropertyValueFactory<>("rut"));
         this.colRazonSocial.setCellValueFactory(new PropertyValueFactory<>("razonSocial"));
         this.colDireccion.setCellValueFactory(new PropertyValueFactory<>("direccion"));
-
         this.tableCentroDeportivo.setItems(centroDeportivos);
     }
 
@@ -84,7 +82,6 @@ public class ControllerTableViewCentrosDeportivos implements Initializable {
         this.colRut.setCellValueFactory(new PropertyValueFactory<>("rut"));
         this.colRazonSocial.setCellValueFactory(new PropertyValueFactory<>("razonSocial"));
         this.colDireccion.setCellValueFactory(new PropertyValueFactory<>("direccion"));
-
         this.tableCentroDeportivo.setItems(centroDeportivos);
     }
 }
