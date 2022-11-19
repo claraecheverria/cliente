@@ -60,5 +60,6 @@ public class ControllerCrearEmpleado {
 
         User nuevoUser = new User(nombre, email, telefono, cedula);
 
+        // No fue implementado
     }
 }

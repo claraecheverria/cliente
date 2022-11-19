@@ -97,12 +97,10 @@ public class ControllerPlantillaServicio {
             dias = dias + array[i] + ", ";
         }
         Horarios.setText(dias);
-//        BottonMeGusta.setStyle("-fx-background-color: #C9C9C9;");
         Horario.setText(servicio.getHoraInicio().toString() + " - " + servicio.getHoraFin().toString());
 
         for(int i = 0; i < listaFav.size(); i++){
             if(Objects.equals(servicio.getNombreServicio(), listaFav.get(i).getNombreServicio()) && Objects.equals(servicio.getNombreCentroDep(), listaFav.get(i).getNombreCentroDep())){
-                System.out.println("Entre, pinto de azul el boton");
                 BottonMeGusta.setStyle("-fx-background-color:#2B49B3;");
                 estaPrecionado = true;
             }
@@ -136,7 +134,6 @@ public class ControllerPlantillaServicio {
 
         for(int i = 0; i < listaFav.size(); i++){
             if(Objects.equals(cancha.getNombreServicio(), listaFav.get(i).getNombreServicio()) && Objects.equals(cancha.getNombreCentroDep(), listaFav.get(i).getNombreCentroDep())){
-                System.out.println("Entre, pinto de azul el boton");
                 BottonMeGusta.setStyle("-fx-background-color:#2B49B3;");
                 estaPrecionado = true;
             }
@@ -147,8 +144,6 @@ public class ControllerPlantillaServicio {
     public void meGusta(javafx.event.ActionEvent actionEvent) {
         if (estaPrecionado == false) {
             BottonMeGusta.setStyle("-fx-background-color:#2B49B3;");
-            System.out.println("apreté me gusta");
-            System.out.println(servicioEste.getNombreServicio());
             setEstaPrecionado(true);
             try {
                 com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
@@ -223,7 +218,6 @@ public class ControllerPlantillaServicio {
             objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
             objectMapper.setDateFormat(df);
             List<ServicioDTO> listaServicios = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<ServicioDTO>>(){});
-            System.out.println(listaServicios.size());
             return listaServicios;
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);

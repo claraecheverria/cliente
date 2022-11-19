@@ -218,11 +218,9 @@ public class ControllerIngresarCliente implements Initializable {
             }
         }
 
-
-
     }
 
-    public List<ServicioDTO> ListaServicios(){    // hay que hacer la consulta a la base de datos
+    public List<ServicioDTO> ListaServicios(){
 
         HttpResponse<JsonNode> response = Unirest.get("http://localhost:8080/centroDeportivo/listaServiciosUnCentroDepDTO")
                 .header("accept", "application/json")
@@ -235,7 +233,6 @@ public class ControllerIngresarCliente implements Initializable {
             objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
             objectMapper.setDateFormat(df);
             List<ServicioDTO> listaServiciosEsteCentroDep = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<ServicioDTO>>(){});
-            System.out.println(listaServiciosEsteCentroDep.size());
             return listaServiciosEsteCentroDep;
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
