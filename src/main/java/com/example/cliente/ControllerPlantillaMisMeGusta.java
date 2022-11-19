@@ -77,6 +77,7 @@ public class ControllerPlantillaMisMeGusta {
         fxmlLoader.setControllerFactory(ClienteApplication.getContext()::getBean);
         Parent root = fxmlLoader.load(ControllerPlantillaServicio.class.getResourceAsStream("SeleccionFechaReserva.fxml"));
         ((ControllerSeleccionFechaReserva)fxmlLoader.getController()).setServicio(servicioEste);
+        ((ControllerSeleccionFechaReserva)fxmlLoader.getController()).setPlantillaMeGusta(this);
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
 

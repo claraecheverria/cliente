@@ -66,7 +66,6 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
         VboxMails.getChildren().clear();
         horariosLibres.clear();
 
-        System.out.println(servicio.getNombreServicio());
         this.servicio = servicio;
         LocalTime horaInicioServ = servicio.getHoraInicio();
         LocalTime horaFinServ = servicio.getHoraFin();
@@ -79,7 +78,6 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
             int horaInicio = horariosOcupados.get(j).getHoraInicio().getHour();
             int horaFin = horariosOcupados.get(j).getHoraFin().getHour();
             int cantidadHoras = horaFin - horaInicio;
-            System.out.println(cantidadHoras);
             for(int k = 0; k<cantidadHoras;k++){
                 Integer elemento = horaInicio+k;
                 horariosLibres.remove(elemento);

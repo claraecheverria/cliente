@@ -36,6 +36,8 @@ public class ControllerSeleccionFechaReserva {
     private LocalDate fecha;
     private ControllerPlantillaServicio controllerPlantillaServicio;
 
+    private ControllerPlantillaMisMeGusta controllerPlantillaMisMeGusta;
+
 
     public void consultarFecha(javafx.event.ActionEvent actionEvent) throws IOException {
         fecha = Calendario.getValue();
@@ -68,5 +70,9 @@ public class ControllerSeleccionFechaReserva {
 
     public void setPlantillaServicio(ControllerPlantillaServicio controllerPlantillaServicio) {
         this.controllerPlantillaServicio = controllerPlantillaServicio;
+    }
+
+    public void setPlantillaMeGusta(ControllerPlantillaMisMeGusta controllerPlantillaMisMeGusta) {
+        this.controllerPlantillaMisMeGusta = controllerPlantillaMisMeGusta;
     }
 }
