@@ -66,7 +66,7 @@
             </Label>
             <VBox layoutX="216.0" layoutY="51.0" prefHeight="31.0" prefWidth="151.0" AnchorPane.bottomAnchor="118.0">
                <children>
-                  <Text fx:id="Horarios" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="150.9515380859375" />
+                  <Text fx:id="Horarios" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="150.9515380859375" />
                </children>
             </VBox>
             <Label layoutX="270.0" layoutY="74.0" text="Horario:" textFill="#2b49b3" AnchorPane.bottomAnchor="101.0">
@@ -74,8 +74,8 @@
                   <Font name="Arial Black" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="Horario" layoutX="265.0" layoutY="93.0" text="9:00 - 18:00" AnchorPane.bottomAnchor="85.0" />
             <Text fx:id="Descripcion" layoutX="24.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="196.81311617257984" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="30.0" />
+            <Text fx:id="Horario" layoutX="269.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="56.46272277832031" />
          </children>
          <HBox.margin>
             <Insets />

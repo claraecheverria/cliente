@@ -27,11 +27,11 @@
    <center>
       <TableView fx:id="tableEmpleado" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="258.0" prefWidth="558.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="colCorreo" prefWidth="75.0" text="Mail" />
-          <TableColumn fx:id="colNombres" prefWidth="75.0" text="Nombre" />
-            <TableColumn fx:id="colCedula" prefWidth="75.0" text="Cédula" />
-            <TableColumn fx:id="colVenCarne" prefWidth="123.0" text="Carne Vencimiento" />
-            <TableColumn fx:id="colSaldo" prefWidth="106.0" text="Cantidad Saldo" />
+          <TableColumn fx:id="colCorreo" prefWidth="139.0" text="Mail" />
+          <TableColumn fx:id="colNombres" prefWidth="108.0" text="Nombre" />
+            <TableColumn fx:id="colCedula" prefWidth="107.0" text="Cédula" />
+            <TableColumn fx:id="colVenCarne" prefWidth="111.0" text="Carne Vencimiento" />
+            <TableColumn fx:id="colSaldo" prefWidth="92.0" text="Cantidad Saldo" />
         </columns>
          <BorderPane.margin>
             <Insets bottom="1.0" />

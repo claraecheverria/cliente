@@ -200,5 +200,6 @@ public class ControllerVistaUsuarioFinal implements Initializable {
         scence = new Scene(root);
         stage.setScene(scence);
         stage.show();
+        stage.centerOnScreen();
     }
 }

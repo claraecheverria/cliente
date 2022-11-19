@@ -62,15 +62,7 @@
                   <Font name="Arial Black" size="13.0" />
                </font>
             </Label>
-            <HBox layoutX="264.0" layoutY="61.0" AnchorPane.bottomAnchor="85.0">
-               <children>
-                  <Label fx:id="Horario" text="9:00 - 19:00">
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
-            </HBox>
+            <HBox layoutX="264.0" layoutY="61.0" AnchorPane.bottomAnchor="85.0" />
             <VBox layoutX="214.0" layoutY="44.0" prefHeight="31.0" prefWidth="149.0" AnchorPane.bottomAnchor="118.0">
                <children>
                   <Text fx:id="Horarios" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="150.34083557128906" />
@@ -82,6 +74,7 @@
                </children>
             </VBox>
             <Text fx:id="Descripcion" layoutX="-4.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clase de yoga para principiantes" wrappingWidth="202.17692908424647" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="30.0" />
+            <Text fx:id="Horario" layoutX="265.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="82.74579827590594" />
          </children>
          <HBox.margin>
             <Insets />
