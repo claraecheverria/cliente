@@ -194,7 +194,7 @@ public class ControllerCrearServicio implements Initializable {
                 String serialized = null;
                 serialized = objectMapper.writeValueAsString(canchaDTO);
 
-                HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/centroDeportivo/crearServicioCentroDepDTO")
+                HttpResponse<JsonNode> response2 = Unirest.post("http://localhost:8080/centroDeportivo/crearCanchaCentroDepDTO")
                         .header("accept", "application/json")
                         .header("Content-Type", "application/json")
                         .body(serialized)
