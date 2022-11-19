@@ -52,7 +52,7 @@ public class ControllerSeleccionFechaReserva {
     }
 
     public void volver(javafx.event.ActionEvent actionEvent){
-        stage.close();
+        controllerPlantillaServicio.close();
     }
 
     public LocalDate mandarFecha(){
