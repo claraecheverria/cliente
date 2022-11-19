@@ -109,6 +109,7 @@ public class ControllerPlantillaServicio {
     }
     public void setDataCancha(CanchaDTO cancha){
         byte[] decodedBytes;
+        listaFav = getListaServiciosFav();
         if(cancha.getImagenes().size() == 0){
 
         }else{
