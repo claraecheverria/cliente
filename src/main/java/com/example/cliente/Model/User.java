@@ -11,14 +11,11 @@ public class User {
     private Long cedula;
 
 
-
-
-
-    public User(String nombre, String email, Long telefono, Long cedula) {
+    public User(String nombre, String email, Long telefono, String password, Long cedula) {
         this.nombre = nombre;
         this.email = email;
         this.telefono = telefono;
-        this.password = "12345678";
+        this.password = password;
         this.cedula = cedula;
     }
 

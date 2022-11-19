@@ -49,9 +49,6 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
     private VBox VboxMails;
     @FXML
     private Label Lable;
-    //@Autowired
-    //private nombreController nombreAtributo;
-
     @Autowired
     private ControllerSeleccionFechaReserva controllerSeleccionFechaReserva;
     private ControllerPlantillaServicio controllerPlantillaServicio;
@@ -170,7 +167,6 @@ public class ControllerSeleccionarHorariosReserva implements Initializable {
         ArrayList<CheckBox> listaBotonesSeleccionados = new ArrayList<>();
 
         for(int i = 0; i<horariosLibres.size();i++){
-            System.out.println(VboxHorarios.getChildren().get(i).getClass());
             if(((CheckBox)VboxHorarios.getChildren().get(i)).isSelected() == true){
                 listaBotonesSeleccionados.add((CheckBox) VboxHorarios.getChildren().get(i));
             }
