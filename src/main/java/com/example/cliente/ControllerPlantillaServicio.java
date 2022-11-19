@@ -93,7 +93,7 @@ public class ControllerPlantillaServicio {
         Object[] array = servicio.getDias().toArray();
         String dias = new String();
         for (int i = 0; i < tam; i++){
-            dias = dias + array[i];
+            dias = dias + array[i] + ", ";
         }
         Horarios.setText(dias);
 //        BottonMeGusta.setStyle("-fx-background-color: #C9C9C9;");
@@ -125,11 +125,12 @@ public class ControllerPlantillaServicio {
         Precio.setText(String.valueOf(cancha.getPrecio()));
         Descripcion.setText(cancha.getDescripcion());
         int tam = cancha.getDias().size();
-        String horarios = new String();
-//        for (int i = 0; i < tam; i++){
-        horarios = horarios + cancha.getDias().toString();
-//        }
-        Horarios.setText(horarios);
+        Object[] array = cancha.getDias().toArray();
+        String dias = new String();
+        for (int i = 0; i < tam; i++){
+            dias = dias + array[i] + ", ";
+        }
+        Horarios.setText(dias);
         Horario.setText(cancha.getHoraInicio().toString() + " - " + cancha.getHoraFin().toString());
 
         for(int i = 0; i < listaFav.size(); i++){
