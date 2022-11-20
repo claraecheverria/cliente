@@ -8,6 +8,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
@@ -35,7 +36,7 @@ public class Login {
     @FXML
     private TextField Email;
     @FXML
-    private TextField Password;
+    private PasswordField Password;
 
     private List<String[]> listaAtributosEmpleado;
 

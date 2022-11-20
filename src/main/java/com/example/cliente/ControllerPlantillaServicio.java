@@ -48,7 +48,7 @@ public class ControllerPlantillaServicio {
     @FXML
     private Button BottonMeGusta;
     @FXML
-    private Label Horario;
+    private Text Horario;
     private CentroDeportivo centroDeportio;
     private ServicioDTO servicioEste;
     private boolean estaPrecionado = false;
