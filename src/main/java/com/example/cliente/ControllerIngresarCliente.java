@@ -18,6 +18,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
@@ -50,7 +51,7 @@ public class ControllerIngresarCliente implements Initializable {
     @FXML
     private ComboBox horaFin;
     @FXML
-    private Label Lable;
+    private Text Lable;
     private ObservableList<String> listaServicios;
     private List<ServicioDTO> listaServiciosO = ListaServicios();
     private List<CanchaDTO> listaCanchas = ListaCanchas();
