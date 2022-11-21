@@ -66,7 +66,6 @@ public class ControllerPlantillaMisMeGusta {
 
         for(int i = 0; i < listaFav.size(); i++){
             if(Objects.equals(servicio.getNombreServicio(), listaFav.get(i).getNombreServicio()) && Objects.equals(servicio.getNombreCentroDep(), listaFav.get(i).getNombreCentroDep())){
-                System.out.println("Entre pinta azul boton");
                 BottonMeGusta.setStyle("-fx-background-color:#2B49B3;");
             }
         }
@@ -98,7 +97,6 @@ public class ControllerPlantillaMisMeGusta {
             objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
             objectMapper.setDateFormat(df);
             List<ServicioDTO> listaServicios = objectMapper.readValue(response.getBody().toString(), new TypeReference<List<ServicioDTO>>(){});
-            System.out.println(listaServicios.size());
             return listaServicios;
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
@@ -107,8 +105,6 @@ public class ControllerPlantillaMisMeGusta {
     public void meGusta(javafx.event.ActionEvent actionEvent) {
         if (estaPrecionado == false) {
             BottonMeGusta.setStyle("-fx-background-color:#2B49B3;");
-            System.out.println("apreté me gusta");
-            System.out.println(servicioEste.getNombreServicio());
             setEstaPrecionado(true);
             try {
                 com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
