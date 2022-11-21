@@ -96,24 +96,25 @@ public class ControllerVistaUsuarioFinal implements Initializable {
         }
 
         try{
-            for(int i =0; i<2;i++){
-                if(i == 0){
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("PlantillaServicioSinReserva.fxml"));
-                    HBox serviceBox = null;
-                    serviceBox = fxmlLoader.load();
-                    ControllerPlantillaServicio servicioController = fxmlLoader.getController();
-                    servicioController.setData(listaservicios.get(i));
-                    HboxMeGusta1.getChildren().add(serviceBox);
-                }
-                else{
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("PlantillaServicioSinReserva.fxml"));
-                    HBox serviceBox = null;
-                    serviceBox = fxmlLoader.load();
-                    ControllerPlantillaServicio servicioController = fxmlLoader.getController();
-                    servicioController.setData(listaservicios.get(i));
-                    HboxMeGusta2.getChildren().add(serviceBox);
+            if (listaservicios.size() != 0) {
+                for (int i = 0; i < 2; i++) {
+                    if (i == 0) {
+                        FXMLLoader fxmlLoader = new FXMLLoader();
+                        fxmlLoader.setLocation(getClass().getResource("PlantillaServicioSinReserva.fxml"));
+                        HBox serviceBox = null;
+                        serviceBox = fxmlLoader.load();
+                        ControllerPlantillaServicio servicioController = fxmlLoader.getController();
+                        servicioController.setData(listaservicios.get(i));
+                        HboxMeGusta1.getChildren().add(serviceBox);
+                    } else {
+                        FXMLLoader fxmlLoader = new FXMLLoader();
+                        fxmlLoader.setLocation(getClass().getResource("PlantillaServicioSinReserva.fxml"));
+                        HBox serviceBox = null;
+                        serviceBox = fxmlLoader.load();
+                        ControllerPlantillaServicio servicioController = fxmlLoader.getController();
+                        servicioController.setData(listaservicios.get(i));
+                        HboxMeGusta2.getChildren().add(serviceBox);
+                    }
                 }
             }
         }catch (IOException e) {
